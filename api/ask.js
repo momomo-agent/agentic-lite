@@ -1,5 +1,5 @@
 // Vercel serverless function — /api/ask
-// Inline implementation to avoid build complexity
+// SSE streaming to avoid timeout
 
 export default async function handler(req, res) {
   if (req.method === 'OPTIONS') {
@@ -14,20 +14,33 @@ export default async function handler(req, res) {
   if (!prompt) return res.status(400).json({ error: 'prompt required' })
   if (!apiKey) return res.status(400).json({ error: 'apiKey required' })
 
-  try {
-    const result = await agenticAsk(prompt, { provider, baseUrl, apiKey, model, tools, searchApiKey })
-    res.setHeader('Access-Control-Allow-Origin', '*')
-    res.status(200).json(result)
-  } catch (err) {
-    res.status(500).json({ error: String(err) })
+  // SSE headers
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader('Content-Type', 'text/event-stream')
+  res.setHeader('Cache-Control', 'no-cache')
+  res.setHeader('Connection', 'keep-alive')
+  res.flushHeaders()
+
+  const emit = (event, data) => {
+    res.write(`event: ${event}\ndata: ${JSON.stringify(data)}\n\n`)
+    if (res.flush) res.flush()
   }
+
+  try {
+    emit('status', { message: 'Starting...' })
+    const result = await agenticAsk(prompt, { provider, baseUrl, apiKey, model, tools, searchApiKey }, emit)
+    emit('done', result)
+  } catch (err) {
+    emit('error', { message: String(err) })
+  }
+  res.end()
 }
 
 // ── Inline agentic-lite core ──
 
 const MAX_ROUNDS = 10
 
-async function agenticAsk(prompt, config) {
+async function agenticAsk(prompt, config, emit) {
   const chat = config.provider === 'anthropic' ? anthropicChat : openaiChat
   const toolDefs = buildToolDefs(config.tools)
   const messages = [{ role: 'user', content: prompt }]
@@ -35,6 +48,7 @@ async function agenticAsk(prompt, config) {
   let usage = { input: 0, output: 0 }
 
   for (let i = 0; i < MAX_ROUNDS; i++) {
+    emit('status', { message: `Round ${i + 1}: calling LLM...` })
     const res = await chat(messages, toolDefs, config)
     usage.input += res.usage.input
     usage.output += res.usage.output
@@ -53,9 +67,11 @@ async function agenticAsk(prompt, config) {
     // Execute tools
     const results = []
     for (const tc of res.toolCalls) {
+      emit('status', { message: `Executing ${tc.name}...` })
       const output = await execTool(tc, config, acc)
       acc.toolCalls.push({ tool: tc.name, input: tc.input, output })
       results.push(String(output))
+      emit('tool', { name: tc.name, output: String(output).slice(0, 200) })
     }
 
     // For Anthropic: use standard tool_result format
