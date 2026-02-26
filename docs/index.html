@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>agentic-lite — One function call with tools</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11/styles/github-dark.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/highlight.js@11/highlight.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0a0a0a; color: #e0e0e0;
+      line-height: 1.6;
+    }
+    a { color: #fbbf24; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    code { font-family: 'SF Mono', 'Fira Code', monospace; }
+
+    /* Nav */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 10;
+      padding: 16px 32px;
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(10,10,10,0.85); backdrop-filter: blur(12px);
+      border-bottom: 1px solid #1a1a1a;
+    }
+    nav .logo { font-size: 18px; font-weight: 600; }
+    nav .logo span { color: #fbbf24; }
+    nav .links { display: flex; gap: 24px; font-size: 14px; }
+    nav .links a { color: #888; }
+    nav .links a:hover { color: #e0e0e0; }
+</style>
+</head>
+<body>
+  <nav>
+    <div class="logo"><span>⚡</span> agentic-lite</div>
+    <div class="links">
+      <a href="#features">Features</a>
+      <a href="#code">Code</a>
+      <a href="https://agentic-lite.vercel.app" target="_blank">Demo</a>
+      <a href="https://github.com/momomo-agent/agentic-lite" target="_blank">GitHub</a>
+      <a href="https://www.npmjs.com/package/agentic-lite" target="_blank">npm</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section style="padding: 140px 32px 80px; max-width: 720px; margin: 0 auto; text-align: center;">
+    <div style="font-size: 64px; margin-bottom: 16px;">⚡</div>
+    <h1 style="font-size: 42px; font-weight: 700; letter-spacing: -1px; line-height: 1.2;">
+      One function call.<br>Built-in tools.
+    </h1>
+    <p style="color: #888; font-size: 18px; margin-top: 16px; max-width: 480px; margin-left: auto; margin-right: auto;">
+      Search, code execution, and file processing — without the framework overhead.
+    </p>
+    <div style="margin-top: 32px; display: flex; gap: 12px; justify-content: center;">
+      <a href="https://agentic-lite.vercel.app" target="_blank" style="background: #fbbf24; color: #0a0a0a; padding: 10px 24px; border-radius: 8px; font-weight: 600; font-size: 14px;">Try Demo</a>
+      <a href="https://github.com/momomo-agent/agentic-lite" target="_blank" style="border: 1px solid #333; padding: 10px 24px; border-radius: 8px; font-size: 14px; color: #e0e0e0;">GitHub</a>
+    </div>
+    <div style="margin-top: 24px;">
+      <code style="background: #141414; padding: 8px 16px; border-radius: 6px; font-size: 13px; color: #888;">npm install agentic-lite</code>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" style="padding: 60px 32px; max-width: 720px; margin: 0 auto;">
+    <h2 style="font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: #555; margin-bottom: 32px;">Features</h2>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div style="background: #111; border: 1px solid #1a1a1a; border-radius: 10px; padding: 24px;">
+        <div style="font-size: 24px; margin-bottom: 8px;">🔍</div>
+        <div style="font-weight: 600; margin-bottom: 4px;">Web Search</div>
+        <div style="color: #666; font-size: 13px;">Tavily-powered search with sources and images.</div>
+      </div>
+      <div style="background: #111; border: 1px solid #1a1a1a; border-radius: 10px; padding: 24px;">
+        <div style="font-size: 24px; margin-bottom: 8px;">💻</div>
+        <div style="font-weight: 600; margin-bottom: 4px;">Code Execution</div>
+        <div style="color: #666; font-size: 13px;">Sandboxed JS eval for calculations and data processing.</div>
+      </div>
+      <div style="background: #111; border: 1px solid #1a1a1a; border-radius: 10px; padding: 24px;">
+        <div style="font-size: 24px; margin-bottom: 8px;">🌊</div>
+        <div style="font-weight: 600; margin-bottom: 4px;">SSE Streaming</div>
+        <div style="color: #666; font-size: 13px;">Real-time status updates and token-by-token output.</div>
+      </div>
+      <div style="background: #111; border: 1px solid #1a1a1a; border-radius: 10px; padding: 24px;">
+        <div style="font-size: 24px; margin-bottom: 8px;">🔌</div>
+        <div style="font-weight: 600; margin-bottom: 4px;">Any Provider</div>
+        <div style="color: #666; font-size: 13px;">Anthropic, OpenAI, or any OpenAI-compatible proxy.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Code -->
+  <section id="code" style="padding: 60px 32px; max-width: 720px; margin: 0 auto;">
+    <h2 style="font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: #555; margin-bottom: 24px;">Usage</h2>
+    <pre style="background: #111; border: 1px solid #1a1a1a; border-radius: 10px; padding: 24px; overflow-x: auto;"><code class="language-javascript">import { ask } from 'agentic-lite'
+
+const result = await ask('Latest AI news today', {
+  provider: 'openai',
+  apiKey: process.env.OPENAI_API_KEY,
+  tools: ['search'],
+  toolConfig: {
+    search: { apiKey: process.env.TAVILY_API_KEY }
+  }
+})
+
+result.answer   // Summarized answer
+result.sources  // [{ title, url, snippet }]
+result.images   // ["https://...jpg", ...]</code></pre>
+  </section>
+
+  <!-- Response -->
+  <section style="padding: 40px 32px 60px; max-width: 720px; margin: 0 auto;">
+    <h2 style="font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: #555; margin-bottom: 24px;">Response Shape</h2>
+    <pre style="background: #111; border: 1px solid #1a1a1a; border-radius: 10px; padding: 24px; overflow-x: auto;"><code class="language-typescript">interface AgenticResult {
+  answer: string
+  sources?: Source[]
+  images?: string[]
+  codeResults?: CodeResult[]
+  toolCalls?: ToolCall[]
+  usage?: { input: number; output: number }
+}</code></pre>
+  </section>
+
+  <!-- Footer -->
+  <footer style="padding: 40px 32px; text-align: center; border-top: 1px solid #1a1a1a; color: #444; font-size: 13px;">
+    <a href="https://github.com/momomo-agent/agentic-lite" style="color: #666;">GitHub</a>
+    &nbsp;·&nbsp;
+    <a href="https://www.npmjs.com/package/agentic-lite" style="color: #666;">npm</a>
+    &nbsp;·&nbsp;
+    <a href="https://agentic-lite.vercel.app" style="color: #666;">Demo</a>
+    <div style="margin-top: 8px;">MIT License</div>
+  </footer>
+
+  <script>hljs.highlightAll()</script>
+</body>
+</html>
