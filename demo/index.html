@@ -69,7 +69,6 @@
           <select id="provider">
             <option value="anthropic">Anthropic</option>
             <option value="openai">OpenAI</option>
-            <option value="custom">Custom</option>
           </select>
         </div>
         <div style="flex:2">
@@ -105,6 +104,29 @@
   </div>
 
   <script>
+    // Persist config to localStorage
+    const STORAGE_KEY = 'agentic-lite-config'
+    function loadConfig() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}')
+        if (saved.provider) document.getElementById('provider').value = saved.provider
+        if (saved.apiKey) document.getElementById('apiKey').value = saved.apiKey
+        if (saved.baseUrl) document.getElementById('baseUrl').value = saved.baseUrl
+        if (saved.model) document.getElementById('model').value = saved.model
+      } catch {}
+    }
+    function saveConfig() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        provider: document.getElementById('provider').value,
+        apiKey: document.getElementById('apiKey').value,
+        baseUrl: document.getElementById('baseUrl').value,
+        model: document.getElementById('model').value,
+      }))
+    }
+    loadConfig()
+    document.querySelectorAll('#provider,#apiKey,#baseUrl,#model').forEach(el => el.addEventListener('change', saveConfig))
+    document.querySelectorAll('#apiKey,#baseUrl,#model').forEach(el => el.addEventListener('input', saveConfig))
+
     // Tool chips toggle
     document.querySelectorAll('.tool-chip').forEach(chip => {
       chip.addEventListener('click', () => chip.classList.toggle('active'))
