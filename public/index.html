@@ -77,13 +77,13 @@
           <input type="password" id="apiKey" placeholder="sk-ant-... or sk-...">
         </div>
       </div>
-      <div class="config-row" id="customRow" style="display:none">
+      <div class="config-row">
         <div style="flex:1">
-          <label>Base URL</label>
-          <input id="baseUrl" placeholder="https://api.example.com">
+          <label>Base URL <span style="color:#555">(optional, for proxies)</span></label>
+          <input id="baseUrl" placeholder="https://api.anthropic.com">
         </div>
         <div style="flex:1">
-          <label>Model</label>
+          <label>Model <span style="color:#555">(optional)</span></label>
           <input id="model" placeholder="claude-sonnet-4-20250514">
         </div>
       </div>
@@ -108,11 +108,6 @@
     // Tool chips toggle
     document.querySelectorAll('.tool-chip').forEach(chip => {
       chip.addEventListener('click', () => chip.classList.toggle('active'))
-    })
-
-    // Show/hide custom provider fields
-    document.getElementById('provider').addEventListener('change', e => {
-      document.getElementById('customRow').style.display = e.target.value === 'custom' ? 'flex' : 'none'
     })
 
     // Run button
