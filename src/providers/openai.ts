@@ -84,6 +84,12 @@ function reassembleSSE(text: string): OpenAIResponse {
           }
         }
       }
+      // Handle Responses API format: tool calls in chunk.item
+      const item = chunk.item
+      if (item?.call_id && item?.name && item?.status === 'completed' && item?.arguments) {
+        const idx = toolCalls.size
+        toolCalls.set(idx, { id: item.call_id, name: item.name, args: item.arguments })
+      }
       if (chunk.choices?.[0]?.finish_reason) finishReason = chunk.choices[0].finish_reason
     } catch { /* skip malformed chunks */ }
   }
@@ -92,8 +98,10 @@ function reassembleSSE(text: string): OpenAIResponse {
     id: tc.id, function: { name: tc.name, arguments: tc.args },
   }))
 
+  const hasToolCalls = reassembledToolCalls.length > 0
+
   return {
-    choices: [{ message: { content: content || null, tool_calls: reassembledToolCalls.length ? reassembledToolCalls : undefined }, finish_reason: finishReason }],
+    choices: [{ message: { content: content || null, tool_calls: hasToolCalls ? reassembledToolCalls : undefined }, finish_reason: hasToolCalls ? 'tool_calls' : finishReason }],
     usage,
   }
 }
