@@ -97,8 +97,9 @@ async function anthropicChat(messages, tools, config) {
 // ── OpenAI provider ──
 
 async function openaiChat(messages, tools, config) {
-  const url = config.baseUrl || 'https://api.openai.com'
-  const body = { model: config.model || 'gpt-4o', messages: messages.map(m => {
+  const base = (config.baseUrl || 'https://api.openai.com').replace(/\/+$/, '')
+  const endpoint = base.endsWith('/v1') ? `${base}/chat/completions` : `${base}/v1/chat/completions`
+  const body = { model: config.model || 'gpt-4o', stream: false, messages: messages.map(m => {
     if (m.role === 'user' && Array.isArray(m.content) && m.content[0]?.type === 'tool_result') {
       return m.content.map(c => ({ role: 'tool', tool_call_id: c.tool_use_id, content: c.content }))
     }
@@ -106,13 +107,19 @@ async function openaiChat(messages, tools, config) {
   }).flat() }
   if (tools.length) body.tools = tools.map(t => ({ type: 'function', function: { name: t.name, description: t.description, parameters: t.parameters } }))
 
-  const res = await fetch(`${url}/v1/chat/completions`, {
+  const res = await fetch(endpoint, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${config.apiKey}` },
     body: JSON.stringify(body),
   })
   if (!res.ok) throw new Error(`API error ${res.status}: ${await res.text()}`)
-  const data = await res.json()
+  const rawText = await res.text()
+  let data
+  if (rawText.trimStart().startsWith('data: ')) {
+    data = reassembleSSE(rawText)
+  } else {
+    data = JSON.parse(rawText)
+  }
   const choice = data.choices[0]
   const toolCalls = (choice?.message.tool_calls || []).map(tc => ({ id: tc.id, name: tc.function.name, input: JSON.parse(tc.function.arguments) }))
   return { text: choice?.message.content || '', toolCalls, usage: { input: data.usage.prompt_tokens, output: data.usage.completion_tokens }, stopReason: choice?.finish_reason === 'tool_calls' ? 'tool_use' : 'end' }
@@ -167,5 +174,46 @@ function execCode(input, acc) {
   } catch (err) {
     acc.codeResults.push({ code, output: '', error: String(err) })
     return `Error: ${err}`
+  }
+}
+
+// ── SSE reassembly ──
+
+function reassembleSSE(text) {
+  const lines = text.split('\n')
+  let content = ''
+  const toolCalls = new Map()
+  let finishReason = 'stop'
+  let usage = { prompt_tokens: 0, completion_tokens: 0 }
+
+  for (const line of lines) {
+    if (!line.startsWith('data: ') || line === 'data: [DONE]') continue
+    try {
+      const chunk = JSON.parse(line.slice(6))
+      const delta = chunk.choices?.[0]?.delta
+      if (!delta) { if (chunk.usage) usage = chunk.usage; continue }
+      if (delta.content) content += delta.content
+      if (delta.tool_calls) {
+        for (const tc of delta.tool_calls) {
+          const idx = tc.index ?? 0
+          const existing = toolCalls.get(idx)
+          if (!existing) {
+            toolCalls.set(idx, { id: tc.id || '', name: tc.function?.name || '', args: tc.function?.arguments || '' })
+          } else {
+            if (tc.function?.arguments) existing.args += tc.function.arguments
+          }
+        }
+      }
+      if (chunk.choices?.[0]?.finish_reason) finishReason = chunk.choices[0].finish_reason
+    } catch {}
+  }
+
+  const reassembled = [...toolCalls.values()].map(tc => ({
+    id: tc.id, function: { name: tc.name, arguments: tc.args },
+  }))
+
+  return {
+    choices: [{ message: { content: content || null, tool_calls: reassembled.length ? reassembled : undefined }, finish_reason: finishReason }],
+    usage,
   }
 }

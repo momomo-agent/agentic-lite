@@ -133,7 +133,7 @@
         const res = await fetch('/api/ask', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ prompt, tools, provider: provider === 'custom' ? 'openai' : provider, baseUrl, apiKey, model }),
+          body: JSON.stringify({ prompt, tools, provider, baseUrl, apiKey, model }),
         })
         const data = await res.json()
         if (!res.ok) throw new Error(data.error || 'Request failed')

@@ -11,6 +11,7 @@ export function createOpenAIProvider(config: AgenticConfig): Provider {
     async chat(messages: ProviderMessage[], tools: ToolDefinition[]): Promise<ProviderResponse> {
       const body: Record<string, unknown> = {
         model,
+        stream: false,
         messages: convertMessages(messages),
       }
 
@@ -21,7 +22,10 @@ export function createOpenAIProvider(config: AgenticConfig): Provider {
         }))
       }
 
-      const res = await fetch(`${baseUrl}/v1/chat/completions`, {
+      const base = baseUrl.replace(/\/+$/, '')
+      const endpoint = base.endsWith('/v1') ? `${base}/chat/completions` : `${base}/v1/chat/completions`
+
+      const res = await fetch(endpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -35,9 +39,62 @@ export function createOpenAIProvider(config: AgenticConfig): Provider {
         throw new Error(`OpenAI API error ${res.status}: ${err}`)
       }
 
-      const data = await res.json() as OpenAIResponse
+      // Handle SSE streaming responses (some proxies ignore stream:false and don't set proper content-type)
+      const rawText = await res.text()
+      let data: OpenAIResponse
+
+      if (rawText.trimStart().startsWith('data: ')) {
+        data = reassembleSSE(rawText)
+      } else {
+        data = JSON.parse(rawText) as OpenAIResponse
+      }
+
       return parseResponse(data)
     }
+  }
+}
+
+// --- SSE stream reassembly ---
+
+function reassembleSSE(text: string): OpenAIResponse {
+  const lines = text.split('\n')
+  let content = ''
+  const toolCalls: Map<number, { id: string; name: string; args: string }> = new Map()
+  let finishReason = 'stop'
+  let usage = { prompt_tokens: 0, completion_tokens: 0 }
+
+  for (const line of lines) {
+    if (!line.startsWith('data: ') || line === 'data: [DONE]') continue
+    try {
+      const chunk = JSON.parse(line.slice(6))
+      const delta = chunk.choices?.[0]?.delta
+      if (!delta) {
+        if (chunk.usage) usage = chunk.usage
+        continue
+      }
+      if (delta.content) content += delta.content
+      if (delta.tool_calls) {
+        for (const tc of delta.tool_calls) {
+          const idx = tc.index ?? 0
+          const existing = toolCalls.get(idx)
+          if (!existing) {
+            toolCalls.set(idx, { id: tc.id || '', name: tc.function?.name || '', args: tc.function?.arguments || '' })
+          } else {
+            if (tc.function?.arguments) existing.args += tc.function.arguments
+          }
+        }
+      }
+      if (chunk.choices?.[0]?.finish_reason) finishReason = chunk.choices[0].finish_reason
+    } catch { /* skip malformed chunks */ }
+  }
+
+  const reassembledToolCalls = [...toolCalls.values()].map(tc => ({
+    id: tc.id, function: { name: tc.name, arguments: tc.args },
+  }))
+
+  return {
+    choices: [{ message: { content: content || null, tool_calls: reassembledToolCalls.length ? reassembledToolCalls : undefined }, finish_reason: finishReason }],
+    usage,
   }
 }
 
@@ -75,8 +132,11 @@ function convertMessages(messages: ProviderMessage[]) {
 }
 
 function parseResponse(data: OpenAIResponse): ProviderResponse {
-  const choice = data.choices[0]
-  const toolCalls = (choice?.message.tool_calls ?? []).map(tc => ({
+  const choice = data.choices?.[0]
+  if (!choice) {
+    return { text: '', toolCalls: [], usage: { input: data.usage?.prompt_tokens ?? 0, output: data.usage?.completion_tokens ?? 0 }, stopReason: 'end' }
+  }
+  const toolCalls = (choice.message?.tool_calls ?? []).map(tc => ({
     id: tc.id,
     name: tc.function.name,
     input: JSON.parse(tc.function.arguments) as Record<string, unknown>,
