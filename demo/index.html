@@ -249,16 +249,21 @@
       area.innerHTML = '<div class="loading-text">⏳ Thinking...</div>'
 
       try {
+        const controller = new AbortController()
+        const timeout = setTimeout(() => controller.abort(), 55000)
         const res = await fetch('/api/ask', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ prompt, tools, provider, baseUrl, apiKey, model, searchApiKey }),
+          signal: controller.signal,
         })
+        clearTimeout(timeout)
         const data = await res.json()
         if (!res.ok) throw new Error(data.error || 'Request failed')
         renderResult(data)
       } catch (err) {
-        area.innerHTML = `<div class="result-card"><div class="error-text">${esc(err.message)}</div></div>`
+        const msg = err.name === 'AbortError' ? 'Request timed out (55s). Try a simpler prompt or fewer tools.' : err.message
+        area.innerHTML = `<div class="result-card"><div class="error-text">${esc(msg)}</div></div>`
       } finally {
         btn.disabled = false
         btn.textContent = 'Run'
