@@ -38,12 +38,34 @@ export async function ask(prompt: string, config: AgenticConfig): Promise<Agenti
       }
     }
 
-    // Execute tool calls — use rawContent for proper assistant message replay
-    messages.push({ role: 'assistant', content: response.rawContent ?? response.text })
+    // Execute tool calls
     const toolResults = await executeToolCalls(response.toolCalls, config, {
       allSources, allCodeResults, allFileResults, allToolCalls,
     })
-    messages.push({ role: 'tool', content: toolResults })
+
+    // Build conversation continuation with tool results as text summary
+    // Then do a final call WITHOUT tools to force the model to answer
+    const callSummary = response.toolCalls.map(tc =>
+      `I called ${tc.name}(${JSON.stringify(tc.input)})`
+    ).join('\n')
+    const resultSummary = toolResults.map(r => r.content).join('\n')
+    const assistantText = [response.text, callSummary].filter(Boolean).join('\n')
+    messages.push({ role: 'assistant', content: assistantText })
+    messages.push({ role: 'user', content: `Here are the tool results:\n${resultSummary}\n\nPlease provide the final answer based on these results.` })
+
+    // Final call without tools — force the model to synthesize and answer
+    const finalResponse = await provider.chat(messages, [])
+    totalUsage.input += finalResponse.usage.input
+    totalUsage.output += finalResponse.usage.output
+
+    return {
+      answer: finalResponse.text,
+      sources: allSources.length > 0 ? allSources : undefined,
+      codeResults: allCodeResults.length > 0 ? allCodeResults : undefined,
+      files: allFileResults.length > 0 ? allFileResults : undefined,
+      toolCalls: allToolCalls.length > 0 ? allToolCalls : undefined,
+      usage: totalUsage,
+    }
   }
 
   throw new Error(`Agent loop exceeded ${MAX_TOOL_ROUNDS} rounds`)

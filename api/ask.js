@@ -49,14 +49,40 @@ async function agenticAsk(prompt, config) {
       }
     }
 
-    messages.push({ role: 'assistant', content: res.rawContent || res.text })
+    // Execute tools
     const results = []
     for (const tc of res.toolCalls) {
       const output = await execTool(tc, config, acc)
       acc.toolCalls.push({ tool: tc.name, input: tc.input, output })
-      results.push({ type: 'tool_result', tool_use_id: tc.id, content: String(output) })
+      results.push(String(output))
     }
-    messages.push({ role: 'user', content: results })
+
+    // For Anthropic: use standard tool_result format
+    if (config.provider === 'anthropic') {
+      messages.push({ role: 'assistant', content: res.rawContent || res.text })
+      messages.push({ role: 'user', content: res.toolCalls.map((tc, idx) => ({
+        type: 'tool_result', tool_use_id: tc.id, content: results[idx],
+      })) })
+      continue
+    }
+
+    // For OpenAI-compatible proxies: flatten to text + final call without tools
+    const callSummary = res.toolCalls.map(tc => `I called ${tc.name}(${JSON.stringify(tc.input)})`).join('\n')
+    const assistantText = [res.text, callSummary].filter(Boolean).join('\n')
+    messages.push({ role: 'assistant', content: assistantText })
+    messages.push({ role: 'user', content: `Here are the tool results:\n${results.join('\n')}\n\nPlease provide the final answer based on these results.` })
+
+    // Final call WITHOUT tools to force answer
+    const finalRes = await chat(messages, [], config)
+    usage.input += finalRes.usage.input
+    usage.output += finalRes.usage.output
+    return {
+      answer: finalRes.text,
+      sources: acc.sources.length ? acc.sources : undefined,
+      codeResults: acc.codeResults.length ? acc.codeResults : undefined,
+      toolCalls: acc.toolCalls.length ? acc.toolCalls : undefined,
+      usage,
+    }
   }
   throw new Error('Max tool rounds exceeded')
 }
@@ -122,7 +148,11 @@ async function openaiChat(messages, tools, config) {
     data = JSON.parse(rawText)
   }
   const choice = data.choices[0]
-  const toolCalls = (choice?.message.tool_calls || []).map(tc => ({ id: tc.id, name: tc.function.name, input: JSON.parse(tc.function.arguments) }))
+  const toolCalls = (choice?.message.tool_calls || []).map(tc => {
+    let input = {}
+    try { input = JSON.parse(tc.function.arguments || '{}') } catch {}
+    return { id: tc.id, name: tc.function.name, input, arguments: tc.function.arguments || '' }
+  })
   return { text: choice?.message.content || '', toolCalls, usage: { input: data.usage.prompt_tokens, output: data.usage.completion_tokens }, stopReason: choice?.finish_reason === 'tool_calls' ? 'tool_use' : 'end' }
 }
 
@@ -205,11 +235,21 @@ function reassembleSSE(text) {
           }
         }
       }
-      // Handle Responses API format: tool calls in chunk.item
+      // Handle Responses API format: tool calls in chunk.item (incremental)
       const item = chunk.item
-      if (item?.call_id && item?.name && item?.status === 'completed' && item?.arguments) {
-        const idx = toolCalls.size
-        toolCalls.set(idx, { id: item.call_id, name: item.name, args: item.arguments })
+      if (item?.call_id) {
+        let found = false
+        for (const [, tc] of toolCalls) {
+          if (tc.id === item.call_id) {
+            if (item.name) tc.name = item.name
+            if (item.arguments) tc.args = item.arguments
+            found = true
+            break
+          }
+        }
+        if (!found) {
+          toolCalls.set(toolCalls.size, { id: item.call_id, name: item.name || '', args: item.arguments || '' })
+        }
       }
       if (chunk.choices?.[0]?.finish_reason) finishReason = chunk.choices[0].finish_reason
     } catch {}

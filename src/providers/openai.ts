@@ -84,11 +84,22 @@ function reassembleSSE(text: string): OpenAIResponse {
           }
         }
       }
-      // Handle Responses API format: tool calls in chunk.item
+      // Handle Responses API format: tool calls in chunk.item (incremental)
       const item = chunk.item
-      if (item?.call_id && item?.name && item?.status === 'completed' && item?.arguments) {
-        const idx = toolCalls.size
-        toolCalls.set(idx, { id: item.call_id, name: item.name, args: item.arguments })
+      if (item?.call_id) {
+        // Find existing entry by call_id or create new
+        let found = false
+        for (const [, tc] of toolCalls) {
+          if (tc.id === item.call_id) {
+            if (item.name) tc.name = item.name
+            if (item.arguments) tc.args = item.arguments
+            found = true
+            break
+          }
+        }
+        if (!found) {
+          toolCalls.set(toolCalls.size, { id: item.call_id, name: item.name || '', args: item.arguments || '' })
+        }
       }
       if (chunk.choices?.[0]?.finish_reason) finishReason = chunk.choices[0].finish_reason
     } catch { /* skip malformed chunks */ }
@@ -129,11 +140,11 @@ interface OpenAIResponse {
 function convertMessages(messages: ProviderMessage[]) {
   return messages.map(m => {
     if (m.role === 'tool' && Array.isArray(m.content)) {
-      return m.content.map(c => ({
-        role: 'tool' as const,
-        tool_call_id: (c as { toolCallId: string }).toolCallId,
-        content: (c as { content: string }).content,
-      }))
+      // Some proxies reject role:'tool', wrap as user message
+      const parts = (m.content as { toolCallId: string; content: string }[])
+        .map(c => `[Tool result for ${c.toolCallId}]: ${c.content}`)
+        .join('\n')
+      return { role: 'user' as const, content: parts }
     }
     return { role: m.role, content: m.content }
   }).flat()
@@ -144,11 +155,11 @@ function parseResponse(data: OpenAIResponse): ProviderResponse {
   if (!choice) {
     return { text: '', toolCalls: [], usage: { input: data.usage?.prompt_tokens ?? 0, output: data.usage?.completion_tokens ?? 0 }, stopReason: 'end' }
   }
-  const toolCalls = (choice.message?.tool_calls ?? []).map(tc => ({
-    id: tc.id,
-    name: tc.function.name,
-    input: JSON.parse(tc.function.arguments) as Record<string, unknown>,
-  }))
+  const toolCalls = (choice.message?.tool_calls ?? []).map(tc => {
+    let input: Record<string, unknown> = {}
+    try { input = JSON.parse(tc.function.arguments || '{}') } catch { /* empty args */ }
+    return { id: tc.id, name: tc.function.name, input, arguments: tc.function.arguments || '' }
+  })
 
   return {
     text: choice?.message.content ?? '',
