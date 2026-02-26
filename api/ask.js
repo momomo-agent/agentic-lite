@@ -54,6 +54,7 @@ async function agenticAsk(prompt, config, emit) {
     usage.output += res.usage.output
 
     if (res.stopReason !== 'tool_use' || !res.toolCalls.length) {
+      // Stream the final answer if we have it from streaming
       return {
         answer: res.text,
         sources: acc.sources.length ? acc.sources : undefined,
@@ -83,18 +84,17 @@ async function agenticAsk(prompt, config, emit) {
       continue
     }
 
-    // For OpenAI-compatible proxies: flatten to text + final call without tools
+    // For OpenAI-compatible: flatten + stream final answer
     const callSummary = res.toolCalls.map(tc => `I called ${tc.name}(${JSON.stringify(tc.input)})`).join('\n')
     const assistantText = [res.text, callSummary].filter(Boolean).join('\n')
     messages.push({ role: 'assistant', content: assistantText })
     messages.push({ role: 'user', content: `Here are the tool results:\n${results.join('\n')}\n\nPlease provide the final answer based on these results.` })
 
-    // Final call WITHOUT tools to force answer
-    const finalRes = await chat(messages, [], config)
-    usage.input += finalRes.usage.input
-    usage.output += finalRes.usage.output
+    // Final call — stream tokens to frontend
+    emit('status', { message: 'Generating answer...' })
+    const finalText = await openaiChatStream(messages, [], config, emit)
     return {
-      answer: finalRes.text,
+      answer: finalText,
       sources: acc.sources.length ? acc.sources : undefined,
       images: acc.images.length ? acc.images : undefined,
       codeResults: acc.codeResults.length ? acc.codeResults : undefined,
@@ -172,6 +172,59 @@ async function openaiChat(messages, tools, config) {
     return { id: tc.id, name: tc.function.name, input, arguments: tc.function.arguments || '' }
   })
   return { text: choice?.message.content || '', toolCalls, usage: { input: data.usage.prompt_tokens, output: data.usage.completion_tokens }, stopReason: choice?.finish_reason === 'tool_calls' ? 'tool_use' : 'end' }
+}
+
+// ── OpenAI streaming provider (for final answer) ──
+
+async function openaiChatStream(messages, tools, config, emit) {
+  const base = (config.baseUrl || 'https://api.openai.com').replace(/\/+$/, '')
+  const endpoint = base.endsWith('/v1') ? `${base}/chat/completions` : `${base}/v1/chat/completions`
+  const body = {
+    model: config.model || 'gpt-4o',
+    stream: true,
+    messages: messages.map(m => {
+      if (m.role === 'user' && Array.isArray(m.content) && m.content[0]?.type === 'tool_result') {
+        return m.content.map(c => ({ role: 'tool', tool_call_id: c.tool_use_id, content: c.content }))
+      }
+      return { role: m.role, content: typeof m.content === 'string' ? m.content : JSON.stringify(m.content) }
+    }).flat(),
+  }
+
+  const res = await fetch(endpoint, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${config.apiKey}` },
+    body: JSON.stringify(body),
+  })
+  if (!res.ok) throw new Error(`API error ${res.status}: ${await res.text()}`)
+
+  // Read SSE stream and emit tokens
+  const reader = res.body.getReader()
+  const decoder = new TextDecoder()
+  let buffer = ''
+  let fullText = ''
+
+  while (true) {
+    const { done, value } = await reader.read()
+    if (done) break
+    buffer += decoder.decode(value, { stream: true })
+
+    const lines = buffer.split('\n')
+    buffer = lines.pop()
+
+    for (const line of lines) {
+      if (!line.startsWith('data: ') || line === 'data: [DONE]') continue
+      try {
+        const chunk = JSON.parse(line.slice(6))
+        const delta = chunk.choices?.[0]?.delta
+        if (delta?.content) {
+          fullText += delta.content
+          emit('token', { text: delta.content })
+        }
+      } catch {}
+    }
+  }
+
+  return fullText
 }
 
 // ── Tool definitions ──
