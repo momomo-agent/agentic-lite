@@ -1,0 +1,171 @@
+// Vercel serverless function — /api/ask
+// Inline implementation to avoid build complexity
+
+export default async function handler(req, res) {
+  if (req.method === 'OPTIONS') {
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.setHeader('Access-Control-Allow-Methods', 'POST')
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
+    return res.status(200).end()
+  }
+  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' })
+
+  const { prompt, tools = ['search', 'code'], provider = 'anthropic', baseUrl, apiKey, model, searchApiKey } = req.body
+  if (!prompt) return res.status(400).json({ error: 'prompt required' })
+  if (!apiKey) return res.status(400).json({ error: 'apiKey required' })
+
+  try {
+    const result = await agenticAsk(prompt, { provider, baseUrl, apiKey, model, tools, searchApiKey })
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.status(200).json(result)
+  } catch (err) {
+    res.status(500).json({ error: String(err) })
+  }
+}
+
+// ── Inline agentic-lite core ──
+
+const MAX_ROUNDS = 10
+
+async function agenticAsk(prompt, config) {
+  const chat = config.provider === 'anthropic' ? anthropicChat : openaiChat
+  const toolDefs = buildToolDefs(config.tools)
+  const messages = [{ role: 'user', content: prompt }]
+  const acc = { sources: [], codeResults: [], files: [], toolCalls: [] }
+  let usage = { input: 0, output: 0 }
+
+  for (let i = 0; i < MAX_ROUNDS; i++) {
+    const res = await chat(messages, toolDefs, config)
+    usage.input += res.usage.input
+    usage.output += res.usage.output
+
+    if (res.stopReason !== 'tool_use' || !res.toolCalls.length) {
+      return {
+        answer: res.text,
+        sources: acc.sources.length ? acc.sources : undefined,
+        codeResults: acc.codeResults.length ? acc.codeResults : undefined,
+        toolCalls: acc.toolCalls.length ? acc.toolCalls : undefined,
+        usage,
+      }
+    }
+
+    messages.push({ role: 'assistant', content: res.rawContent || res.text })
+    const results = []
+    for (const tc of res.toolCalls) {
+      const output = await execTool(tc, config, acc)
+      acc.toolCalls.push({ tool: tc.name, input: tc.input, output })
+      results.push({ type: 'tool_result', tool_use_id: tc.id, content: String(output) })
+    }
+    messages.push({ role: 'user', content: results })
+  }
+  throw new Error('Max tool rounds exceeded')
+}
+
+// ── Anthropic provider ──
+
+async function anthropicChat(messages, tools, config) {
+  const url = config.baseUrl || 'https://api.anthropic.com'
+  const body = {
+    model: config.model || 'claude-sonnet-4-20250514',
+    max_tokens: 4096,
+    messages: messages.map(m => {
+      if (m.role === 'user' && Array.isArray(m.content) && m.content[0]?.type === 'tool_result') {
+        return { role: 'user', content: m.content }
+      }
+      return { role: m.role, content: m.content }
+    }),
+  }
+  if (tools.length) body.tools = tools.map(t => ({ name: t.name, description: t.description, input_schema: t.parameters }))
+
+  const res = await fetch(`${url}/v1/messages`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'x-api-key': config.apiKey, 'anthropic-version': '2023-06-01' },
+    body: JSON.stringify(body),
+  })
+  if (!res.ok) throw new Error(`API error ${res.status}: ${await res.text()}`)
+  const data = await res.json()
+
+  let text = ''
+  const toolCalls = []
+  for (const b of data.content) {
+    if (b.type === 'text') text += b.text
+    else if (b.type === 'tool_use') toolCalls.push({ id: b.id, name: b.name, input: b.input || {} })
+  }
+  return { text, toolCalls, rawContent: data.content, usage: { input: data.usage.input_tokens, output: data.usage.output_tokens }, stopReason: data.stop_reason === 'tool_use' ? 'tool_use' : 'end' }
+}
+
+// ── OpenAI provider ──
+
+async function openaiChat(messages, tools, config) {
+  const url = config.baseUrl || 'https://api.openai.com'
+  const body = { model: config.model || 'gpt-4o', messages: messages.map(m => {
+    if (m.role === 'user' && Array.isArray(m.content) && m.content[0]?.type === 'tool_result') {
+      return m.content.map(c => ({ role: 'tool', tool_call_id: c.tool_use_id, content: c.content }))
+    }
+    return { role: m.role, content: typeof m.content === 'string' ? m.content : JSON.stringify(m.content) }
+  }).flat() }
+  if (tools.length) body.tools = tools.map(t => ({ type: 'function', function: { name: t.name, description: t.description, parameters: t.parameters } }))
+
+  const res = await fetch(`${url}/v1/chat/completions`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${config.apiKey}` },
+    body: JSON.stringify(body),
+  })
+  if (!res.ok) throw new Error(`API error ${res.status}: ${await res.text()}`)
+  const data = await res.json()
+  const choice = data.choices[0]
+  const toolCalls = (choice?.message.tool_calls || []).map(tc => ({ id: tc.id, name: tc.function.name, input: JSON.parse(tc.function.arguments) }))
+  return { text: choice?.message.content || '', toolCalls, usage: { input: data.usage.prompt_tokens, output: data.usage.completion_tokens }, stopReason: choice?.finish_reason === 'tool_calls' ? 'tool_use' : 'end' }
+}
+
+// ── Tool definitions ──
+
+function buildToolDefs(tools) {
+  const defs = []
+  if (tools.includes('search')) defs.push({
+    name: 'web_search', description: 'Search the web for current information.',
+    parameters: { type: 'object', properties: { query: { type: 'string', description: 'Search query' } }, required: ['query'] },
+  })
+  if (tools.includes('code')) defs.push({
+    name: 'code_exec', description: 'Execute JavaScript code. Returns the result.',
+    parameters: { type: 'object', properties: { code: { type: 'string', description: 'JavaScript code' } }, required: ['code'] },
+  })
+  return defs
+}
+
+// ── Tool execution ──
+
+async function execTool(tc, config, acc) {
+  if (tc.name === 'web_search') return execSearch(tc.input, config, acc)
+  if (tc.name === 'code_exec') return execCode(tc.input, acc)
+  return `Unknown tool: ${tc.name}`
+}
+
+async function execSearch(input, config, acc) {
+  const query = String(input.query || '')
+  if (!config.searchApiKey) return `Search requires searchApiKey`
+  const res = await fetch('https://api.tavily.com/search', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ api_key: config.searchApiKey, query, max_results: 5, include_answer: true }),
+  })
+  if (!res.ok) return `Search error: ${res.status}`
+  const data = await res.json()
+  const sources = (data.results || []).map(r => ({ title: r.title, url: r.url, snippet: r.content }))
+  acc.sources.push(...sources)
+  return data.answer || sources.map(s => `${s.title}: ${s.snippet}`).join('\n')
+}
+
+function execCode(input, acc) {
+  const code = String(input.code || '')
+  try {
+    const fn = new Function(`const logs=[];const console={log:(...a)=>logs.push(a.map(String).join(' ')),error:(...a)=>logs.push(a.map(String).join(' '))};const r=(function(){${code}})();return{r,logs}`)
+    const { r, logs } = fn()
+    const output = logs.length ? logs.join('\n') + (r !== undefined ? '\n→ ' + r : '') : String(r ?? '')
+    acc.codeResults.push({ code, output })
+    return output
+  } catch (err) {
+    acc.codeResults.push({ code, output: '', error: String(err) })
+    return `Error: ${err}`
+  }
+}
