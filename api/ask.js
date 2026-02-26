@@ -64,7 +64,8 @@ async function agenticAsk(prompt, config) {
 // ── Anthropic provider ──
 
 async function anthropicChat(messages, tools, config) {
-  const url = config.baseUrl || 'https://api.anthropic.com'
+  const base = (config.baseUrl || 'https://api.anthropic.com').replace(/\/+$/, '')
+  const endpoint = base.endsWith('/v1') ? `${base}/messages` : `${base}/v1/messages`
   const body = {
     model: config.model || 'claude-sonnet-4-20250514',
     max_tokens: 4096,
@@ -77,7 +78,7 @@ async function anthropicChat(messages, tools, config) {
   }
   if (tools.length) body.tools = tools.map(t => ({ name: t.name, description: t.description, input_schema: t.parameters }))
 
-  const res = await fetch(`${url}/v1/messages`, {
+  const res = await fetch(endpoint, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'x-api-key': config.apiKey, 'anthropic-version': '2023-06-01' },
     body: JSON.stringify(body),

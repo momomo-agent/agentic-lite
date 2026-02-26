@@ -4,7 +4,8 @@ import type { AgenticConfig } from '../types.js'
 import type { Provider, ProviderMessage, ProviderResponse, ToolDefinition } from './provider.js'
 
 export function createAnthropicProvider(config: AgenticConfig): Provider {
-  const baseUrl = config.baseUrl ?? 'https://api.anthropic.com'
+  const base = (config.baseUrl ?? 'https://api.anthropic.com').replace(/\/+$/, '')
+  const endpoint = base.endsWith('/v1') ? `${base}/messages` : `${base}/v1/messages`
   const model = config.model ?? 'claude-sonnet-4-20250514'
 
   return {
@@ -23,7 +24,7 @@ export function createAnthropicProvider(config: AgenticConfig): Provider {
         }))
       }
 
-      const res = await fetch(`${baseUrl}/v1/messages`, {
+      const res = await fetch(endpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
