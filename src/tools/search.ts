@@ -23,7 +23,7 @@ interface SearchConfig {
 export async function executeSearch(
   input: Record<string, unknown>,
   config?: SearchConfig
-): Promise<{ text: string; sources: Source[] }> {
+): Promise<{ text: string; sources: Source[]; images?: string[] }> {
   const query = String(input.query ?? '')
   if (!query) return { text: 'No query provided', sources: [] }
 
@@ -35,7 +35,7 @@ export async function executeSearch(
   return searchSerper(query, config?.apiKey)
 }
 
-async function searchTavily(query: string, apiKey?: string): Promise<{ text: string; sources: Source[] }> {
+async function searchTavily(query: string, apiKey?: string): Promise<{ text: string; sources: Source[]; images?: string[] }> {
   if (!apiKey) throw new Error('Search requires apiKey — set toolConfig.search.apiKey')
 
   const res = await fetch('https://api.tavily.com/search', {
