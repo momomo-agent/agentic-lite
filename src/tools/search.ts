@@ -41,16 +41,17 @@ async function searchTavily(query: string, apiKey?: string): Promise<{ text: str
   const res = await fetch('https://api.tavily.com/search', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ api_key: apiKey, query, max_results: 5, include_answer: true }),
+    body: JSON.stringify({ api_key: apiKey, query, max_results: 5, include_answer: true, include_images: true }),
   })
 
   if (!res.ok) throw new Error(`Tavily error ${res.status}: ${await res.text()}`)
 
-  const data = await res.json() as { answer?: string; results?: { title: string; url: string; content: string }[] }
+  const data = await res.json() as { answer?: string; results?: { title: string; url: string; content: string }[]; images?: { url: string }[] }
   const sources = (data.results ?? []).map(r => ({ title: r.title, url: r.url, snippet: r.content }))
+  const images = (data.images ?? []).map(img => typeof img === 'string' ? img : img.url)
   const text = data.answer ?? sources.map(s => `${s.title}: ${s.snippet}`).join('\n')
 
-  return { text, sources }
+  return { text, sources, images }
 }
 
 async function searchSerper(query: string, apiKey?: string): Promise<{ text: string; sources: Source[] }> {

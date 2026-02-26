@@ -31,7 +31,7 @@ async function agenticAsk(prompt, config) {
   const chat = config.provider === 'anthropic' ? anthropicChat : openaiChat
   const toolDefs = buildToolDefs(config.tools)
   const messages = [{ role: 'user', content: prompt }]
-  const acc = { sources: [], codeResults: [], files: [], toolCalls: [] }
+  const acc = { sources: [], codeResults: [], files: [], toolCalls: [], images: [] }
   let usage = { input: 0, output: 0 }
 
   for (let i = 0; i < MAX_ROUNDS; i++) {
@@ -43,6 +43,7 @@ async function agenticAsk(prompt, config) {
       return {
         answer: res.text,
         sources: acc.sources.length ? acc.sources : undefined,
+        images: acc.images.length ? acc.images : undefined,
         codeResults: acc.codeResults.length ? acc.codeResults : undefined,
         toolCalls: acc.toolCalls.length ? acc.toolCalls : undefined,
         usage,
@@ -79,6 +80,7 @@ async function agenticAsk(prompt, config) {
     return {
       answer: finalRes.text,
       sources: acc.sources.length ? acc.sources : undefined,
+      images: acc.images.length ? acc.images : undefined,
       codeResults: acc.codeResults.length ? acc.codeResults : undefined,
       toolCalls: acc.toolCalls.length ? acc.toolCalls : undefined,
       usage,
@@ -185,12 +187,14 @@ async function execSearch(input, config, acc) {
   const res = await fetch('https://api.tavily.com/search', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ api_key: config.searchApiKey, query, max_results: 5, include_answer: true }),
+    body: JSON.stringify({ api_key: config.searchApiKey, query, max_results: 5, include_answer: true, include_images: true }),
   })
   if (!res.ok) return `Search error: ${res.status}`
   const data = await res.json()
   const sources = (data.results || []).map(r => ({ title: r.title, url: r.url, snippet: r.content }))
+  const images = (data.images || []).map(img => typeof img === 'string' ? img : img.url)
   acc.sources.push(...sources)
+  if (images.length) { if (!acc.images) acc.images = []; acc.images.push(...images) }
   return data.answer || sources.map(s => `${s.title}: ${s.snippet}`).join('\n')
 }
 

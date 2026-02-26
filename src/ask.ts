@@ -20,6 +20,7 @@ export async function ask(prompt: string, config: AgenticConfig): Promise<Agenti
   const allSources: Source[] = []
   const allCodeResults: CodeResult[] = []
   const allFileResults: FileResult[] = []
+  const allImages: string[] = []
   let totalUsage = { input: 0, output: 0 }
 
   for (let round = 0; round < MAX_TOOL_ROUNDS; round++) {
@@ -31,6 +32,7 @@ export async function ask(prompt: string, config: AgenticConfig): Promise<Agenti
       return {
         answer: response.text,
         sources: allSources.length > 0 ? allSources : undefined,
+        images: allImages.length > 0 ? allImages : undefined,
         codeResults: allCodeResults.length > 0 ? allCodeResults : undefined,
         files: allFileResults.length > 0 ? allFileResults : undefined,
         toolCalls: allToolCalls.length > 0 ? allToolCalls : undefined,
@@ -40,7 +42,7 @@ export async function ask(prompt: string, config: AgenticConfig): Promise<Agenti
 
     // Execute tool calls
     const toolResults = await executeToolCalls(response.toolCalls, config, {
-      allSources, allCodeResults, allFileResults, allToolCalls,
+      allSources, allCodeResults, allFileResults, allToolCalls, allImages,
     })
 
     // Build conversation continuation with tool results as text summary
@@ -78,6 +80,7 @@ interface Accumulators {
   allCodeResults: CodeResult[]
   allFileResults: FileResult[]
   allToolCalls: ToolCall[]
+  allImages: string[]
 }
 
 async function executeToolCalls(
@@ -103,9 +106,10 @@ async function executeSingleTool(
 ): Promise<string> {
   switch (tc.name) {
     case 'web_search': {
-      const { text, sources } = await executeSearch(tc.input, config.toolConfig?.search)
-      acc.allSources.push(...sources)
-      return text
+      const result = await executeSearch(tc.input, config.toolConfig?.search)
+      acc.allSources.push(...result.sources)
+      if (result.images) acc.allImages.push(...result.images)
+      return result.text
     }
     case 'code_exec': {
       const result = await executeCode(tc.input, config.toolConfig?.code)

@@ -25,6 +25,8 @@ export interface AgenticResult {
   answer: string
   /** Sources used (from search) */
   sources?: Source[]
+  /** Images from search results */
+  images?: string[]
   /** Code execution results */
   codeResults?: CodeResult[]
   /** Files read/written */

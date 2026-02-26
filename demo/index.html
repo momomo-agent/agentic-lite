@@ -68,6 +68,16 @@
     .sources-list a { color: #fbbf24; text-decoration: none; font-size: 13px; }
     .sources-list a:hover { text-decoration: underline; }
     .source-snippet { color: #666; font-size: 12px; margin-top: 2px; }
+    .images-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 8px; margin-top: 8px;
+    }
+    .images-grid img {
+      width: 100%; border-radius: 6px; cursor: pointer;
+      transition: opacity 0.2s; object-fit: cover; aspect-ratio: 16/10;
+      background: #1a1a1a;
+    }
+    .images-grid img:hover { opacity: 0.85; }
     .meta { font-size: 12px; color: #444; margin-top: 10px; }
     .error-text { color: #ef4444; }
     .loading-text { color: #666; padding: 40px; text-align: center; }
@@ -273,6 +283,16 @@
           <div class="sources-list">${data.sources.map(s =>
             `<div><a href="${s.url}" target="_blank">${esc(s.title || s.url)}</a>
             ${s.snippet ? `<div class="source-snippet">${esc(s.snippet.slice(0,140))}...</div>` : ''}</div>`
+          ).join('')}</div>
+        </div>`
+      }
+
+      // Images
+      if (data.images?.length) {
+        html += `<div class="result-card">
+          <div class="result-label">Images (${data.images.length})</div>
+          <div class="images-grid">${data.images.map(url =>
+            `<img src="${url}" loading="lazy" onclick="window.open('${url}','_blank')" onerror="this.style.display='none'">`
           ).join('')}</div>
         </div>`
       }
