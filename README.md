@@ -1,8 +1,19 @@
-# agentic-lite
+# ⚡ agentic-lite
 
 One function call with built-in search, code execution, and file processing.
 
 Lighter than LangChain. Smarter than raw API calls.
+
+**[Live Demo →](https://agentic-lite.vercel.app)**
+
+## Features
+
+- 🔍 Web search (Tavily) with sources and images
+- 💻 Code execution (sandboxed JS eval)
+- 📁 File read/write
+- 🔄 Multi-round tool loop (up to 10 rounds)
+- 🌊 SSE streaming support
+- 🤖 Anthropic + OpenAI + any OpenAI-compatible proxy
 
 ## Install
 
@@ -15,41 +26,42 @@ npm install agentic-lite
 ```js
 import { ask } from 'agentic-lite'
 
-const result = await ask('WWDC 2026 什么时候', {
-  provider: 'anthropic',
-  apiKey: process.env.ANTHROPIC_API_KEY,
+const result = await ask('Latest AI news today', {
+  provider: 'openai',
+  apiKey: process.env.OPENAI_API_KEY,
   tools: ['search'],
   toolConfig: {
     search: { apiKey: process.env.TAVILY_API_KEY }
   }
 })
 
-console.log(result.answer)   // "WWDC 2026 将于6月9日..."
+console.log(result.answer)   // Summarized answer
 console.log(result.sources)  // [{ title, url, snippet }]
+console.log(result.images)   // ["https://...jpg", ...]
 ```
 
-## Custom Provider / Base URL
+## Providers
 
 ```js
+// Anthropic
+await ask('...', {
+  provider: 'anthropic',
+  apiKey: 'sk-ant-...',
+})
+
 // OpenAI
-const r1 = await ask('...', {
+await ask('...', {
   provider: 'openai',
   apiKey: 'sk-...',
   model: 'gpt-4o',
 })
 
-// Any OpenAI-compatible API (Groq, Together, local)
-const r2 = await ask('...', {
-  baseUrl: 'http://localhost:11434/v1',
-  apiKey: 'ollama',
-  model: 'llama3',
-})
-
-// Anthropic via proxy
-const r3 = await ask('...', {
-  provider: 'anthropic',
-  baseUrl: 'https://my-proxy.com',
-  apiKey: 'sk-ant-...',
+// Any OpenAI-compatible proxy
+await ask('...', {
+  provider: 'openai',
+  baseUrl: 'https://my-proxy.com/v1',
+  apiKey: 'sk-...',
+  model: 'gpt-4o',
 })
 ```
 
@@ -57,52 +69,48 @@ const r3 = await ask('...', {
 
 ### Search
 ```js
-const r = await ask('Latest news on AI', {
-  apiKey: '...',
-  tools: ['search'],
-  toolConfig: { search: { apiKey: 'tvly-...', provider: 'tavily' } }
+const r = await ask('What happened at WWDC 2026?', {
+  apiKey: '...', tools: ['search'],
+  toolConfig: { search: { apiKey: 'tvly-...' } }
 })
-// r.sources → [{ title, url, snippet }]
+r.sources  // [{ title, url, snippet }]
+r.images   // ["https://..."]
 ```
 
 ### Code Execution
 ```js
-const r = await ask('Calculate the standard deviation of [2,4,4,4,5,5,7,9]', {
-  apiKey: '...',
-  tools: ['code'],
+const r = await ask('Calculate sqrt(256)', {
+  apiKey: '...', tools: ['code'],
 })
-// r.codeResults → [{ code, output }]
-```
-
-### File Processing
-```js
-const r = await ask('Summarize the contents of data.csv', {
-  apiKey: '...',
-  tools: ['file'],
-})
-// r.files → [{ path, action: 'read', content }]
+r.codeResults  // [{ code, output }]
 ```
 
 ### All Tools
 ```js
-const r = await ask('Research React vs Vue npm downloads and save a report', {
-  apiKey: '...',
-  tools: ['search', 'code', 'file'],
+const r = await ask('Research and analyze...', {
+  apiKey: '...', tools: ['search', 'code', 'file'],
 })
 ```
 
-## Response Shape
+## Response
 
 ```ts
 interface AgenticResult {
   answer: string
   sources?: Source[]
+  images?: string[]
   codeResults?: CodeResult[]
   files?: FileResult[]
   toolCalls?: ToolCall[]
   usage?: { input: number; output: number }
 }
 ```
+
+## Web Demo
+
+The demo at [agentic-lite.vercel.app](https://agentic-lite.vercel.app) uses SSE streaming — you see real-time status updates during tool execution and token-by-token text rendering for the final answer.
+
+Bring your own API keys (stored in localStorage, never sent to our servers).
 
 ## License
 
