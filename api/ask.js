@@ -1,42 +1,44 @@
-// Vercel serverless function — /api/ask
-// SSE streaming to avoid timeout
+// Vercel Edge Runtime — /api/ask
+// Streaming with no 10s timeout limit
 
-export default async function handler(req, res) {
+export const config = { runtime: 'edge' }
+
+export default async function handler(req) {
   if (req.method === 'OPTIONS') {
-    res.setHeader('Access-Control-Allow-Origin', '*')
-    res.setHeader('Access-Control-Allow-Methods', 'POST')
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
-    return res.status(200).end()
+    return new Response(null, {
+      headers: { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST', 'Access-Control-Allow-Headers': 'Content-Type' },
+    })
   }
-  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' })
+  if (req.method !== 'POST') return new Response('Method not allowed', { status: 405 })
 
-  const { prompt, tools = ['search', 'code'], provider = 'anthropic', baseUrl, apiKey, model, searchApiKey } = req.body
-  if (!prompt) return res.status(400).json({ error: 'prompt required' })
-  if (!apiKey) return res.status(400).json({ error: 'apiKey required' })
+  const body = await req.json()
+  const { prompt, tools = ['search', 'code'], provider = 'anthropic', baseUrl, apiKey, model, searchApiKey } = body
+  if (!prompt) return new Response(JSON.stringify({ error: 'prompt required' }), { status: 400 })
+  if (!apiKey) return new Response(JSON.stringify({ error: 'apiKey required' }), { status: 400 })
 
-  // SSE headers
-  res.setHeader('Access-Control-Allow-Origin', '*')
-  res.setHeader('Content-Type', 'text/event-stream')
-  res.setHeader('Cache-Control', 'no-cache')
-  res.setHeader('Connection', 'keep-alive')
-  res.flushHeaders()
+  const stream = new ReadableStream({
+    async start(controller) {
+      const enc = new TextEncoder()
+      const emit = (event, data) => {
+        controller.enqueue(enc.encode(`event: ${event}\ndata: ${JSON.stringify(data)}\n\n`))
+      }
+      try {
+        emit('status', { message: 'Starting...' })
+        const result = await agenticAsk(prompt, { provider, baseUrl, apiKey, model, tools, searchApiKey }, emit)
+        emit('done', result)
+      } catch (err) {
+        emit('error', { message: String(err) })
+      }
+      controller.close()
+    },
+  })
 
-  const emit = (event, data) => {
-    res.write(`event: ${event}\ndata: ${JSON.stringify(data)}\n\n`)
-    if (res.flush) res.flush()
-  }
-
-  try {
-    emit('status', { message: 'Starting...' })
-    const result = await agenticAsk(prompt, { provider, baseUrl, apiKey, model, tools, searchApiKey }, emit)
-    emit('done', result)
-  } catch (err) {
-    emit('error', { message: String(err) })
-  }
-  res.end()
+  return new Response(stream, {
+    headers: { 'Content-Type': 'text/event-stream', 'Cache-Control': 'no-cache', 'Access-Control-Allow-Origin': '*' },
+  })
 }
 
-// ── Inline agentic-lite core ──
+// ── Agent loop ──
 
 const MAX_ROUNDS = 10
 
@@ -50,22 +52,12 @@ async function agenticAsk(prompt, config, emit) {
   for (let i = 0; i < MAX_ROUNDS; i++) {
     emit('status', { message: `Round ${i + 1}: calling LLM...` })
     const res = await chat(messages, toolDefs, config)
-    usage.input += res.usage.input
-    usage.output += res.usage.output
+    usage.input += res.usage.input; usage.output += res.usage.output
 
     if (res.stopReason !== 'tool_use' || !res.toolCalls.length) {
-      // Stream the final answer if we have it from streaming
-      return {
-        answer: res.text,
-        sources: acc.sources.length ? acc.sources : undefined,
-        images: acc.images.length ? acc.images : undefined,
-        codeResults: acc.codeResults.length ? acc.codeResults : undefined,
-        toolCalls: acc.toolCalls.length ? acc.toolCalls : undefined,
-        usage,
-      }
+      return { answer: res.text, sources: acc.sources.length ? acc.sources : undefined, images: acc.images.length ? acc.images : undefined, codeResults: acc.codeResults.length ? acc.codeResults : undefined, toolCalls: acc.toolCalls.length ? acc.toolCalls : undefined, usage }
     }
 
-    // Execute tools
     const results = []
     for (const tc of res.toolCalls) {
       emit('status', { message: `Executing ${tc.name}...` })
@@ -75,32 +67,19 @@ async function agenticAsk(prompt, config, emit) {
       emit('tool', { name: tc.name, output: String(output).slice(0, 200) })
     }
 
-    // For Anthropic: use standard tool_result format
     if (config.provider === 'anthropic') {
       messages.push({ role: 'assistant', content: res.rawContent || res.text })
-      messages.push({ role: 'user', content: res.toolCalls.map((tc, idx) => ({
-        type: 'tool_result', tool_use_id: tc.id, content: results[idx],
-      })) })
+      messages.push({ role: 'user', content: res.toolCalls.map((tc, idx) => ({ type: 'tool_result', tool_use_id: tc.id, content: results[idx] })) })
       continue
     }
 
-    // For OpenAI-compatible: flatten + stream final answer
-    const callSummary = res.toolCalls.map(tc => `I called ${tc.name}(${JSON.stringify(tc.input)})`).join('\n')
-    const assistantText = [res.text, callSummary].filter(Boolean).join('\n')
-    messages.push({ role: 'assistant', content: assistantText })
-    messages.push({ role: 'user', content: `Here are the tool results:\n${results.join('\n')}\n\nPlease provide the final answer based on these results.` })
+    const summary = res.toolCalls.map(tc => `I called ${tc.name}(${JSON.stringify(tc.input)})`).join('\n')
+    messages.push({ role: 'assistant', content: [res.text, summary].filter(Boolean).join('\n') })
+    messages.push({ role: 'user', content: `Tool results:\n${results.join('\n')}\n\nProvide the final answer.` })
 
-    // Final call — stream tokens to frontend
     emit('status', { message: 'Generating answer...' })
     const finalText = await openaiChatStream(messages, [], config, emit)
-    return {
-      answer: finalText,
-      sources: acc.sources.length ? acc.sources : undefined,
-      images: acc.images.length ? acc.images : undefined,
-      codeResults: acc.codeResults.length ? acc.codeResults : undefined,
-      toolCalls: acc.toolCalls.length ? acc.toolCalls : undefined,
-      usage,
-    }
+    return { answer: finalText, sources: acc.sources.length ? acc.sources : undefined, images: acc.images.length ? acc.images : undefined, codeResults: acc.codeResults.length ? acc.codeResults : undefined, toolCalls: acc.toolCalls.length ? acc.toolCalls : undefined, usage }
   }
   throw new Error('Max tool rounds exceeded')
 }
@@ -111,12 +90,9 @@ async function anthropicChat(messages, tools, config) {
   const base = (config.baseUrl || 'https://api.anthropic.com').replace(/\/+$/, '')
   const endpoint = base.endsWith('/v1') ? `${base}/messages` : `${base}/v1/messages`
   const body = {
-    model: config.model || 'claude-sonnet-4-20250514',
-    max_tokens: 4096,
+    model: config.model || 'claude-sonnet-4-20250514', max_tokens: 4096,
     messages: messages.map(m => {
-      if (m.role === 'user' && Array.isArray(m.content) && m.content[0]?.type === 'tool_result') {
-        return { role: 'user', content: m.content }
-      }
+      if (m.role === 'user' && Array.isArray(m.content) && m.content[0]?.type === 'tool_result') return { role: 'user', content: m.content }
       return { role: m.role, content: m.content }
     }),
   }
@@ -129,9 +105,7 @@ async function anthropicChat(messages, tools, config) {
   })
   if (!res.ok) throw new Error(`API error ${res.status}: ${await res.text()}`)
   const data = await res.json()
-
-  let text = ''
-  const toolCalls = []
+  let text = ''; const toolCalls = []
   for (const b of data.content) {
     if (b.type === 'text') text += b.text
     else if (b.type === 'tool_use') toolCalls.push({ id: b.id, name: b.name, input: b.input || {} })
@@ -139,15 +113,14 @@ async function anthropicChat(messages, tools, config) {
   return { text, toolCalls, rawContent: data.content, usage: { input: data.usage.input_tokens, output: data.usage.output_tokens }, stopReason: data.stop_reason === 'tool_use' ? 'tool_use' : 'end' }
 }
 
-// ── OpenAI provider ──
+// ── OpenAI provider (non-streaming, for tool rounds) ──
 
 async function openaiChat(messages, tools, config) {
   const base = (config.baseUrl || 'https://api.openai.com').replace(/\/+$/, '')
   const endpoint = base.endsWith('/v1') ? `${base}/chat/completions` : `${base}/v1/chat/completions`
   const body = { model: config.model || 'gpt-4o', stream: false, messages: messages.map(m => {
-    if (m.role === 'user' && Array.isArray(m.content) && m.content[0]?.type === 'tool_result') {
+    if (m.role === 'user' && Array.isArray(m.content) && m.content[0]?.type === 'tool_result')
       return m.content.map(c => ({ role: 'tool', tool_call_id: c.tool_use_id, content: c.content }))
-    }
     return { role: m.role, content: typeof m.content === 'string' ? m.content : JSON.stringify(m.content) }
   }).flat() }
   if (tools.length) body.tools = tools.map(t => ({ type: 'function', function: { name: t.name, description: t.description, parameters: t.parameters } }))
@@ -159,37 +132,28 @@ async function openaiChat(messages, tools, config) {
   })
   if (!res.ok) throw new Error(`API error ${res.status}: ${await res.text()}`)
   const rawText = await res.text()
-  let data
-  if (rawText.trimStart().startsWith('data: ')) {
-    data = reassembleSSE(rawText)
-  } else {
-    data = JSON.parse(rawText)
-  }
+  const data = rawText.trimStart().startsWith('data: ') ? reassembleSSE(rawText) : JSON.parse(rawText)
   const choice = data.choices[0]
   const toolCalls = (choice?.message.tool_calls || []).map(tc => {
-    let input = {}
-    try { input = JSON.parse(tc.function.arguments || '{}') } catch {}
-    return { id: tc.id, name: tc.function.name, input, arguments: tc.function.arguments || '' }
+    let input = {}; try { input = JSON.parse(tc.function.arguments || '{}') } catch {}
+    return { id: tc.id, name: tc.function.name, input }
   })
-  return { text: choice?.message.content || '', toolCalls, usage: { input: data.usage.prompt_tokens, output: data.usage.completion_tokens }, stopReason: choice?.finish_reason === 'tool_calls' ? 'tool_use' : 'end' }
+  return { text: choice?.message.content || '', toolCalls, usage: { input: data.usage?.prompt_tokens || 0, output: data.usage?.completion_tokens || 0 }, stopReason: choice?.finish_reason === 'tool_calls' ? 'tool_use' : 'end' }
 }
 
-// ── OpenAI streaming provider (for final answer) ──
+// ── OpenAI streaming (final answer) ──
 
 async function openaiChatStream(messages, tools, config, emit) {
   const base = (config.baseUrl || 'https://api.openai.com').replace(/\/+$/, '')
   const endpoint = base.endsWith('/v1') ? `${base}/chat/completions` : `${base}/v1/chat/completions`
   const body = {
-    model: config.model || 'gpt-4o',
-    stream: true,
+    model: config.model || 'gpt-4o', stream: true,
     messages: messages.map(m => {
-      if (m.role === 'user' && Array.isArray(m.content) && m.content[0]?.type === 'tool_result') {
+      if (m.role === 'user' && Array.isArray(m.content) && m.content[0]?.type === 'tool_result')
         return m.content.map(c => ({ role: 'tool', tool_call_id: c.tool_use_id, content: c.content }))
-      }
       return { role: m.role, content: typeof m.content === 'string' ? m.content : JSON.stringify(m.content) }
     }).flat(),
   }
-
   const res = await fetch(endpoint, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${config.apiKey}` },
@@ -197,33 +161,22 @@ async function openaiChatStream(messages, tools, config, emit) {
   })
   if (!res.ok) throw new Error(`API error ${res.status}: ${await res.text()}`)
 
-  // Read SSE stream and emit tokens
   const reader = res.body.getReader()
   const decoder = new TextDecoder()
-  let buffer = ''
-  let fullText = ''
-
+  let buf = '', fullText = ''
   while (true) {
     const { done, value } = await reader.read()
     if (done) break
-    buffer += decoder.decode(value, { stream: true })
-
-    const lines = buffer.split('\n')
-    buffer = lines.pop()
-
+    buf += decoder.decode(value, { stream: true })
+    const lines = buf.split('\n'); buf = lines.pop()
     for (const line of lines) {
       if (!line.startsWith('data: ') || line === 'data: [DONE]') continue
       try {
-        const chunk = JSON.parse(line.slice(6))
-        const delta = chunk.choices?.[0]?.delta
-        if (delta?.content) {
-          fullText += delta.content
-          emit('token', { text: delta.content })
-        }
+        const delta = JSON.parse(line.slice(6)).choices?.[0]?.delta
+        if (delta?.content) { fullText += delta.content; emit('token', { text: delta.content }) }
       } catch {}
     }
   }
-
   return fullText
 }
 
@@ -252,7 +205,7 @@ async function execTool(tc, config, acc) {
 
 async function execSearch(input, config, acc) {
   const query = String(input.query || '')
-  if (!config.searchApiKey) return `Search requires searchApiKey`
+  if (!config.searchApiKey) return 'Search requires searchApiKey'
   const res = await fetch('https://api.tavily.com/search', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -263,7 +216,7 @@ async function execSearch(input, config, acc) {
   const sources = (data.results || []).map(r => ({ title: r.title, url: r.url, snippet: r.content }))
   const images = (data.images || []).map(img => typeof img === 'string' ? img : img.url)
   acc.sources.push(...sources)
-  if (images.length) { if (!acc.images) acc.images = []; acc.images.push(...images) }
+  if (images.length) acc.images.push(...images)
   return data.answer || sources.map(s => `${s.title}: ${s.snippet}`).join('\n')
 }
 
@@ -281,14 +234,12 @@ function execCode(input, acc) {
   }
 }
 
-// ── SSE reassembly ──
+// ── SSE reassembly (for proxies that force SSE even with stream:false) ──
 
 function reassembleSSE(text) {
   const lines = text.split('\n')
-  let content = ''
+  let content = '', finishReason = 'stop', usage = { prompt_tokens: 0, completion_tokens: 0 }
   const toolCalls = new Map()
-  let finishReason = 'stop'
-  let usage = { prompt_tokens: 0, completion_tokens: 0 }
 
   for (const line of lines) {
     if (!line.startsWith('data: ') || line === 'data: [DONE]') continue
@@ -300,42 +251,26 @@ function reassembleSSE(text) {
       if (delta.tool_calls) {
         for (const tc of delta.tool_calls) {
           const idx = tc.index ?? 0
-          const existing = toolCalls.get(idx)
-          if (!existing) {
-            toolCalls.set(idx, { id: tc.id || '', name: tc.function?.name || '', args: tc.function?.arguments || '' })
-          } else {
-            if (tc.function?.arguments) existing.args += tc.function.arguments
-          }
+          const ex = toolCalls.get(idx)
+          if (!ex) toolCalls.set(idx, { id: tc.id || '', name: tc.function?.name || '', args: tc.function?.arguments || '' })
+          else if (tc.function?.arguments) ex.args += tc.function.arguments
         }
       }
-      // Handle Responses API format: tool calls in chunk.item (incremental)
       const item = chunk.item
       if (item?.call_id) {
         let found = false
         for (const [, tc] of toolCalls) {
-          if (tc.id === item.call_id) {
-            if (item.name) tc.name = item.name
-            if (item.arguments) tc.args = item.arguments
-            found = true
-            break
-          }
+          if (tc.id === item.call_id) { if (item.name) tc.name = item.name; if (item.arguments) tc.args = item.arguments; found = true; break }
         }
-        if (!found) {
-          toolCalls.set(toolCalls.size, { id: item.call_id, name: item.name || '', args: item.arguments || '' })
-        }
+        if (!found) toolCalls.set(toolCalls.size, { id: item.call_id, name: item.name || '', args: item.arguments || '' })
       }
       if (chunk.choices?.[0]?.finish_reason) finishReason = chunk.choices[0].finish_reason
     } catch {}
   }
 
-  const reassembled = [...toolCalls.values()].map(tc => ({
-    id: tc.id, function: { name: tc.name, arguments: tc.args },
-  }))
-
-  const hasToolCalls = reassembled.length > 0
-
+  const reassembled = [...toolCalls.values()].map(tc => ({ id: tc.id, function: { name: tc.name, arguments: tc.args } }))
   return {
-    choices: [{ message: { content: content || null, tool_calls: hasToolCalls ? reassembled : undefined }, finish_reason: hasToolCalls ? 'tool_calls' : finishReason }],
+    choices: [{ message: { content: content || null, tool_calls: reassembled.length ? reassembled : undefined }, finish_reason: reassembled.length ? 'tool_calls' : finishReason }],
     usage,
   }
 }
