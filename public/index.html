@@ -325,15 +325,6 @@
       const area = document.getElementById('resultArea')
       let html = ''
 
-      // Images (top)
-      if (data.images?.length) {
-        html += `<div class="result-card">
-          <div class="images-grid">${data.images.map(url =>
-            `<img src="${url}" loading="lazy" onclick="window.open('${url}','_blank')" onerror="this.style.display='none'">`
-          ).join('')}</div>
-        </div>`
-      }
-
       // Answer (markdown rendered)
       const answer = data.answer || '(no answer)'
       html += `<div class="result-card">
@@ -348,6 +339,16 @@
           <div class="sources-list">${data.sources.map(s =>
             `<div><a href="${s.url}" target="_blank">${esc(s.title || s.url)}</a>
             ${s.snippet ? `<div class="source-snippet">${esc(s.snippet.slice(0,140))}...</div>` : ''}</div>`
+          ).join('')}</div>
+        </div>`
+      }
+
+      // Images
+      if (data.images?.length) {
+        html += `<div class="result-card">
+          <div class="result-label">Images (${data.images.length})</div>
+          <div class="images-grid">${data.images.map(url =>
+            `<img src="${url}" loading="lazy" onclick="window.open('${url}','_blank')" onerror="this.style.display='none'">`
           ).join('')}</div>
         </div>`
       }
