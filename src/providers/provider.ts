@@ -21,11 +21,13 @@ export interface ProviderResponse {
   toolCalls: ProviderToolCall[]
   usage: { input: number; output: number }
   stopReason: 'end' | 'tool_use'
+  /** Raw content blocks for assistant message replay (Anthropic needs this) */
+  rawContent?: unknown[]
 }
 
 export interface ProviderMessage {
   role: 'user' | 'assistant' | 'tool'
-  content: string | ProviderToolContent[]
+  content: string | ProviderToolContent[] | unknown[]
 }
 
 export interface ProviderToolContent {

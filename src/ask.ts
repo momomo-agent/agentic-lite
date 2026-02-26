@@ -38,8 +38,8 @@ export async function ask(prompt: string, config: AgenticConfig): Promise<Agenti
       }
     }
 
-    // Execute tool calls
-    messages.push({ role: 'assistant', content: response.text })
+    // Execute tool calls — use rawContent for proper assistant message replay
+    messages.push({ role: 'assistant', content: response.rawContent ?? response.text })
     const toolResults = await executeToolCalls(response.toolCalls, config, {
       allSources, allCodeResults, allFileResults, allToolCalls,
     })

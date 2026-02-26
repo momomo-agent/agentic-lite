@@ -93,5 +93,6 @@ function parseResponse(data: AnthropicResponse): ProviderResponse {
     toolCalls,
     usage: { input: data.usage.input_tokens, output: data.usage.output_tokens },
     stopReason: data.stop_reason === 'tool_use' ? 'tool_use' : 'end',
+    rawContent: data.content,
   }
 }
