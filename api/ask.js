@@ -86,8 +86,9 @@ async function agenticAsk(prompt, config, emit) {
     messages.push({ role: 'user', content: `Tool results:\n${results.join('\n')}\n\nProvide the final answer.` })
 
     emit('status', { message: 'Generating answer...' })
-    const finalText = await openaiChatStream(messages, [], config, emit)
-    return { answer: finalText, sources: acc.sources.length ? acc.sources : undefined, images: acc.images.length ? acc.images : undefined, codeResults: acc.codeResults.length ? acc.codeResults : undefined, toolCalls: acc.toolCalls.length ? acc.toolCalls : undefined, usage }
+    const streamResult = await openaiChatStream(messages, [], config, emit)
+    if (streamResult.usage) { usage.input += streamResult.usage.input; usage.output += streamResult.usage.output }
+    return { answer: streamResult.text, sources: acc.sources.length ? acc.sources : undefined, images: acc.images.length ? acc.images : undefined, codeResults: acc.codeResults.length ? acc.codeResults : undefined, toolCalls: acc.toolCalls.length ? acc.toolCalls : undefined, usage }
   }
   throw new Error('Max tool rounds exceeded')
 }
@@ -171,7 +172,7 @@ async function openaiChatStream(messages, tools, config, emit) {
 
   const reader = res.body.getReader()
   const decoder = new TextDecoder()
-  let buf = '', fullText = ''
+  let buf = '', fullText = '', streamUsage = null
   while (true) {
     const { done, value } = await reader.read()
     if (done) break
@@ -180,12 +181,14 @@ async function openaiChatStream(messages, tools, config, emit) {
     for (const line of lines) {
       if (!line.startsWith('data: ') || line === 'data: [DONE]') continue
       try {
-        const delta = JSON.parse(line.slice(6)).choices?.[0]?.delta
+        const chunk = JSON.parse(line.slice(6))
+        const delta = chunk.choices?.[0]?.delta
         if (delta?.content) { fullText += delta.content; emit('token', { text: delta.content }) }
+        if (chunk.usage) streamUsage = chunk.usage
       } catch {}
     }
   }
-  return fullText
+  return { text: fullText, usage: streamUsage ? { input: streamUsage.prompt_tokens || 0, output: streamUsage.completion_tokens || 0 } : null }
 }
 
 // ── Tool definitions ──
