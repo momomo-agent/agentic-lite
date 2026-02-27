@@ -394,8 +394,7 @@
 
       // Answer (markdown rendered)
       const answer = data.answer || '(no answer)'
-      html += `<div class="md-content">${marked.parse(answer)}</div>
-        ${data.usage ? `<div class="meta">${data.usage.input} in / ${data.usage.output} out tokens</div>` : ''}`
+      html += `<div class="md-content">${marked.parse(answer)}</div>`
 
       container.innerHTML = html
 
