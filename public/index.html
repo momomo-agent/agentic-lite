@@ -181,6 +181,10 @@
       <h2>Prompt</h2>
       <textarea id="prompt" placeholder="Ask anything..."></textarea>
       <button class="run" id="runBtn" style="margin-top:10px">Run</button>
+      <div style="display:flex;gap:8px;margin-top:8px">
+        <button class="run" id="clearBtn" style="background:#222;color:#888;font-weight:500;flex:1">Clear</button>
+        <button class="run" id="saveBtn" style="background:#222;color:#888;font-weight:500;flex:1">Save .md</button>
+      </div>
     </div>
   </div>
   <script>
@@ -225,10 +229,50 @@
       chip.addEventListener('click', () => chip.classList.toggle('active'))
     })
 
+    // Conversation history for multi-turn
+    let conversationHistory = [] // { role, prompt, answer, sources, images, codeResults, toolCalls, usage }
+
     // Run
     document.getElementById('runBtn').addEventListener('click', run)
     document.getElementById('prompt').addEventListener('keydown', e => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') run()
+    })
+
+    // Clear
+    document.getElementById('clearBtn').addEventListener('click', () => {
+      conversationHistory = []
+      const area = document.getElementById('resultArea')
+      area.innerHTML = `<div class="empty-state"><div class="icon">⚡</div><div>Results will appear here</div></div>`
+      document.getElementById('prompt').value = ''
+    })
+
+    // Save as markdown
+    document.getElementById('saveBtn').addEventListener('click', () => {
+      if (!conversationHistory.length) return alert('Nothing to save')
+      let md = '# agentic-lite conversation\n\n'
+      for (const turn of conversationHistory) {
+        md += `## Q: ${turn.prompt}\n\n`
+        md += `${turn.answer || '(no answer)'}\n\n`
+        if (turn.sources?.length) {
+          md += `### Sources\n\n`
+          for (const s of turn.sources) md += `- [${s.title || s.url}](${s.url})\n`
+          md += '\n'
+        }
+        if (turn.codeResults?.length) {
+          md += `### Code\n\n`
+          for (const c of turn.codeResults) {
+            md += '```\n' + c.code + '\n```\n'
+            if (c.output) md += `→ ${c.output}\n\n`
+          }
+        }
+        md += '---\n\n'
+      }
+      const blob = new Blob([md], { type: 'text/markdown' })
+      const a = document.createElement('a')
+      a.href = URL.createObjectURL(blob)
+      a.download = `agentic-lite-${new Date().toISOString().slice(0,10)}.md`
+      a.click()
+      URL.revokeObjectURL(a.href)
     })
 
     async function run() {
@@ -247,7 +291,23 @@
 
       btn.disabled = true
       btn.textContent = 'Running...'
-      area.innerHTML = '<div class="loading-text" id="statusText">⏳ Starting...</div>'
+
+      // Clear empty state if first run
+      if (!conversationHistory.length) area.innerHTML = ''
+
+      // Add user prompt card
+      const promptCard = document.createElement('div')
+      promptCard.className = 'result-card'
+      promptCard.style.borderColor = '#fbbf2430'
+      promptCard.innerHTML = `<div class="result-label" style="color:#fbbf24">You</div><div class="md-content" style="color:#ccc">${esc(prompt)}</div>`
+      area.appendChild(promptCard)
+
+      // Add streaming placeholder
+      const streamCard = document.createElement('div')
+      streamCard.className = 'result-card'
+      streamCard.innerHTML = '<div class="loading-text" id="statusText">⏳ Starting...</div>'
+      area.appendChild(streamCard)
+      area.scrollTop = area.scrollHeight
 
       try {
         const res = await fetch('/api/ask', {
@@ -296,11 +356,12 @@
                 } else if (eventType === 'token') {
                   if (!isStreaming) {
                     isStreaming = true
-                    area.innerHTML = '<div class="result-card"><div class="md-content" id="streamContent"></div></div>'
+                    streamCard.innerHTML = '<div class="md-content" id="streamContent"></div>'
                   }
                   streamingText += data.text
                   const el = document.getElementById('streamContent')
                   if (el) el.innerHTML = marked.parse(streamingText)
+                  area.scrollTop = area.scrollHeight
                 } else if (eventType === 'done') {
                   finalData = data
                 } else if (eventType === 'error') {
@@ -312,71 +373,79 @@
           }
         }
 
-        if (finalData) renderResult(finalData)
-        else area.innerHTML = '<div class="result-card"><div class="error-text">No response received</div></div>'
+        if (finalData) {
+          renderResult(finalData, streamCard)
+          conversationHistory.push({ prompt, ...finalData })
+        } else {
+          streamCard.innerHTML = '<div class="error-text">No response received</div>'
+        }
       } catch (err) {
-        area.innerHTML = `<div class="result-card"><div class="error-text">${esc(err.message)}</div></div>`
+        streamCard.innerHTML = `<div class="error-text">${esc(err.message)}</div>`
       } finally {
         btn.disabled = false
         btn.textContent = 'Run'
+        document.getElementById('prompt').value = ''
+        document.getElementById('prompt').focus()
       }
     }
 
-    function renderResult(data) {
-      const area = document.getElementById('resultArea')
+    function renderResult(data, container) {
       let html = ''
 
       // Answer (markdown rendered)
       const answer = data.answer || '(no answer)'
-      html += `<div class="result-card">
-        <div class="md-content">${marked.parse(answer)}</div>
-        ${data.usage ? `<div class="meta">${data.usage.input} in / ${data.usage.output} out tokens</div>` : ''}
-      </div>`
+      html += `<div class="md-content">${marked.parse(answer)}</div>
+        ${data.usage ? `<div class="meta">${data.usage.input} in / ${data.usage.output} out tokens</div>` : ''}`
 
-      // Sources
+      container.innerHTML = html
+
+      // Sources as separate card after
+      const area = document.getElementById('resultArea')
+
       if (data.sources?.length) {
-        html += `<div class="result-card">
-          <div class="result-label">Sources (${data.sources.length})</div>
+        const sc = document.createElement('div')
+        sc.className = 'result-card'
+        sc.innerHTML = `<div class="result-label">Sources (${data.sources.length})</div>
           <div class="sources-list">${data.sources.map(s =>
             `<div><a href="${s.url}" target="_blank">${esc(s.title || s.url)}</a>
             ${s.snippet ? `<div class="source-snippet">${esc(s.snippet.slice(0,140))}...</div>` : ''}</div>`
-          ).join('')}</div>
-        </div>`
+          ).join('')}</div>`
+        area.appendChild(sc)
       }
 
-      // Images
       if (data.images?.length) {
-        html += `<div class="result-card">
-          <div class="result-label">Images (${data.images.length})</div>
+        const ic = document.createElement('div')
+        ic.className = 'result-card'
+        ic.innerHTML = `<div class="result-label">Images (${data.images.length})</div>
           <div class="images-grid">${data.images.map(url =>
             `<img src="${url}" loading="lazy" onclick="window.open('${url}','_blank')" onerror="this.style.display='none'">`
-          ).join('')}</div>
-        </div>`
+          ).join('')}</div>`
+        area.appendChild(ic)
       }
 
-      // Code results
       if (data.codeResults?.length) {
-        html += `<div class="result-card">
-          <div class="result-label">Code (${data.codeResults.length})</div>
+        const cc = document.createElement('div')
+        cc.className = 'result-card'
+        cc.innerHTML = `<div class="result-label">Code (${data.codeResults.length})</div>
           ${data.codeResults.map(c => `<pre><code>${esc(c.code)}</code></pre>
             <div style="color:#4ade80;font-size:13px;margin-top:4px">→ ${esc(c.output || c.error || '')}</div>`
-          ).join('')}
-        </div>`
+          ).join('')}`
+        area.appendChild(cc)
       }
 
-      // Tool calls (collapsible)
       if (data.toolCalls?.length) {
-        html += `<div class="result-card">
-          <div class="result-label collapsible" onclick="this.classList.toggle('open');this.nextElementSibling.style.display=this.classList.contains('open')?'block':'none'">
+        const tc = document.createElement('div')
+        tc.className = 'result-card'
+        tc.innerHTML = `<div class="result-label collapsible" onclick="this.classList.toggle('open');this.nextElementSibling.style.display=this.classList.contains('open')?'block':'none'">
             Tool Calls (${data.toolCalls.length})
           </div>
-          <pre style="display:none;font-size:12px">${esc(JSON.stringify(data.toolCalls, null, 2))}</pre>
-        </div>`
+          <pre style="display:none;font-size:12px">${esc(JSON.stringify(data.toolCalls, null, 2))}</pre>`
+        area.appendChild(tc)
       }
 
-      area.innerHTML = html
       // Re-highlight code blocks
       area.querySelectorAll('pre code').forEach(el => hljs.highlightElement(el))
+      area.scrollTop = area.scrollHeight
     }
 
     function esc(s) {
