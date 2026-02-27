@@ -81,9 +81,9 @@ async function agenticAsk(prompt, config, emit) {
       continue
     }
 
-    const summary = res.toolCalls.map(tc => `I called ${tc.name}(${JSON.stringify(tc.input)})`).join('\n')
+    const summary = res.toolCalls.map(tc => `[tool: ${tc.name}]`).join(', ')
     messages.push({ role: 'assistant', content: [res.text, summary].filter(Boolean).join('\n') })
-    messages.push({ role: 'user', content: `Tool results:\n${results.join('\n')}\n\nProvide the final answer.` })
+    messages.push({ role: 'user', content: `Tool results:\n${results.join('\n')}\n\nBased on the tool results above, provide the final answer directly. Do NOT mention or repeat the tool calls, do NOT say "I called..." or show function signatures. Just answer the question.` })
 
     emit('status', { message: 'Generating answer...' })
     const streamResult = await openaiChatStream(messages, [], config, emit)
