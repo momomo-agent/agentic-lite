@@ -12,7 +12,7 @@ export default async function handler(req) {
   if (req.method !== 'POST') return new Response('Method not allowed', { status: 405 })
 
   const body = await req.json()
-  const { prompt, tools = ['search', 'code'], provider = 'anthropic', baseUrl, apiKey, model, searchApiKey } = body
+  const { prompt, tools = ['search', 'code'], provider = 'anthropic', baseUrl, apiKey, model, searchApiKey, messages: history } = body
   if (!prompt) return new Response(JSON.stringify({ error: 'prompt required' }), { status: 400 })
   if (!apiKey) return new Response(JSON.stringify({ error: 'apiKey required' }), { status: 400 })
 
@@ -24,7 +24,7 @@ export default async function handler(req) {
       }
       try {
         emit('status', { message: 'Starting...' })
-        const result = await agenticAsk(prompt, { provider, baseUrl, apiKey, model, tools, searchApiKey }, emit)
+        const result = await agenticAsk(prompt, { provider, baseUrl, apiKey, model, tools, searchApiKey, history }, emit)
         emit('done', result)
       } catch (err) {
         emit('error', { message: String(err) })
@@ -45,7 +45,15 @@ const MAX_ROUNDS = 10
 async function agenticAsk(prompt, config, emit) {
   const chat = config.provider === 'anthropic' ? anthropicChat : openaiChat
   const toolDefs = buildToolDefs(config.tools)
-  const messages = [{ role: 'user', content: prompt }]
+  // Build messages from history + current prompt
+  const messages = []
+  if (config.history?.length) {
+    for (const h of config.history) {
+      messages.push({ role: 'user', content: h.prompt })
+      messages.push({ role: 'assistant', content: h.answer })
+    }
+  }
+  messages.push({ role: 'user', content: prompt })
   const acc = { sources: [], codeResults: [], files: [], toolCalls: [], images: [] }
   let usage = { input: 0, output: 0 }
 

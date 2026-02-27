@@ -291,6 +291,7 @@
 
       btn.disabled = true
       btn.textContent = 'Running...'
+      document.getElementById('prompt').value = ''
 
       // Clear empty state if first run
       if (!conversationHistory.length) area.innerHTML = ''
@@ -313,7 +314,7 @@
         const res = await fetch('/api/ask', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ prompt, tools, provider, baseUrl, apiKey, model, searchApiKey }),
+          body: JSON.stringify({ prompt, tools, provider, baseUrl, apiKey, model, searchApiKey, messages: conversationHistory.map(h => ({ prompt: h.prompt, answer: h.answer })) }),
         })
 
         if (!res.ok) {
@@ -384,7 +385,6 @@
       } finally {
         btn.disabled = false
         btn.textContent = 'Run'
-        document.getElementById('prompt').value = ''
         document.getElementById('prompt').focus()
       }
     }
