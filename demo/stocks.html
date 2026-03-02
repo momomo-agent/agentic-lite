@@ -17,27 +17,28 @@
     .tab { padding:5px 14px; border-radius:5px; font-size:12px; cursor:pointer; border:none; background:none; color:var(--muted); transition:all .2s; }
     .tab.on { background:var(--accent); color:#fff; } .tab:hover:not(.on) { color:var(--text); }
     .main { display:grid; grid-template-columns:300px 1fr; height:calc(100vh - 53px); }
-    .left { border-right:1px solid var(--border); overflow-y:auto; padding:14px; display:flex; flex-direction:column; gap:0; }
+    .left { border-right:1px solid var(--border); overflow:hidden; padding:14px; display:flex; flex-direction:column; gap:0; }
     .st { font-size:10px; text-transform:uppercase; letter-spacing:.07em; color:var(--muted); margin:14px 0 6px; } .st:first-child { margin-top:0; }
-    .dims { display:flex; flex-direction:column; gap:4px; }
-    .di { display:flex; align-items:center; gap:7px; padding:6px 9px; border-radius:5px; background:var(--surface); cursor:pointer; font-size:12px; }
-    .di:hover { background:var(--s2); } .di input { accent-color:var(--accent); width:13px; height:13px; }
-    /* Search input with dropdown */
-    .search-wrap { position:relative; margin-top:8px; }
+    .dims { display:flex; flex-wrap:wrap; gap:4px; }
+    .di { display:flex; align-items:center; gap:4px; padding:4px 8px; border-radius:12px; background:var(--surface); cursor:pointer; font-size:11px; white-space:nowrap; }
+    .di:hover { background:var(--s2); } .di input { accent-color:var(--accent); width:12px; height:12px; }
     .si { width:100%; background:var(--surface); border:1px solid var(--border); border-radius:6px; padding:8px 12px; color:var(--text); font-size:13px; outline:none; }
     .si:focus { border-color:var(--accent); }
     .si::placeholder { color:var(--muted); }
-    .dropdown { position:absolute; top:100%; left:0; right:0; background:var(--surface); border:1px solid var(--border); border-top:none; border-radius:0 0 6px 6px; max-height:280px; overflow-y:auto; z-index:100; display:none; }
-    .dropdown.show { display:block; }
-    .dd-item { padding:8px 12px; cursor:pointer; font-size:12px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border); }
-    .dd-item:last-child { border-bottom:none; }
-    .dd-item:hover { background:var(--s2); }
-    .dd-item .name { font-weight:500; } .dd-item .code { color:var(--muted); font-size:11px; font-family:monospace; }
-    .dd-item .price { font-size:12px; } .dd-item .price.up { color:var(--green); } .dd-item .price.down { color:var(--red); }
-    .dd-cat { padding:6px 12px; font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; background:var(--bg); position:sticky; top:0; }
+    .stock-list { flex:1; min-height:0; overflow-y:auto; border:1px solid var(--border); border-radius:6px; background:var(--surface); }
+    .sl-cat { padding:5px 10px; font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; background:var(--bg); position:sticky; top:0; z-index:1; }
+    .sl-item { padding:6px 10px; cursor:pointer; font-size:12px; display:flex; align-items:center; gap:6px; border-bottom:1px solid var(--border); }
+    .sl-item:last-child { border-bottom:none; }
+    .sl-item:hover { background:var(--s2); }
+    .sl-item.active { background:var(--accent)22; border-left:2px solid var(--accent); }
+    .sl-item .name { font-weight:500; } .sl-item .code { color:var(--muted); font-size:11px; font-family:monospace; }
     .selected-stock { margin-top:6px; padding:8px 10px; background:var(--surface); border-radius:6px; font-size:12px; display:none; align-items:center; justify-content:space-between; }
     .selected-stock.show { display:flex; }
     .selected-stock .remove { cursor:pointer; color:var(--muted); font-size:14px; } .selected-stock .remove:hover { color:var(--red); }
+    .bottom-bar { flex-shrink:0; padding-top:8px; border-top:1px solid var(--border); margin-top:8px; }
+    .config-details { margin-top:8px; }
+    .config-details summary { font-size:11px; color:var(--muted); cursor:pointer; padding:4px 0; }
+    .config-details summary:hover { color:var(--text); }
     .btn { width:100%; padding:9px; border:none; border-radius:6px; background:var(--accent); color:#fff; font-size:13px; font-weight:500; cursor:pointer; margin-top:12px; }
     .btn:hover { opacity:.9; } .btn:disabled { opacity:.4; cursor:not-allowed; }
     .fg { margin-top:4px; } .fg label { font-size:10px; color:var(--muted); display:block; margin:8px 0 3px; }
@@ -76,42 +77,43 @@
     <div class="left">
       <div class="st">分析维度</div>
       <div class="dims" id="dims">
-        <label class="di"><input type="checkbox" checked data-d="technical"><span>📊 技术面 — K线/均线/MACD/RSI/布林带</span></label>
-        <label class="di"><input type="checkbox" checked data-d="fundamental"><span>📋 基本面 — PE/PB/ROE/营收/利润</span></label>
-        <label class="di"><input type="checkbox" checked data-d="sentiment"><span>🧠 市场情绪 — 新闻/恐贪指数</span></label>
-        <label class="di"><input type="checkbox" data-d="macro"><span>🌍 宏观经济 — 利率/通胀/政策</span></label>
-        <label class="di"><input type="checkbox" data-d="flow"><span>💰 资金流向 — 主力/北向/融资融券</span></label>
-        <label class="di"><input type="checkbox" data-d="sector"><span>🏭 行业对比 — 板块轮动/同业排名</span></label>
-        <label class="di"><input type="checkbox" data-d="risk"><span>⚠️ 风险评估 — 波动率/回撤/VaR</span></label>
+        <label class="di"><input type="checkbox" checked data-d="technical"><span>📊 技术面</span></label>
+        <label class="di"><input type="checkbox" checked data-d="fundamental"><span>📋 基本面</span></label>
+        <label class="di"><input type="checkbox" checked data-d="sentiment"><span>🧠 情绪</span></label>
+        <label class="di"><input type="checkbox" data-d="macro"><span>🌍 宏观</span></label>
+        <label class="di"><input type="checkbox" data-d="flow"><span>💰 资金流</span></label>
+        <label class="di"><input type="checkbox" data-d="sector"><span>🏭 行业</span></label>
+        <label class="di"><input type="checkbox" data-d="risk"><span>⚠️ 风险</span></label>
       </div>
 
       <div class="st">选择股票</div>
-      <div class="search-wrap">
-        <input class="si" id="searchInput" placeholder="搜索股票名称或代码..." autocomplete="off" />
-        <div class="dropdown" id="dropdown"></div>
-      </div>
+      <input class="si" id="searchInput" placeholder="过滤..." autocomplete="off" style="margin-bottom:6px;" />
+      <div class="stock-list" id="stockList"></div>
       <div class="selected-stock" id="selectedStock">
         <span id="selectedLabel"></span>
         <span class="remove" onclick="clearStock()">✕</span>
       </div>
 
-      <button class="btn" id="analyzeBtn" onclick="analyze()">🔍 开始分析</button>
-
-      <div class="st">LLM 配置</div>
-      <div class="fg">
-        <label>Provider</label>
-        <select id="provider">
-          <option value="anthropic">Anthropic</option>
-          <option value="openai">OpenAI</option>
-        </select>
-        <label>API Key</label>
-        <input type="password" id="apiKey" placeholder="sk-ant-... or sk-..." />
-        <label>Base URL <span style="color:var(--muted)">(可选)</span></label>
-        <input id="baseUrl" placeholder="https://api.anthropic.com" />
-        <label>Model <span style="color:var(--muted)">(可选)</span></label>
-        <input id="model" placeholder="claude-sonnet-4-20250514" />
-        <label>Search API Key (Tavily)</label>
-        <input type="password" id="searchKey" placeholder="tvly-..." />
+      <div class="bottom-bar">
+        <button class="btn" id="analyzeBtn" onclick="analyze()">🔍 开始分析</button>
+        <details class="config-details">
+          <summary>⚙️ LLM 配置</summary>
+          <div class="fg">
+            <label>Provider</label>
+            <select id="provider">
+              <option value="anthropic">Anthropic</option>
+              <option value="openai">OpenAI</option>
+            </select>
+            <label>API Key</label>
+            <input type="password" id="apiKey" placeholder="sk-ant-... or sk-..." />
+            <label>Base URL <span style="color:var(--muted)">(可选)</span></label>
+            <input id="baseUrl" placeholder="https://api.anthropic.com" />
+            <label>Model <span style="color:var(--muted)">(可选)</span></label>
+            <input id="model" placeholder="claude-sonnet-4-20250514" />
+            <label>Search API Key (Tavily)</label>
+            <input type="password" id="searchKey" placeholder="tvly-..." />
+          </div>
+        </details>
       </div>
     </div>
 
@@ -210,49 +212,49 @@ document.getElementById('tabs').addEventListener('click', e => {
   market = t.dataset.m;
   clearStock();
   document.getElementById('searchInput').value = '';
-  showDropdown('');
+  renderStockList();
 });
 
-// Search input
+// Stock list (always visible)
 const searchEl = document.getElementById('searchInput');
-const ddEl = document.getElementById('dropdown');
-searchEl.addEventListener('focus', () => showDropdown(searchEl.value));
-searchEl.addEventListener('input', () => showDropdown(searchEl.value));
-document.addEventListener('click', e => {
-  if (!e.target.closest('.search-wrap')) ddEl.classList.remove('show');
-});
+const listEl = document.getElementById('stockList');
 
-function showDropdown(q) {
+searchEl.addEventListener('input', () => renderStockList());
+
+function renderStockList() {
   const cats = STOCKS[market] || [];
+  const q = searchEl.value.toLowerCase();
   let html = '';
-  const ql = q.toLowerCase();
   cats.forEach(cat => {
     const filtered = cat.items.filter(s =>
-      s.name.toLowerCase().includes(ql) || s.code.toLowerCase().includes(ql) || !q
+      s.name.toLowerCase().includes(q) || s.code.toLowerCase().includes(q) || !q
     );
     if (!filtered.length) return;
-    html += `<div class="dd-cat">${cat.cat}</div>`;
+    html += `<div class="sl-cat">${cat.cat}</div>`;
     filtered.forEach(s => {
-      html += `<div class="dd-item" onclick="selectStock('${s.code}','${s.name}')">
-        <span><span class="name">${s.name}</span> <span class="code">${s.code}</span></span>
+      const active = selectedStock && selectedStock.code === s.code ? ' active' : '';
+      html += `<div class="sl-item${active}" onclick="selectStock('${s.code}','${s.name}')">
+        <span class="name">${s.name}</span><span class="code">${s.code}</span>
       </div>`;
     });
   });
-  ddEl.innerHTML = html || '<div style="padding:12px;color:var(--muted);font-size:12px;">无匹配结果</div>';
-  ddEl.classList.add('show');
+  listEl.innerHTML = html || '<div style="padding:12px;color:var(--muted);font-size:12px;">无匹配结果</div>';
 }
+
+// Initial render
+renderStockList();
 
 function selectStock(code, name) {
   selectedStock = { code, name };
   document.getElementById('selectedLabel').textContent = `${name} (${code})`;
   document.getElementById('selectedStock').classList.add('show');
-  ddEl.classList.remove('show');
-  searchEl.value = '';
+  renderStockList();
 }
 
 function clearStock() {
   selectedStock = null;
   document.getElementById('selectedStock').classList.remove('show');
+  renderStockList();
 }
 
 // Save/load config
