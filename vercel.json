@@ -4,9 +4,9 @@
       "maxDuration": 60
     }
   },
-  "rewrites": [
-    { "source": "/api/ask", "destination": "/api/ask" },
-    { "source": "/stocks", "destination": "/demo/stocks.html" },
-    { "source": "/(.*)", "destination": "/demo/index.html" }
+  "routes": [
+    { "src": "/api/ask", "dest": "/api/ask" },
+    { "src": "/stocks", "dest": "/public/stocks.html" },
+    { "src": "/((?!api|public).*)", "dest": "/demo/index.html" }
   ]
 }
