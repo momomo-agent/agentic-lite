@@ -53,15 +53,16 @@
 .pulse{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pul 1.5s infinite}@keyframes pul{0%,100%{opacity:1}50%{opacity:.15}}
 
 /* Dashboard grid */
-.dash{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
-.kpi{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 12px;text-align:center}
+.dash{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:16px 14px;text-align:center;position:relative}
 .kpi .val{font-size:28px;font-weight:800;font-family:'JetBrains Mono',monospace;line-height:1;letter-spacing:-.02em}
-.kpi .lbl{font-size:9px;color:var(--dim);margin-top:4px;font-weight:600;text-transform:uppercase;letter-spacing:.08em}
-.kpi .sub{font-size:10px;margin-top:4px;font-weight:600}
+.kpi .lbl{font-size:9px;color:var(--dim);margin-top:5px;font-weight:600;text-transform:uppercase;letter-spacing:.08em}
+.kpi .sub{font-size:10px;margin-top:5px;font-weight:600}
+.kpi .hint{font-size:10px;color:var(--muted);margin-top:4px;font-weight:400;line-height:1.3}
 .kpi.bull .val{color:var(--green-l)}.kpi.bear .val{color:var(--red-l)}.kpi.neutral .val{color:var(--yellow)}
 .kpi.accent .val{background:linear-gradient(135deg,var(--accent-l),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 
-.charts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
 .chart-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:12px;min-height:280px}
 .chart-card h4{font-size:10px;color:var(--dim);font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
 .chart-box{width:100%;height:250px}
@@ -69,22 +70,23 @@
 .analysis-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px}
 .card.full{grid-column:1/-1}
-.card h3{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.card h3{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:14px;display:flex;align-items:center;gap:6px;padding-bottom:8px;border-bottom:1px solid var(--border)}
 .card h3 .dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
 .metric{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);font-size:11px}.metric:last-child{border-bottom:none}
 .metric .k{color:var(--muted)}.metric .v{font-weight:600;font-family:'JetBrains Mono',monospace;font-size:11px}
 .sig{font-size:9px;padding:2px 7px;border-radius:8px;font-weight:600;display:inline-flex;align-items:center;gap:3px}
 .sig.up{background:rgba(16,185,129,.12);color:var(--green-l)}.sig.dn{background:rgba(239,68,68,.12);color:var(--red-l)}.sig.nt{background:rgba(245,158,11,.12);color:var(--yellow)}
 
-.ref-list{list-style:none}.ref-list li{padding:5px 0;border-bottom:1px solid var(--border);font-size:10px;display:flex;align-items:center;gap:6px}.ref-list li:last-child{border-bottom:none}
-.ref-list a{color:var(--accent-l);text-decoration:none;font-weight:500}.ref-list a:hover{text-decoration:underline}
-.ref-badge{font-size:8px;padding:1px 5px;border-radius:3px;background:var(--s3);color:var(--dim);font-weight:700;text-transform:uppercase;letter-spacing:.04em;flex-shrink:0}
+.ref-list{list-style:none}.ref-list li{padding:8px 0;border-bottom:1px solid var(--border);font-size:12px;display:flex;align-items:center;gap:8px;line-height:1.5}.ref-list li:last-child{border-bottom:none}
+.ref-list a{color:var(--accent-l);text-decoration:none;font-weight:500}.ref-list a:hover{text-decoration:underline;color:var(--cyan)}
+.ref-badge{font-size:8px;padding:2px 7px;border-radius:4px;background:var(--s3);color:var(--dim);font-weight:700;text-transform:uppercase;letter-spacing:.04em;flex-shrink:0}
 
-.md{font-size:12px;line-height:1.7}.md p{margin-bottom:8px}.md h2{font-size:14px;margin:14px 0 7px;font-weight:700}.md h3{font-size:12px;margin:10px 0 5px;font-weight:700}
-.md ul,.md ol{padding-left:16px;margin-bottom:8px}.md li{margin-bottom:3px}.md strong{color:#fff}
-.md table{width:100%;border-collapse:collapse;margin:8px 0;font-size:11px}.md th{text-align:left;padding:7px 9px;background:var(--s2);border-bottom:1px solid var(--border);font-weight:700;font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:.04em}
-.md td{padding:7px 9px;border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:11px}
-.md a{color:var(--accent-l)}.md a:hover{text-decoration:underline}
+.md{font-size:13px;line-height:1.8;color:var(--text)}.md p{margin-bottom:12px}.md h2{font-size:16px;margin:20px 0 10px;font-weight:700;color:#fff;border-bottom:1px solid var(--border);padding-bottom:6px}.md h3{font-size:14px;margin:16px 0 8px;font-weight:700;color:#fff}
+.md ul,.md ol{padding-left:18px;margin-bottom:12px}.md li{margin-bottom:5px;line-height:1.7}.md strong{color:#fff}
+.md table{width:100%;border-collapse:collapse;margin:12px 0;font-size:12px;border:1px solid var(--border);border-radius:var(--r);overflow:hidden}.md th{text-align:left;padding:10px 12px;background:var(--s2);border-bottom:2px solid var(--border);font-weight:700;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.md td{padding:10px 12px;border-bottom:1px solid var(--border);font-size:12px}.md td:nth-child(n+2){font-family:'JetBrains Mono',monospace;font-size:11px}
+.md a{color:var(--accent-l);text-decoration:underline;text-underline-offset:2px}.md a:hover{color:var(--cyan)}
+.md blockquote{border-left:3px solid var(--accent);padding:8px 14px;margin:12px 0;background:var(--s2);border-radius:0 var(--r) var(--r) 0;color:var(--muted);font-style:italic}
 
 .empty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:70vh;color:var(--dim);text-align:center}
 .empty .icon{font-size:48px;margin-bottom:14px;opacity:.15}.empty p{font-size:12px;max-width:300px;line-height:1.6}.empty .sub{font-size:10px;color:var(--dim);margin-top:6px}
@@ -294,19 +296,25 @@ function buildDashboard(container, mdEl, answer, dims, dimLabels, stockName) {
   const p = data.price||{}, t = data.technicals||{}, f = data.fundamentals||{}, r = data.risk||{}, se = data.sentiment||{}, tr = data.trade||{};
 
   // === KPI Row 1: Core ===
+  const scoreHint = sc>=8?'强烈推荐':sc>=6?'值得关注':sc>=4?'谨慎观望':'风险较高';
+  const rsiHint = t.rsi>70?'⚠️ 超买区间，回调风险':t.rsi>60?'偏强，接近超买':t.rsi<30?'超卖区间，反弹机会':t.rsi<40?'偏弱，接近超卖':'中性区间';
   let kpi = '<div class="dash">';
-  kpi += `<div class="kpi accent"><div class="val">${sc.toFixed(1)}</div><div class="lbl">Score</div><div class="sub" style="color:var(--muted);font-size:9px">${conf} confidence</div></div>`;
-  kpi += `<div class="kpi ${vc}"><div class="val" style="font-size:18px">${vt}</div><div class="lbl">Signal</div></div>`;
-  kpi += `<div class="kpi"><div class="val" style="font-size:18px">${p.current?"$"+p.current:"—"}</div><div class="lbl">Price</div>${p.changePct?`<div class="sub sig ${p.changePct>0?'up':'dn'}">${p.changePct>0?'+':''}${p.changePct}%</div>`:''}</div>`;
-  kpi += `<div class="kpi"><div class="val" style="font-size:18px">${t.rsi?t.rsi.toFixed(1):"—"}</div><div class="lbl">RSI (14)</div><div class="sub sig ${t.rsi>70?'dn':t.rsi<30?'up':'nt'}">${t.rsi>70?'Overbought':t.rsi<30?'Oversold':'Neutral'}</div></div>`;
+  kpi += `<div class="kpi accent"><div class="val">${sc.toFixed(1)}<span style="font-size:14px;opacity:.5">/10</span></div><div class="lbl">综合评分 Score</div><div class="hint">${scoreHint} · ${conf} confidence</div></div>`;
+  kpi += `<div class="kpi ${vc}"><div class="val" style="font-size:18px">${vt}</div><div class="lbl">交易信号 Signal</div><div class="hint">${data.verdict==='bullish'?'看多，建议买入':data.verdict==='bearish'?'看空，建议卖出':'中性，建议观望'}</div></div>`;
+  kpi += `<div class="kpi"><div class="val" style="font-size:22px">${p.current?"$"+p.current.toLocaleString():"—"}</div><div class="lbl">当前价格 Price</div>${p.changePct?`<div class="sub sig ${p.changePct>0?'up':'dn'}">${p.changePct>0?'+':''}${p.changePct}% 今日</div>`:''}${p.high52w?`<div class="hint">52周: ${p.low52w} ~ ${p.high52w}</div>`:''}</div>`;
+  kpi += `<div class="kpi"><div class="val" style="font-size:22px">${t.rsi?t.rsi.toFixed(1):"—"}</div><div class="lbl">RSI (14)</div><div class="hint">${rsiHint}</div></div>`;
   kpi += '</div>';
 
   // === KPI Row 2: Risk Metrics ===
+  const betaHint = r.beta>1.5?'高波动，涨跌幅超大盘':r.beta>1?'波动略高于大盘':r.beta>0.5?'波动低于大盘':'防御型，波动很小';
+  const volHint = r.volatility>40?'高波动，注意风控':r.volatility>25?'中等波动':'低波动，走势平稳';
+  const sharpeHint = r.sharpe>2?'优秀，风险收益比极佳':r.sharpe>1?'良好，收益跑赢风险':r.sharpe>0?'一般，风险收益持平':'差，风险大于收益';
+  const ddHint = r.maxDrawdown>30?'⚠️ 重大回撤风险':r.maxDrawdown>15?'中等回撤，需设止损':'回撤可控';
   kpi += '<div class="dash">';
-  kpi += `<div class="kpi"><div class="val" style="font-size:18px">${r.beta?r.beta.toFixed(2):"—"}</div><div class="lbl">Beta</div></div>`;
-  kpi += `<div class="kpi"><div class="val" style="font-size:18px">${r.volatility?r.volatility.toFixed(1)+"%":"—"}</div><div class="lbl">Volatility (60d)</div></div>`;
-  kpi += `<div class="kpi"><div class="val" style="font-size:18px">${r.sharpe?r.sharpe.toFixed(2):"—"}</div><div class="lbl">Sharpe Ratio</div></div>`;
-  kpi += `<div class="kpi"><div class="val" style="font-size:18px;${r.maxDrawdown?'color:var(--red-l)':''}">${r.maxDrawdown?"-"+r.maxDrawdown.toFixed(1)+"%":"—"}</div><div class="lbl">Max Drawdown</div></div>`;
+  kpi += `<div class="kpi"><div class="val" style="font-size:22px">${r.beta?r.beta.toFixed(2):"—"}</div><div class="lbl">Beta 系数</div><div class="hint">${r.beta?betaHint:''}</div></div>`;
+  kpi += `<div class="kpi"><div class="val" style="font-size:22px">${r.volatility?r.volatility.toFixed(1)+"%":"—"}</div><div class="lbl">波动率 60日</div><div class="hint">${r.volatility?volHint:''}</div></div>`;
+  kpi += `<div class="kpi"><div class="val" style="font-size:22px">${r.sharpe?r.sharpe.toFixed(2):"—"}</div><div class="lbl">夏普比率 Sharpe</div><div class="hint">${r.sharpe?sharpeHint:''}</div></div>`;
+  kpi += `<div class="kpi"><div class="val" style="font-size:22px;${r.maxDrawdown?'color:var(--red-l)':''}">${r.maxDrawdown?"-"+r.maxDrawdown.toFixed(1)+"%":"—"}</div><div class="lbl">最大回撤 MDD</div><div class="hint">${r.maxDrawdown?ddHint:''}</div></div>`;
   kpi += '</div>';
   const dashEl = document.createElement('div'); dashEl.innerHTML = kpi; container.appendChild(dashEl);
 
@@ -315,22 +323,22 @@ function buildDashboard(container, mdEl, answer, dims, dimLabels, stockName) {
 
   // Chart 1: Radar
   const c1 = document.createElement('div'); c1.className = 'chart-card';
-  c1.innerHTML = '<h4>Multi-Factor Score</h4><div class="chart-box" id="ch-radar"></div>';
+  c1.innerHTML = '<h4>多因子评分 Multi-Factor Score</h4><div class="chart-box" id="ch-radar"></div>';
   cg.appendChild(c1);
 
   // Chart 2: Price Sparkline / MA
   const c2 = document.createElement('div'); c2.className = 'chart-card';
-  c2.innerHTML = '<h4>Price & Moving Averages</h4><div class="chart-box" id="ch-price"></div>';
+  c2.innerHTML = '<h4>价格走势 & 均线 Price & MA</h4><div class="chart-box" id="ch-price"></div>';
   cg.appendChild(c2);
 
   // Chart 3: Fundamentals Bar
   const c3 = document.createElement('div'); c3.className = 'chart-card';
-  c3.innerHTML = '<h4>Fundamentals vs Industry</h4><div class="chart-box" id="ch-fund"></div>';
+  c3.innerHTML = '<h4>基本面 vs 行业 Fundamentals vs Industry</h4><div class="chart-box" id="ch-fund"></div>';
   cg.appendChild(c3);
 
   // Chart 4: Revenue/Profit Trend or Sentiment Gauge
   const c4 = document.createElement('div'); c4.className = 'chart-card';
-  c4.innerHTML = '<h4>Revenue & Profit (4Q)</h4><div class="chart-box" id="ch-rev"></div>';
+  c4.innerHTML = '<h4>营收 & 利润趋势 Revenue & Profit (4Q)</h4><div class="chart-box" id="ch-rev"></div>';
   cg.appendChild(c4);
 
   container.appendChild(cg);
@@ -338,17 +346,18 @@ function buildDashboard(container, mdEl, answer, dims, dimLabels, stockName) {
   // === Signal Matrix ===
   if (data.signals && data.signals.length) {
     const sc2 = document.createElement('div'); sc2.className = 'card full';
-    let sh = '<h3><span class="dot" style="background:var(--accent)"></span>Technical Signals</h3><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:6px">';
+    let sh = '<h3><span class="dot" style="background:var(--accent)"></span>技术信号矩阵 Technical Signals</h3><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px">';
     data.signals.forEach(s => {
       const cls = s.signal==='buy'?'up':s.signal==='sell'?'dn':'nt';
-      const txt = s.signal==='buy'?'▲ BUY':s.signal==='sell'?'▼ SELL':'— HOLD';
+      const txt = s.signal==='buy'?'▲ 买入':s.signal==='sell'?'▼ 卖出':'— 持有';
       const str = s.strength||50;
+      const strLabel = str>=80?'强信号':str>=60?'中等':str>=40?'偏弱':'弱信号';
       const barColor = s.signal==='buy'?'var(--green)':s.signal==='sell'?'var(--red)':'var(--yellow)';
-      sh += `<div style="background:var(--s2);border-radius:6px;padding:8px;text-align:center">
-        <div style="font-size:9px;color:var(--dim);margin-bottom:3px;font-weight:600">${s.name}</div>
-        <div class="sig ${cls}" style="margin-bottom:4px">${txt}</div>
-        <div style="height:3px;background:var(--s4);border-radius:2px;overflow:hidden"><div style="height:100%;width:${str}%;background:${barColor};border-radius:2px"></div></div>
-        <div style="font-size:8px;color:var(--dim);margin-top:2px;font-family:'JetBrains Mono'">${str}%</div>
+      sh += `<div style="background:var(--s2);border-radius:8px;padding:10px;text-align:center">
+        <div style="font-size:10px;color:var(--dim);margin-bottom:4px;font-weight:600">${s.name}</div>
+        <div class="sig ${cls}" style="margin-bottom:6px;font-size:10px">${txt}</div>
+        <div style="height:4px;background:var(--s4);border-radius:2px;overflow:hidden"><div style="height:100%;width:${str}%;background:${barColor};border-radius:2px;transition:width .3s"></div></div>
+        <div style="font-size:9px;color:var(--muted);margin-top:3px">${str}% · ${strLabel}</div>
       </div>`;
     });
     sh += '</div>';
@@ -359,15 +368,15 @@ function buildDashboard(container, mdEl, answer, dims, dimLabels, stockName) {
   if (tr.direction) {
     const tp = document.createElement('div'); tp.className = 'card full';
     const dir = tr.direction==='buy'?'up':tr.direction==='sell'?'dn':'nt';
-    const dirTxt = tr.direction==='buy'?'▲ BUY':tr.direction==='sell'?'▼ SELL':'— HOLD';
-    tp.innerHTML = `<h3><span class="dot" style="background:var(--green)"></span>Trade Plan</h3>
-      <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px;text-align:center">
-        <div><div class="sig ${dir}" style="font-size:12px;margin-bottom:2px">${dirTxt}</div><div style="font-size:8px;color:var(--dim)">Direction</div></div>
-        <div><div style="font-family:'JetBrains Mono';font-size:12px;font-weight:600">${tr.entry?("$"+tr.entry[0]+"-$"+tr.entry[1]):"—"}</div><div style="font-size:8px;color:var(--dim)">Entry</div></div>
-        <div><div style="font-family:'JetBrains Mono';font-size:12px;font-weight:600;color:var(--red-l)">${tr.stop?"$"+tr.stop:"—"}</div><div style="font-size:8px;color:var(--dim)">Stop Loss</div></div>
-        <div><div style="font-family:'JetBrains Mono';font-size:12px;font-weight:600;color:var(--green-l)">${tr.target1?"$"+tr.target1:"—"}</div><div style="font-size:8px;color:var(--dim)">Target 1</div></div>
-        <div><div style="font-family:'JetBrains Mono';font-size:12px;font-weight:600">${tr.position?tr.position+"%":"—"}</div><div style="font-size:8px;color:var(--dim)">Position</div></div>
-        <div><div style="font-size:11px;font-weight:600">${tr.horizon||"—"}</div><div style="font-size:8px;color:var(--dim)">Horizon</div></div>
+    const dirTxt = tr.direction==='buy'?'▲ 买入':tr.direction==='sell'?'▼ 卖出':'— 观望';
+    tp.innerHTML = `<h3><span class="dot" style="background:var(--green)"></span>交易计划 Trade Plan</h3>
+      <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:10px;text-align:center">
+        <div style="background:var(--s2);border-radius:8px;padding:10px"><div class="sig ${dir}" style="font-size:12px;margin-bottom:4px">${dirTxt}</div><div style="font-size:9px;color:var(--dim)">方向</div></div>
+        <div style="background:var(--s2);border-radius:8px;padding:10px"><div style="font-family:'JetBrains Mono';font-size:13px;font-weight:600">${tr.entry?("$"+tr.entry[0]+" - $"+tr.entry[1]):"—"}</div><div style="font-size:9px;color:var(--dim);margin-top:2px">入场区间</div></div>
+        <div style="background:var(--s2);border-radius:8px;padding:10px"><div style="font-family:'JetBrains Mono';font-size:13px;font-weight:600;color:var(--red-l)">${tr.stop?"$"+tr.stop:"—"}</div><div style="font-size:9px;color:var(--dim);margin-top:2px">止损位</div></div>
+        <div style="background:var(--s2);border-radius:8px;padding:10px"><div style="font-family:'JetBrains Mono';font-size:13px;font-weight:600;color:var(--green-l)">${tr.target1?"$"+tr.target1:"—"}</div><div style="font-size:9px;color:var(--dim);margin-top:2px">目标价</div></div>
+        <div style="background:var(--s2);border-radius:8px;padding:10px"><div style="font-family:'JetBrains Mono';font-size:13px;font-weight:600">${tr.position?tr.position+"%":"—"}</div><div style="font-size:9px;color:var(--dim);margin-top:2px">建议仓位</div></div>
+        <div style="background:var(--s2);border-radius:8px;padding:10px"><div style="font-size:12px;font-weight:600">${tr.horizon||"—"}</div><div style="font-size:9px;color:var(--dim);margin-top:2px">持有周期</div></div>
       </div>`;
     container.appendChild(tp);
   }
@@ -379,27 +388,28 @@ function buildDashboard(container, mdEl, answer, dims, dimLabels, stockName) {
     const bPct = ((se.analystBuy||0)/total*100).toFixed(0);
     const hPct = ((se.analystHold||0)/total*100).toFixed(0);
     const sPct = ((se.analystSell||0)/total*100).toFixed(0);
-    sb.innerHTML = `<h3><span class="dot" style="background:var(--yellow)"></span>Market Sentiment</h3>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+    const fgLabel = se.fearGreed>75?'极度贪婪':se.fearGreed>55?'贪婪':se.fearGreed>45?'中性':se.fearGreed>25?'恐惧':'极度恐惧';
+    sb.innerHTML = `<h3><span class="dot" style="background:var(--yellow)"></span>市场情绪 Market Sentiment</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
         <div>
-          <div style="font-size:10px;color:var(--dim);margin-bottom:6px;font-weight:600">ANALYST RATINGS</div>
-          <div style="display:flex;height:8px;border-radius:4px;overflow:hidden;margin-bottom:4px">
+          <div style="font-size:11px;color:var(--muted);margin-bottom:8px;font-weight:600">分析师评级分布</div>
+          <div style="display:flex;height:10px;border-radius:5px;overflow:hidden;margin-bottom:6px">
             <div style="width:${bPct}%;background:var(--green)"></div>
             <div style="width:${hPct}%;background:var(--yellow)"></div>
             <div style="width:${sPct}%;background:var(--red)"></div>
           </div>
-          <div style="display:flex;justify-content:space-between;font-size:9px;color:var(--muted)">
-            <span style="color:var(--green-l)">Buy ${se.analystBuy||0}</span>
-            <span style="color:var(--yellow)">Hold ${se.analystHold||0}</span>
-            <span style="color:var(--red-l)">Sell ${se.analystSell||0}</span>
+          <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--muted)">
+            <span style="color:var(--green-l)">买入 ${se.analystBuy||0}</span>
+            <span style="color:var(--yellow)">持有 ${se.analystHold||0}</span>
+            <span style="color:var(--red-l)">卖出 ${se.analystSell||0}</span>
           </div>
-          ${se.targetPrice?`<div style="margin-top:6px;font-size:10px">Target: <span style="font-family:'JetBrains Mono';font-weight:600">${se.targetPrice}</span></div>`:''}
+          ${se.targetPrice?`<div style="margin-top:8px;font-size:11px">目标价: <span style="font-family:'JetBrains Mono';font-weight:700;color:var(--accent-l)">${se.targetPrice}</span></div>`:''}
         </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
-          ${se.fearGreed?`<div style="background:var(--s2);border-radius:6px;padding:8px;text-align:center"><div style="font-size:18px;font-weight:700;font-family:'JetBrains Mono'">${se.fearGreed}</div><div style="font-size:8px;color:var(--dim)">Fear & Greed</div></div>`:''}
-          ${se.putCallRatio?`<div style="background:var(--s2);border-radius:6px;padding:8px;text-align:center"><div style="font-size:18px;font-weight:700;font-family:'JetBrains Mono'">${se.putCallRatio}</div><div style="font-size:8px;color:var(--dim)">Put/Call</div></div>`:''}
-          ${se.iv?`<div style="background:var(--s2);border-radius:6px;padding:8px;text-align:center"><div style="font-size:18px;font-weight:700;font-family:'JetBrains Mono'">${se.iv}%</div><div style="font-size:8px;color:var(--dim)">Impl. Vol</div></div>`:''}
-          ${se.shortInterest?`<div style="background:var(--s2);border-radius:6px;padding:8px;text-align:center"><div style="font-size:18px;font-weight:700;font-family:'JetBrains Mono'">${se.shortInterest}%</div><div style="font-size:8px;color:var(--dim)">Short Int.</div></div>`:''}
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          ${se.fearGreed?`<div style="background:var(--s2);border-radius:8px;padding:10px;text-align:center"><div style="font-size:22px;font-weight:700;font-family:'JetBrains Mono'">${se.fearGreed}</div><div style="font-size:9px;color:var(--dim);margin-top:2px">恐贪指数</div><div style="font-size:9px;color:var(--muted);margin-top:1px">${fgLabel}</div></div>`:''}
+          ${se.putCallRatio?`<div style="background:var(--s2);border-radius:8px;padding:10px;text-align:center"><div style="font-size:22px;font-weight:700;font-family:'JetBrains Mono'">${se.putCallRatio}</div><div style="font-size:9px;color:var(--dim);margin-top:2px">看跌/看涨比</div><div style="font-size:9px;color:var(--muted);margin-top:1px">${se.putCallRatio>1?'偏空':se.putCallRatio>0.7?'中性':'偏多'}</div></div>`:''}
+          ${se.iv?`<div style="background:var(--s2);border-radius:8px;padding:10px;text-align:center"><div style="font-size:22px;font-weight:700;font-family:'JetBrains Mono'">${se.iv}%</div><div style="font-size:9px;color:var(--dim);margin-top:2px">隐含波动率</div><div style="font-size:9px;color:var(--muted);margin-top:1px">${se.iv>50?'高波动预期':'正常水平'}</div></div>`:''}
+          ${se.shortInterest?`<div style="background:var(--s2);border-radius:8px;padding:10px;text-align:center"><div style="font-size:22px;font-weight:700;font-family:'JetBrains Mono'">${se.shortInterest}%</div><div style="font-size:9px;color:var(--dim);margin-top:2px">做空比例</div><div style="font-size:9px;color:var(--muted);margin-top:1px">${se.shortInterest>10?'⚠️ 高做空':se.shortInterest>5?'中等':'低做空'}</div></div>`:''}
         </div>
       </div>`;
     container.appendChild(sb);
@@ -407,13 +417,13 @@ function buildDashboard(container, mdEl, answer, dims, dimLabels, stockName) {
 
   // === Detailed Analysis ===
   const mdCard = document.createElement('div'); mdCard.className = 'card full';
-  mdCard.innerHTML = '<h3><span class="dot" style="background:var(--cyan)"></span>Detailed Analysis</h3><div class="md">' + marked.parse(answer) + '</div>';
+  mdCard.innerHTML = '<h3><span class="dot" style="background:var(--cyan)"></span>详细分析报告 Detailed Analysis</h3><div class="md">' + marked.parse(answer) + '</div>';
   container.appendChild(mdCard);
 
   // === References ===
   if (data.sources && data.sources.length) {
     const src = document.createElement('div'); src.className = 'card full';
-    let sh = '<h3><span class="dot" style="background:var(--green)"></span>References</h3><ul class="ref-list">';
+    let sh = '<h3><span class="dot" style="background:var(--green)"></span>参考来源 References</h3><ul class="ref-list">';
     data.sources.forEach(s => { sh += `<li><span class="ref-badge">${s.type||'web'}</span><a href="${s.url}" target="_blank">${s.title}</a></li>`; });
     sh += '</ul>'; src.innerHTML = sh; container.appendChild(src);
   }
