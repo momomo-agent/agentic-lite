@@ -7,6 +7,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/highlight.js@11/highlight.min.js"></script>
+  <script type="module" src="./agentic-agent.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11/styles/github-dark.min.css">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -168,6 +169,10 @@
         <label>Search API Key <span class="hint">(Tavily)</span></label>
         <input type="password" id="searchApiKey" placeholder="tvly-...">
       </div>
+      <div class="field">
+        <label>Proxy URL <span class="hint">(optional, bypass CORS/timeout)</span></label>
+        <input id="proxyUrl" placeholder="https://proxy.link2web.site/proxy">
+      </div>
     </div>
 
     <div class="config-section" style="border-top:1px solid #1a1a1a">
@@ -207,6 +212,7 @@
         if (s.baseUrl) document.getElementById('baseUrl').value = s.baseUrl
         if (s.model) document.getElementById('model').value = s.model
         if (s.searchApiKey) document.getElementById('searchApiKey').value = s.searchApiKey
+        if (s.proxyUrl) document.getElementById('proxyUrl').value = s.proxyUrl
       } catch {}
     }
     function saveConfig() {
@@ -216,10 +222,11 @@
         baseUrl: document.getElementById('baseUrl').value,
         model: document.getElementById('model').value,
         searchApiKey: document.getElementById('searchApiKey').value,
+        proxyUrl: document.getElementById('proxyUrl').value,
       }))
     }
     loadConfig()
-    document.querySelectorAll('#provider,#apiKey,#baseUrl,#model,#searchApiKey').forEach(el => {
+    document.querySelectorAll('#provider,#apiKey,#baseUrl,#model,#searchApiKey,#proxyUrl').forEach(el => {
       el.addEventListener('change', saveConfig)
       el.addEventListener('input', saveConfig)
     })
