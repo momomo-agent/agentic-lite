@@ -157,13 +157,13 @@ function clearStock(){sel=null;document.getElementById('selectedStock').classLis
 ['apiKey','searchKey','provider','baseUrl','model'].forEach(id=>{const el=document.getElementById(id),v=localStorage.getItem('ss_'+id);if(v)el.value=v;el.onchange=()=>localStorage.setItem('ss_'+id,el.value)});
 
 const DP={
-  technical:'技术分析：搜索该股票最新价格和技术指标。分析K线形态、5/10/20/60日均线趋势、MACD金叉死叉、RSI超买超卖(>70超买,<30超卖)、布林带位置、成交量变化。给出每个指标的具体数值。',
-  fundamental:'基本面分析：搜索该股票最新财务数据。分析市盈率PE、市净率PB、ROE、最近4个季度营收和净利润增速、毛利率变化、负债率。和同行业2-3个竞争对手对比。',
-  sentiment:'市场情绪分析：搜索最近一周关于该标的的重要新闻、分析师评级变化、社交媒体讨论热度、恐贪指数。',
-  macro:'宏观经济分析：搜索当前利率环境、通胀趋势、GDP增长、相关产业政策对该标的的影响。',
-  flow:'资金流向分析：搜索主力资金净流入流出、北向资金（A股）或机构持仓变化、融资融券余额变化趋势。',
-  sector:'行业对比分析：搜索该标的在所属行业中的排名、行业整体估值水平、板块轮动趋势、竞争对手对比。',
-  risk:'风险评估：计算近60日波动率、最大回撤、VaR(95%)、Beta系数。评估当前持仓风险等级。'
+  technical:'技术分析：搜索该股票最新价格和技术指标数据。给出：当前价格、5/10/20/60日均线、MACD(DIF/DEA/柱)、RSI(14)、布林带(上/中/下轨)、KDJ、OBV、成交量变化率。每个指标给出具体数值和买卖信号(buy/sell/neutral)。另外搜索最近30个交易日的收盘价序列。',
+  fundamental:'基本面分析：搜索该股票最新财务数据。给出：PE(TTM)、PB、PS、ROE、ROA、营收(最近4季度)、净利润(最近4季度)、毛利率、净利率、负债率、流动比率、自由现金流。同时搜索2-3个同行业竞争对手的PE/ROE/营收增速做对比。',
+  sentiment:'市场情绪：搜索最近一周重要新闻、分析师评级(买入/持有/卖出数量)、目标价中位数、恐贪指数、期权隐含波动率IV、Put/Call Ratio、做空比例Short Interest。',
+  macro:'宏观经济：搜索当前联邦基金利率、10年期国债收益率、CPI同比、PPI同比、GDP增速、PMI、失业率。分析这些宏观因素对该股票的具体影响。',
+  flow:'资金流向：搜索最近5日主力资金净流入、北向资金(A股)/机构持仓变化(美股13F)、融资融券余额变化、大宗交易数据。',
+  sector:'行业对比：搜索该股票所属行业ETF近期表现、行业PE中位数、行业内排名(按市值/营收/增速)、板块轮动趋势。',
+  risk:'风险量化：计算或搜索：60日历史波动率(annualized)、最大回撤(近1年)、Beta系数、VaR(95%,1day)、Sharpe Ratio、Sortino Ratio。评估风险等级(低/中/高)。'
 };
 
 async function analyze(){
@@ -176,57 +176,71 @@ async function analyze(){
   const mn=MN[mkt],stk=sel.n+' ('+sel.k+')';
   const btn=document.getElementById('analyzeBtn');btn.disabled=true;btn.textContent='⏳ ANALYZING...';
   const R=document.getElementById('results');R.innerHTML='';
-  const st=document.createElement('div');st.className='status-bar on';st.innerHTML='<div class="pulse"></div><span id="stext">Initializing...</span>';R.appendChild(st);
+  const st=document.createElement('div');st.className='status-bar on';st.innerHTML='<div class="pulse"></div><span id="stext">Initializing search...</span>';R.appendChild(st);
 
   const dimLabels={technical:'技术面',fundamental:'基本面',sentiment:'情绪面',macro:'宏观',flow:'资金流向',sector:'行业',risk:'风险'};
   const dt=dims.map(d=>DP[d]).join('\n\n');
-  const prompt=`你是一个专业的${mn}量化分析师。请对「${stk}」进行深度多维度分析。
+  const prompt=`你是一个量化分析师(Quant Analyst)。请对「${stk}」进行机构级(institutional-grade)多维度分析。
 
 市场：${mn}
 
-请依次完成以下分析维度：
+请依次完成以下分析维度，每个维度都必须引用搜索到的真实数据：
 
 ${dt}
 
 最后给出：
 
 ## 综合评分
-1-10分综合评分 + 看多/看空/中性判断
+1-10分综合评分 + 看多/看空/中性判断 + 置信度(高/中/低)
 
-## 买入/卖出建议
-具体价格区间、止损位、目标价
+## 交易建议
+- 建议方向(买入/卖出/观望)
+- 入场价格区间
+- 止损位(附理由)
+- 第一目标价 / 第二目标价
+- 建议仓位比例(占总资金%)
+- 持有周期建议
 
 ## 关键依据
-3-5个最重要决策依据，引用具体数据
+5个最重要的决策依据，每个引用具体数据和来源
+
+## 风险提示
+列出3-5个主要风险因子
 
 ## 参考来源
 所有数据来源，格式：[来源名](URL) — 说明
 
 ---
 
-**重要：在回答最末尾，请附加一个JSON数据块用于前端图表渲染，格式如下：**
+**重要：在回答最末尾，附加一个JSON数据块用于前端图表渲染：**
 
 <chart-data>
 {
   "score": 8.2,
+  "confidence": "high",
   "verdict": "bullish",
-  "price": {"current":892,"ma5":878,"ma20":845,"ma60":798},
-  "rsi": 68.5,
-  "pe": 65.2,
-  "pb": 42.8,
-  "roe": 115.8,
-  "revenueGrowth": 122,
-  "profitGrowth": 265,
-  "grossMargin": 76,
-  "industryPE": 32.4,
-  "industryROE": 22.3,
-  "dims": {${dims.map(d=>'"'+d+'": 0').join(',')}},
-  "signals": [{"name":"均线","signal":"buy"},{"name":"MACD","signal":"buy"},{"name":"RSI","signal":"neutral"}],
-  "sources": [{"title":"来源名","url":"https://...","type":"财报"}]
+  "price": {"current":0,"change":0,"changePct":0,"high52w":0,"low52w":0,"ma5":0,"ma10":0,"ma20":0,"ma60":0},
+  "technicals": {"rsi":0,"macd_dif":0,"macd_dea":0,"macd_hist":0,"boll_upper":0,"boll_mid":0,"boll_lower":0,"kdj_k":0,"kdj_d":0,"kdj_j":0,"obv_trend":"up","volume_change":0},
+  "fundamentals": {"pe":0,"pb":0,"ps":0,"roe":0,"roa":0,"grossMargin":0,"netMargin":0,"debtRatio":0,"revenueGrowth":0,"profitGrowth":0,"fcf":0},
+  "industry": {"pe":0,"roe":0,"revenueGrowth":0},
+  "sentiment": {"analystBuy":0,"analystHold":0,"analystSell":0,"targetPrice":0,"fearGreed":0,"iv":0,"putCallRatio":0,"shortInterest":0},
+  "risk": {"volatility":0,"maxDrawdown":0,"beta":0,"var95":0,"sharpe":0,"sortino":0,"riskLevel":"medium"},
+  "priceHistory": [0,0,0],
+  "revenue4q": [0,0,0,0],
+  "profit4q": [0,0,0,0],
+  "dims": {${dims.map(d=>'"'+d+'":0').join(',')}},
+  "signals": [{"name":"指标名","signal":"buy","strength":80}],
+  "trade": {"direction":"buy","entry":[0,0],"stop":0,"target1":0,"target2":0,"position":0,"horizon":""},
+  "sources": [{"title":"","url":"","type":""}]
 }
 </chart-data>
 
-dims对象里每个维度给1-10分。signals里signal值为buy/sell/neutral。请根据实际搜索到的数据填写真实数值。`;
+填写规则：
+- dims: 每个维度1-10分
+- signals: signal为buy/sell/neutral, strength为0-100信号强度
+- priceHistory: 最近20-30个交易日收盘价数组
+- revenue4q/profit4q: 最近4个季度数据(亿元或亿美元)
+- 所有数值必须基于搜索到的真实数据`;
 
   const body={prompt,tools:['search','code'],provider:prov,apiKey:ak,searchApiKey:sk};
   if(bu)body.baseUrl=bu;
@@ -249,7 +263,7 @@ dims对象里每个维度给1-10分。signals里signal值为buy/sell/neutral。�
           try{
             const d=JSON.parse(ln.slice(6));
             if(evType==='status')document.getElementById('stext').textContent=d.message;
-            else if(evType==='token'){answer+=d.text;/* don't render streaming — wait for done */}
+            else if(evType==='token'){answer+=d.text}
             else if(evType==='tool')document.getElementById('stext').textContent='🔧 '+d.name;
             else if(evType==='done'){if(d.answer)answer=d.answer;st.classList.remove('on');buildDashboard(R,mdEl,answer,dims,dimLabels,stk)}
             else if(evType==='error'){R.innerHTML+='<div class="card full" style="border-color:var(--red)"><p style="color:var(--red-l)">'+d.message+'</p></div>';st.classList.remove('on')}
@@ -268,117 +282,187 @@ dims对象里每个维度给1-10分。signals里signal值为buy/sell/neutral。�
 }
 
 function buildDashboard(container, mdEl, answer, dims, dimLabels, stockName) {
-  // Extract JSON block
   let data = null;
-  const jsonMatch = answer.match(/<chart-data>\s*([\s\S]*?)\s*<\/chart-data>/);
-  if (jsonMatch) {
-    try { data = JSON.parse(jsonMatch[1]); } catch(e) { console.warn('JSON parse error', e); }
-    answer = answer.replace(/<chart-data>[\s\S]*<\/chart-data>/, '').trim();
-  }
-
-  // If no structured data, fall back to text extraction
-  if (!data) {
-    const sm = answer.match(/(\d+\.?\d*)\s*[\/／]\s*10/);
-    data = { score: sm ? parseFloat(sm[1]) : 7, verdict: answer.includes('看多')||answer.includes('买入') ? 'bullish' : answer.includes('看空') ? 'bearish' : 'neutral' };
-  }
-
+  const jm = answer.match(/<chart-data>\s*([\s\S]*?)\s*<\/chart-data>/);
+  if (jm) { try { data = JSON.parse(jm[1]); } catch(e) {} answer = answer.replace(/<chart-data>[\s\S]*<\/chart-data>/, '').trim(); }
+  if (!data) { const sm = answer.match(/(\d+\.?\d*)\s*[\/／]\s*10/); data = { score: sm ? parseFloat(sm[1]) : 7, verdict: answer.includes('看多')||answer.includes('买入') ? 'bullish' : answer.includes('看空') ? 'bearish' : 'neutral' }; }
   container.innerHTML = '';
 
-  // === KPI Row ===
-  const score = data.score || 7;
-  const vClass = data.verdict === 'bullish' ? 'bull' : data.verdict === 'bearish' ? 'bear' : 'neutral';
-  const vText = data.verdict === 'bullish' ? '📈 BULLISH' : data.verdict === 'bearish' ? '📉 BEARISH' : '➡️ NEUTRAL';
-  const kpiHTML = `
-    <div class="kpi accent"><div class="val">${score.toFixed(1)}</div><div class="lbl">Overall Score</div></div>
-    <div class="kpi ${vClass}"><div class="val" style="font-size:20px">${vText}</div><div class="lbl">Signal</div></div>
-    <div class="kpi"><div class="val" style="font-size:18px">${data.price?.current ? "$"+data.price.current : "—"}</div><div class="lbl">Current Price</div></div>
-    <div class="kpi"><div class="val" style="font-size:18px">${data.rsi ? data.rsi.toFixed(1) : '—'}</div><div class="lbl">RSI (14)</div><div class="sub ${data.rsi>70?'sig dn':data.rsi<30?'sig up':'sig nt'}" style="display:inline-flex;margin-top:4px">${data.rsi>70?'超买':data.rsi<30?'超卖':'中性'}</div></div>
-  `;
-  const dash = document.createElement('div'); dash.className = 'dash'; dash.innerHTML = kpiHTML; container.appendChild(dash);
+  const sc = data.score||7, vc = data.verdict==='bullish'?'bull':data.verdict==='bearish'?'bear':'neutral';
+  const vt = data.verdict==='bullish'?'📈 BULLISH':data.verdict==='bearish'?'📉 BEARISH':'➡️ NEUTRAL';
+  const conf = data.confidence||'medium';
+  const p = data.price||{}, t = data.technicals||{}, f = data.fundamentals||{}, r = data.risk||{}, se = data.sentiment||{}, tr = data.trade||{};
 
-  // === Charts Row ===
-  const chartsDiv = document.createElement('div'); chartsDiv.className = 'charts';
+  // === KPI Row 1: Core ===
+  let kpi = '<div class="dash">';
+  kpi += `<div class="kpi accent"><div class="val">${sc.toFixed(1)}</div><div class="lbl">Score</div><div class="sub" style="color:var(--muted);font-size:9px">${conf} confidence</div></div>`;
+  kpi += `<div class="kpi ${vc}"><div class="val" style="font-size:18px">${vt}</div><div class="lbl">Signal</div></div>`;
+  kpi += `<div class="kpi"><div class="val" style="font-size:18px">${p.current?"$"+p.current:"—"}</div><div class="lbl">Price</div>${p.changePct?`<div class="sub sig ${p.changePct>0?'up':'dn'}">${p.changePct>0?'+':''}${p.changePct}%</div>`:''}</div>`;
+  kpi += `<div class="kpi"><div class="val" style="font-size:18px">${t.rsi?t.rsi.toFixed(1):"—"}</div><div class="lbl">RSI (14)</div><div class="sub sig ${t.rsi>70?'dn':t.rsi<30?'up':'nt'}">${t.rsi>70?'Overbought':t.rsi<30?'Oversold':'Neutral'}</div></div>`;
+  kpi += '</div>';
 
-  // Radar chart
-  const radarCard = document.createElement('div'); radarCard.className = 'chart-card';
-  radarCard.innerHTML = '<h4>Multi-Factor Radar</h4><div class="chart-box" id="ch-radar"></div>';
-  chartsDiv.appendChild(radarCard);
+  // === KPI Row 2: Risk Metrics ===
+  kpi += '<div class="dash">';
+  kpi += `<div class="kpi"><div class="val" style="font-size:18px">${r.beta?r.beta.toFixed(2):"—"}</div><div class="lbl">Beta</div></div>`;
+  kpi += `<div class="kpi"><div class="val" style="font-size:18px">${r.volatility?r.volatility.toFixed(1)+"%":"—"}</div><div class="lbl">Volatility (60d)</div></div>`;
+  kpi += `<div class="kpi"><div class="val" style="font-size:18px">${r.sharpe?r.sharpe.toFixed(2):"—"}</div><div class="lbl">Sharpe Ratio</div></div>`;
+  kpi += `<div class="kpi"><div class="val" style="font-size:18px;${r.maxDrawdown?'color:var(--red-l)':''}">${r.maxDrawdown?"-"+r.maxDrawdown.toFixed(1)+"%":"—"}</div><div class="lbl">Max Drawdown</div></div>`;
+  kpi += '</div>';
+  const dashEl = document.createElement('div'); dashEl.innerHTML = kpi; container.appendChild(dashEl);
 
-  // Bar chart — fundamentals comparison
-  const barCard = document.createElement('div'); barCard.className = 'chart-card';
-  barCard.innerHTML = '<h4>Fundamentals vs Industry</h4><div class="chart-box" id="ch-bar"></div>';
-  chartsDiv.appendChild(barCard);
+  // === Charts Grid (2x2) ===
+  const cg = document.createElement('div'); cg.className = 'charts'; cg.style.gridTemplateColumns = '1fr 1fr';
 
-  container.appendChild(chartsDiv);
+  // Chart 1: Radar
+  const c1 = document.createElement('div'); c1.className = 'chart-card';
+  c1.innerHTML = '<h4>Multi-Factor Score</h4><div class="chart-box" id="ch-radar"></div>';
+  cg.appendChild(c1);
 
-  // === Signals table ===
+  // Chart 2: Price Sparkline / MA
+  const c2 = document.createElement('div'); c2.className = 'chart-card';
+  c2.innerHTML = '<h4>Price & Moving Averages</h4><div class="chart-box" id="ch-price"></div>';
+  cg.appendChild(c2);
+
+  // Chart 3: Fundamentals Bar
+  const c3 = document.createElement('div'); c3.className = 'chart-card';
+  c3.innerHTML = '<h4>Fundamentals vs Industry</h4><div class="chart-box" id="ch-fund"></div>';
+  cg.appendChild(c3);
+
+  // Chart 4: Revenue/Profit Trend or Sentiment Gauge
+  const c4 = document.createElement('div'); c4.className = 'chart-card';
+  c4.innerHTML = '<h4>Revenue & Profit (4Q)</h4><div class="chart-box" id="ch-rev"></div>';
+  cg.appendChild(c4);
+
+  container.appendChild(cg);
+
+  // === Signal Matrix ===
   if (data.signals && data.signals.length) {
-    const sigCard = document.createElement('div'); sigCard.className = 'card full';
-    let sigHTML = '<h3><span class="dot" style="background:var(--accent)"></span>Technical Signals</h3><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:6px">';
+    const sc2 = document.createElement('div'); sc2.className = 'card full';
+    let sh = '<h3><span class="dot" style="background:var(--accent)"></span>Technical Signals</h3><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:6px">';
     data.signals.forEach(s => {
-      const cls = s.signal === 'buy' ? 'up' : s.signal === 'sell' ? 'dn' : 'nt';
-      const txt = s.signal === 'buy' ? '▲ BUY' : s.signal === 'sell' ? '▼ SELL' : '— HOLD';
-      sigHTML += `<div style="background:var(--s2);border-radius:6px;padding:8px;text-align:center"><div style="font-size:10px;color:var(--dim);margin-bottom:3px">${s.name}</div><div class="sig ${cls}">${txt}</div></div>`;
+      const cls = s.signal==='buy'?'up':s.signal==='sell'?'dn':'nt';
+      const txt = s.signal==='buy'?'▲ BUY':s.signal==='sell'?'▼ SELL':'— HOLD';
+      const str = s.strength||50;
+      const barColor = s.signal==='buy'?'var(--green)':s.signal==='sell'?'var(--red)':'var(--yellow)';
+      sh += `<div style="background:var(--s2);border-radius:6px;padding:8px;text-align:center">
+        <div style="font-size:9px;color:var(--dim);margin-bottom:3px;font-weight:600">${s.name}</div>
+        <div class="sig ${cls}" style="margin-bottom:4px">${txt}</div>
+        <div style="height:3px;background:var(--s4);border-radius:2px;overflow:hidden"><div style="height:100%;width:${str}%;background:${barColor};border-radius:2px"></div></div>
+        <div style="font-size:8px;color:var(--dim);margin-top:2px;font-family:'JetBrains Mono'">${str}%</div>
+      </div>`;
     });
-    sigHTML += '</div>';
-    sigCard.innerHTML = sigHTML; container.appendChild(sigCard);
+    sh += '</div>';
+    sc2.innerHTML = sh; container.appendChild(sc2);
   }
 
-  // === Markdown analysis ===
+  // === Trade Plan ===
+  if (tr.direction) {
+    const tp = document.createElement('div'); tp.className = 'card full';
+    const dir = tr.direction==='buy'?'up':tr.direction==='sell'?'dn':'nt';
+    const dirTxt = tr.direction==='buy'?'▲ BUY':tr.direction==='sell'?'▼ SELL':'— HOLD';
+    tp.innerHTML = `<h3><span class="dot" style="background:var(--green)"></span>Trade Plan</h3>
+      <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px;text-align:center">
+        <div><div class="sig ${dir}" style="font-size:12px;margin-bottom:2px">${dirTxt}</div><div style="font-size:8px;color:var(--dim)">Direction</div></div>
+        <div><div style="font-family:'JetBrains Mono';font-size:12px;font-weight:600">${tr.entry?("$"+tr.entry[0]+"-$"+tr.entry[1]):"—"}</div><div style="font-size:8px;color:var(--dim)">Entry</div></div>
+        <div><div style="font-family:'JetBrains Mono';font-size:12px;font-weight:600;color:var(--red-l)">${tr.stop?"$"+tr.stop:"—"}</div><div style="font-size:8px;color:var(--dim)">Stop Loss</div></div>
+        <div><div style="font-family:'JetBrains Mono';font-size:12px;font-weight:600;color:var(--green-l)">${tr.target1?"$"+tr.target1:"—"}</div><div style="font-size:8px;color:var(--dim)">Target 1</div></div>
+        <div><div style="font-family:'JetBrains Mono';font-size:12px;font-weight:600">${tr.position?tr.position+"%":"—"}</div><div style="font-size:8px;color:var(--dim)">Position</div></div>
+        <div><div style="font-size:11px;font-weight:600">${tr.horizon||"—"}</div><div style="font-size:8px;color:var(--dim)">Horizon</div></div>
+      </div>`;
+    container.appendChild(tp);
+  }
+
+  // === Sentiment Bar ===
+  if (se.analystBuy || se.fearGreed) {
+    const sb = document.createElement('div'); sb.className = 'card full';
+    const total = (se.analystBuy||0)+(se.analystHold||0)+(se.analystSell||0)||1;
+    const bPct = ((se.analystBuy||0)/total*100).toFixed(0);
+    const hPct = ((se.analystHold||0)/total*100).toFixed(0);
+    const sPct = ((se.analystSell||0)/total*100).toFixed(0);
+    sb.innerHTML = `<h3><span class="dot" style="background:var(--yellow)"></span>Market Sentiment</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div>
+          <div style="font-size:10px;color:var(--dim);margin-bottom:6px;font-weight:600">ANALYST RATINGS</div>
+          <div style="display:flex;height:8px;border-radius:4px;overflow:hidden;margin-bottom:4px">
+            <div style="width:${bPct}%;background:var(--green)"></div>
+            <div style="width:${hPct}%;background:var(--yellow)"></div>
+            <div style="width:${sPct}%;background:var(--red)"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:9px;color:var(--muted)">
+            <span style="color:var(--green-l)">Buy ${se.analystBuy||0}</span>
+            <span style="color:var(--yellow)">Hold ${se.analystHold||0}</span>
+            <span style="color:var(--red-l)">Sell ${se.analystSell||0}</span>
+          </div>
+          ${se.targetPrice?`<div style="margin-top:6px;font-size:10px">Target: <span style="font-family:'JetBrains Mono';font-weight:600">${se.targetPrice}</span></div>`:''}
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+          ${se.fearGreed?`<div style="background:var(--s2);border-radius:6px;padding:8px;text-align:center"><div style="font-size:18px;font-weight:700;font-family:'JetBrains Mono'">${se.fearGreed}</div><div style="font-size:8px;color:var(--dim)">Fear & Greed</div></div>`:''}
+          ${se.putCallRatio?`<div style="background:var(--s2);border-radius:6px;padding:8px;text-align:center"><div style="font-size:18px;font-weight:700;font-family:'JetBrains Mono'">${se.putCallRatio}</div><div style="font-size:8px;color:var(--dim)">Put/Call</div></div>`:''}
+          ${se.iv?`<div style="background:var(--s2);border-radius:6px;padding:8px;text-align:center"><div style="font-size:18px;font-weight:700;font-family:'JetBrains Mono'">${se.iv}%</div><div style="font-size:8px;color:var(--dim)">Impl. Vol</div></div>`:''}
+          ${se.shortInterest?`<div style="background:var(--s2);border-radius:6px;padding:8px;text-align:center"><div style="font-size:18px;font-weight:700;font-family:'JetBrains Mono'">${se.shortInterest}%</div><div style="font-size:8px;color:var(--dim)">Short Int.</div></div>`:''}
+        </div>
+      </div>`;
+    container.appendChild(sb);
+  }
+
+  // === Detailed Analysis ===
   const mdCard = document.createElement('div'); mdCard.className = 'card full';
   mdCard.innerHTML = '<h3><span class="dot" style="background:var(--cyan)"></span>Detailed Analysis</h3><div class="md">' + marked.parse(answer) + '</div>';
   container.appendChild(mdCard);
 
-  // === Sources ===
+  // === References ===
   if (data.sources && data.sources.length) {
-    const srcCard = document.createElement('div'); srcCard.className = 'card full';
-    let srcHTML = '<h3><span class="dot" style="background:var(--green)"></span>References</h3><ul class="ref-list">';
-    data.sources.forEach(s => {
-      srcHTML += `<li><span class="ref-badge">${s.type||'web'}</span><a href="${s.url}" target="_blank">${s.title}</a></li>`;
-    });
-    srcHTML += '</ul>';
-    srcCard.innerHTML = srcHTML; container.appendChild(srcCard);
+    const src = document.createElement('div'); src.className = 'card full';
+    let sh = '<h3><span class="dot" style="background:var(--green)"></span>References</h3><ul class="ref-list">';
+    data.sources.forEach(s => { sh += `<li><span class="ref-badge">${s.type||'web'}</span><a href="${s.url}" target="_blank">${s.title}</a></li>`; });
+    sh += '</ul>'; src.innerHTML = sh; container.appendChild(src);
   }
 
   // === Render ECharts ===
   setTimeout(() => {
     // Radar
-    const rEl = document.getElementById('ch-radar');
-    if (rEl && data.dims) {
-      const ch = echarts.init(rEl);
-      const indicators = dims.map(d => ({ name: dimLabels[d]||d, max: 10 }));
-      const values = dims.map(d => data.dims[d] || (score + (Math.random()-0.5)*2));
-      ch.setOption({
-        backgroundColor:'transparent',
-        radar:{indicator:indicators,shape:'polygon',splitNumber:4,radius:'70%',
-          axisName:{color:'#7a7a95',fontSize:10,fontWeight:600},
-          splitLine:{lineStyle:{color:'#1a1b2a'}},splitArea:{areaStyle:{color:['transparent']}},
-          axisLine:{lineStyle:{color:'#1a1b2a'}}},
-        series:[{type:'radar',data:[{value:values.map(v=>+v.toFixed(1)),name:'Score',
-          areaStyle:{color:'rgba(99,102,241,.12)'},lineStyle:{color:'#818cf8',width:2},
-          itemStyle:{color:'#818cf8',borderWidth:2},symbol:'circle',symbolSize:6}]}]
-      });
+    const rE = document.getElementById('ch-radar');
+    if (rE && data.dims) {
+      const ch = echarts.init(rE);
+      const ind = dims.map(d => ({ name: dimLabels[d]||d, max: 10 }));
+      const vals = dims.map(d => data.dims[d] || (sc + (Math.random()-0.5)*2));
+      ch.setOption({backgroundColor:'transparent',radar:{indicator:ind,shape:'polygon',splitNumber:5,radius:'68%',axisName:{color:'#7a7a95',fontSize:9,fontWeight:600},splitLine:{lineStyle:{color:'#1a1b2a'}},splitArea:{areaStyle:{color:['transparent']}},axisLine:{lineStyle:{color:'#1a1b2a'}}},series:[{type:'radar',data:[{value:vals.map(v=>+v.toFixed(1)),areaStyle:{color:'rgba(99,102,241,.12)'},lineStyle:{color:'#818cf8',width:2},itemStyle:{color:'#818cf8',borderWidth:2},symbol:'circle',symbolSize:5}]}]});
       window.addEventListener('resize',()=>ch.resize());
     }
-    // Bar
-    const bEl = document.getElementById('ch-bar');
-    if (bEl && (data.pe || data.roe)) {
-      const ch = echarts.init(bEl);
-      const cats = ['PE','PB','ROE','营收增速','利润增速','毛利率'];
-      const vals = [data.pe||0,data.pb||0,data.roe||0,data.revenueGrowth||0,data.profitGrowth||0,data.grossMargin||0];
-      const ind = [data.industryPE||0,0,data.industryROE||0,15,18,52];
-      ch.setOption({
-        backgroundColor:'transparent',
-        tooltip:{trigger:'axis',backgroundColor:'#11121b',borderColor:'#252640',textStyle:{color:'#e4e4ef',fontSize:11}},
-        legend:{data:['Stock','Industry'],textStyle:{color:'#7a7a95',fontSize:10},top:0},
-        grid:{top:30,bottom:20,left:40,right:10},
-        xAxis:{type:'category',data:cats,axisLabel:{color:'#4a4a62',fontSize:9,fontWeight:600},axisLine:{lineStyle:{color:'#1a1b2a'}}},
-        yAxis:{type:'value',splitLine:{lineStyle:{color:'#1a1b2a'}},axisLabel:{color:'#4a4a62',fontSize:9}},
-        series:[
-          {name:'Stock',type:'bar',data:vals,barWidth:16,itemStyle:{color:{type:'linear',x:0,y:0,x2:0,y2:1,colorStops:[{offset:0,color:'#818cf8'},{offset:1,color:'#6366f1'}]},borderRadius:[3,3,0,0]}},
-          {name:'Industry',type:'bar',data:ind,barWidth:16,itemStyle:{color:'#252640',borderRadius:[3,3,0,0]}}
-        ]
-      });
+    // Price
+    const pE = document.getElementById('ch-price');
+    if (pE) {
+      const ch = echarts.init(pE);
+      const ph = data.priceHistory && data.priceHistory.length > 3 ? data.priceHistory : null;
+      if (ph) {
+        const labels = ph.map((_,i)=>'D-'+(ph.length-1-i));
+        ch.setOption({backgroundColor:'transparent',tooltip:{trigger:'axis',backgroundColor:'#11121b',borderColor:'#252640',textStyle:{color:'#e4e4ef',fontSize:10}},grid:{top:20,bottom:25,left:45,right:10},xAxis:{type:'category',data:labels,axisLabel:{color:'#4a4a62',fontSize:8},axisLine:{lineStyle:{color:'#1a1b2a'}}},yAxis:{type:'value',scale:true,splitLine:{lineStyle:{color:'#1a1b2a'}},axisLabel:{color:'#4a4a62',fontSize:9}},series:[{type:'line',data:ph,smooth:true,lineStyle:{color:'#818cf8',width:2},areaStyle:{color:{type:'linear',x:0,y:0,x2:0,y2:1,colorStops:[{offset:0,color:'rgba(129,140,248,.2)'},{offset:1,color:'rgba(129,140,248,0)'}]}},symbol:'none'}]});
+      } else {
+        // MA comparison bars
+        const mas = [['MA5',p.ma5],['MA10',p.ma10],['MA20',p.ma20],['MA60',p.ma60],['Price',p.current]].filter(x=>x[1]);
+        if(mas.length){ch.setOption({backgroundColor:'transparent',grid:{top:10,bottom:25,left:45,right:10},xAxis:{type:'category',data:mas.map(m=>m[0]),axisLabel:{color:'#4a4a62',fontSize:9},axisLine:{lineStyle:{color:'#1a1b2a'}}},yAxis:{type:'value',scale:true,splitLine:{lineStyle:{color:'#1a1b2a'}},axisLabel:{color:'#4a4a62',fontSize:9}},series:[{type:'bar',data:mas.map(m=>m[1]),barWidth:20,itemStyle:{color:({dataIndex:i})=>i===mas.length-1?'#818cf8':'#252640',borderRadius:[3,3,0,0]}}]})}
+      }
+      window.addEventListener('resize',()=>ch.resize());
+    }
+    // Fundamentals
+    const fE = document.getElementById('ch-fund');
+    if (fE && (f.pe || f.roe)) {
+      const ch = echarts.init(fE);
+      const ind2 = data.industry||{};
+      const cats=['PE','PB','ROE','Rev Gr.','Profit Gr.','Margin'];
+      const v1=[f.pe||0,f.pb||0,f.roe||0,f.revenueGrowth||0,f.profitGrowth||0,f.grossMargin||0];
+      const v2=[ind2.pe||0,0,ind2.roe||0,ind2.revenueGrowth||15,18,52];
+      ch.setOption({backgroundColor:'transparent',tooltip:{trigger:'axis',backgroundColor:'#11121b',borderColor:'#252640',textStyle:{color:'#e4e4ef',fontSize:10}},legend:{data:['Stock','Industry'],textStyle:{color:'#7a7a95',fontSize:9},top:0,right:0},grid:{top:25,bottom:20,left:35,right:10},xAxis:{type:'category',data:cats,axisLabel:{color:'#4a4a62',fontSize:8,fontWeight:600},axisLine:{lineStyle:{color:'#1a1b2a'}}},yAxis:{type:'value',splitLine:{lineStyle:{color:'#1a1b2a'}},axisLabel:{color:'#4a4a62',fontSize:8}},series:[{name:'Stock',type:'bar',data:v1,barWidth:14,itemStyle:{color:{type:'linear',x:0,y:0,x2:0,y2:1,colorStops:[{offset:0,color:'#818cf8'},{offset:1,color:'#6366f1'}]},borderRadius:[3,3,0,0]}},{name:'Industry',type:'bar',data:v2,barWidth:14,itemStyle:{color:'#252640',borderRadius:[3,3,0,0]}}]});
+      window.addEventListener('resize',()=>ch.resize());
+    }
+    // Revenue/Profit
+    const rvE = document.getElementById('ch-rev');
+    if (rvE) {
+      const ch = echarts.init(rvE);
+      const rev = data.revenue4q&&data.revenue4q.some(v=>v)?data.revenue4q:[0,0,0,0];
+      const prf = data.profit4q&&data.profit4q.some(v=>v)?data.profit4q:[0,0,0,0];
+      const qs = ['Q-4','Q-3','Q-2','Q-1'];
+      ch.setOption({backgroundColor:'transparent',tooltip:{trigger:'axis',backgroundColor:'#11121b',borderColor:'#252640',textStyle:{color:'#e4e4ef',fontSize:10}},legend:{data:['Revenue','Profit'],textStyle:{color:'#7a7a95',fontSize:9},top:0,right:0},grid:{top:25,bottom:20,left:40,right:10},xAxis:{type:'category',data:qs,axisLabel:{color:'#4a4a62',fontSize:9},axisLine:{lineStyle:{color:'#1a1b2a'}}},yAxis:{type:'value',splitLine:{lineStyle:{color:'#1a1b2a'}},axisLabel:{color:'#4a4a62',fontSize:8}},series:[{name:'Revenue',type:'bar',data:rev,barWidth:16,itemStyle:{color:'#34d399',borderRadius:[3,3,0,0]}},{name:'Profit',type:'line',data:prf,smooth:true,lineStyle:{color:'#818cf8',width:2},symbol:'circle',symbolSize:5,itemStyle:{color:'#818cf8'}}]});
       window.addEventListener('resize',()=>ch.resize());
     }
   }, 150);
