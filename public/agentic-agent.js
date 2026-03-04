@@ -29,7 +29,7 @@ export async function agenticAsk(prompt, config, emit) {
     const response = await chat({ messages, tools: toolDefs, model, baseUrl, apiKey, proxyUrl })
     
     // Check if done
-    if (response.stop_reason === 'end_turn' || !response.tool_calls?.length) {
+    if (['end_turn', 'stop'].includes(response.stop_reason) || !response.tool_calls?.length) {
       finalAnswer = response.content
       break
     }
@@ -50,15 +50,15 @@ export async function agenticAsk(prompt, config, emit) {
 // ── LLM Chat Functions ──
 
 async function anthropicChat({ messages, tools, model = 'claude-sonnet-4', baseUrl = 'https://api.anthropic.com', apiKey, proxyUrl }) {
-  const url = `${baseUrl}/v1/messages`
+  const url = `${baseUrl.replace(/\/+$/, '')}/v1/messages`
   const body = {
     model,
     max_tokens: 4096,
     messages: messages.map(m => ({ role: m.role, content: m.content })),
-    tools: tools || []
   }
+  if (tools?.length) body.tools = tools
   
-  const response = await callLLM(url, apiKey, body, proxyUrl)
+  const response = await callLLM(url, apiKey, body, proxyUrl, true)
   
   return {
     content: response.content.find(c => c.type === 'text')?.text || '',
@@ -72,30 +72,35 @@ async function anthropicChat({ messages, tools, model = 'claude-sonnet-4', baseU
 }
 
 async function openaiChat({ messages, tools, model = 'gpt-4', baseUrl = 'https://api.openai.com', apiKey, proxyUrl }) {
-  const url = `${baseUrl}/v1/chat/completions`
-  const body = {
-    model,
-    messages,
-    tools: tools?.map(t => ({ type: 'function', function: t })) || []
-  }
+  const url = `${baseUrl.replace(/\/+$/, '')}/chat/completions`
+  const body = { model, messages, stream: false }
+  if (tools?.length) body.tools = tools.map(t => ({ type: 'function', function: t }))
   
-  const response = await callLLM(url, apiKey, body, proxyUrl)
+  const response = await callLLM(url, apiKey, body, proxyUrl, false)
   const choice = response.choices[0]
   
   return {
     content: choice.message.content || '',
-    tool_calls: choice.message.tool_calls?.map(t => ({
-      id: t.id,
-      name: t.function.name,
-      input: JSON.parse(t.function.arguments)
-    })) || [],
+    tool_calls: choice.message.tool_calls?.map(t => {
+      let input = {}
+      try { input = JSON.parse(t.function.arguments || '{}') } catch {}
+      return { id: t.id, name: t.function.name, input }
+    }) || [],
     stop_reason: choice.finish_reason
   }
 }
 
 // ── Proxy or Direct Call ──
 
-async function callLLM(url, apiKey, body, proxyUrl) {
+async function callLLM(url, apiKey, body, proxyUrl, isAnthropic = false) {
+  const headers = { 'content-type': 'application/json' }
+  if (isAnthropic) {
+    headers['x-api-key'] = apiKey
+    headers['anthropic-version'] = '2023-06-01'
+  } else {
+    headers['authorization'] = `Bearer ${apiKey}`
+  }
+  
   if (proxyUrl) {
     // 通过 proxy 调用
     const response = await fetch(proxyUrl, {
@@ -104,31 +109,86 @@ async function callLLM(url, apiKey, body, proxyUrl) {
       body: JSON.stringify({
         url,
         method: 'POST',
-        headers: {
-          'authorization': `Bearer ${apiKey}`,
-          'content-type': 'application/json',
-          'anthropic-version': '2023-06-01'
-        },
-        body,
-        mode: 'llm'
+        headers,
+        body: JSON.stringify(body),
+        mode: 'raw'
       })
     })
     const result = await response.json()
-    if (!result.success) throw new Error(result.error || 'Proxy request failed')
-    return result.data
+    if (!result.success) throw new Error(result.error || `Proxy failed: ${result.status}`)
+    const rawBody = typeof result.body === 'string' ? result.body : JSON.stringify(result.body)
+    if (result.status >= 400) throw new Error(`API error ${result.status}: ${rawBody.slice(0, 300)}`)
+    // Handle SSE responses (some providers return SSE even with stream:false)
+    if (rawBody.trimStart().startsWith('data: ')) {
+      return reassembleSSE(rawBody)
+    }
+    return JSON.parse(rawBody)
   } else {
     // 直连
     const response = await fetch(url, {
       method: 'POST',
-      headers: {
-        'authorization': `Bearer ${apiKey}`,
-        'content-type': 'application/json',
-        'anthropic-version': '2023-06-01'
-      },
+      headers,
       body: JSON.stringify(body)
     })
-    if (!response.ok) throw new Error(`HTTP ${response.status}`)
-    return await response.json()
+    if (!response.ok) {
+      const text = await response.text()
+      throw new Error(`API error ${response.status}: ${text}`)
+    }
+    const text = await response.text()
+    if (text.trimStart().startsWith('data: ')) {
+      return reassembleSSE(text)
+    }
+    return JSON.parse(text)
+  }
+}
+
+// ── SSE Reassembly ──
+
+function reassembleSSE(raw) {
+  const lines = raw.split('\n')
+  let content = ''
+  let toolCalls = {}
+  let model = ''
+  let usage = null
+  let finishReason = null
+  
+  for (const line of lines) {
+    if (!line.startsWith('data: ') || line === 'data: [DONE]') continue
+    try {
+      const chunk = JSON.parse(line.slice(6))
+      if (chunk.model) model = chunk.model
+      if (chunk.usage) usage = chunk.usage
+      const delta = chunk.choices?.[0]?.delta
+      if (!delta) continue
+      if (delta.content) content += delta.content
+      if (delta.finish_reason) finishReason = delta.finish_reason
+      if (chunk.choices?.[0]?.finish_reason) finishReason = chunk.choices[0].finish_reason
+      if (delta.tool_calls) {
+        for (const tc of delta.tool_calls) {
+          if (!toolCalls[tc.index]) toolCalls[tc.index] = { id: '', name: '', arguments: '' }
+          if (tc.id) toolCalls[tc.index].id = tc.id
+          if (tc.function?.name) toolCalls[tc.index].name = tc.function.name
+          if (tc.function?.arguments) toolCalls[tc.index].arguments += tc.function.arguments
+        }
+      }
+    } catch {}
+  }
+  
+  const tcList = Object.values(toolCalls).filter(t => t.name)
+  return {
+    choices: [{
+      message: {
+        content,
+        tool_calls: tcList.length ? tcList.map(t => ({
+          id: t.id,
+          type: 'function',
+          function: { name: t.name, arguments: t.arguments }
+        })) : undefined
+      },
+      finish_reason: finishReason || 'stop'
+    }],
+    model,
+    usage: usage || { prompt_tokens: 0, completion_tokens: 0 }
   }
 }
 
