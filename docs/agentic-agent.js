@@ -28,6 +28,8 @@ export async function agenticAsk(prompt, config, emit) {
     // Call LLM
     const response = await chat({ messages, tools: toolDefs, model, baseUrl, apiKey, proxyUrl })
     
+    console.log(`[Round ${round}] stop_reason:`, response.stop_reason, 'tool_calls:', response.tool_calls?.length || 0)
+    
     // Check if done
     if (['end_turn', 'stop'].includes(response.stop_reason) || !response.tool_calls?.length) {
       finalAnswer = response.content
