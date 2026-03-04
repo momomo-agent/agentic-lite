@@ -12,7 +12,7 @@ export default async function handler(req) {
   if (req.method !== 'POST') return new Response('Method not allowed', { status: 405 })
 
   const body = await req.json()
-  const { prompt, tools = ['search', 'code'], provider = 'anthropic', baseUrl, apiKey, model, searchApiKey, messages: history } = body
+  const { prompt, tools = ['search', 'code'], provider = 'anthropic', baseUrl, apiKey, model, searchApiKey, messages: history, proxyUrl } = body
   if (!prompt) return new Response(JSON.stringify({ error: 'prompt required' }), { status: 400 })
   if (!apiKey) return new Response(JSON.stringify({ error: 'apiKey required' }), { status: 400 })
 
@@ -24,7 +24,7 @@ export default async function handler(req) {
       }
       try {
         emit('status', { message: 'Starting...' })
-        const result = await agenticAsk(prompt, { provider, baseUrl, apiKey, model, tools, searchApiKey, history }, emit)
+        const result = await agenticAsk(prompt, { provider, baseUrl, apiKey, model, tools, searchApiKey, history, proxyUrl }, emit)
         emit('done', result)
       } catch (err) {
         emit('error', { message: String(err) })
@@ -107,11 +107,11 @@ async function anthropicChat(messages, tools, config) {
   }
   if (tools.length) body.tools = tools.map(t => ({ name: t.name, description: t.description, input_schema: t.parameters }))
 
-  const res = await fetch(endpoint, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'x-api-key': config.apiKey, 'anthropic-version': '2023-06-01' },
-    body: JSON.stringify(body),
-  })
+  const res = await callLLM(endpoint, 
+    { 'Content-Type': 'application/json', 'x-api-key': config.apiKey, 'anthropic-version': '2023-06-01' },
+    body,
+    config.proxyUrl
+  )
   if (!res.ok) throw new Error(`API error ${res.status}: ${await res.text()}`)
   const data = await res.json()
   let text = ''; const toolCalls = []
@@ -134,11 +134,11 @@ async function openaiChat(messages, tools, config) {
   }).flat() }
   if (tools.length) body.tools = tools.map(t => ({ type: 'function', function: { name: t.name, description: t.description, parameters: t.parameters } }))
 
-  const res = await fetch(endpoint, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${config.apiKey}` },
-    body: JSON.stringify(body),
-  })
+  const res = await callLLM(endpoint,
+    { 'Content-Type': 'application/json', 'Authorization': `Bearer ${config.apiKey}` },
+    body,
+    config.proxyUrl
+  )
   if (!res.ok) throw new Error(`API error ${res.status}: ${await res.text()}`)
   const rawText = await res.text()
   const data = rawText.trimStart().startsWith('data: ') ? reassembleSSE(rawText) : JSON.parse(rawText)
@@ -283,5 +283,23 @@ function reassembleSSE(text) {
   return {
     choices: [{ message: { content: content || null, tool_calls: reassembled.length ? reassembled : undefined }, finish_reason: reassembled.length ? 'tool_calls' : finishReason }],
     usage,
+  }
+}
+
+// ── Proxy Support ──
+async function callLLM(url, headers, body, proxyUrl) {
+  if (proxyUrl) {
+    const res = await fetch(proxyUrl, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({
+        url, method: 'POST', headers, body, mode: 'raw'
+      })
+    })
+    const result = await res.json()
+    if (!result.success) throw new Error(result.error || 'Proxy request failed')
+    return { ok: result.status >= 200 && result.status < 300, status: result.status, text: () => result.body, json: () => JSON.parse(result.body) }
+  } else {
+    return await fetch(url, { method: 'POST', headers, body: JSON.stringify(body) })
   }
 }
