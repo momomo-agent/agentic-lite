@@ -115,16 +115,79 @@ async function openaiChat({ messages, tools, model = 'gpt-4', baseUrl = 'https:/
   if (tools?.length) body.tools = tools.map(t => ({ type: 'function', function: t }))
   
   const response = await callLLM(url, apiKey, body, proxyUrl, false)
-  const choice = response.choices[0]
+  
+  // 处理 SSE 流式响应（code.newcli.com gpt-5.2 返回 SSE 格式）
+  if (typeof response === 'string' && response.includes('chat.completion.chunk')) {
+    return parseSSEResponse(response)
+  }
+  
+  // 标准 OpenAI 响应
+  const choice = response.choices?.[0]
+  if (!choice) return { content: '', tool_calls: [], stop_reason: 'stop' }
   
   return {
-    content: choice.message.content || '',
-    tool_calls: choice.message.tool_calls?.map(t => {
+    content: choice.message?.content || '',
+    tool_calls: choice.message?.tool_calls?.map(t => {
       let input = {}
       try { input = JSON.parse(t.function.arguments || '{}') } catch {}
       return { id: t.id, name: t.function.name, input }
     }) || [],
     stop_reason: choice.finish_reason
+  }
+}
+
+function parseSSEResponse(sseText) {
+  const lines = sseText.split('\n')
+  let textContent = ''
+  const toolCalls = []
+  let currentToolCall = null
+  
+  for (const line of lines) {
+    if (!line.trim() || !line.includes('"')) continue
+    
+    try {
+      // 提取 JSON 对象
+      const jsonMatch = line.match(/\{.*\}/)
+      if (!jsonMatch) continue
+      
+      const chunk = JSON.parse(jsonMatch[0])
+      
+      // 提取文本内容
+      if (chunk.choices?.[0]?.delta?.content) {
+        textContent += chunk.choices[0].delta.content
+      }
+      
+      // 提取工具调用
+      if (chunk.name && chunk.arguments !== undefined) {
+        if (currentToolCall && currentToolCall.name === chunk.name) {
+          currentToolCall.arguments += chunk.arguments
+        } else {
+          if (currentToolCall) toolCalls.push(currentToolCall)
+          currentToolCall = {
+            id: chunk.call_id || `call_${Date.now()}`,
+            name: chunk.name,
+            arguments: chunk.arguments || ''
+          }
+        }
+      }
+    } catch (e) {
+      // 忽略解析错误
+    }
+  }
+  
+  if (currentToolCall) toolCalls.push(currentToolCall)
+  
+  // 解析工具调用参数
+  const parsedToolCalls = toolCalls.map(t => {
+    let input = {}
+    try { input = JSON.parse(t.arguments || '{}') } catch {}
+    return { id: t.id, name: t.name, input }
+  })
+  
+  return {
+    content: textContent,
+    tool_calls: parsedToolCalls,
+    stop_reason: parsedToolCalls.length > 0 ? 'tool_use' : 'stop'
   }
 }
 
