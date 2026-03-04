@@ -322,57 +322,35 @@
       area.scrollTop = area.scrollHeight
 
       try {
-        let streamingText = ''
-        let answerCard = null
-        let finalData = null
-        
         const history = conversationHistory.map(h => [
           { role: 'user', content: h.prompt },
           { role: 'assistant', content: h.answer }
         ]).flat()
         
-        await agenticAsk(prompt, { 
+        const result = await agenticAsk(prompt, { 
           provider, baseUrl, apiKey, model, tools, searchApiKey, proxyUrl, history 
         }, (event, data) => {
           if (event === 'status') {
             statusCard.innerHTML = `<div style="font-size:12px;color:#666">⏳ ${esc(data.message)}</div>`
             area.scrollTop = area.scrollHeight
           } else if (event === 'tool') {
-          } else if (event === 'tool') {
             const toolCard = document.createElement('div')
             toolCard.className = 'result-card'
             toolCard.style.borderLeft = '3px solid #333'
-            toolCard.innerHTML = `<div style="font-size:11px;color:#555;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">🔧 ${esc(data.name)}</div><div style="font-size:12px;color:#666">${esc(data.output || '')}</div>`
+            toolCard.innerHTML = `<div style="font-size:11px;color:#555;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">🔧 ${esc(data.name)}</div><div style="font-size:12px;color:#666">${esc(JSON.stringify(data.input))}</div>`
             area.insertBefore(toolCard, statusCard)
             area.scrollTop = area.scrollHeight
-          } else if (event === 'token') {
-            if (!answerCard) {
-              statusCard.remove()
-              answerCard = document.createElement('div')
-              answerCard.className = 'result-card'
-              answerCard.innerHTML = '<div class="md-content" id="streamContent"></div>'
-              area.appendChild(answerCard)
-            }
-            streamingText += data.text
-            document.getElementById('streamContent').innerHTML = marked.parse(streamingText)
-            area.scrollTop = area.scrollHeight
-          } else if (event === 'done') {
-            finalData = data
-          } else if (event === 'error') {
-            throw new Error(data.message)
           }
         })
         
         if (statusCard.parentNode) statusCard.remove()
-
-        if (finalData) {
-          renderResult(finalData, answerCard)
-          conversationHistory.push({ prompt, ...finalData })
-        } else if (!answerCard) {
-          const errCard = document.createElement('div')
-          errCard.className = 'result-card'
-          errCard.innerHTML = '<div class="error-text">No response received</div>'
-          area.appendChild(errCard)
+        
+        if (result) {
+          const answerCard = document.createElement('div')
+          answerCard.className = 'result-card'
+          answerCard.innerHTML = `<div class="md-content">${marked.parse(result.answer || '(no answer)')}</div>`
+          area.appendChild(answerCard)
+          conversationHistory.push({ prompt, answer: result.answer })
         }
       } catch (err) {
         if (statusCard.parentNode) statusCard.remove()
