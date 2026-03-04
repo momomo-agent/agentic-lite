@@ -46,10 +46,11 @@ export async function agenticAsk(prompt, config, emit) {
     }
   }
   
-  // Fallback: if no finalAnswer, extract last assistant message
+  // If hit MAX_ROUNDS without final answer, force one more call without tools
   if (!finalAnswer) {
-    const lastAssistant = messages.filter(m => m.role === 'assistant').pop()
-    finalAnswer = lastAssistant?.content || '(no response)'
+    emit('status', { message: 'Generating final answer...' })
+    const finalResponse = await chat({ messages, tools: [], model, baseUrl, apiKey, proxyUrl })
+    finalAnswer = finalResponse.content || '(no response)'
   }
   
   return { answer: finalAnswer, rounds: round, messages }
