@@ -1,21 +1,41 @@
 // loop-detection.js - 智能循环检测（对齐 OpenClaw）
-
-import crypto from 'crypto'
+// 使用浏览器 SubtleCrypto API
 
 const WARNING_THRESHOLD = 10
 const CRITICAL_THRESHOLD = 20
 const GLOBAL_CIRCUIT_BREAKER_THRESHOLD = 30
 const TOOL_CALL_HISTORY_SIZE = 30
 
+async function hashString(str) {
+  const encoder = new TextEncoder()
+  const data = encoder.encode(str)
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data)
+  const hashArray = Array.from(new Uint8Array(hashBuffer))
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('')
+}
+
 function hashToolCall(toolName, params) {
   const serialized = JSON.stringify(params, Object.keys(params).sort())
-  const hash = crypto.createHash('sha256').update(serialized).digest('hex')
-  return `${toolName}:${hash}`
+  // 同步版本：用简单的字符串哈希代替
+  let hash = 0
+  for (let i = 0; i < serialized.length; i++) {
+    const char = serialized.charCodeAt(i)
+    hash = ((hash << 5) - hash) + char
+    hash = hash & hash
+  }
+  return `${toolName}:${Math.abs(hash).toString(16)}`
 }
 
 function hashToolOutcome(toolName, params, result, error) {
   if (error) {
-    return `error:${crypto.createHash('sha256').update(String(error)).digest('hex')}`
+    const errorStr = String(error)
+    let hash = 0
+    for (let i = 0; i < errorStr.length; i++) {
+      const char = errorStr.charCodeAt(i)
+      hash = ((hash << 5) - hash) + char
+      hash = hash & hash
+    }
+    return `error:${Math.abs(hash).toString(16)}`
   }
   
   let text = ''
@@ -27,8 +47,14 @@ function hashToolOutcome(toolName, params, result, error) {
       .trim()
   }
   
-  const outcome = { text, details: result?.details || {} }
-  return crypto.createHash('sha256').update(JSON.stringify(outcome)).digest('hex')
+  const outcome = JSON.stringify({ text, details: result?.details || {} })
+  let hash = 0
+  for (let i = 0; i < outcome.length; i++) {
+    const char = outcome.charCodeAt(i)
+    hash = ((hash << 5) - hash) + char
+    hash = hash & hash
+  }
+  return Math.abs(hash).toString(16)
 }
 
 function getNoProgressStreak(history, toolName, argsHash) {
