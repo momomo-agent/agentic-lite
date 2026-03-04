@@ -50,7 +50,8 @@ export async function agenticAsk(prompt, config, emit) {
 // ── LLM Chat Functions ──
 
 async function anthropicChat({ messages, tools, model = 'claude-sonnet-4', baseUrl = 'https://api.anthropic.com', apiKey, proxyUrl }) {
-  const url = `${baseUrl.replace(/\/+$/, '')}/v1/messages`
+  const base = baseUrl.replace(/\/+$/, '')
+  const url = base.endsWith('/v1') ? `${base}/messages` : `${base}/v1/messages`
   const body = {
     model,
     max_tokens: 4096,
