@@ -141,37 +141,52 @@ function parseSSEResponse(sseText) {
   let textContent = ''
   const toolCalls = []
   let currentToolCall = null
+  let lastChunkWasToolUse = false
   
   for (const line of lines) {
-    if (!line.trim() || !line.includes('"')) continue
+    if (!line.trim()) continue
     
     try {
-      // 提取 JSON 对象
-      const jsonMatch = line.match(/\{.*\}/)
-      if (!jsonMatch) continue
+      // 尝试提取 JSON 对象（可能在 data: 前缀后）
+      let jsonStr = line
+      if (line.includes('data: ')) {
+        jsonStr = line.split('data: ')[1]
+      }
       
-      const chunk = JSON.parse(jsonMatch[0])
+      if (!jsonStr || !jsonStr.includes('{')) continue
+      
+      // 找到第一个 { 和最后一个 }
+      const startIdx = jsonStr.indexOf('{')
+      const endIdx = jsonStr.lastIndexOf('}')
+      if (startIdx === -1 || endIdx === -1) continue
+      
+      const chunk = JSON.parse(jsonStr.substring(startIdx, endIdx + 1))
       
       // 提取文本内容
       if (chunk.choices?.[0]?.delta?.content) {
         textContent += chunk.choices[0].delta.content
+        lastChunkWasToolUse = false
       }
       
-      // 提取工具调用
-      if (chunk.name && chunk.arguments !== undefined) {
-        if (currentToolCall && currentToolCall.name === chunk.name) {
-          currentToolCall.arguments += chunk.arguments
-        } else {
-          if (currentToolCall) toolCalls.push(currentToolCall)
-          currentToolCall = {
-            id: chunk.call_id || `call_${Date.now()}`,
-            name: chunk.name,
-            arguments: chunk.arguments || ''
-          }
+      // 提取工具调用（gpt-5.2 格式）
+      if (chunk.name) {
+        // 新工具调用开始
+        if (currentToolCall && currentToolCall.name !== chunk.name) {
+          toolCalls.push(currentToolCall)
         }
+        
+        currentToolCall = {
+          id: chunk.call_id || `call_${Date.now()}_${Math.random()}`,
+          name: chunk.name,
+          arguments: chunk.arguments || ''
+        }
+        lastChunkWasToolUse = true
+      } else if (lastChunkWasToolUse && chunk.arguments !== undefined && currentToolCall) {
+        // 继续累积工具参数
+        currentToolCall.arguments += chunk.arguments
       }
     } catch (e) {
-      // 忽略解析错误
+      // 忽略解析错误，继续处理下一行
     }
   }
   
@@ -180,9 +195,14 @@ function parseSSEResponse(sseText) {
   // 解析工具调用参数
   const parsedToolCalls = toolCalls.map(t => {
     let input = {}
-    try { input = JSON.parse(t.arguments || '{}') } catch {}
+    try { 
+      const args = t.arguments.trim()
+      if (args) input = JSON.parse(args)
+    } catch {}
     return { id: t.id, name: t.name, input }
   })
+  
+  console.log('[SSE Parse] text:', textContent.slice(0, 100), 'tools:', parsedToolCalls.length)
   
   return {
     content: textContent,
