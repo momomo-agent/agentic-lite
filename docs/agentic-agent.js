@@ -120,10 +120,14 @@ async function callLLM(url, apiKey, body, proxyUrl, isAnthropic = false) {
     const rawBody = typeof result.body === 'string' ? result.body : JSON.stringify(result.body)
     if (result.status >= 400) throw new Error(`API error ${result.status}: ${rawBody.slice(0, 300)}`)
     // Handle SSE responses (some providers return SSE even with stream:false)
-    if (rawBody.trimStart().startsWith('data: ')) {
-      return reassembleSSE(rawBody)
+    try {
+      if (rawBody.trimStart().startsWith('data: ')) {
+        return reassembleSSE(rawBody)
+      }
+      return JSON.parse(rawBody)
+    } catch (e) {
+      throw new Error(`Response parse error: ${e.message}. Body starts with: ${rawBody.slice(0, 100)}`)
     }
-    return JSON.parse(rawBody)
   } else {
     // 直连
     const response = await fetch(url, {
