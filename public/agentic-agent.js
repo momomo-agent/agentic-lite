@@ -1,7 +1,10 @@
 // agentic-agent.js - 前端 Agent Loop
 // 完全端侧运行，通过可配置的 proxy 调用 LLM
+// 使用智能循环检测（对齐 OpenClaw）
 
-const MAX_ROUNDS = 10
+import { detectToolCallLoop, recordToolCall, recordToolCallOutcome } from './loop-detection.js'
+
+const MAX_ROUNDS = 100  // 软限制，实际由循环检测控制
 
 export async function agenticAsk(prompt, config, emit) {
   const { provider = 'anthropic', baseUrl, apiKey, model, tools = ['search', 'code'], searchApiKey, history, proxyUrl } = config
@@ -20,6 +23,7 @@ export async function agenticAsk(prompt, config, emit) {
   
   let round = 0
   let finalAnswer = null
+  const state = { toolCallHistory: [] }  // 循环检测状态
   
   while (round < MAX_ROUNDS) {
     round++
@@ -40,10 +44,34 @@ export async function agenticAsk(prompt, config, emit) {
     messages.push({ role: 'assistant', content: response.content, tool_calls: response.tool_calls })
     
     for (const call of response.tool_calls) {
+      // 记录工具调用
+      recordToolCall(state, call.name, call.input)
+      
+      // 检测循环
+      const loopDetection = detectToolCallLoop(state, call.name, call.input)
+      if (loopDetection.stuck) {
+        emit('warning', { 
+          level: loopDetection.level,
+          message: loopDetection.message 
+        })
+        if (loopDetection.level === 'critical') {
+          finalAnswer = `[Loop Detection] ${loopDetection.message}`
+          break
+        }
+      }
+      
+      // 执行工具
       emit('tool', { name: call.name, input: call.input })
       const result = await executeTool(call.name, call.input, { searchApiKey })
+      
+      // 记录工具结果
+      recordToolCallOutcome(state, call.name, call.input, result, null)
+      
       messages.push({ role: 'tool', tool_call_id: call.id, content: JSON.stringify(result) })
     }
+    
+    // 如果检测到 critical 循环，退出
+    if (finalAnswer) break
   }
   
   // If hit MAX_ROUNDS without final answer, force one more call without tools
