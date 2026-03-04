@@ -25,31 +25,44 @@ export async function agenticAsk(prompt, config, emit) {
   let finalAnswer = null
   const state = { toolCallHistory: [] }  // 循环检测状态
   
+  console.log('[agenticAsk] Starting with prompt:', prompt.slice(0, 50))
+  console.log('[agenticAsk] Tools available:', tools)
+  console.log('[agenticAsk] Provider:', provider)
+  
   while (round < MAX_ROUNDS) {
     round++
+    console.log(`\n[Round ${round}] Calling LLM...`)
     emit('status', { message: `Round ${round}/${MAX_ROUNDS}` })
     
     // Call LLM
     const response = await chat({ messages, tools: toolDefs, model, baseUrl, apiKey, proxyUrl })
     
-    console.log(`[Round ${round}] stop_reason:`, response.stop_reason, 'tool_calls:', response.tool_calls?.length || 0)
+    console.log(`[Round ${round}] LLM Response:`)
+    console.log(`  - stop_reason: ${response.stop_reason}`)
+    console.log(`  - content: ${response.content.slice(0, 100)}...`)
+    console.log(`  - tool_calls: ${response.tool_calls?.length || 0}`)
     
     // Check if done
     if (['end_turn', 'stop'].includes(response.stop_reason) || !response.tool_calls?.length) {
+      console.log(`[Round ${round}] Done: stop_reason=${response.stop_reason}, tool_calls=${response.tool_calls?.length || 0}`)
       finalAnswer = response.content
       break
     }
     
     // Execute tools
+    console.log(`[Round ${round}] Executing ${response.tool_calls.length} tool calls...`)
     messages.push({ role: 'assistant', content: response.content, tool_calls: response.tool_calls })
     
     for (const call of response.tool_calls) {
+      console.log(`[Round ${round}] Tool: ${call.name}, Input:`, JSON.stringify(call.input).slice(0, 100))
+      
       // 记录工具调用
       recordToolCall(state, call.name, call.input)
       
       // 检测循环
       const loopDetection = detectToolCallLoop(state, call.name, call.input)
       if (loopDetection.stuck) {
+        console.log(`[Round ${round}] Loop detected: ${loopDetection.detector}`)
         emit('warning', { 
           level: loopDetection.level,
           message: loopDetection.message 
@@ -63,6 +76,7 @@ export async function agenticAsk(prompt, config, emit) {
       // 执行工具
       emit('tool', { name: call.name, input: call.input })
       const result = await executeTool(call.name, call.input, { searchApiKey })
+      console.log(`[Round ${round}] Tool result:`, JSON.stringify(result).slice(0, 100))
       
       // 记录工具结果
       recordToolCallOutcome(state, call.name, call.input, result, null)
@@ -74,13 +88,18 @@ export async function agenticAsk(prompt, config, emit) {
     if (finalAnswer) break
   }
   
+  console.log(`\n[agenticAsk] Loop ended at round ${round}`)
+  
   // If hit MAX_ROUNDS without final answer, force one more call without tools
   if (!finalAnswer) {
+    console.log('[agenticAsk] Generating final answer (no tools)...')
     emit('status', { message: 'Generating final answer...' })
     const finalResponse = await chat({ messages, tools: [], model, baseUrl, apiKey, proxyUrl })
     finalAnswer = finalResponse.content || '(no response)'
+    console.log('[agenticAsk] Final answer:', finalAnswer.slice(0, 100))
   }
   
+  console.log('[agenticAsk] Complete. Total rounds:', round)
   return { answer: finalAnswer, rounds: round, messages }
 }
 
