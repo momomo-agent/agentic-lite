@@ -46,6 +46,12 @@ export async function agenticAsk(prompt, config, emit) {
     }
   }
   
+  // Fallback: if no finalAnswer, extract last assistant message
+  if (!finalAnswer) {
+    const lastAssistant = messages.filter(m => m.role === 'assistant').pop()
+    finalAnswer = lastAssistant?.content || '(no response)'
+  }
+  
   return { answer: finalAnswer, rounds: round, messages }
 }
 
