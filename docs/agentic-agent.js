@@ -4,7 +4,7 @@
 
 import { detectToolCallLoop, recordToolCall, recordToolCallOutcome } from './loop-detection.js'
 
-const MAX_ROUNDS = 10  // 硬限制，防止无限循环
+const MAX_ROUNDS = 200  // 安全兜底，实际由循环检测控制（与 OpenClaw 一致）
 
 export async function agenticAsk(prompt, config, emit) {
   const { provider = 'anthropic', baseUrl, apiKey, model, tools = ['search', 'code'], searchApiKey, history, proxyUrl } = config

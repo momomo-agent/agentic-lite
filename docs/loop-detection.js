@@ -207,15 +207,24 @@ export function detectToolCallLoop(state, toolName, params) {
     }
   }
   
-  // 同工具高频调用检测（不管参数是否相同）
+  // 同工具高频调用检测（不管参数是否相同，防止变体搜索死循环）
   const sameToolCount = history.filter(h => h.toolName === toolName).length
-  if (sameToolCount >= 6) {
+  if (!isKnownPoll && sameToolCount >= CRITICAL_THRESHOLD) {
+    return {
+      stuck: true,
+      level: 'critical',
+      detector: 'same_tool_flood',
+      count: sameToolCount,
+      message: `CRITICAL: ${toolName} called ${sameToolCount} times total. Execution blocked.`
+    }
+  }
+  if (!isKnownPoll && sameToolCount >= WARNING_THRESHOLD) {
     return {
       stuck: true,
       level: 'warning',
       detector: 'same_tool_flood',
       count: sameToolCount,
-      message: `WARNING: ${toolName} called ${sameToolCount} times. Likely searching in circles — stop and summarize what you have.`
+      message: `WARNING: ${toolName} called ${sameToolCount} times. Stop searching and summarize what you have found so far.`
     }
   }
 
