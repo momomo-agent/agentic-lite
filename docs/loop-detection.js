@@ -207,7 +207,19 @@ export function detectToolCallLoop(state, toolName, params) {
     }
   }
   
-  // 通用重复检测
+  // 同工具高频调用检测（不管参数是否相同）
+  const sameToolCount = history.filter(h => h.toolName === toolName).length
+  if (sameToolCount >= 6) {
+    return {
+      stuck: true,
+      level: 'warning',
+      detector: 'same_tool_flood',
+      count: sameToolCount,
+      message: `WARNING: ${toolName} called ${sameToolCount} times. Likely searching in circles — stop and summarize what you have.`
+    }
+  }
+
+  // 通用重复检测（完全相同参数）
   const recentCount = history.filter(
     h => h.toolName === toolName && h.argsHash === currentHash
   ).length
