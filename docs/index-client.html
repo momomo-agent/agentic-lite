@@ -122,6 +122,19 @@
     button.run:hover { opacity: 0.9; }
     button.run:disabled { opacity: 0.4; cursor: not-allowed; }
 
+    /* Toggle switch */
+    .toggle { position: relative; display: inline-block; width: 36px; height: 20px; cursor: pointer; }
+    .toggle input { display: none; }
+    .toggle-slider {
+      position: absolute; inset: 0; background: #333; border-radius: 10px; transition: 0.2s;
+    }
+    .toggle-slider::before {
+      content: ''; position: absolute; width: 16px; height: 16px; left: 2px; top: 2px;
+      background: #666; border-radius: 50%; transition: 0.2s;
+    }
+    .toggle input:checked + .toggle-slider { background: #fbbf2440; }
+    .toggle input:checked + .toggle-slider::before { transform: translateX(16px); background: #fbbf24; }
+
     /* Responsive */
     @media (max-width: 768px) {
       body { flex-direction: column-reverse; }
@@ -170,8 +183,11 @@
         <input type="password" id="searchApiKey" placeholder="tvly-...">
       </div>
       <div class="field">
-        <label>Proxy URL <span class="hint">(optional, bypass CORS/timeout)</span></label>
-        <input id="proxyUrl" placeholder="https://proxy.link2web.site/proxy">
+        <label style="display:flex;align-items:center;justify-content:space-between">
+          <span>Proxy <span class="hint">(bypass CORS)</span></span>
+          <label class="toggle" style="margin:0"><input type="checkbox" id="proxyEnabled" checked><span class="toggle-slider"></span></label>
+        </label>
+        <input id="proxyUrl" placeholder="Default: proxy.link2web.site/proxy" style="margin-top:6px;font-size:12px;padding:7px 10px;color:#555">
       </div>
     </div>
 
@@ -215,6 +231,8 @@
         if (s.model) document.getElementById('model').value = s.model
         if (s.searchApiKey) document.getElementById('searchApiKey').value = s.searchApiKey
         if (s.proxyUrl) document.getElementById('proxyUrl').value = s.proxyUrl
+        if (s.proxyEnabled !== undefined) document.getElementById('proxyEnabled').checked = s.proxyEnabled
+        updateProxyVisibility()
       } catch {}
     }
     function saveConfig() {
@@ -225,9 +243,15 @@
         model: document.getElementById('model').value,
         searchApiKey: document.getElementById('searchApiKey').value,
         proxyUrl: document.getElementById('proxyUrl').value,
+        proxyEnabled: document.getElementById('proxyEnabled').checked,
       }))
     }
+    function updateProxyVisibility() {
+      const enabled = document.getElementById('proxyEnabled').checked
+      document.getElementById('proxyUrl').style.display = enabled ? '' : 'none'
+    }
     loadConfig()
+    document.getElementById('proxyEnabled').addEventListener('change', () => { updateProxyVisibility(); saveConfig() })
     document.querySelectorAll('#provider,#apiKey,#baseUrl,#model,#searchApiKey,#proxyUrl').forEach(el => {
       el.addEventListener('change', saveConfig)
       el.addEventListener('input', saveConfig)
@@ -297,7 +321,10 @@
       const baseUrl = document.getElementById('baseUrl').value.trim() || undefined
       const model = document.getElementById('model').value.trim() || undefined
       const searchApiKey = document.getElementById('searchApiKey').value.trim() || undefined
-      const proxyUrl = document.getElementById('proxyUrl').value.trim() || undefined
+      const proxyEnabled = document.getElementById('proxyEnabled').checked
+      const proxyUrl = proxyEnabled
+        ? (document.getElementById('proxyUrl').value.trim() || 'https://proxy.link2web.site/proxy')
+        : undefined
 
       btn.disabled = true
       btn.textContent = 'Running...'
