@@ -62,7 +62,7 @@ export async function agenticAsk(prompt, config, emit) {
       // 检测循环
       const loopDetection = detectToolCallLoop(state, call.name, call.input)
       if (loopDetection.stuck) {
-        console.log(`[Round ${round}] Loop detected: ${loopDetection.detector}`)
+        console.log(`[Round ${round}] Loop detected: ${loopDetection.detector} (${loopDetection.level})`)
         emit('warning', { 
           level: loopDetection.level,
           message: loopDetection.message 
@@ -72,10 +72,8 @@ export async function agenticAsk(prompt, config, emit) {
           break
         }
         // warning 级别：跳过执行，注入提示让 LLM 停止
-        if (loopDetection.detector === 'same_tool_flood') {
-          messages.push({ role: 'tool', tool_call_id: call.id, content: JSON.stringify({ error: 'LOOP_DETECTED: You have already searched enough times. Stop searching and summarize what you have found so far. Do NOT make any more search calls.' }) })
-          continue
-        }
+        messages.push({ role: 'tool', tool_call_id: call.id, content: JSON.stringify({ error: `LOOP_DETECTED: ${loopDetection.message}` }) })
+        continue
       }
       
       // 执行工具

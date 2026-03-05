@@ -1,260 +1,250 @@
-// loop-detection.js - 智能循环检测（对齐 OpenClaw）
-// 使用浏览器 SubtleCrypto API
+// loop-detection.js — 完全对齐 OpenClaw tool-loop-detection.ts
+// 浏览器端实现（无 node:crypto，用简单哈希替代）
 
 const WARNING_THRESHOLD = 10
 const CRITICAL_THRESHOLD = 20
 const GLOBAL_CIRCUIT_BREAKER_THRESHOLD = 30
 const TOOL_CALL_HISTORY_SIZE = 30
 
-async function hashString(str) {
-  const encoder = new TextEncoder()
-  const data = encoder.encode(str)
-  const hashBuffer = await crypto.subtle.digest('SHA-256', data)
-  const hashArray = Array.from(new Uint8Array(hashBuffer))
-  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('')
-}
+// ── Hash helpers (browser-safe) ──
 
-function hashToolCall(toolName, params) {
-  const serialized = JSON.stringify(params, Object.keys(params).sort())
-  // 同步版本：用简单的字符串哈希代替
+function simpleHash(str) {
   let hash = 0
-  for (let i = 0; i < serialized.length; i++) {
-    const char = serialized.charCodeAt(i)
-    hash = ((hash << 5) - hash) + char
-    hash = hash & hash
-  }
-  return `${toolName}:${Math.abs(hash).toString(16)}`
-}
-
-function hashToolOutcome(toolName, params, result, error) {
-  if (error) {
-    const errorStr = String(error)
-    let hash = 0
-    for (let i = 0; i < errorStr.length; i++) {
-      const char = errorStr.charCodeAt(i)
-      hash = ((hash << 5) - hash) + char
-      hash = hash & hash
-    }
-    return `error:${Math.abs(hash).toString(16)}`
-  }
-  
-  let text = ''
-  if (result && typeof result === 'object' && Array.isArray(result.content)) {
-    text = result.content
-      .filter(e => e.type === 'text')
-      .map(e => e.text)
-      .join('\n')
-      .trim()
-  }
-  
-  const outcome = JSON.stringify({ text, details: result?.details || {} })
-  let hash = 0
-  for (let i = 0; i < outcome.length; i++) {
-    const char = outcome.charCodeAt(i)
+  for (let i = 0; i < str.length; i++) {
+    const char = str.charCodeAt(i)
     hash = ((hash << 5) - hash) + char
     hash = hash & hash
   }
   return Math.abs(hash).toString(16)
 }
 
+function stableStringify(value) {
+  if (value === null || typeof value !== 'object') return JSON.stringify(value)
+  if (Array.isArray(value)) return `[${value.map(stableStringify).join(',')}]`
+  const keys = Object.keys(value).sort()
+  return `{${keys.map(k => `${JSON.stringify(k)}:${stableStringify(value[k])}`).join(',')}}`
+}
+
+function hashToolCall(toolName, params) {
+  return `${toolName}:${simpleHash(stableStringify(params))}`
+}
+
+function hashToolOutcome(toolName, params, result, error) {
+  if (error !== undefined) {
+    return `error:${simpleHash(String(error))}`
+  }
+  if (result === undefined) return undefined
+
+  // Extract text content (OpenClaw format)
+  let text = ''
+  if (result && typeof result === 'object' && Array.isArray(result.content)) {
+    text = result.content
+      .filter(e => e && typeof e.type === 'string' && typeof e.text === 'string')
+      .map(e => e.text)
+      .join('\n')
+      .trim()
+  }
+
+  const details = (result && typeof result === 'object' && result.details) || {}
+
+  // Known poll tools get special hashing
+  if (isKnownPollToolCall(toolName, params)) {
+    if (typeof params === 'object' && params !== null) {
+      const action = params.action
+      if (action === 'poll') {
+        return simpleHash(stableStringify({
+          action, status: details.status,
+          exitCode: details.exitCode ?? null, exitSignal: details.exitSignal ?? null,
+          aggregated: details.aggregated ?? null, text,
+        }))
+      }
+      if (action === 'log') {
+        return simpleHash(stableStringify({
+          action, status: details.status,
+          totalLines: details.totalLines ?? null, totalChars: details.totalChars ?? null,
+          truncated: details.truncated ?? null,
+          exitCode: details.exitCode ?? null, exitSignal: details.exitSignal ?? null, text,
+        }))
+      }
+    }
+  }
+
+  return simpleHash(stableStringify({ details, text }))
+}
+
+function isKnownPollToolCall(toolName, params) {
+  if (toolName === 'command_status') return true
+  if (toolName !== 'process' || typeof params !== 'object' || params === null) return false
+  return params.action === 'poll' || params.action === 'log'
+}
+
+// ── No-progress streak ──
+
 function getNoProgressStreak(history, toolName, argsHash) {
   let streak = 0
   let latestResultHash = undefined
-  
+
   for (let i = history.length - 1; i >= 0; i--) {
     const record = history[i]
     if (!record || record.toolName !== toolName || record.argsHash !== argsHash) continue
-    if (!record.resultHash) continue
-    
+    if (typeof record.resultHash !== 'string' || !record.resultHash) continue
+
     if (!latestResultHash) {
       latestResultHash = record.resultHash
       streak = 1
       continue
     }
-    
     if (record.resultHash !== latestResultHash) break
     streak++
   }
-  
+
   return { count: streak, latestResultHash }
 }
+
+// ── Ping-pong detection ──
 
 function getPingPongStreak(history, currentHash) {
   const last = history[history.length - 1]
   if (!last) return { count: 0, noProgressEvidence: false }
-  
-  let otherHash = undefined
-  let otherToolName = undefined
+
+  let otherSignature, otherToolName
   for (let i = history.length - 2; i >= 0; i--) {
     const call = history[i]
-    if (!call || call.argsHash === last.argsHash) continue
-    otherHash = call.argsHash
-    otherToolName = call.toolName
-    break
+    if (!call) continue
+    if (call.argsHash !== last.argsHash) {
+      otherSignature = call.argsHash
+      otherToolName = call.toolName
+      break
+    }
   }
-  
-  if (!otherHash || !otherToolName) return { count: 0, noProgressEvidence: false }
-  
-  let alternatingCount = 0
+
+  if (!otherSignature || !otherToolName) return { count: 0, noProgressEvidence: false }
+
+  let alternatingTailCount = 0
   for (let i = history.length - 1; i >= 0; i--) {
     const call = history[i]
     if (!call) continue
-    const expected = alternatingCount % 2 === 0 ? last.argsHash : otherHash
+    const expected = alternatingTailCount % 2 === 0 ? last.argsHash : otherSignature
     if (call.argsHash !== expected) break
-    alternatingCount++
+    alternatingTailCount++
   }
-  
-  if (alternatingCount < 2 || currentHash !== otherHash) {
-    return { count: 0, noProgressEvidence: false }
-  }
-  
-  // 检查是否有进展
-  let firstHashA = undefined
-  let firstHashB = undefined
+
+  if (alternatingTailCount < 2) return { count: 0, noProgressEvidence: false }
+  if (currentHash !== otherSignature) return { count: 0, noProgressEvidence: false }
+
+  const tailStart = Math.max(0, history.length - alternatingTailCount)
+  let firstHashA, firstHashB
   let noProgressEvidence = true
-  
-  const tailStart = Math.max(0, history.length - alternatingCount)
+
   for (let i = tailStart; i < history.length; i++) {
     const call = history[i]
-    if (!call || !call.resultHash) {
-      noProgressEvidence = false
-      break
-    }
-    
+    if (!call || !call.resultHash) { noProgressEvidence = false; break }
+
     if (call.argsHash === last.argsHash) {
       if (!firstHashA) firstHashA = call.resultHash
-      else if (firstHashA !== call.resultHash) noProgressEvidence = false
-    } else if (call.argsHash === otherHash) {
+      else if (firstHashA !== call.resultHash) { noProgressEvidence = false; break }
+    } else if (call.argsHash === otherSignature) {
       if (!firstHashB) firstHashB = call.resultHash
-      else if (firstHashB !== call.resultHash) noProgressEvidence = false
+      else if (firstHashB !== call.resultHash) { noProgressEvidence = false; break }
+    } else {
+      noProgressEvidence = false; break
     }
   }
-  
+
   if (!firstHashA || !firstHashB) noProgressEvidence = false
-  
+
   return {
-    count: alternatingCount + 1,
+    count: alternatingTailCount + 1,
     pairedToolName: last.toolName,
-    pairedHash: last.argsHash,
-    noProgressEvidence
+    pairedSignature: last.argsHash,
+    noProgressEvidence,
   }
 }
+
+// ── Main detection (exact OpenClaw logic) ──
 
 export function detectToolCallLoop(state, toolName, params) {
   const history = state.toolCallHistory || []
   const currentHash = hashToolCall(toolName, params)
-  
   const noProgress = getNoProgressStreak(history, toolName, currentHash)
   const noProgressStreak = noProgress.count
-  
-  // 全局熔断
+  const knownPollTool = isKnownPollToolCall(toolName, params)
+  const pingPong = getPingPongStreak(history, currentHash)
+
+  // 1. Global circuit breaker
   if (noProgressStreak >= GLOBAL_CIRCUIT_BREAKER_THRESHOLD) {
     return {
-      stuck: true,
-      level: 'critical',
-      detector: 'global_circuit_breaker',
+      stuck: true, level: 'critical', detector: 'global_circuit_breaker',
       count: noProgressStreak,
-      message: `CRITICAL: ${toolName} repeated ${noProgressStreak} times with no progress. Execution blocked.`
-    }
-  }
-  
-  // 轮询工具检测
-  const isKnownPoll = toolName === 'command_status' || 
-    (toolName === 'process' && params.action === 'poll')
-  
-  if (isKnownPoll && noProgressStreak >= CRITICAL_THRESHOLD) {
-    return {
-      stuck: true,
-      level: 'critical',
-      detector: 'known_poll_no_progress',
-      count: noProgressStreak,
-      message: `CRITICAL: Polling loop detected. Called ${toolName} ${noProgressStreak} times with no progress.`
-    }
-  }
-  
-  if (isKnownPoll && noProgressStreak >= WARNING_THRESHOLD) {
-    return {
-      stuck: true,
-      level: 'warning',
-      detector: 'known_poll_no_progress',
-      count: noProgressStreak,
-      message: `WARNING: Polling loop warning. Called ${toolName} ${noProgressStreak} times with no progress.`
-    }
-  }
-  
-  // 乒乓循环检测
-  const pingPong = getPingPongStreak(history, currentHash)
-  
-  if (pingPong.count >= CRITICAL_THRESHOLD && pingPong.noProgressEvidence) {
-    return {
-      stuck: true,
-      level: 'critical',
-      detector: 'ping_pong',
-      count: pingPong.count,
-      message: `CRITICAL: Ping-pong loop detected (${pingPong.count} alternating calls). Execution blocked.`,
-      pairedToolName: pingPong.pairedToolName
-    }
-  }
-  
-  if (pingPong.count >= WARNING_THRESHOLD) {
-    return {
-      stuck: true,
-      level: 'warning',
-      detector: 'ping_pong',
-      count: pingPong.count,
-      message: `WARNING: Ping-pong loop warning (${pingPong.count} alternating calls).`,
-      pairedToolName: pingPong.pairedToolName
-    }
-  }
-  
-  // 同工具高频调用检测（不管参数是否相同，防止变体搜索死循环）
-  const sameToolCount = history.filter(h => h.toolName === toolName).length
-  if (!isKnownPoll && sameToolCount >= CRITICAL_THRESHOLD) {
-    return {
-      stuck: true,
-      level: 'critical',
-      detector: 'same_tool_flood',
-      count: sameToolCount,
-      message: `CRITICAL: ${toolName} called ${sameToolCount} times total. Execution blocked.`
-    }
-  }
-  if (!isKnownPoll && sameToolCount >= WARNING_THRESHOLD) {
-    return {
-      stuck: true,
-      level: 'warning',
-      detector: 'same_tool_flood',
-      count: sameToolCount,
-      message: `WARNING: ${toolName} called ${sameToolCount} times. Stop searching and summarize what you have found so far.`
+      message: `CRITICAL: ${toolName} has repeated identical no-progress outcomes ${noProgressStreak} times. Session execution blocked by global circuit breaker to prevent runaway loops.`,
     }
   }
 
-  // 通用重复检测（完全相同参数）
+  // 2. Known poll no-progress (critical)
+  if (knownPollTool && noProgressStreak >= CRITICAL_THRESHOLD) {
+    return {
+      stuck: true, level: 'critical', detector: 'known_poll_no_progress',
+      count: noProgressStreak,
+      message: `CRITICAL: Called ${toolName} with identical arguments and no progress ${noProgressStreak} times. This appears to be a stuck polling loop. Session execution blocked to prevent resource waste.`,
+    }
+  }
+
+  // 3. Known poll no-progress (warning)
+  if (knownPollTool && noProgressStreak >= WARNING_THRESHOLD) {
+    return {
+      stuck: true, level: 'warning', detector: 'known_poll_no_progress',
+      count: noProgressStreak,
+      message: `WARNING: You have called ${toolName} ${noProgressStreak} times with identical arguments and no progress. Stop polling and either (1) increase wait time between checks, or (2) report the task as failed if the process is stuck.`,
+    }
+  }
+
+  // 4. Ping-pong (critical)
+  if (pingPong.count >= CRITICAL_THRESHOLD && pingPong.noProgressEvidence) {
+    return {
+      stuck: true, level: 'critical', detector: 'ping_pong',
+      count: pingPong.count,
+      message: `CRITICAL: You are alternating between repeated tool-call patterns (${pingPong.count} consecutive calls) with no progress. This appears to be a stuck ping-pong loop. Session execution blocked to prevent resource waste.`,
+      pairedToolName: pingPong.pairedToolName,
+    }
+  }
+
+  // 5. Ping-pong (warning)
+  if (pingPong.count >= WARNING_THRESHOLD) {
+    return {
+      stuck: true, level: 'warning', detector: 'ping_pong',
+      count: pingPong.count,
+      message: `WARNING: You are alternating between repeated tool-call patterns (${pingPong.count} consecutive calls). This looks like a ping-pong loop; stop retrying and report the task as failed.`,
+      pairedToolName: pingPong.pairedToolName,
+    }
+  }
+
+  // 6. Generic repeat (warning only, identical args)
   const recentCount = history.filter(
     h => h.toolName === toolName && h.argsHash === currentHash
   ).length
-  
-  if (!isKnownPoll && recentCount >= WARNING_THRESHOLD) {
+
+  if (!knownPollTool && recentCount >= WARNING_THRESHOLD) {
     return {
-      stuck: true,
-      level: 'warning',
-      detector: 'generic_repeat',
+      stuck: true, level: 'warning', detector: 'generic_repeat',
       count: recentCount,
-      message: `WARNING: ${toolName} called ${recentCount} times with identical arguments.`
+      message: `WARNING: You have called ${toolName} ${recentCount} times with identical arguments. If this is not making progress, stop retrying and report the task as failed.`,
     }
   }
-  
+
   return { stuck: false }
 }
 
+// ── Record helpers ──
+
 export function recordToolCall(state, toolName, params) {
   if (!state.toolCallHistory) state.toolCallHistory = []
-  
+
   state.toolCallHistory.push({
     toolName,
     argsHash: hashToolCall(toolName, params),
-    timestamp: Date.now()
+    timestamp: Date.now(),
   })
-  
+
   if (state.toolCallHistory.length > TOOL_CALL_HISTORY_SIZE) {
     state.toolCallHistory.shift()
   }
@@ -262,28 +252,29 @@ export function recordToolCall(state, toolName, params) {
 
 export function recordToolCallOutcome(state, toolName, params, result, error) {
   if (!state.toolCallHistory) state.toolCallHistory = []
-  
+
   const argsHash = hashToolCall(toolName, params)
   const resultHash = hashToolOutcome(toolName, params, result, error)
-  
-  // 找最后一条匹配的记录并更新
+  if (!resultHash) return
+
+  // Find last matching unresolved record
+  let matched = false
   for (let i = state.toolCallHistory.length - 1; i >= 0; i--) {
     const call = state.toolCallHistory[i]
-    if (call.toolName === toolName && call.argsHash === argsHash && !call.resultHash) {
-      call.resultHash = resultHash
-      return
-    }
+    if (!call || call.toolName !== toolName || call.argsHash !== argsHash) continue
+    if (call.resultHash !== undefined) continue
+    call.resultHash = resultHash
+    matched = true
+    break
   }
-  
-  // 如果没找到，新增
-  state.toolCallHistory.push({
-    toolName,
-    argsHash,
-    resultHash,
-    timestamp: Date.now()
-  })
-  
+
+  if (!matched) {
+    state.toolCallHistory.push({
+      toolName, argsHash, resultHash, timestamp: Date.now(),
+    })
+  }
+
   if (state.toolCallHistory.length > TOOL_CALL_HISTORY_SIZE) {
-    state.toolCallHistory.shift()
+    state.toolCallHistory.splice(0, state.toolCallHistory.length - TOOL_CALL_HISTORY_SIZE)
   }
 }
