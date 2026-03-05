@@ -71,6 +71,11 @@ export async function agenticAsk(prompt, config, emit) {
           finalAnswer = `[Loop Detection] ${loopDetection.message}`
           break
         }
+        // warning 级别：跳过执行，注入提示让 LLM 停止
+        if (loopDetection.detector === 'same_tool_flood') {
+          messages.push({ role: 'tool', tool_call_id: call.id, content: JSON.stringify({ error: 'LOOP_DETECTED: You have already searched enough times. Stop searching and summarize what you have found so far. Do NOT make any more search calls.' }) })
+          continue
+        }
       }
       
       // 执行工具
