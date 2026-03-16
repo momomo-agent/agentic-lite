@@ -7,7 +7,7 @@ import { detectToolCallLoop, recordToolCall, recordToolCallOutcome } from './loo
 const MAX_ROUNDS = 200  // 安全兜底，实际由循环检测控制（与 OpenClaw 一致）
 
 export async function agenticAsk(prompt, config, emit) {
-  const { provider = 'anthropic', baseUrl, apiKey, model, tools = ['search', 'code'], searchApiKey, history, proxyUrl, stream = true, schema, retries = 2 } = config
+  const { provider = 'anthropic', baseUrl, apiKey, model, tools = ['search', 'code'], searchApiKey, history, proxyUrl, stream = true, schema, retries = 2, system } = config
   
   if (!apiKey) throw new Error('API Key required')
   
@@ -41,7 +41,7 @@ export async function agenticAsk(prompt, config, emit) {
     // Call LLM (stream on final round or when no tools)
     const isStreamRound = stream && (!toolDefs.length || round > 1)
     const chatFn = provider === 'anthropic' ? anthropicChat : openaiChat
-    const response = await chatFn({ messages, tools: toolDefs, model, baseUrl, apiKey, proxyUrl, stream: isStreamRound, emit })
+    const response = await chatFn({ messages, tools: toolDefs, model, baseUrl, apiKey, proxyUrl, stream: isStreamRound, emit, system })
     
     console.log(`[Round ${round}] LLM Response:`)
     console.log(`  - stop_reason: ${response.stop_reason}`)
@@ -93,7 +93,7 @@ export async function agenticAsk(prompt, config, emit) {
     console.log('[agenticAsk] Generating final answer (no tools)...')
     emit('status', { message: 'Generating final answer...' })
     const chatFn = provider === 'anthropic' ? anthropicChat : openaiChat
-    const finalResponse = await chatFn({ messages, tools: [], model, baseUrl, apiKey, proxyUrl, stream, emit })
+    const finalResponse = await chatFn({ messages, tools: [], model, baseUrl, apiKey, proxyUrl, stream, emit, system })
     finalAnswer = finalResponse.content || '(no response)'
     console.log('[agenticAsk] Final answer:', finalAnswer.slice(0, 100))
   }
@@ -104,15 +104,44 @@ export async function agenticAsk(prompt, config, emit) {
 
 // ── LLM Chat Functions ──
 
-async function anthropicChat({ messages, tools, model = 'claude-sonnet-4', baseUrl = 'https://api.anthropic.com', apiKey, proxyUrl, stream = false, emit }) {
+async function anthropicChat({ messages, tools, model = 'claude-sonnet-4', baseUrl = 'https://api.anthropic.com', apiKey, proxyUrl, stream = false, emit, system }) {
   const base = baseUrl.replace(/\/+$/, '')
   const url = base.endsWith('/v1') ? `${base}/messages` : `${base}/v1/messages`
+  
+  // Convert messages to Anthropic format (handle tool_use/tool_result)
+  const anthropicMessages = []
+  for (const m of messages) {
+    if (m.role === 'user') {
+      anthropicMessages.push({ role: 'user', content: m.content })
+    } else if (m.role === 'assistant') {
+      if (m.tool_calls?.length) {
+        const blocks = []
+        if (m.content) blocks.push({ type: 'text', text: m.content })
+        for (const tc of m.tool_calls) {
+          blocks.push({ type: 'tool_use', id: tc.id, name: tc.name, input: tc.input })
+        }
+        anthropicMessages.push({ role: 'assistant', content: blocks })
+      } else {
+        anthropicMessages.push({ role: 'assistant', content: m.content })
+      }
+    } else if (m.role === 'tool') {
+      const toolResult = { type: 'tool_result', tool_use_id: m.tool_call_id, content: m.content }
+      const last = anthropicMessages[anthropicMessages.length - 1]
+      if (last?.role === 'user' && Array.isArray(last.content) && last.content[0]?.type === 'tool_result') {
+        last.content.push(toolResult)
+      } else {
+        anthropicMessages.push({ role: 'user', content: [toolResult] })
+      }
+    }
+  }
+  
   const body = {
     model,
     max_tokens: 4096,
-    messages: messages.map(m => ({ role: m.role, content: m.content })),
+    messages: anthropicMessages,
     stream,
   }
+  if (system) body.system = system
   if (tools?.length) body.tools = tools
   
   const headers = { 'content-type': 'application/json', 'x-api-key': apiKey, 'anthropic-version': '2023-06-01' }
@@ -145,10 +174,11 @@ async function anthropicChat({ messages, tools, model = 'claude-sonnet-4', baseU
   }
 }
 
-async function openaiChat({ messages, tools, model = 'gpt-4', baseUrl = 'https://api.openai.com', apiKey, proxyUrl, stream = false, emit }) {
+async function openaiChat({ messages, tools, model = 'gpt-4', baseUrl = 'https://api.openai.com', apiKey, proxyUrl, stream = false, emit, system }) {
   const base = baseUrl.replace(/\/+$/, '')
   const url = base.includes('/v1') ? `${base}/chat/completions` : `${base}/v1/chat/completions`
-  const body = { model, messages, stream }
+  const oaiMessages = system ? [{ role: 'system', content: system }, ...messages] : messages
+  const body = { model, messages: oaiMessages, stream }
   if (tools?.length) body.tools = tools.map(t => ({ type: 'function', function: t }))
   
   const headers = { 'content-type': 'application/json', 'authorization': `Bearer ${apiKey}` }
