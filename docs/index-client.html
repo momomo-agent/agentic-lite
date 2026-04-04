@@ -7,6 +7,8 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/highlight.js@11/highlight.min.js"></script>
+  <script src="./agentic-store.js"></script>
+  <script type="module" src="./agentic-filesystem.js"></script>
   <script type="module" src="./agentic-core.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11/styles/github-dark.min.css">
   <style>
@@ -265,6 +267,21 @@
     // Conversation history for multi-turn
     let conversationHistory = [] // { role, prompt, answer, sources, images, codeResults, toolCalls, usage }
 
+    // Initialize filesystem
+    let agenticFS = null
+    ;(async () => {
+      try {
+        const store = await AgenticStore.createStore('agentic-lite-fs')
+        const { AgenticFileSystem, AgenticStoreBackend } = window.AgenticFilesystem
+        agenticFS = new AgenticFileSystem({
+          storage: new AgenticStoreBackend(store)
+        })
+        console.log('[agentic-lite] Filesystem initialized')
+      } catch (err) {
+        console.warn('[agentic-lite] Filesystem init failed:', err)
+      }
+    })()
+
     // Run
     document.getElementById('runBtn').addEventListener('click', run)
     document.getElementById('prompt').addEventListener('keydown', e => {
@@ -354,8 +371,24 @@
           { role: 'assistant', content: h.answer }
         ]).flat()
         
+        // Add filesystem tools if available
+        const allTools = [...tools]
+        if (agenticFS) {
+          const fsToolDefs = agenticFS.getToolDefinitions()
+          for (const toolDef of fsToolDefs) {
+            allTools.push({
+              name: toolDef.name,
+              description: toolDef.description,
+              parameters: toolDef.parameters,
+              execute: async (input) => {
+                return await agenticFS.executeTool(toolDef.name, input)
+              }
+            })
+          }
+        }
+        
         const result = await agenticAsk(prompt, { 
-          provider, baseUrl, apiKey, model, tools, searchApiKey, proxyUrl, history 
+          provider, baseUrl, apiKey, model, tools: allTools, searchApiKey, proxyUrl, history 
         }, (event, data) => {
           if (event === 'status') {
             statusCard.innerHTML = `<div style="font-size:12px;color:#666">⏳ ${esc(data.message)}</div>`
