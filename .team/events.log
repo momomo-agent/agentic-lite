@@ -4578,3 +4578,7 @@
 {"ts":"2026-04-07T13:32:18.077Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 13min (active:4, done:37)\"}"}}
 {"ts":"2026-04-07T13:32:51.228Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":9,"cpuUser":2.765543,"cpuSystem":4.398613}}}
 {"ts":"2026-04-07T13:32:51.229Z","type":"workflow","agent":"developer","data":{"details":"[SIGNAL] completed: No available tasks to claim - all todo tasks are assigned to testers, developer tasks are in review "}}
+{"ts":"2026-04-07T13:33:18.079Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 14min (active:4, done:37)"}}
+{"ts":"2026-04-07T13:33:18.080Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 14min (active:4, done:37)\"}"}}
+{"ts":"2026-04-07T13:33:34.370Z","type":"agent_complete","agent":"tester-2","data":{"details":"completed successfully","performance":{"memoryMB":9,"memoryTotalMB":12,"cpuUser":2.771419,"cpuSystem":4.404079}}}
+{"ts":"2026-04-07T13:33:34.371Z","type":"workflow","agent":"tester-2","data":{"details":"[SIGNAL] completed: No claimable tasks found. Review tasks assigned to developer, todo tasks require PRD/README writes o"}}
