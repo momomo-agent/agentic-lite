@@ -1,0 +1,14 @@
+{
+  "id": "task-1775534038662",
+  "title": "code_exec 内注入 filesystem API",
+  "description": "让 AI 在代码里能直接用文件系统。JS: 注入 fs 对象（readFileSync/writeFileSync 走 agentic-filesystem）。Python: 注入 open() 函数。底层自动走 config.filesystem",
+  "status": "todo",
+  "priority": "P1",
+  "assignee": null,
+  "blockedBy": [],
+  "groupId": null,
+  "hasDesign": false,
+  "created": "2026-04-07T03:53:58.662Z",
+  "updated": "2026-04-07T03:55:36.559Z",
+  "milestoneId": "m8"
+}

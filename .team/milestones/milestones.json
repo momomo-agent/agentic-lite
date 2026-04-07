@@ -71,6 +71,16 @@
         "task-1775530939117",
         "task-1775532498831"
       ]
+    },
+    {
+      "id": "m8",
+      "name": "Code Execution Expansion & Shell Tool",
+      "status": "planned",
+      "tasks": [
+        "task-1775534038627",
+        "task-1775534038662",
+        "task-1775534038696"
+      ]
     }
   ]
 }
