@@ -1,7 +1,7 @@
 {
   "agent": "tester",
-  "timestamp": "2026-04-07T17:29:47.906Z",
+  "timestamp": "2026-04-07T17:38:16.540Z",
   "exitCode": 0,
   "status": "completed",
-  "summary": "No tasks in review status found — nothing to claim or test"
+  "summary": "No claimable tasks in review status — task-1775583094060 cannot be claimed"
 }
