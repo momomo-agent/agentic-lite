@@ -1,7 +1,7 @@
 {
   "agent": "pm",
-  "timestamp": "2026-04-07T11:32:46.781Z",
+  "timestamp": "2026-04-07T11:36:25.213Z",
   "exitCode": 0,
   "status": "blocked",
-  "summary": "M9 and M10 both blocked on cr-1775560282316 (pending L2 PRD review). No new tasks needed — waiting for CR approval to unblock PRD update tasks."
+  "summary": "m9 task-1775539719830 and m10 task-1775559026329 both blocked on CR cr-1775560282316 (pending L2 PRD.md review). Cannot complete milestones or plan next milestone until CR is resolved."
 }
