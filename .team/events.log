@@ -642,3 +642,8 @@
 {"ts":"2026-04-07T03:25:32.124Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 19min (active:4, done:18)\"}"}}
 {"ts":"2026-04-07T03:25:32.909Z","type":"agent_complete","agent":"tester-1","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":12,"cpuUser":0.425399,"cpuSystem":0.650874}}}
 {"ts":"2026-04-07T03:25:50.708Z","type":"agent_complete","agent":"tester-2","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":13,"cpuUser":0.426102,"cpuSystem":0.651755}}}
+{"ts":"2026-04-07T03:26:32.126Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 20min (active:4, done:18)"}}
+{"ts":"2026-04-07T03:26:32.126Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 20min (active:4, done:18)\"}"}}
+{"ts":"2026-04-07T03:26:43.590Z","type":"error","agent":"developer","data":{"details":"failed (code=1), retry 1/2 in 1s"}}
+{"ts":"2026-04-07T03:26:44.592Z","type":"agent_start","agent":"developer","data":{"details":"实现功能","performance":{"memoryMB":11,"memoryTotalMB":13,"cpuUser":0.429947,"cpuSystem":0.657372}}}
+{"ts":"2026-04-07T03:27:13.036Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":12,"cpuUser":0.432751,"cpuSystem":0.661572}}}

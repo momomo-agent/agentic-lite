@@ -54,10 +54,10 @@
     "retryCount": 0
   },
   "developer": {
-    "status": "running",
-    "lastRun": "2026-04-07T03:23:30.824Z",
-    "currentTask": "实现功能",
-    "retryCount": 0
+    "status": "idle",
+    "lastRun": "2026-04-07T03:27:13.036Z",
+    "currentTask": null,
+    "retryCount": 1
   },
   "tester-1": {
     "status": "idle",
