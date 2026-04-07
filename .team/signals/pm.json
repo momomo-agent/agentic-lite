@@ -1,7 +1,7 @@
 {
   "agent": "pm",
-  "timestamp": "2026-04-07T16:10:50.480Z",
+  "timestamp": "2026-04-07T16:13:47.121Z",
   "exitCode": 0,
-  "status": "completed",
-  "summary": "Reviewed m21 status: 2 tasks (task-1775577227989, task-1775577233513) in todo, assigned to developer. No new gaps require additional tasks. Waiting for developer to complete work."
+  "status": "blocked",
+  "summary": "m21 tasks task-1775577227989 and task-1775577233513 are both in 'review' status. Waiting for tester to approve before milestone can be completed or next milestone planned."
 }
