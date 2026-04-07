@@ -5726,3 +5726,19 @@
 {"ts":"2026-04-07T15:46:58.992Z","type":"agent_start","agent":"tester-2","data":{"details":"验证功能","performance":{"memoryMB":17,"memoryTotalMB":19,"cpuUser":0.785739,"cpuSystem":0.904381}}}
 {"ts":"2026-04-07T15:47:32.454Z","type":"agent_complete","agent":"tester-1","data":{"details":"completed successfully","performance":{"memoryMB":10,"memoryTotalMB":13,"cpuUser":0.794756,"cpuSystem":0.911876}}}
 {"ts":"2026-04-07T15:47:32.455Z","type":"workflow","agent":"tester-1","data":{"details":"[SIGNAL] completed: No claimable tasks found — all 3 review tasks (task-1775576173074, task-1775576180235, task-17755761"}}
+{"ts":"2026-04-07T15:47:38.332Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 18min (active:3, done:59)"}}
+{"ts":"2026-04-07T15:47:38.333Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 18min (active:3, done:59)\"}"}}
+{"ts":"2026-04-07T15:47:51.286Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775576180235","from":"review","to":"testing","title":"Provide default in-memory AgenticFileSystem for zero-config usage"}}
+{"ts":"2026-04-07T15:48:38.329Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 19min (active:3, done:59)"}}
+{"ts":"2026-04-07T15:48:38.330Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 19min (active:3, done:59)\"}"}}
+{"ts":"2026-04-07T15:49:38.339Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 20min (active:3, done:59)"}}
+{"ts":"2026-04-07T15:49:38.339Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 20min (active:3, done:59)\"}"}}
+{"ts":"2026-04-07T15:50:16.188Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775576180235","from":"testing","to":"done","title":"Provide default in-memory AgenticFileSystem for zero-config usage"}}
+{"ts":"2026-04-07T15:50:25.099Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775576173074","from":"review","to":"testing","title":"Gate shell_exec behind environment detection for browser safety"}}
+{"ts":"2026-04-07T15:50:25.133Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775576186964","from":"review","to":"testing","title":"Document Pyodide CDN dependency and offline/CSP workaround in README"}}
+{"ts":"2026-04-07T15:50:38.163Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"57MB\",\"heapUsed\":\"11MB\",\"uptime\":\"2400s\"}"}}
+{"ts":"2026-04-07T15:50:38.208Z","type":"agent_start","agent":"daemon","data":{"details":"Still busy (20min), skipping","performance":{"memoryMB":11,"memoryTotalMB":14,"cpuUser":0.835758,"cpuSystem":0.951395}}}
+{"ts":"2026-04-07T15:52:01.667Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775576173074","from":"testing","to":"done","title":"Gate shell_exec behind environment detection for browser safety"}}
+{"ts":"2026-04-07T15:52:01.701Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775576186964","from":"testing","to":"done","title":"Document Pyodide CDN dependency and offline/CSP workaround in README"}}
+{"ts":"2026-04-07T15:52:15.844Z","type":"agent_complete","agent":"tester-2","data":{"details":"completed successfully","performance":{"memoryMB":10,"memoryTotalMB":12,"cpuUser":0.869779,"cpuSystem":0.97792}}}
+{"ts":"2026-04-07T15:52:15.845Z","type":"workflow","agent":"tester-2","data":{"details":"[SIGNAL] completed: Tested all 3 m20 review tasks (default filesystem, shell browser gate, Pyodide docs). 9 new tests wr"}}
