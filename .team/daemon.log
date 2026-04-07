@@ -1358,3 +1358,7 @@ There are no tasks available for me to claim right now. The three review tasks a
 I'll wait for tasks to become available.
 [2026-04-07T03:22:30.932Z] tester-2 agent completed
 [2026-04-07 03:22:30] [agent_complete] tester-2 completed successfully
+[2026-04-07 03:22:32] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 16min (active:4, done:18)
+No tasks are currently claimable. All review tasks and the todo task are either already claimed by another agent or blocked. I'll wait for tasks to become available.
+[2026-04-07T03:22:57.924Z] tester-1 agent completed
+[2026-04-07 03:22:57] [agent_complete] tester-1 completed successfully
