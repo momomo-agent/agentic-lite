@@ -474,3 +474,9 @@
 {"ts":"2026-04-07T02:53:31.995Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 18min (active:2, done:16)\"}"}}
 {"ts":"2026-04-07T02:53:42.316Z","type":"task_status","agent":"tester","data":{"taskId":"task-1775529723367","from":"todo","to":"testing","title":"Add systemPrompt multi-round test"}}
 {"ts":"2026-04-07T02:53:51.166Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":8,"memoryTotalMB":8,"cpuUser":0.276837,"cpuSystem":0.393439}}}
+{"ts":"2026-04-07T02:54:01.712Z","type":"agent_start","agent":"daemon","data":{"details":"Still busy (80min), skipping","performance":{"memoryMB":7,"memoryTotalMB":8,"cpuUser":0.277721,"cpuSystem":0.396116}}}
+{"ts":"2026-04-07T02:54:01.714Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"24MB\",\"heapUsed\":\"7MB\",\"uptime\":\"4800s\"}"}}
+{"ts":"2026-04-07T02:54:32.045Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 19min (active:2, done:16)"}}
+{"ts":"2026-04-07T02:54:32.049Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 19min (active:2, done:16)\"}"}}
+{"ts":"2026-04-07T02:54:53.393Z","type":"task_status","agent":"tester","data":{"taskId":"task-1775529723367","from":"testing","to":"done","title":"Add systemPrompt multi-round test"}}
+{"ts":"2026-04-07T02:55:06.133Z","type":"agent_complete","agent":"tester","data":{"details":"completed successfully","performance":{"memoryMB":7,"memoryTotalMB":8,"cpuUser":0.281497,"cpuSystem":0.41062}}}
