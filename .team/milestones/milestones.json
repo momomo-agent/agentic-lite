@@ -56,7 +56,7 @@
     {
       "id": "m6",
       "name": "Custom Provider Bug Fix & Test Suite Recovery",
-      "status": "active",
+      "status": "completed",
       "tasks": [
         "task-1775530933189",
         "task-1775530596867",
@@ -66,7 +66,7 @@
     {
       "id": "m7",
       "name": "Multi-Round Tool Loop & Code Sandbox Upgrade",
-      "status": "planned",
+      "status": "completed",
       "tasks": [
         "task-1775530939117",
         "task-1775532498831"
@@ -75,7 +75,7 @@
     {
       "id": "m8",
       "name": "Code Execution Expansion & Shell Tool",
-      "status": "planned",
+      "status": "active",
       "tasks": [
         "task-1775534038627",
         "task-1775534038662",

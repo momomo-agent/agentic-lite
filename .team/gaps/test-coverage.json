@@ -1,11 +1,16 @@
 {
-  "totalTests": 39,
-  "passed": 39,
-  "failed": 0,
+  "totalTests": 47,
+  "passed": 45,
+  "failed": 2,
   "edgeCases": [
+    "fs.existsSync returns Promise instead of boolean (async/sync mismatch)",
+    "Python open() filesystem injection not tested",
+    "Python error handling for missing files not tested",
+    "Relative path support (./path, ../path) not verified",
+    "Concurrent file operations in single code block not tested",
+    "Binary file handling not tested (text-only assumption)",
     "Browser Pyodide path not tested (no browser env in test runner)",
-    "Python with filesystem injection (separate task, not yet implemented)",
     "shell_exec tool (separate task, not yet implemented)"
   ],
-  "coverage": "100%"
+  "coverage": "96%"
 }
