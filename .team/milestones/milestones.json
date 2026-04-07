@@ -95,7 +95,7 @@
     },
     {
       "id": "m10",
-      "name": "PRD Compliance \u2014 code_exec & Custom Provider",
+      "name": "PRD Compliance — code_exec & Custom Provider",
       "status": "active",
       "tasks": [
         "task-1775559019099",
@@ -163,6 +163,14 @@
         "task-1775572706464",
         "task-1775572719168",
         "task-1775572728626"
+      ]
+    },
+    {
+      "id": "m17",
+      "name": "PRD CR Resolution & Final Sync",
+      "status": "active",
+      "tasks": [
+        "task-1775573582938"
       ]
     }
   ]

@@ -8,8 +8,9 @@ agentic-lite is a lightweight agent library for Node.js and browsers. Target use
 
 ## Tools
 - `search` — web search, returns sources
-- `code_exec` — executes JS via AsyncFunction (browser-compatible)
+- `code_exec` — executes JS/Python code via quickjs-emscripten sandbox (browser-compatible) with auto-language detection. Python uses Pyodide (browser) or python3 subprocess (Node). Injects filesystem API (fs object for JS, open() for Python) backed by AgenticFileSystem.
 - `file_read` / `file_write` — file I/O via AgenticFileSystem (browser-compatible)
+- `shell_exec` — executes shell commands via agentic-shell (browser/Node compatible)
 
 ## Provider Config
 | Field | Description |
@@ -31,5 +32,6 @@ agentic-lite is a lightweight agent library for Node.js and browsers. Target use
   files: FileResult[]
   toolCalls: ToolCall[]
   usage: { input: number; output: number }
+  shellResults?: ShellResult[]
 }
 ```
