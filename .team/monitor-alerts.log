@@ -65,3 +65,7 @@
 {"time":"2026-04-07T03:04:32.041Z","type":"no_progress","message":"No progress for 10min (active:5, done:17)"}
 {"time":"2026-04-07T03:05:32.042Z","type":"no_progress","message":"No progress for 11min (active:5, done:17)"}
 {"time":"2026-04-07T03:06:32.046Z","type":"no_progress","message":"No progress for 12min (active:5, done:17)"}
+{"time":"2026-04-07T03:12:02.070Z","type":"no_progress","message":"No progress for 5min (active:4, done:18)"}
+{"time":"2026-04-07T03:12:32.071Z","type":"no_progress","message":"No progress for 6min (active:4, done:18)"}
+{"time":"2026-04-07T03:13:32.077Z","type":"no_progress","message":"No progress for 7min (active:4, done:18)"}
+{"time":"2026-04-07T03:14:32.078Z","type":"no_progress","message":"No progress for 8min (active:4, done:18)"}

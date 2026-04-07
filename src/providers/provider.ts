@@ -57,12 +57,14 @@ export function createProvider(config: AgenticConfig): Provider {
   switch (provider) {
     case 'anthropic':
       return createAnthropicProvider(config)
-    case 'custom':
-      if (!config.customProvider) throw new Error('customProvider required when provider="custom"')
-      return config.customProvider
     case 'openai':
-    default:
       return createOpenAIProvider(config)
+    case 'custom':
+      if (!config.baseUrl) throw new Error('baseUrl is required when provider="custom"')
+      if (!config.apiKey) throw new Error('apiKey is required when provider="custom"')
+      return createOpenAIProvider(config) // reuses OpenAI client with custom baseUrl
+    default:
+      throw new Error(`Unknown provider: ${provider}`)
   }
 }
 
