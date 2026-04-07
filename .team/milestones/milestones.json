@@ -172,6 +172,16 @@
       "tasks": [
         "task-1775573582938"
       ]
+    },
+    {
+      "id": "m18",
+      "name": "README Docs & PRD Final Sync",
+      "status": "ready-for-work",
+      "tasks": [
+        "task-1775574241209",
+        "task-1775574256272",
+        "task-1775574256304"
+      ]
     }
   ]
 }

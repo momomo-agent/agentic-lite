@@ -1,7 +1,7 @@
 {
   "workflowId": "dev-team",
-  "nodeId": "milestone_qg",
-  "stepIndex": 0,
+  "nodeId": "work_loop",
+  "stepIndex": 2,
   "visitedNodes": [
     "startup",
     "monitor",
@@ -9,19 +9,21 @@
     "work_loop",
     "work_loop",
     "work_loop",
-    "milestone_qg"
+    "milestone_qg",
+    "work_loop",
+    "work_loop"
   ],
   "loopIterations": {
     "work_loop": 1
   },
-  "transitionDepth": 7,
+  "transitionDepth": 9,
   "nodeVisitCounts": {
     "startup": 1,
     "monitor": 1,
     "pm_decide": 1,
-    "work_loop": 3,
+    "work_loop": 5,
     "milestone_qg": 1
   },
   "contextOverrides": {},
-  "timestamp": "2026-04-07T15:02:49.180Z"
+  "timestamp": "2026-04-07T15:11:25.882Z"
 }

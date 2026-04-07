@@ -5333,3 +5333,86 @@
 {"ts":"2026-04-07T15:02:49.180Z","type":"agent_start","agent":"tester","data":{"details":"验证功能","performance":{"memoryMB":11,"memoryTotalMB":15,"cpuUser":0.088285,"cpuSystem":0.105835}}}
 {"ts":"2026-04-07T15:02:59.907Z","type":"agent_complete","agent":"tester","data":{"details":"completed successfully","performance":{"memoryMB":13,"memoryTotalMB":15,"cpuUser":0.094687,"cpuSystem":0.11449}}}
 {"ts":"2026-04-07T15:02:59.907Z","type":"workflow","agent":"tester","data":{"details":"[SIGNAL] completed: No tasks in review status — all tasks are done. Nothing to test."}}
+{"ts":"2026-04-07T15:03:00.218Z","type":"workflow","agent":"milestone_qg","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T15:03:00.218Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":13,"memoryTotalMB":15,"cpuUser":0.097946,"cpuSystem":0.122866}}}
+{"ts":"2026-04-07T15:04:01.210Z","type":"task_created","agent":null,"data":{"taskId":"task-1775574241209","title":"Expand README with API docs and usage examples","priority":"P1","group":"m18"}}
+{"ts":"2026-04-07T15:04:16.273Z","type":"task_created","agent":null,"data":{"taskId":"task-1775574256272","title":"Fix AgenticResult.usage to required type","priority":"P1","group":"m18"}}
+{"ts":"2026-04-07T15:04:16.305Z","type":"task_created","agent":null,"data":{"taskId":"task-1775574256304","title":"Verify PRD.md documents shell_exec, Python, quickjs, shellResults","priority":"P1","group":"m18"}}
+{"ts":"2026-04-07T15:04:36.955Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":13,"memoryTotalMB":15,"cpuUser":0.122703,"cpuSystem":0.143612}}}
+{"ts":"2026-04-07T15:04:36.955Z","type":"workflow","agent":"pm","data":{"details":"[SIGNAL] completed: Created milestone m18 (README Docs & PRD Final Sync) with 3 tasks targeting remaining vision/PRD/DBB"}}
+{"ts":"2026-04-07T15:04:36.966Z","type":"workflow","agent":"milestone_qg","data":{"details":"[SKIP] cross-validate: milestoneComplete"}}
+{"ts":"2026-04-07T15:04:36.967Z","type":"workflow","agent":"milestone_qg","data":{"details":"[SKIP] mark-complete: milestoneComplete"}}
+{"ts":"2026-04-07T15:04:36.969Z","type":"workflow","agent":"milestone_qg","data":{"details":"[SKIP] auto-tag: milestoneComplete"}}
+{"ts":"2026-04-07T15:04:36.977Z","type":"workflow","agent":"milestone_qg","data":{"details":"[BRANCH] milestoneComplete → false → work_loop"}}
+{"ts":"2026-04-07T15:04:36.978Z","type":"agent_start","agent":"work_loop","data":{"details":"[NODE] work_loop - PM 调度中心 — PM 评估后并行派发所有角色，全部完成后回 PM","performance":{"memoryMB":14,"memoryTotalMB":17,"cpuUser":0.128875,"cpuSystem":0.161149}}}
+{"ts":"2026-04-07T15:04:36.992Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 1"}}
+{"ts":"2026-04-07T15:04:37.006Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T15:04:37.006Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":14,"memoryTotalMB":18,"cpuUser":0.135576,"cpuSystem":0.173126}}}
+{"ts":"2026-04-07T15:04:57.792Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":14,"memoryTotalMB":16,"cpuUser":0.142958,"cpuSystem":0.179027}}}
+{"ts":"2026-04-07T15:04:57.793Z","type":"workflow","agent":"pm","data":{"details":"[SIGNAL] completed: Assigned all 3 m18 tasks to developer: README API docs expansion, AgenticResult.usage type fix, and "}}
+{"ts":"2026-04-07T15:04:57.802Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] qa_lead"}}
+{"ts":"2026-04-07T15:04:57.802Z","type":"agent_start","agent":"qa_lead","data":{"details":"编写验收标准","performance":{"memoryMB":14,"memoryTotalMB":17,"cpuUser":0.145469,"cpuSystem":0.18637}}}
+{"ts":"2026-04-07T15:05:21.527Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"38MB\",\"heapUsed\":\"6MB\",\"uptime\":\"300s\"}"}}
+{"ts":"2026-04-07T15:06:38.493Z","type":"agent_complete","agent":"qa_lead","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":9,"cpuUser":0.177071,"cpuSystem":0.202728}}}
+{"ts":"2026-04-07T15:06:38.493Z","type":"workflow","agent":"qa_lead","data":{"details":"[SIGNAL] completed: Wrote .team/milestones/m18/dbb.md with 10 verification criteria covering README docs, AgenticResult."}}
+{"ts":"2026-04-07T15:06:38.503Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] implement: designedTasks > 0"}}
+{"ts":"2026-04-07T15:06:38.503Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0"}}
+{"ts":"2026-04-07T15:06:38.503Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] write-design"}}
+{"ts":"2026-04-07T15:06:38.504Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] tech_lead-1, tech_lead-2, tech_lead-3"}}
+{"ts":"2026-04-07T15:06:38.504Z","type":"agent_start","agent":"tech_lead-1","data":{"details":"出技术方案","performance":{"memoryMB":8,"memoryTotalMB":10,"cpuUser":0.180011,"cpuSystem":0.210947}}}
+{"ts":"2026-04-07T15:06:38.505Z","type":"agent_start","agent":"tech_lead-2","data":{"details":"出技术方案","performance":{"memoryMB":8,"memoryTotalMB":10,"cpuUser":0.180248,"cpuSystem":0.211399}}}
+{"ts":"2026-04-07T15:06:38.505Z","type":"agent_start","agent":"tech_lead-3","data":{"details":"出技术方案","performance":{"memoryMB":8,"memoryTotalMB":10,"cpuUser":0.180402,"cpuSystem":0.211734}}}
+{"ts":"2026-04-07T15:06:51.559Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 5min (active:3, done:54)"}}
+{"ts":"2026-04-07T15:06:51.559Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 5min (active:3, done:54)\"}"}}
+{"ts":"2026-04-07T15:07:21.575Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 6min (active:3, done:54)"}}
+{"ts":"2026-04-07T15:07:21.577Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 6min (active:3, done:54)\"}"}}
+{"ts":"2026-04-07T15:08:10.963Z","type":"agent_complete","agent":"tech_lead-3","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":9,"cpuUser":0.199033,"cpuSystem":0.230749}}}
+{"ts":"2026-04-07T15:08:10.964Z","type":"workflow","agent":"tech_lead-3","data":{"details":"[SIGNAL] completed: Wrote task designs for all 3 m18 tasks and marked hasDesign=true"}}
+{"ts":"2026-04-07T15:08:21.573Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 7min (active:3, done:54)"}}
+{"ts":"2026-04-07T15:08:21.573Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 7min (active:3, done:54)\"}"}}
+{"ts":"2026-04-07T15:09:07.991Z","type":"agent_complete","agent":"tech_lead-2","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":13,"cpuUser":0.205871,"cpuSystem":0.236235}}}
+{"ts":"2026-04-07T15:09:07.991Z","type":"workflow","agent":"tech_lead-2","data":{"details":"[SIGNAL] completed: Created m18/design.md and task designs for all 3 m18 tasks; marked hasDesign=true on all"}}
+{"ts":"2026-04-07T15:09:21.581Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 8min (active:3, done:54)"}}
+{"ts":"2026-04-07T15:09:21.582Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 8min (active:3, done:54)\"}"}}
+{"ts":"2026-04-07T15:09:31.142Z","type":"agent_complete","agent":"tech_lead-1","data":{"details":"completed successfully","performance":{"memoryMB":13,"memoryTotalMB":15,"cpuUser":0.214312,"cpuSystem":0.243591}}}
+{"ts":"2026-04-07T15:09:31.143Z","type":"workflow","agent":"tech_lead-1","data":{"details":"[SIGNAL] completed: Verified and marked hasDesign=true for all 3 m18 tasks. All design files were already present and co"}}
+{"ts":"2026-04-07T15:09:31.180Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 2"}}
+{"ts":"2026-04-07T15:09:31.192Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T15:09:31.193Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":11,"memoryTotalMB":14,"cpuUser":0.220796,"cpuSystem":0.261688}}}
+{"ts":"2026-04-07T15:10:08.926Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":8,"memoryTotalMB":10,"cpuUser":0.237434,"cpuSystem":0.268361}}}
+{"ts":"2026-04-07T15:10:08.927Z","type":"workflow","agent":"pm","data":{"details":"[SIGNAL] completed: M18 active with 3 todo tasks: README API docs expansion, AgenticResult.usage type fix, PRD.md shell_"}}
+{"ts":"2026-04-07T15:10:08.937Z","type":"workflow","agent":"work_loop","data":{"details":"[SKIP] write-dbb: milestoneNeedsDBB > 0"}}
+{"ts":"2026-04-07T15:10:08.938Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] write-design: todoWithoutDesign > 0"}}
+{"ts":"2026-04-07T15:10:08.938Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0"}}
+{"ts":"2026-04-07T15:10:08.938Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] implement"}}
+{"ts":"2026-04-07T15:10:08.938Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] developer"}}
+{"ts":"2026-04-07T15:10:08.939Z","type":"agent_start","agent":"developer","data":{"details":"实现功能","performance":{"memoryMB":6,"memoryTotalMB":8,"cpuUser":0.241027,"cpuSystem":0.277208}}}
+{"ts":"2026-04-07T15:10:21.531Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"39MB\",\"heapUsed\":\"6MB\",\"uptime\":\"600s\"}"}}
+{"ts":"2026-04-07T15:10:21.567Z","type":"agent_start","agent":"daemon","data":{"details":"Still busy (10min), skipping","performance":{"memoryMB":6,"memoryTotalMB":8,"cpuUser":0.244032,"cpuSystem":0.279038}}}
+{"ts":"2026-04-07T15:10:21.582Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 9min (active:3, done:54)"}}
+{"ts":"2026-04-07T15:10:21.582Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 9min (active:3, done:54)\"}"}}
+{"ts":"2026-04-07T15:10:35.848Z","type":"agent_complete","agent":"daemon","data":{"details":"DevTeam daemon stopped","performance":{"memoryMB":9,"memoryTotalMB":11,"cpuUser":0.250513,"cpuSystem":0.284708}}}
+{"ts":"2026-04-07T15:10:38.130Z","type":"workflow","agent":"daemon","data":{"details":"Reset stuck agent: developer"}}
+{"ts":"2026-04-07T15:10:38.131Z","type":"agent_start","agent":"daemon","data":{"details":"DevTeam daemon started (safety=600s, timeout=7200s)","performance":{"memoryMB":5,"memoryTotalMB":7,"cpuUser":0.027685,"cpuSystem":0.007565}}}
+{"ts":"2026-04-07T15:10:38.132Z","type":"workflow","agent":"monitor","data":{"details":"[HEALTH] Monitor started"}}
+{"ts":"2026-04-07T15:10:38.132Z","type":"workflow","agent":null,"data":{"details":"[RESUME] Resuming from checkpoint: node=work_loop, step=2"}}
+{"ts":"2026-04-07T15:10:38.133Z","type":"agent_start","agent":"work_loop","data":{"details":"[NODE] work_loop - PM 调度中心 — PM 评估后并行派发所有角色，全部完成后回 PM","performance":{"memoryMB":5,"memoryTotalMB":8,"cpuUser":0.028439,"cpuSystem":0.008107}}}
+{"ts":"2026-04-07T15:10:38.153Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 1"}}
+{"ts":"2026-04-07T15:10:38.174Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T15:10:38.175Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":5,"memoryTotalMB":10,"cpuUser":0.04085,"cpuSystem":0.02401}}}
+{"ts":"2026-04-07T15:11:20.154Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775574256272","from":"todo","to":"inProgress","title":"Fix AgenticResult.usage to required type"}}
+{"ts":"2026-04-07T15:11:25.872Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":14,"cpuUser":0.051942,"cpuSystem":0.031271}}}
+{"ts":"2026-04-07T15:11:25.873Z","type":"workflow","agent":"pm","data":{"details":"[SIGNAL] completed: M18 is active with 3 todo tasks (README docs, AgenticResult.usage fix, PRD sync) assigned to develop"}}
+{"ts":"2026-04-07T15:11:25.882Z","type":"workflow","agent":"work_loop","data":{"details":"[SKIP] write-dbb: milestoneNeedsDBB > 0"}}
+{"ts":"2026-04-07T15:11:25.882Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] write-design: todoWithoutDesign > 0"}}
+{"ts":"2026-04-07T15:11:25.882Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0"}}
+{"ts":"2026-04-07T15:11:25.882Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] implement"}}
+{"ts":"2026-04-07T15:11:25.883Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] developer"}}
+{"ts":"2026-04-07T15:11:25.883Z","type":"agent_start","agent":"developer","data":{"details":"实现功能","performance":{"memoryMB":12,"memoryTotalMB":13,"cpuUser":0.055367,"cpuSystem":0.038754}}}
+{"ts":"2026-04-07T15:11:43.687Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775574256272","from":"inProgress","to":"review","title":"Fix AgenticResult.usage to required type"}}
+{"ts":"2026-04-07T15:11:50.134Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775574241209","from":"todo","to":"inProgress","title":"Expand README with API docs and usage examples"}}
+{"ts":"2026-04-07T15:11:50.168Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775574256304","from":"todo","to":"inProgress","title":"Verify PRD.md documents shell_exec, Python, quickjs, shellResults"}}
+{"ts":"2026-04-07T15:12:11.180Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775574241209","from":"inProgress","to":"review","title":"Expand README with API docs and usage examples"}}
+{"ts":"2026-04-07T15:12:11.213Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775574256304","from":"inProgress","to":"review","title":"Verify PRD.md documents shell_exec, Python, quickjs, shellResults"}}
+{"ts":"2026-04-07T15:12:35.284Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":10,"memoryTotalMB":13,"cpuUser":0.074144,"cpuSystem":0.049287}}}
+{"ts":"2026-04-07T15:12:35.285Z","type":"workflow","agent":"developer","data":{"details":"[SIGNAL] completed: No claimable tasks found — all tasks are either done or in review. Nothing to implement."}}

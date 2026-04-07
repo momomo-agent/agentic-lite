@@ -11153,3 +11153,172 @@ All tasks are in "done" status — there's nothing in "review" to claim. The pip
 [2026-04-07T15:02:59.904Z] tester agent completed
 [2026-04-07 15:02:59] [agent_complete] tester completed successfully
 [2026-04-07 15:02:59] [workflow] tester [SIGNAL] completed: No tasks in review status — all tasks are done. Nothing to test.
+[2026-04-07 15:03:00] [workflow] milestone_qg [EXEC] pm
+[2026-04-07 15:03:00] [agent_start] pm 管理任务和里程碑
+[2026-04-07T15:03:00.251Z] Running pm agent...
+M18 is set up. Here's the summary:
+
+**Milestone 18: README Docs & PRD Final Sync** (active)
+
+3 tasks created:
+- `task-1775574241209` — Expand README with API docs and usage examples (P1)
+- `task-1775574256272` — Fix `AgenticResult.usage` to required type (P1)
+- `task-1775574256304` — Verify PRD.md documents shell_exec, Python, quickjs, shellResults (P1)
+
+Targets remaining gaps: vision 88%, DBB 89%, PRD 93%, arch 96%.
+
+```signal
+{"status": "completed", "summary": "Created milestone m18 (README Docs & PRD Final Sync) with 3 tasks targeting remaining vision/PRD/DBB/arch gaps: README expansion, usage type fix, PRD verification."}
+```
+[2026-04-07T15:04:36.951Z] pm agent completed
+[2026-04-07 15:04:36] [agent_complete] pm completed successfully
+[2026-04-07 15:04:36] [workflow] pm [SIGNAL] completed: Created milestone m18 (README Docs & PRD Final Sync) with 3 tasks targeting remaining vision/PRD/DBB
+[2026-04-07 15:04:36] [workflow] milestone_qg [SKIP] cross-validate: milestoneComplete
+[2026-04-07 15:04:36] [workflow] milestone_qg [SKIP] mark-complete: milestoneComplete
+[2026-04-07 15:04:36] [workflow] milestone_qg [SKIP] auto-tag: milestoneComplete
+[2026-04-07 15:04:36] [workflow] milestone_qg [BRANCH] milestoneComplete → false → work_loop
+[2026-04-07 15:04:36] [agent_start] work_loop [NODE] work_loop - PM 调度中心 — PM 评估后并行派发所有角色，全部完成后回 PM
+[2026-04-07 15:04:36] [workflow] work_loop [LOOP] Iteration 1
+[2026-04-07 15:04:37] [workflow] work_loop [EXEC] pm
+[2026-04-07 15:04:37] [agent_start] pm 管理任务和里程碑
+[2026-04-07T15:04:37.032Z] Running pm agent...
+M18 tasks assigned to developer. All 3 tasks (`task-1775574241209`, `task-1775574256272`, `task-1775574256304`) are now assigned and ready to work.
+
+```signal
+{"status": "completed", "summary": "Assigned all 3 m18 tasks to developer: README API docs expansion, AgenticResult.usage type fix, and PRD shell_exec/Python verification."}
+```
+[2026-04-07T15:04:57.790Z] pm agent completed
+[2026-04-07 15:04:57] [agent_complete] pm completed successfully
+[2026-04-07 15:04:57] [workflow] pm [SIGNAL] completed: Assigned all 3 m18 tasks to developer: README API docs expansion, AgenticResult.usage type fix, and 
+[2026-04-07 15:04:57] [workflow] work_loop [EXEC] qa_lead
+[2026-04-07 15:04:57] [agent_start] qa_lead 编写验收标准
+[2026-04-07T15:04:57.830Z] Running qa_lead agent...
+[2026-04-07 15:05:21] [perf] daemon {"rss":"38MB","heapUsed":"6MB","uptime":"300s"}
+DBB written and milestone status updated to `ready-for-work`.
+
+```signal
+{"status": "completed", "summary": "Wrote .team/milestones/m18/dbb.md with 10 verification criteria covering README docs, AgenticResult.usage type, PRD tool documentation, and global DBB alignment. Updated m18 status to ready-for-work."}
+```
+[2026-04-07T15:06:38.489Z] qa_lead agent completed
+[2026-04-07 15:06:38] [agent_complete] qa_lead completed successfully
+[2026-04-07 15:06:38] [workflow] qa_lead [SIGNAL] completed: Wrote .team/milestones/m18/dbb.md with 10 verification criteria covering README docs, AgenticResult.
+[2026-04-07 15:06:38] [workflow] work_loop [PARALLEL-SKIP] implement: designedTasks > 0
+[2026-04-07 15:06:38] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-07 15:06:38] [workflow] work_loop [PARALLEL] write-design
+[2026-04-07 15:06:38] [workflow] work_loop [PARALLEL] tech_lead-1, tech_lead-2, tech_lead-3
+[2026-04-07 15:06:38] [agent_start] tech_lead-1 出技术方案
+[2026-04-07 15:06:38] [agent_start] tech_lead-2 出技术方案
+[2026-04-07 15:06:38] [agent_start] tech_lead-3 出技术方案
+[2026-04-07T15:06:38.540Z] Running tech_lead-1 agent...
+[2026-04-07T15:06:38.540Z] Running tech_lead-2 agent...
+[2026-04-07T15:06:38.540Z] Running tech_lead-3 agent...
+[2026-04-07 15:06:51] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 5min (active:3, done:54)
+[2026-04-07 15:07:21] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 6min (active:3, done:54)
+All done. Here's what was completed:
+
+- m18 already had `dbb.md` and `overview.md` — no new milestone files needed
+- Wrote `design.md` for all 3 tasks:
+  - `task-1775574241209` — README expansion (install, quick start, API ref, tool list)
+  - `task-1775574256272` — Confirm `usage` is required in `types.ts` (already is — task is a verify+no-op)
+  - `task-1775574256304` — Confirm PRD.md has shell_exec, Python, quickjs, shellResults (already present — verify pass)
+- Updated all 3 tasks to `hasDesign: true`
+
+```signal
+{"status": "completed", "summary": "Wrote task designs for all 3 m18 tasks and marked hasDesign=true"}
+```
+[2026-04-07T15:08:10.959Z] tech_lead-3 agent completed
+[2026-04-07 15:08:10] [agent_complete] tech_lead-3 completed successfully
+[2026-04-07 15:08:10] [workflow] tech_lead-3 [SIGNAL] completed: Wrote task designs for all 3 m18 tasks and marked hasDesign=true
+[2026-04-07 15:08:21] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 7min (active:3, done:54)
+All done. Here's a summary of what was completed:
+
+**M18 milestone designs created:**
+
+- `.team/milestones/m18/design.md` — milestone-level technical approach
+- `.team/tasks/task-1775574241209/design.md` — README expansion (verify/add DBB-required strings)
+- `.team/tasks/task-1775574256272/design.md` — Fix `usage` to required in `types.ts` (already required, verify only)
+- `.team/tasks/task-1775574256304/design.md` — Verify PRD.md has shell_exec, Python, quickjs, shellResults (all already present)
+
+All three tasks marked `hasDesign: true`.
+
+**Key finding:** Most DBB criteria are already satisfied in the current codebase — `usage` is already required in `types.ts`, and PRD.md already contains all four required strings. The developer tasks are primarily verification with minimal patching if anything is missing.
+
+```signal
+{"status": "completed", "summary": "Created m18/design.md and task designs for all 3 m18 tasks; marked hasDesign=true on all"}
+```
+[2026-04-07T15:09:07.985Z] tech_lead-2 agent completed
+[2026-04-07 15:09:07] [agent_complete] tech_lead-2 completed successfully
+[2026-04-07 15:09:07] [workflow] tech_lead-2 [SIGNAL] completed: Created m18/design.md and task designs for all 3 m18 tasks; marked hasDesign=true on all
+[2026-04-07 15:09:21] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 8min (active:3, done:54)
+All work is complete. Here's a summary:
+
+**M18 milestone (README Docs & PRD Final Sync) — designs verified:**
+
+- `task-1775574241209` — README already has all required sections (install, quick start, full API docs, all 4 tools). Design confirms verification steps. → `hasDesign: true`
+- `task-1775574256272` — `usage` in `AgenticResult` is already required (no `?`) in `src/types.ts`. Design confirms the check. → `hasDesign: true`  
+- `task-1775574256304` — PRD.md already contains `shell_exec`, `Python`, `quickjs`, and `shellResults`. Design confirms verification + fix instructions if any gap found. → `hasDesign: true`
+
+M18 already has `dbb.md`, `design.md`, and `overview.md` — no new milestone files needed.
+
+```signal
+{"status": "completed", "summary": "Verified and marked hasDesign=true for all 3 m18 tasks. All design files were already present and complete. No new files needed."}
+```
+[2026-04-07T15:09:31.138Z] tech_lead-1 agent completed
+[2026-04-07 15:09:31] [agent_complete] tech_lead-1 completed successfully
+[2026-04-07 15:09:31] [workflow] tech_lead-1 [SIGNAL] completed: Verified and marked hasDesign=true for all 3 m18 tasks. All design files were already present and co
+[2026-04-07 15:09:31] [workflow] work_loop [LOOP] Iteration 2
+[2026-04-07 15:09:31] [workflow] work_loop [EXEC] pm
+[2026-04-07 15:09:31] [agent_start] pm 管理任务和里程碑
+[2026-04-07T15:09:31.218Z] Running pm agent...
+M18 has 3 tasks all in `todo` status. They need to be assigned and worked on. The milestone is `ready-for-work`. I'll signal the current state.
+
+```signal
+{"status": "completed", "summary": "M18 active with 3 todo tasks: README API docs expansion, AgenticResult.usage type fix, PRD.md shell_exec/Python/quickjs verification. All ready for developer assignment."}
+```
+[2026-04-07T15:10:08.924Z] pm agent completed
+[2026-04-07 15:10:08] [agent_complete] pm completed successfully
+[2026-04-07 15:10:08] [workflow] pm [SIGNAL] completed: M18 active with 3 todo tasks: README API docs expansion, AgenticResult.usage type fix, PRD.md shell_
+[2026-04-07 15:10:08] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-07 15:10:08] [workflow] work_loop [PARALLEL-SKIP] write-design: todoWithoutDesign > 0
+[2026-04-07 15:10:08] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-07 15:10:08] [workflow] work_loop [PARALLEL] implement
+[2026-04-07 15:10:08] [workflow] work_loop [EXEC] developer
+[2026-04-07 15:10:08] [agent_start] developer 实现功能
+[2026-04-07T15:10:08.969Z] Running developer agent...
+[2026-04-07 15:10:21] [perf] daemon {"rss":"39MB","heapUsed":"6MB","uptime":"600s"}
+[2026-04-07 15:10:21] [agent_start] daemon Still busy (10min), skipping
+[2026-04-07 15:10:21] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 9min (active:3, done:54)
+[2026-04-07 15:10:35] [agent_complete] daemon DevTeam daemon stopped
+[2026-04-07 15:10:38] [workflow] daemon Reset stuck agent: developer
+[2026-04-07 15:10:38] [agent_start] daemon DevTeam daemon started (safety=600s, timeout=7200s)
+[2026-04-07 15:10:38] [workflow] monitor [HEALTH] Monitor started
+[2026-04-07 15:10:38] [workflow]  [RESUME] Resuming from checkpoint: node=work_loop, step=2
+[2026-04-07 15:10:38] [agent_start] work_loop [NODE] work_loop - PM 调度中心 — PM 评估后并行派发所有角色，全部完成后回 PM
+[2026-04-07 15:10:38] [workflow] work_loop [LOOP] Iteration 1
+[2026-04-07 15:10:38] [workflow] work_loop [EXEC] pm
+[2026-04-07 15:10:38] [agent_start] pm 管理任务和里程碑
+[2026-04-07T15:10:38.204Z] Running pm agent...
+M18 has 3 `todo` tasks assigned to `developer`. All are ready to work — no blockers, no gaps requiring new tasks. The milestone is properly set up.
+
+```signal
+{"status": "completed", "summary": "M18 is active with 3 todo tasks (README docs, AgenticResult.usage fix, PRD sync) assigned to developer. No new tasks needed — existing tasks cover all remaining gaps."}
+```
+[2026-04-07T15:11:25.869Z] pm agent completed
+[2026-04-07 15:11:25] [agent_complete] pm completed successfully
+[2026-04-07 15:11:25] [workflow] pm [SIGNAL] completed: M18 is active with 3 todo tasks (README docs, AgenticResult.usage fix, PRD sync) assigned to develop
+[2026-04-07 15:11:25] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-07 15:11:25] [workflow] work_loop [PARALLEL-SKIP] write-design: todoWithoutDesign > 0
+[2026-04-07 15:11:25] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-07 15:11:25] [workflow] work_loop [PARALLEL] implement
+[2026-04-07 15:11:25] [workflow] work_loop [EXEC] developer
+[2026-04-07 15:11:25] [agent_start] developer 实现功能
+[2026-04-07T15:11:25.911Z] Running developer agent...
+[2026-04-07T15:12:16.595Z] developer agent failed: Command failed: claude --print --dangerously-skip-permissions < "/Users/kenefe/LOCAL/momo-agent/projects/agentic-lite/.team/.prompt-developer-1775574608970.md"
+Both available tasks are in `review` status (not `todo`), so there's nothing to claim. All tasks are either `done` or `review`.
+
+```signal
+{"status": "completed", "summary": "No claimable tasks found — all tasks are either done or in review. Nothing to implement."}
+```
+[2026-04-07T15:12:35.280Z] developer agent completed
+[2026-04-07 15:12:35] [agent_complete] developer completed successfully
+[2026-04-07 15:12:35] [workflow] developer [SIGNAL] completed: No claimable tasks found — all tasks are either done or in review. Nothing to implement.
