@@ -1291,3 +1291,11 @@ Should I wait for tasks to move out of review, or would you like me to help with
 No tasks are currently in "testing" status either. The review tasks can't be claimed — they're likely blocked by dependencies or already being processed. Nothing to do right now.
 [2026-04-07T03:17:35.475Z] tester-1 agent completed
 [2026-04-07 03:17:35] [agent_complete] tester-1 completed successfully
+[2026-04-07 03:18:32] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 12min (active:4, done:18)
+[2026-04-07 03:19:01] [perf] daemon {"rss":"37MB","heapUsed":"9MB","uptime":"6300s"}
+[2026-04-07 03:19:32] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 13min (active:4, done:18)
+All review tasks are currently claimed by another tester and cannot be claimed. The only remaining non-done task (`task-1775530939117`) is in `todo` status — that's a developer task, not mine to test.
+
+No work available for me right now. I'll wait for tasks to move into `review` status.
+[2026-04-07T03:20:30.731Z] tester-2 agent completed
+[2026-04-07 03:20:30] [agent_complete] tester-2 completed successfully

@@ -593,3 +593,9 @@
 {"ts":"2026-04-07T03:17:32.090Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 11min (active:4, done:18)"}}
 {"ts":"2026-04-07T03:17:32.091Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 11min (active:4, done:18)\"}"}}
 {"ts":"2026-04-07T03:17:35.477Z","type":"agent_complete","agent":"tester-1","data":{"details":"completed successfully","performance":{"memoryMB":10,"memoryTotalMB":11,"cpuUser":0.378082,"cpuSystem":0.578947}}}
+{"ts":"2026-04-07T03:18:32.097Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 12min (active:4, done:18)"}}
+{"ts":"2026-04-07T03:18:32.098Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 12min (active:4, done:18)\"}"}}
+{"ts":"2026-04-07T03:19:01.729Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"37MB\",\"heapUsed\":\"9MB\",\"uptime\":\"6300s\"}"}}
+{"ts":"2026-04-07T03:19:32.099Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 13min (active:4, done:18)"}}
+{"ts":"2026-04-07T03:19:32.099Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 13min (active:4, done:18)\"}"}}
+{"ts":"2026-04-07T03:20:30.739Z","type":"agent_complete","agent":"tester-2","data":{"details":"completed successfully","performance":{"memoryMB":10,"memoryTotalMB":11,"cpuUser":0.387174,"cpuSystem":0.592175}}}
