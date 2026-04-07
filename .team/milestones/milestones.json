@@ -247,6 +247,14 @@
         "task-1775581637037",
         "task-1775581761671"
       ]
+    },
+    {
+      "id": "m26",
+      "name": "Final Gap Verification & README Type Fix",
+      "status": "ready-for-work",
+      "tasks": [
+        "task-1775583094060"
+      ]
     }
   ]
 }

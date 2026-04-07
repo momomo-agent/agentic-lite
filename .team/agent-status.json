@@ -25,13 +25,13 @@
   },
   "pm": {
     "status": "idle",
-    "lastRun": "2026-04-07T17:29:23.406Z",
+    "lastRun": "2026-04-07T17:35:24.025Z",
     "currentTask": null,
     "retryCount": 0
   },
   "qa_lead": {
     "status": "idle",
-    "lastRun": "2026-04-07T16:59:08.296Z",
+    "lastRun": "2026-04-07T17:32:56.077Z",
     "currentTask": null,
     "retryCount": 0
   },
@@ -55,7 +55,7 @@
   },
   "developer": {
     "status": "idle",
-    "lastRun": "2026-04-07T17:14:37.965Z",
+    "lastRun": "2026-04-07T17:36:38.673Z",
     "currentTask": null,
     "retryCount": 2
   },
@@ -79,7 +79,7 @@
   },
   "tech_lead": {
     "status": "idle",
-    "lastRun": "2026-04-07T16:47:17.346Z",
+    "lastRun": "2026-04-07T17:34:25.467Z",
     "currentTask": null,
     "retryCount": 0
   }
