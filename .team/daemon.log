@@ -12512,3 +12512,150 @@ All 66 tasks are in "done" status. There are no tasks in "review" status to clai
 [2026-04-07T16:30:46.717Z] tester agent completed
 [2026-04-07 16:30:46] [agent_complete] tester completed successfully
 [2026-04-07 16:30:46] [workflow] tester [SIGNAL] completed: No tasks in review status found. All 66 tasks are already done.
+[2026-04-07 16:30:46] [workflow] milestone_qg [EXEC] pm
+[2026-04-07 16:30:46] [agent_start] pm 管理任务和里程碑
+[2026-04-07T16:30:46.918Z] Running pm agent...
+Both gaps from m21 are already `done`:
+- `apiKey` optional for custom provider ✓
+- README images type fixed ✓
+
+The gap files are stale. The remaining "partial" gaps in prd.json and dbb.json were addressed in m21. The one remaining PRD partial gap about `code_exec` spec wording (AsyncFunction vs quickjs) is a documentation/spec divergence, not a code gap — the implementation is intentionally better (browser-safe sandbox).
+
+All meaningful gaps are resolved. No new milestone is needed. The project is at full implementation coverage.
+
+```signal
+{"status": "completed", "summary": "Marked m22 as completed. All tasks across m1-m22 are done. Remaining gap file entries are stale — m21 addressed apiKey optionality and README images type; m22 addressed browser shell stub and Pyodide CDN resilience. No actionable gaps remain; no new milestone created."}
+```
+[2026-04-07T16:31:38.917Z] pm agent completed
+[2026-04-07 16:31:38] [agent_complete] pm completed successfully
+[2026-04-07 16:31:38] [workflow] pm [SIGNAL] completed: Marked m22 as completed. All tasks across m1-m22 are done. Remaining gap file entries are stale — m2
+[2026-04-07 16:31:38] [workflow] milestone_qg [SKIP] cross-validate: milestoneComplete
+[2026-04-07 16:31:38] [workflow] milestone_qg [SKIP] mark-complete: milestoneComplete
+[2026-04-07 16:31:38] [workflow] milestone_qg [SKIP] auto-tag: milestoneComplete
+[2026-04-07 16:31:38] [workflow] milestone_qg [BRANCH] milestoneComplete → false → work_loop
+[2026-04-07 16:31:38] [agent_start] work_loop [NODE] work_loop - PM 调度中心 — PM 评估后并行派发所有角色，全部完成后回 PM
+[2026-04-07 16:31:38] [workflow] work_loop [LOOP] Iteration 1
+[2026-04-07 16:31:38] [workflow] work_loop [EXEC] pm
+[2026-04-07 16:31:38] [agent_start] pm 管理任务和里程碑
+[2026-04-07T16:31:38.993Z] Running pm agent...
+[2026-04-07 16:32:53] [agent_complete] daemon DevTeam daemon stopped
+[2026-04-07 16:32:56] [workflow] daemon Reset stuck agent: pm
+[2026-04-07 16:32:56] [agent_start] daemon DevTeam daemon started (safety=600s, timeout=3900s)
+[2026-04-07 16:32:56] [workflow] monitor [HEALTH] Monitor started
+[2026-04-07 16:32:56] [workflow]  [RESUME] Resuming from checkpoint: node=work_loop, step=0
+[2026-04-07 16:32:56] [agent_start] work_loop [NODE] work_loop - PM 调度中心 — PM 评估后并行派发所有角色，全部完成后回 PM
+[2026-04-07 16:32:56] [workflow] work_loop [LOOP] Iteration 1
+[2026-04-07 16:32:56] [workflow] work_loop [EXEC] pm
+[2026-04-07 16:32:56] [agent_start] pm 管理任务和里程碑
+[2026-04-07T16:32:56.200Z] Running pm agent...
+[2026-04-07T16:33:39.854Z] pm agent failed: Command failed: claude --print --dangerously-skip-permissions < "/Users/kenefe/LOCAL/momo-agent/projects/agentic-lite/.team/.prompt-pm-1775579498994.md"
+M23 is now fully planned with 2 tasks targeting the remaining gaps:
+
+1. `task-1775579577117` — Default in-memory filesystem (vision gap: missing)
+2. `task-1775579679306` — `apiKey` optional for custom provider (PRD gap: partial)
+
+Both tasks are unassigned and ready for the developer.
+
+```signal
+{"status": "completed", "summary": "M23 updated with 2 tasks covering remaining vision and PRD gaps: default filesystem and optional apiKey for custom provider"}
+```
+[2026-04-07T16:35:05.189Z] pm agent completed
+[2026-04-07 16:35:05] [agent_complete] pm completed successfully
+[2026-04-07 16:35:05] [workflow] pm [SIGNAL] completed: M23 updated with 2 tasks covering remaining vision and PRD gaps: default filesystem and optional api
+[2026-04-07 16:35:05] [workflow] work_loop [EXEC] qa_lead
+[2026-04-07 16:35:05] [agent_start] qa_lead 编写验收标准
+[2026-04-07T16:35:05.233Z] Running qa_lead agent...
+DBB written and milestone updated to `ready-for-work`.
+
+```signal
+{"status": "completed", "summary": "Wrote .team/milestones/m23/dbb.md with 6 verification criteria covering zero-config filesystem, browser compatibility, backward compat, README docs, custom provider, and apiKey validation. Updated m23 status to ready-for-work."}
+```
+[2026-04-07T16:36:03.215Z] qa_lead agent completed
+[2026-04-07 16:36:03] [agent_complete] qa_lead completed successfully
+[2026-04-07 16:36:03] [workflow] qa_lead [SIGNAL] completed: Wrote .team/milestones/m23/dbb.md with 6 verification criteria covering zero-config filesystem, brow
+[2026-04-07 16:36:03] [workflow] work_loop [PARALLEL-SKIP] implement: designedTasks > 0
+[2026-04-07 16:36:03] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-07 16:36:03] [workflow] work_loop [PARALLEL] write-design
+[2026-04-07 16:36:03] [workflow] work_loop [PARALLEL] tech_lead-1, tech_lead-2
+[2026-04-07 16:36:03] [agent_start] tech_lead-1 出技术方案
+[2026-04-07 16:36:03] [agent_start] tech_lead-2 出技术方案
+[2026-04-07T16:36:03.261Z] Running tech_lead-2 agent...
+[2026-04-07T16:36:03.261Z] Running tech_lead-1 agent...
+All work complete. Here's a summary:
+
+**M23 designs created:**
+
+- `.team/milestones/m23/design.md` — milestone technical design (both gaps already closed in source; tasks are verification + README updates)
+- `.team/tasks/task-1775579577117/design.md` — default filesystem task design
+- `.team/tasks/task-1775579679306/design.md` — optional apiKey for custom provider design
+- Both tasks updated: `hasDesign: true`
+
+**Key finding:** Both features are already implemented in source code (`ask.ts:16` defaults filesystem, `provider.ts:46` skips apiKey for custom). The tasks are verification + README documentation work.
+
+```signal
+{"status": "completed", "summary": "Created m23/design.md, task designs for task-1775579577117 and task-1775579679306, marked both hasDesign=true"}
+```
+[2026-04-07T16:37:55.466Z] tech_lead-2 agent completed
+[2026-04-07 16:37:55] [agent_complete] tech_lead-2 completed successfully
+[2026-04-07 16:37:55] [workflow] tech_lead-2 [SIGNAL] completed: Created m23/design.md, task designs for task-1775579577117 and task-1775579679306, marked both hasDe
+[2026-04-07 16:37:56] [perf] daemon {"rss":"55MB","heapUsed":"10MB","uptime":"300s"}
+[2026-04-07 16:38:26] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 5min (active:2, done:66)
+Both tasks are updated. All work for milestone m23 is complete:
+
+- `task-1775579577117` — design exists, `hasDesign: true` ✓
+- `task-1775579679306` — design exists, `hasDesign: true` ✓
+
+Both designs confirm the implementation is already in place in the codebase; the tasks require README documentation updates and verification testing.
+
+```signal
+{"status": "completed", "summary": "Verified m23 milestone dbb.md and design.md exist. Read both task designs (already written). Marked task-1775579577117 and task-1775579679306 hasDesign=true."}
+```
+[2026-04-07T16:38:27.269Z] tech_lead-1 agent completed
+[2026-04-07 16:38:27] [agent_complete] tech_lead-1 completed successfully
+[2026-04-07 16:38:27] [workflow] tech_lead-1 [SIGNAL] completed: Verified m23 milestone dbb.md and design.md exist. Read both task designs (already written). Marked 
+[2026-04-07 16:38:27] [workflow] work_loop [LOOP] Iteration 2
+[2026-04-07 16:38:27] [workflow] work_loop [EXEC] pm
+[2026-04-07 16:38:27] [agent_start] pm 管理任务和里程碑
+[2026-04-07T16:38:27.355Z] Running pm agent...
+[2026-04-07 16:38:56] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 6min (active:2, done:66)
+M23 is `ready-for-work` with 2 todo tasks that cover the remaining vision gaps. No architecture gaps remain. The milestone is properly set up — tasks just need to be picked up by developers.
+
+Current state:
+- m23 active with 2 unassigned `todo` tasks
+- task-1775579577117: Add default in-memory filesystem (P0, vision gap: missing)
+- task-1775579679306: Make apiKey optional for custom provider (P1, PRD gap)
+- 0 architecture gaps, 0 tasks in review/testing
+
+No new milestone needed. M23 tasks are ready for developer assignment.
+
+```signal
+{"status": "completed", "summary": "Reviewed state: m23 is ready-for-work with 2 todo tasks covering remaining vision/PRD gaps. No architecture gaps. No new milestone needed — existing tasks are unassigned and ready for developer pickup."}
+```
+[2026-04-07T16:39:12.618Z] pm agent completed
+[2026-04-07 16:39:12] [agent_complete] pm completed successfully
+[2026-04-07 16:39:12] [workflow] pm [SIGNAL] completed: Reviewed state: m23 is ready-for-work with 2 todo tasks covering remaining vision/PRD gaps. No archi
+[2026-04-07 16:39:12] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-07 16:39:12] [workflow] work_loop [PARALLEL-SKIP] write-design: todoWithoutDesign > 0
+[2026-04-07 16:39:12] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-07 16:39:12] [workflow] work_loop [PARALLEL] implement
+[2026-04-07 16:39:12] [workflow] work_loop [EXEC] developer
+[2026-04-07 16:39:12] [agent_start] developer 实现功能
+[2026-04-07T16:39:12.700Z] Running developer agent...
+[2026-04-07 16:39:56] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 7min (active:2, done:66)
+[2026-04-07 16:40:56] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 8min (active:2, done:66)
+Both tasks are complete.
+
+**task-1775579577117** — Add default in-memory filesystem to AgenticConfig
+- Implementation was already correct in `ask.ts:16`
+- Updated README: filesystem field description, shell tool note, file tool note
+
+**task-1775579679306** — Make AgenticConfig.apiKey optional for custom provider
+- Types and validation were already correct
+- Updated README: `apiKey` field marked optional for custom provider, example comment updated
+
+```signal
+{"status": "completed", "summary": "Updated README.md for two tasks: documented default in-memory filesystem and optional apiKey for custom provider. No code changes needed as implementations were already correct."}
+```
+[2026-04-07T16:41:30.936Z] developer agent completed
+[2026-04-07 16:41:30] [agent_complete] developer completed successfully
+[2026-04-07 16:41:30] [workflow] developer [SIGNAL] completed: Updated README.md for two tasks: documented default in-memory filesystem and optional apiKey for cus

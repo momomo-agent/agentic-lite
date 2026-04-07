@@ -41,7 +41,7 @@ Configuration options for the agent:
 interface AgenticConfig {
   // Provider settings
   provider?: 'anthropic' | 'openai' | 'custom'  // Default: auto-detect from apiKey
-  apiKey: string                                 // Required: API key for the provider
+  apiKey?: string                                // Required for standard providers; optional when provider='custom'
   model?: string                                 // Optional: model name (e.g., 'claude-3-5-sonnet-20241022')
   baseUrl?: string                               // Optional: custom API endpoint
   customProvider?: Provider                      // Optional: custom provider implementation
@@ -49,7 +49,7 @@ interface AgenticConfig {
 
   // Tool configuration
   tools?: ToolName[]                             // Optional: ['search', 'code', 'file', 'shell']
-  filesystem?: AgenticFileSystem                 // Optional: virtual filesystem for file/shell tools
+  filesystem?: AgenticFileSystem                 // Virtual filesystem (optional — defaults to in-memory storage, browser-compatible)
   toolConfig?: {
     search?: {
       apiKey?: string                            // Search API key (Tavily/Serper)
@@ -120,7 +120,7 @@ Executes shell commands against the virtual filesystem.
 
 - Supports common commands: `ls`, `cat`, `grep`, `find`, `pwd`, etc.
 - Uses `agentic-shell` for browser-compatible shell emulation
-- Requires `filesystem` in config
+- Uses in-memory filesystem by default (no config required)
 
 **Returns:** `ShellResult[]`
 
@@ -138,7 +138,7 @@ interface ShellResult {
 Read and write files using the virtual filesystem.
 
 - Browser-compatible via `agentic-filesystem`
-- Requires `filesystem` in config
+- Uses in-memory filesystem by default (no config required)
 - Supports both absolute and relative paths
 
 **Returns:** `FileResult[]`
@@ -208,7 +208,7 @@ const result = await ask('Hello', {
   model: 'custom-model'
 })
 
-// Option 2: fully custom provider implementation
+// Option 2: fully custom provider implementation (no apiKey needed)
 const result = await ask('Hello', {
   provider: 'custom',
   customProvider: myProviderFn,

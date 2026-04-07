@@ -214,10 +214,19 @@
     {
       "id": "m22",
       "name": "Vision Gap Closure — Browser Shell & Pyodide Resilience",
-      "status": "ready-for-work",
+      "status": "completed",
       "tasks": [
         "task-1775578831381",
         "task-1775578836813"
+      ]
+    },
+    {
+      "id": "m23",
+      "name": "Zero-Config Default Browser Filesystem",
+      "status": "ready-for-work",
+      "tasks": [
+        "task-1775579577117",
+        "task-1775579679306"
       ]
     }
   ]
