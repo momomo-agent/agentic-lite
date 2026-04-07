@@ -1,21 +1,17 @@
 {
-  "match": 85,
-  "timestamp": "2026-04-07T15:34:00.336Z",
+  "match": 82,
+  "timestamp": "2026-04-07T17:03:54.904Z",
   "gaps": [
     {
       "description": "Core single-function ask() API with multi-round tool loop is fully implemented",
       "status": "implemented"
     },
     {
-      "description": "file_read / file_write via agentic-filesystem abstraction (browser virtual FS) is implemented",
+      "description": "file_read / file_write via agentic-filesystem (browser virtual FS) is implemented",
       "status": "implemented"
     },
     {
-      "description": "JavaScript code execution in browser sandbox via quickjs-emscripten is implemented",
-      "status": "implemented"
-    },
-    {
-      "description": "Python execution in browser via Pyodide is implemented",
+      "description": "code_exec uses AsyncFunction — browser-compatible, no Node deps",
       "status": "implemented"
     },
     {
@@ -27,15 +23,15 @@
       "status": "implemented"
     },
     {
-      "description": "shell_exec tool uses Node.js child_process and is not browser-compatible, conflicting with browser-first vision",
+      "description": "shell_exec uses Node.js child_process — not browser-compatible, conflicts with browser-first vision",
       "status": "partial"
     },
     {
-      "description": "No default browser filesystem provided out of the box — users must manually pass an AgenticFileSystem instance, violating zero-config promise",
+      "description": "No default browser filesystem out of the box — users must pass AgenticFileSystem manually, violating zero-config promise",
       "status": "missing"
     },
     {
-      "description": "Pyodide is dynamically imported but not bundled — browser Python support requires external CDN load, fragile in offline/CSP-restricted environments",
+      "description": "Search tool requires external API key (Tavily/Serper) with no zero-config fallback for browser use",
       "status": "partial"
     }
   ]

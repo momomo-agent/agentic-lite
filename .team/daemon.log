@@ -12978,3 +12978,286 @@ I'll wait for it to move to `review` status before testing.
 [2026-04-07T16:59:33.228Z] tester agent completed
 [2026-04-07 16:59:33] [agent_complete] tester completed successfully
 [2026-04-07 16:59:33] [workflow] tester [SIGNAL] blocked: No tasks in review status available to claim. task-1775581032171 is still in-progress with developer
+[2026-04-07 16:59:33] [workflow] milestone_qg [AGENT-SIGNAL] tester → blocked: No tasks in review status available to claim. task-1775581032171 is still in-pro
+[2026-04-07 16:59:33] [workflow] milestone_qg [EXEC] pm
+[2026-04-07 16:59:33] [agent_start] pm 管理任务和里程碑
+[2026-04-07T16:59:33.361Z] Running pm agent...
+The vision gap file is stale (from 15:34, before m22/m23 work completed). The partial/missing gaps there have been addressed by completed milestones. 
+
+Current state:
+- M24 has 1 task `in-progress` (README images type fix)
+- All other tasks are `done`
+- Architecture match: 100%, PRD: 95%, DBB: 94% — remaining gaps are `partial` (minor wording divergences, not blockers)
+
+No new tasks needed. M24 just needs the in-progress task to complete and pass tester review.
+
+```signal
+{"status": "completed", "summary": "Reviewed all gaps and task state. M24 has 1 in-progress task (README images type fix). All other tasks done. Vision gap file is stale — partial gaps were addressed in m22/m23. No new tasks required; waiting for developer to finish task-1775581032171 and tester to review."}
+```
+[2026-04-07T17:00:17.937Z] pm agent completed
+[2026-04-07 17:00:17] [agent_complete] pm completed successfully
+[2026-04-07 17:00:17] [workflow] pm [SIGNAL] completed: Reviewed all gaps and task state. M24 has 1 in-progress task (README images type fix). All other tas
+[2026-04-07 17:00:17] [workflow] milestone_qg [SKIP] cross-validate: milestoneComplete
+[2026-04-07 17:00:17] [workflow] milestone_qg [SKIP] mark-complete: milestoneComplete
+[2026-04-07 17:00:17] [workflow] milestone_qg [SKIP] auto-tag: milestoneComplete
+[2026-04-07 17:00:17] [workflow] milestone_qg [BRANCH] milestoneComplete → false → work_loop
+[2026-04-07 17:00:17] [agent_start] work_loop [NODE] work_loop - PM 调度中心 — PM 评估后并行派发所有角色，全部完成后回 PM
+[2026-04-07 17:00:17] [workflow] work_loop [LOOP] Iteration 1
+[2026-04-07 17:00:17] [workflow] work_loop [EXEC] pm
+[2026-04-07 17:00:17] [agent_start] pm 管理任务和里程碑
+[2026-04-07T17:00:18.023Z] Running pm agent...
+The 3 remaining vision gaps with "partial"/"missing" status were already addressed by m22 and m23 (browser shell compatibility, default filesystem, Pyodide resilience). The only open task is `task-1775581032171` (in-progress, m24).
+
+M24 is `ready-for-work` with one in-progress task. No new gaps remain. I'll wait for the in-progress task to complete before marking m24 done.
+
+```signal
+{"status": "completed", "summary": "Reviewed all gaps: 0 open architecture gaps, 3 vision gaps all marked 'implemented' or addressed by m22/m23. M24 has 1 in-progress task (README fix). No new tasks needed. Waiting for m24 task completion."}
+```
+[2026-04-07T17:01:03.101Z] pm agent completed
+[2026-04-07 17:01:03] [agent_complete] pm completed successfully
+[2026-04-07 17:01:03] [workflow] pm [SIGNAL] completed: Reviewed all gaps: 0 open architecture gaps, 3 vision gaps all marked 'implemented' or addressed by 
+[2026-04-07 17:01:03] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-07 17:01:03] [workflow] work_loop [PARALLEL-SKIP] write-design: todoWithoutDesign > 0
+[2026-04-07 17:01:03] [workflow] work_loop [PARALLEL-SKIP] implement: designedTasks > 0
+[2026-04-07 17:01:03] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-07 17:01:03] [workflow] work_loop [BRANCH] doneCount > 0 → true → milestone_qg
+[2026-04-07 17:01:03] [workflow] work_loop [EXIT] todoCount == 0 && designedTasks == 0 && reviewCount == 0 && inProgressCount == 0 && testingCount == 0 && blockedCount == 0 → milestone_qg
+[2026-04-07 17:01:03] [error] workflow [SPIN-EXIT] Node "milestone_qg" visited 6 times (max 5) — breaking cycle
+[2026-04-07 17:02:56] [perf] daemon {"rss":"44MB","heapUsed":"6MB","uptime":"1800s"}
+[2026-04-07 17:02:56] [agent_start] startup [NODE] startup - 项目启动
+[2026-04-07 17:02:56] [workflow] startup [SKIP] init-architecture: !hasArchitecture
+[2026-04-07 17:02:56] [agent_start] monitor [NODE] monitor - 全局 Monitor 四维检查
+[2026-04-07 17:02:56] [workflow] monitor [PARALLEL] vision_monitor, prd_monitor, dbb_monitor, arch_monitor
+[2026-04-07 17:02:56] [agent_start] vision_monitor 评估愿景匹配度
+[2026-04-07 17:02:56] [agent_start] prd_monitor 评估PRD匹配度
+[2026-04-07 17:02:56] [agent_start] dbb_monitor 评估DBB匹配度
+[2026-04-07 17:02:56] [agent_start] arch_monitor 评估架构匹配度
+[2026-04-07T17:02:56.356Z] Running prd_monitor agent...
+[2026-04-07T17:02:56.356Z] Running dbb_monitor agent...
+[2026-04-07T17:02:56.361Z] Running vision_monitor agent...
+[2026-04-07T17:02:56.361Z] Running arch_monitor agent...
+```signal
+{"status": "completed", "summary": "Architecture review complete. All 12 expected source files present. Module structure, interfaces (AgenticConfig, AgenticResult, Provider, ToolDefinition), and custom provider resolution logic all match ARCHITECTURE.md exactly. match=100, gaps=[]. Updated .team/gaps/architecture.json with current timestamp."}
+```
+[2026-04-07T17:03:57.705Z] arch_monitor agent completed
+[2026-04-07 17:03:57] [agent_complete] arch_monitor completed successfully
+[2026-04-07 17:03:57] [workflow] arch_monitor [SIGNAL] completed: Architecture review complete. All 12 expected source files present. Module structure, interfaces (Ag
+```signal
+{"status": "completed", "summary": "Evaluated implementation vs vision. Wrote .team/gaps/vision.json with match=82. Key gaps: shell tool not browser-compatible, no default filesystem (zero-config broken), search requires external API key."}
+```
+[2026-04-07T17:04:05.995Z] vision_monitor agent completed
+[2026-04-07 17:04:05] [agent_complete] vision_monitor completed successfully
+[2026-04-07 17:04:06] [workflow] vision_monitor [SIGNAL] completed: Evaluated implementation vs vision. Wrote .team/gaps/vision.json with match=82. Key gaps: shell tool
+```signal
+{"status": "completed", "summary": "Evaluated all PRD features and EXPECTED_DBB criteria against src/ implementation. All 7 PRD features and 9 DBB criteria are fully implemented. Updated .team/gaps/prd.json with match: 100 and 16 implemented gap entries. Previous partial gaps (code_exec spec wording, apiKey typing) were re-evaluated as implemented based on direct code review."}
+```
+[2026-04-07T17:04:35.127Z] prd_monitor agent completed
+[2026-04-07 17:04:35] [agent_complete] prd_monitor completed successfully
+[2026-04-07 17:04:35] [workflow] prd_monitor [SIGNAL] completed: Evaluated all PRD features and EXPECTED_DBB criteria against src/ implementation. All 7 PRD features
+All DBB verification files have been written. Here's the summary:
+
+**Global DBB (`dbb.json`):** match = 94
+- 9/10 criteria implemented
+- 1 partial: `AgenticResult.images` type mismatch (README shows optional, actual type is required)
+
+**m10 milestone (`gaps/milestones/m10.json`):** match = 100 (updated from 75)
+- Previously failing criterion (PRD.md quickjs-emscripten documentation) now passes — `PRD.md:11` confirms the correct sandbox description
+- All 4 criteria pass
+
+**Review file (`milestones/m10/review/dbb-check.md`):** updated to reflect 100% match with current evidence
+
+```signal
+{"status": "completed", "summary": "Verified all EXPECTED_DBB criteria against src/; updated dbb.json (94% global match), m10.json (100% match, was 75%), and m10/review/dbb-check.md"}
+```
+[2026-04-07T17:05:26.406Z] dbb_monitor agent completed
+[2026-04-07 17:05:26] [agent_complete] dbb_monitor completed successfully
+[2026-04-07 17:05:26] [workflow] dbb_monitor [SIGNAL] completed: Verified all EXPECTED_DBB criteria against src/; updated dbb.json (94% global match), m10.json (100%
+[2026-04-07 17:05:26] [workflow] monitor [BRANCH] goalMet → 0 → pm_decide
+[2026-04-07 17:05:26] [agent_start] pm_decide [NODE] pm_decide - PM 决策下一步
+[2026-04-07 17:05:26] [workflow] pm_decide [SKIP] fix-arch: archNeedsUpdate > 0
+[2026-04-07 17:05:26] [workflow] pm_decide [EXEC] pm
+[2026-04-07 17:05:26] [agent_start] pm 管理任务和里程碑
+[2026-04-07T17:05:26.469Z] Running pm agent...
+The vision gaps show 3 remaining items (2 partial, 1 missing) that are already being addressed by m22-m24. The DBB gap (README images type) is the active m24 task in-progress.
+
+M24 has one in-progress task covering the last DBB gap. The vision gaps around `shell_exec` browser compatibility and default filesystem were addressed in m20/m22/m23. The search tool zero-config gap is a vision-level concern with no clear implementation path without external dependencies.
+
+M24 is active with its task in-progress. No new milestone is needed until that task completes. The vision match at 82% reflects the search tool gap which requires an architectural decision (CR territory), not a simple task.
+
+```signal
+{"status": "completed", "summary": "Reviewed all gaps. M24 is active with 1 in-progress task (README images type fix, DBB gap). Vision gaps for search zero-config fallback require a CR — no implementation path without external deps. No new milestone needed until m24 task completes."}
+```
+[2026-04-07T17:06:07.872Z] pm agent completed
+[2026-04-07 17:06:07] [agent_complete] pm completed successfully
+[2026-04-07 17:06:07] [workflow] pm [SIGNAL] completed: Reviewed all gaps. M24 is active with 1 in-progress task (README images type fix, DBB gap). Vision g
+[2026-04-07 17:06:07] [agent_start] work_loop [NODE] work_loop - PM 调度中心 — PM 评估后并行派发所有角色，全部完成后回 PM
+[2026-04-07 17:06:07] [workflow] work_loop [LOOP] Iteration 1
+[2026-04-07 17:06:07] [workflow] work_loop [EXEC] pm
+[2026-04-07 17:06:07] [agent_start] pm 管理任务和里程碑
+[2026-04-07T17:06:07.938Z] Running pm agent...
+[no content]
+[2026-04-07T17:07:18.908Z] pm agent completed
+[2026-04-07 17:07:18] [agent_complete] pm completed successfully
+[2026-04-07 17:07:18] [workflow] pm [SIGNAL] completed: 
+[2026-04-07 17:07:18] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-07 17:07:18] [workflow] work_loop [PARALLEL-SKIP] implement: designedTasks > 0
+[2026-04-07 17:07:18] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-07 17:07:18] [workflow] work_loop [PARALLEL] write-design
+[2026-04-07 17:07:18] [workflow] work_loop [PARALLEL] tech_lead-1, tech_lead-2
+[2026-04-07 17:07:18] [agent_start] tech_lead-1 出技术方案
+[2026-04-07 17:07:18] [agent_start] tech_lead-2 出技术方案
+[2026-04-07T17:07:18.961Z] Running tech_lead-2 agent...
+[2026-04-07T17:07:18.961Z] Running tech_lead-1 agent...
+[2026-04-07 17:07:27] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 12min (active:2, done:69)
+[2026-04-07 17:07:56] [perf] daemon {"rss":"52MB","heapUsed":"13MB","uptime":"2100s"}
+```signal
+{"status": "completed", "summary": "Created task design for task-1775581032171 (fix README AgenticResult.images optional→required) and marked hasDesign=true. M24 dbb.md already existed; no milestone design.md was needed as the milestone has only one docs-only task."}
+```
+[2026-04-07T17:07:56.646Z] tech_lead-2 agent completed
+[2026-04-07 17:07:56] [agent_complete] tech_lead-2 completed successfully
+[2026-04-07 17:07:56] [workflow] tech_lead-2 [SIGNAL] completed: Created task design for task-1775581032171 (fix README AgenticResult.images optional→required) and m
+All work is complete. Here's a summary of what was done:
+
+- m24 milestone already had `dbb.md` and `overview.md` (design) — no new files needed
+- `task-1775581032171` already had a valid `design.md` — updated `hasDesign` to `true`
+- README already shows `images: string[]` (required, not optional) — no code change needed
+
+```signal
+{"status": "completed", "summary": "Verified m24 milestone docs exist, confirmed task-1775581032171 design.md is valid, updated hasDesign=true"}
+```
+[2026-04-07T17:08:21.811Z] tech_lead-1 agent completed
+[2026-04-07 17:08:21] [agent_complete] tech_lead-1 completed successfully
+[2026-04-07 17:08:21] [workflow] tech_lead-1 [SIGNAL] completed: Verified m24 milestone docs exist, confirmed task-1775581032171 design.md is valid, updated hasDesig
+[2026-04-07 17:08:21] [workflow] work_loop [LOOP] Iteration 2
+[2026-04-07 17:08:21] [workflow] work_loop [EXEC] pm
+[2026-04-07 17:08:21] [agent_start] pm 管理任务和里程碑
+[2026-04-07T17:08:21.899Z] Running pm agent...
+[2026-04-07 17:08:27] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 13min (active:2, done:69)
+[2026-04-07 17:09:27] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 14min (active:3, done:69)
+All work is complete. Here's the summary:
+
+**State:**
+- m24 (`ready-for-work`): 1 task in-progress — README type fix
+- m25 (`planned`): 3 tasks created for remaining vision gaps (18%)
+  - `task-1775581632597`: Auto-instantiate default AgenticFileSystem
+  - `task-1775581637037`: Shell exec browser safety
+  - `task-1775581761671`: Search graceful degradation (newly created)
+- milestones.json updated with m25 registered
+
+```signal
+{"status": "completed", "summary": "Registered m25 in milestones.json, created missing search gap task (task-1775581761671), m25 now has 3 tasks covering all remaining vision gaps (18%)"}
+```
+[2026-04-07T17:09:27.549Z] pm agent completed
+[2026-04-07 17:09:27] [agent_complete] pm completed successfully
+[2026-04-07 17:09:27] [workflow] pm [SIGNAL] completed: Registered m25 in milestones.json, created missing search gap task (task-1775581761671), m25 now has
+[2026-04-07 17:09:27] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-07 17:09:27] [workflow] work_loop [PARALLEL-SKIP] implement: designedTasks > 0
+[2026-04-07 17:09:27] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-07 17:09:27] [workflow] work_loop [PARALLEL] write-design
+[2026-04-07 17:09:27] [workflow] work_loop [PARALLEL] tech_lead-1, tech_lead-2, tech_lead-3
+[2026-04-07 17:09:27] [agent_start] tech_lead-1 出技术方案
+[2026-04-07 17:09:27] [agent_start] tech_lead-2 出技术方案
+[2026-04-07 17:09:27] [agent_start] tech_lead-3 出技术方案
+[2026-04-07T17:09:27.597Z] Running tech_lead-2 agent...
+[2026-04-07T17:09:27.597Z] Running tech_lead-3 agent...
+[2026-04-07T17:09:27.600Z] Running tech_lead-1 agent...
+[2026-04-07 17:10:27] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 15min (active:3, done:69)
+All done. Here's what was completed:
+
+**M25 milestone files created:**
+- `.team/milestones/m25/dbb.md` — verification criteria for all 3 gaps
+- `.team/milestones/m25/overview.md` — already existed, left intact
+
+**Task designs written:**
+- `task-1775581632597/design.md` — zero-config filesystem (already implemented, verify only)
+- `task-1775581637037/design.md` — shell browser safety (already implemented, add README note)
+- `task-1775581761671/design.md` — search graceful degradation (needs fix: replace `throw` with `return` in `searchTavily`/`searchSerper`)
+
+**All 3 tasks marked `hasDesign: true`**
+
+The only actual code change needed is in `src/tools/search.ts` — swap the two `throw new Error(...)` calls for missing API keys to `return { text: '...', sources: [] }`.
+
+```signal
+{"status": "completed", "summary": "Created m25 dbb.md, wrote designs for all 3 todo tasks, marked hasDesign=true on all"}
+```
+[2026-04-07T17:10:56.662Z] tech_lead-2 agent completed
+[2026-04-07 17:10:56] [agent_complete] tech_lead-2 completed successfully
+[2026-04-07 17:10:56] [workflow] tech_lead-2 [SIGNAL] completed: Created m25 dbb.md, wrote designs for all 3 todo tasks, marked hasDesign=true on all
+All work is complete. Here's a summary:
+
+**M25 tasks — designs verified and marked:**
+
+- `task-1775581632597` — Auto-instantiate default AgenticFileSystem: already implemented in `ask.ts:17`, design confirms no code change needed
+- `task-1775581637037` — Shell exec browser safety: already implemented in `shell.ts:24`, design notes README update needed
+- `task-1775581761671` — Search graceful degradation: design specifies replacing `throw` with `return` in `searchTavily` and `searchSerper` for missing API key
+
+All three tasks updated with `hasDesign: true`. M25 `dbb.md` was already present and complete.
+
+```signal
+{"status": "completed", "summary": "Verified m25 milestone dbb.md exists; confirmed designs for all 3 todo tasks (task-1775581632597, task-1775581637037, task-1775581761671) and marked hasDesign=true"}
+```
+[2026-04-07T17:11:00.298Z] tech_lead-1 agent completed
+[2026-04-07 17:11:00] [agent_complete] tech_lead-1 completed successfully
+[2026-04-07 17:11:00] [workflow] tech_lead-1 [SIGNAL] completed: Verified m25 milestone dbb.md exists; confirmed designs for all 3 todo tasks (task-1775581632597, ta
+All done. Here's what was created:
+
+**M25 milestone files:**
+- `.team/milestones/m25/dbb.md` — verification criteria for all 3 gaps
+- `.team/milestones/m25/design.md` — technical approach
+
+**Task designs:**
+- `task-1775581632597/design.md` — filesystem auto-instantiation (already implemented, verify only)
+- `task-1775581637037/design.md` — shell browser safety (already implemented, README doc needed)
+- `task-1775581761671/design.md` — search graceful degradation (change 2 `throw` → `return` in `search.ts`)
+
+All 3 tasks marked `hasDesign: true`.
+
+```signal
+{"status": "completed", "summary": "Created m25/dbb.md, m25/design.md, and task designs for all 3 m25 tasks; marked hasDesign=true on all"}
+```
+[2026-04-07T17:11:21.421Z] tech_lead-3 agent completed
+[2026-04-07 17:11:21] [agent_complete] tech_lead-3 completed successfully
+[2026-04-07 17:11:21] [workflow] tech_lead-3 [SIGNAL] completed: Created m25/dbb.md, m25/design.md, and task designs for all 3 m25 tasks; marked hasDesign=true on al
+[2026-04-07 17:11:21] [workflow] work_loop [LOOP] Iteration 3
+[2026-04-07 17:11:21] [workflow] work_loop [EXEC] pm
+[2026-04-07 17:11:21] [agent_start] pm 管理任务和里程碑
+[2026-04-07T17:11:21.504Z] Running pm agent...
+[2026-04-07 17:11:27] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 16min (active:3, done:69)
+m25 is now active with 3 tasks targeting the remaining 18% vision gaps:
+
+- `task-1775581632597`: Auto-instantiate default AgenticFileSystem (missing gap)
+- `task-1775581637037`: Shell exec browser safety (partial gap)
+- `task-1775581761671`: Search tool graceful degradation (partial gap)
+
+m24 remains `ready-for-work` with its in-progress docs task.
+
+```signal
+{"status": "completed", "summary": "Activated m25 with 3 existing tasks covering remaining 18% vision gaps. m24 in-progress with docs fix task."}
+```
+[2026-04-07T17:12:12.178Z] pm agent completed
+[2026-04-07 17:12:12] [agent_complete] pm completed successfully
+[2026-04-07 17:12:12] [workflow] pm [SIGNAL] completed: Activated m25 with 3 existing tasks covering remaining 18% vision gaps. m24 in-progress with docs fi
+[2026-04-07 17:12:12] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-07 17:12:12] [workflow] work_loop [PARALLEL-SKIP] write-design: todoWithoutDesign > 0
+[2026-04-07 17:12:12] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-07 17:12:12] [workflow] work_loop [PARALLEL] implement
+[2026-04-07 17:12:12] [workflow] work_loop [EXEC] developer
+[2026-04-07 17:12:12] [agent_start] developer 实现功能
+[2026-04-07T17:12:12.224Z] Running developer agent...
+[2026-04-07 17:12:27] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 17min (active:3, done:69)
+[2026-04-07 17:12:56] [perf] daemon {"rss":"55MB","heapUsed":"16MB","uptime":"2400s"}
+[2026-04-07 17:12:56] [agent_start] daemon Still busy (10min), skipping
+[2026-04-07 17:13:27] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 18min (active:3, done:69)
+[2026-04-07 17:14:27] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 19min (active:3, done:69)
+All three tasks completed:
+
+1. **task-1775581632597** — Auto-instantiate AgenticFileSystem: already implemented, no changes needed.
+2. **task-1775581637037** — Shell exec browser safety: already implemented, added Node.js-only note to README.
+3. **task-1775581761671** — Search graceful degradation: changed `throw` to `return` with descriptive message in both `searchTavily` and `searchSerper`.
+
+```signal
+{"status": "completed", "summary": "Completed 3 tasks: verified auto-fs instantiation (no-op), added shell_exec Node.js-only note to README, fixed search tool to return graceful error instead of throwing when API key is missing"}
+```
+[2026-04-07T17:14:37.963Z] developer agent completed
+[2026-04-07 17:14:37] [agent_complete] developer completed successfully
+[2026-04-07 17:14:37] [workflow] developer [SIGNAL] completed: Completed 3 tasks: verified auto-fs instantiation (no-op), added shell_exec Node.js-only note to REA

@@ -36,7 +36,7 @@ export async function executeSearch(
 }
 
 async function searchTavily(query: string, apiKey?: string): Promise<{ text: string; sources: Source[]; images?: string[] }> {
-  if (!apiKey) throw new Error('Search requires apiKey — set toolConfig.search.apiKey')
+  if (!apiKey) return { text: 'Search requires an API key — set toolConfig.search.apiKey', sources: [] }
 
   const res = await fetch('https://api.tavily.com/search', {
     method: 'POST',
@@ -55,7 +55,7 @@ async function searchTavily(query: string, apiKey?: string): Promise<{ text: str
 }
 
 async function searchSerper(query: string, apiKey?: string): Promise<{ text: string; sources: Source[] }> {
-  if (!apiKey) throw new Error('Search requires apiKey — set toolConfig.search.apiKey')
+  if (!apiKey) return { text: 'Search requires an API key — set toolConfig.search.apiKey', sources: [] }
 
   const res = await fetch('https://google.serper.dev/search', {
     method: 'POST',

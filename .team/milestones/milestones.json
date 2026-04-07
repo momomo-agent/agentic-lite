@@ -95,7 +95,7 @@
     },
     {
       "id": "m10",
-      "name": "PRD Compliance — code_exec & Custom Provider",
+      "name": "PRD Compliance \u2014 code_exec & Custom Provider",
       "status": "completed",
       "tasks": [
         "task-1775559019099",
@@ -213,7 +213,7 @@
     },
     {
       "id": "m22",
-      "name": "Vision Gap Closure — Browser Shell & Pyodide Resilience",
+      "name": "Vision Gap Closure \u2014 Browser Shell & Pyodide Resilience",
       "status": "completed",
       "tasks": [
         "task-1775578831381",
@@ -229,13 +229,23 @@
         "task-1775579679306",
         "task-1775580346381"
       ]
-    }
-    ,{
+    },
+    {
       "id": "m24",
       "name": "README Type Accuracy & Final Gap Closure",
       "status": "ready-for-work",
       "tasks": [
         "task-1775581032171"
+      ]
+    },
+    {
+      "id": "m25",
+      "name": "Vision Gap Closure \u2014 Final 18%",
+      "status": "active",
+      "tasks": [
+        "task-1775581632597",
+        "task-1775581637037",
+        "task-1775581761671"
       ]
     }
   ]

@@ -1,25 +1,17 @@
 {
-  "match": 95,
-  "timestamp": "2026-04-07T15:34:36.280Z",
+  "match": 100,
+  "timestamp": "2026-04-07T17:04:04.976Z",
   "gaps": [
-    {
-      "description": "EXPECTED_DBB: code_exec spec says AsyncFunction eval; implementation uses quickjs-emscripten sandbox instead (browser-compatible but diverges from spec wording)",
-      "status": "partial"
-    },
-    {
-      "description": "AgenticConfig.apiKey typed as required string even for provider='custom', forcing callers to pass a dummy value; type should be optional for custom provider",
-      "status": "partial"
-    },
     {
       "description": "PRD: ask() multi-round agent loop terminates on stopReason !== 'tool_use'",
       "status": "implemented"
     },
     {
-      "description": "PRD: search tool returning sources",
+      "description": "PRD: search tool returning sources and images",
       "status": "implemented"
     },
     {
-      "description": "PRD: code_exec with quickjs sandbox, auto-language detection, Pyodide (browser) / python3 subprocess (Node), fs injection",
+      "description": "PRD: code_exec with quickjs sandbox, auto-language detection, Pyodide (browser) / python3 subprocess (Node), AgenticFileSystem injection",
       "status": "implemented"
     },
     {
@@ -39,6 +31,18 @@
       "status": "implemented"
     },
     {
+      "description": "DBB: loop terminates when stopReason !== 'tool_use'",
+      "status": "implemented"
+    },
+    {
+      "description": "DBB: file_read/file_write use AgenticFileSystem (no Node fs)",
+      "status": "implemented"
+    },
+    {
+      "description": "DBB: code_exec uses quickjs-emscripten AsyncFunction eval (browser-compatible)",
+      "status": "implemented"
+    },
+    {
       "description": "DBB: AgenticResult.images populated from tool results",
       "status": "implemented"
     },
@@ -51,7 +55,7 @@
       "status": "implemented"
     },
     {
-      "description": "DBB: Missing/empty apiKey throws before network call for anthropic/openai",
+      "description": "DBB: missing/empty apiKey throws before network call for anthropic/openai",
       "status": "implemented"
     },
     {

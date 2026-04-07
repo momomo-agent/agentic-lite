@@ -116,6 +116,8 @@ interface CodeResult {
 
 ### shell_exec
 
+> **Note:** `shell_exec` is Node.js-only. In browser environments it returns a descriptive error instead of crashing.
+
 Executes shell commands against the virtual filesystem.
 
 - Supports common commands: `ls`, `cat`, `grep`, `find`, `pwd`, etc.
