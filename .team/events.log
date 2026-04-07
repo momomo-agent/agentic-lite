@@ -670,3 +670,33 @@
 {"ts":"2026-04-07T03:29:32.140Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 23min (active:5, done:18)"}}
 {"ts":"2026-04-07T03:29:32.141Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 23min (active:5, done:18)\"}"}}
 {"ts":"2026-04-07T03:30:08.810Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":12,"memoryTotalMB":13,"cpuUser":0.449665,"cpuSystem":0.69072}}}
+{"ts":"2026-04-07T03:30:32.144Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 24min (active:5, done:18)"}}
+{"ts":"2026-04-07T03:30:32.145Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 24min (active:5, done:18)\"}"}}
+{"ts":"2026-04-07T03:30:51.313Z","type":"agent_complete","agent":"tech_lead","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":12,"cpuUser":0.452885,"cpuSystem":0.695912}}}
+{"ts":"2026-04-07T03:31:32.149Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 25min (active:5, done:18)"}}
+{"ts":"2026-04-07T03:31:32.150Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 25min (active:5, done:18)\"}"}}
+{"ts":"2026-04-07T03:32:32.154Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 26min (active:5, done:18)"}}
+{"ts":"2026-04-07T03:32:32.155Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 26min (active:5, done:18)\"}"}}
+{"ts":"2026-04-07T03:33:09.158Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775530596867","from":"review","to":"testing","title":"Fix images field lost in final return path"}}
+{"ts":"2026-04-07T03:33:32.155Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 27min (active:5, done:18)"}}
+{"ts":"2026-04-07T03:33:32.155Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 27min (active:5, done:18)\"}"}}
+{"ts":"2026-04-07T03:34:01.731Z","type":"agent_start","agent":"daemon","data":{"details":"Still busy (120min), skipping","performance":{"memoryMB":11,"memoryTotalMB":13,"cpuUser":0.46578,"cpuSystem":0.714885}}}
+{"ts":"2026-04-07T03:34:01.737Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"39MB\",\"heapUsed\":\"11MB\",\"uptime\":\"7200s\"}"}}
+{"ts":"2026-04-07T03:34:32.159Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 28min (active:5, done:18)"}}
+{"ts":"2026-04-07T03:34:32.159Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 28min (active:5, done:18)\"}"}}
+{"ts":"2026-04-07T03:34:59.026Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775530596867","from":"testing","to":"blocked","title":"Fix images field lost in final return path"}}
+{"ts":"2026-04-07T03:35:02.161Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 28min (active:4, done:18)"}}
+{"ts":"2026-04-07T03:35:02.161Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 28min (active:4, done:18)\"}"}}
+{"ts":"2026-04-07T03:35:05.162Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775530614268","from":"review","to":"testing","title":"Add apiKey validation in detectProvider"}}
+{"ts":"2026-04-07T03:35:32.163Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 29min (active:4, done:18)"}}
+{"ts":"2026-04-07T03:35:32.164Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 29min (active:4, done:18)\"}"}}
+{"ts":"2026-04-07T03:36:19.785Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775530614268","from":"testing","to":"blocked","title":"Add apiKey validation in detectProvider"}}
+{"ts":"2026-04-07T03:36:25.860Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775530933189","from":"review","to":"testing","title":"Implement custom provider support"}}
+{"ts":"2026-04-07T03:36:32.167Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 30min (active:3, done:18)"}}
+{"ts":"2026-04-07T03:36:32.167Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 30min (active:3, done:18)\"}"}}
+{"ts":"2026-04-07T03:37:32.172Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 31min (active:3, done:18)"}}
+{"ts":"2026-04-07T03:37:32.173Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 31min (active:3, done:18)\"}"}}
+{"ts":"2026-04-07T03:38:32.175Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 32min (active:3, done:18)"}}
+{"ts":"2026-04-07T03:38:32.175Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 32min (active:3, done:18)\"}"}}
+{"ts":"2026-04-07T03:38:36.264Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775530933189","from":"testing","to":"blocked","title":"Implement custom provider support"}}
+{"ts":"2026-04-07T03:38:48.082Z","type":"agent_complete","agent":"tester-2","data":{"details":"completed successfully","performance":{"memoryMB":12,"memoryTotalMB":15,"cpuUser":0.477437,"cpuSystem":0.730613}}}
