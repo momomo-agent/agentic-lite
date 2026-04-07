@@ -4318,3 +4318,20 @@
 {"ts":"2026-04-07T12:53:58.689Z","type":"task_status","agent":"tester","data":{"taskId":"task-1775565504597","from":"testing","to":"done","title":"Fix public API exports — ShellResult and shell tools"}}
 {"ts":"2026-04-07T12:54:08.807Z","type":"agent_complete","agent":"tester","data":{"details":"completed successfully","performance":{"memoryMB":8,"memoryTotalMB":11,"cpuUser":2.19806,"cpuSystem":3.329248}}}
 {"ts":"2026-04-07T12:54:08.808Z","type":"workflow","agent":"tester","data":{"details":"[SIGNAL] completed: Verified public API exports for ShellResult and shell tools - all 64 tests pass, task marked done"}}
+{"ts":"2026-04-07T12:54:08.973Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 7"}}
+{"ts":"2026-04-07T12:54:08.986Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T12:54:08.986Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":9,"memoryTotalMB":12,"cpuUser":2.203225,"cpuSystem":3.345045}}}
+{"ts":"2026-04-07T12:54:43.599Z","type":"task_created","agent":null,"data":{"taskId":"task-1775566483597","title":"Document custom provider fallback behavior","priority":"P1","group":"m12"}}
+{"ts":"2026-04-07T12:55:07.334Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":13,"memoryTotalMB":16,"cpuUser":2.212321,"cpuSystem":3.363212}}}
+{"ts":"2026-04-07T12:55:07.335Z","type":"workflow","agent":"pm","data":{"details":"[SIGNAL] completed: Assessed all active milestones. Created task-1775566483597 for undocumented custom provider fallback"}}
+{"ts":"2026-04-07T12:55:07.347Z","type":"workflow","agent":"work_loop","data":{"details":"[SKIP] write-dbb: milestoneNeedsDBB > 0"}}
+{"ts":"2026-04-07T12:55:07.349Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] implement: designedTasks > 0"}}
+{"ts":"2026-04-07T12:55:07.349Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] write-design, run-tests"}}
+{"ts":"2026-04-07T12:55:07.351Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] tech_lead"}}
+{"ts":"2026-04-07T12:55:07.351Z","type":"agent_start","agent":"tech_lead","data":{"details":"出技术方案","performance":{"memoryMB":14,"memoryTotalMB":16,"cpuUser":2.214112,"cpuSystem":3.369332}}}
+{"ts":"2026-04-07T12:55:07.351Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] tester-1, tester-2"}}
+{"ts":"2026-04-07T12:55:07.352Z","type":"agent_start","agent":"tester-1","data":{"details":"验证功能","performance":{"memoryMB":14,"memoryTotalMB":16,"cpuUser":2.214529,"cpuSystem":3.370145}}}
+{"ts":"2026-04-07T12:55:07.353Z","type":"agent_start","agent":"tester-2","data":{"details":"验证功能","performance":{"memoryMB":14,"memoryTotalMB":17,"cpuUser":2.214646,"cpuSystem":3.370448}}}
+{"ts":"2026-04-07T12:55:08.854Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"12MB\",\"heapUsed\":\"12MB\",\"uptime\":\"8701s\"}"}}
+{"ts":"2026-04-07T12:55:23.905Z","type":"agent_complete","agent":"tester-2","data":{"details":"completed successfully","performance":{"memoryMB":14,"memoryTotalMB":17,"cpuUser":2.220861,"cpuSystem":3.383883}}}
+{"ts":"2026-04-07T12:55:23.906Z","type":"workflow","agent":"tester-2","data":{"details":"[SIGNAL] completed: No claimable tasks found — both review tasks are locked"}}
