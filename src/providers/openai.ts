@@ -4,7 +4,7 @@ import type { AgenticConfig } from '../types.js'
 import type { Provider, ProviderMessage, ProviderResponse, ToolDefinition } from './provider.js'
 
 export function createOpenAIProvider(config: AgenticConfig): Provider {
-  if (!config.apiKey) throw new Error('apiKey is required for openai provider')
+  if (!config.apiKey && !config.baseUrl) throw new Error('apiKey is required for openai provider')
   const baseUrl = config.baseUrl ?? 'https://api.openai.com'
   const model = config.model ?? 'gpt-4o'
 
@@ -30,7 +30,7 @@ export function createOpenAIProvider(config: AgenticConfig): Provider {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${config.apiKey}`,
+          ...(config.apiKey ? { 'Authorization': `Bearer ${config.apiKey}` } : {}),
         },
         body: JSON.stringify(body),
       })

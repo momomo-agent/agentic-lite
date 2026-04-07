@@ -17,7 +17,7 @@ describe('DBB-005: custom provider skips apiKey', () => {
   // BUG: createOpenAIProvider throws 'apiKey is required for openai provider'
   // even when provider='custom' and only baseUrl is set.
   // provider.ts:46 skips apiKey check for custom, but createOpenAIProvider:7 still throws.
-  it.fails('does not throw with provider=custom, baseUrl, no apiKey', () => {
+  it('does not throw with provider=custom, baseUrl, no apiKey', () => {
     expect(() => createProvider({ provider: 'custom', baseUrl: 'http://localhost:11434', tools: [] })).not.toThrow()
   })
 })
