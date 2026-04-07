@@ -16,7 +16,7 @@
     "work_loop"
   ],
   "loopIterations": {
-    "work_loop": 2
+    "work_loop": 3
   },
   "transitionDepth": 11,
   "nodeVisitCounts": {
@@ -26,6 +26,10 @@
     "work_loop": 5,
     "milestone_qg": 3
   },
-  "contextOverrides": {},
-  "timestamp": "2026-04-07T16:39:12.649Z"
+  "contextOverrides": {
+    "lastAgentSignal": "blocked",
+    "agentEscalated": 0,
+    "agentBlocked": 1
+  },
+  "timestamp": "2026-04-07T16:41:50.099Z"
 }

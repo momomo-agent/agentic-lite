@@ -1,7 +1,7 @@
 {
   "agent": "pm",
-  "timestamp": "2026-04-07T16:39:12.616Z",
+  "timestamp": "2026-04-07T16:41:50.082Z",
   "exitCode": 0,
-  "status": "completed",
-  "summary": "Reviewed state: m23 is ready-for-work with 2 todo tasks covering remaining vision/PRD gaps. No architecture gaps. No new milestone needed — existing tasks are unassigned and ready for developer pickup."
+  "status": "blocked",
+  "summary": "m23 tasks are in review status — waiting for tester to approve before milestone can be completed or next milestone planned"
 }
