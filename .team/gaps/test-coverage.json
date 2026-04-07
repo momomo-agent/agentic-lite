@@ -1,14 +1,10 @@
 {
-  "totalTests": 20,
-  "passed": 20,
-  "failed": 0,
+  "totalTests": 3,
+  "passed": 1,
+  "failed": 2,
   "edgeCases": [
-    "Empty toolCalls array with stopReason=tool_use (handled by guard in implementation)",
-    "file tool with no fs configured returns error string",
-    "code_exec with empty code returns error",
-    "apiKey with whitespace-only string not validated",
-    "publishConfig registry field not checked",
-    "PRD.md section completeness not verified"
+    "Error object serialization: vm.dump() returns {name,message,stack} but String() gives [object Object]",
+    "Async/await not supported in QuickJS evalCode without executePendingJobs()"
   ],
-  "coverage": "100%"
+  "coverage": "33%"
 }
