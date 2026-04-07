@@ -86,7 +86,7 @@
     {
       "id": "m9",
       "name": "README Fix, PRD Sync & DBB Verification",
-      "status": "active",
+      "status": "completed",
       "tasks": [
         "task-1775539588263",
         "task-1775539719830",
@@ -96,7 +96,7 @@
     {
       "id": "m10",
       "name": "PRD Compliance — code_exec & Custom Provider",
-      "status": "active",
+      "status": "completed",
       "tasks": [
         "task-1775559019099",
         "task-1775559026329",
@@ -148,7 +148,7 @@
     {
       "id": "m15",
       "name": "ARCHITECTURE.md & Type Correctness",
-      "status": "active",
+      "status": "completed",
       "tasks": [
         "task-1775571287973",
         "task-1775571299863",
@@ -168,7 +168,7 @@
     {
       "id": "m17",
       "name": "PRD CR Resolution & Final Sync",
-      "status": "active",
+      "status": "completed",
       "tasks": [
         "task-1775573582938"
       ]

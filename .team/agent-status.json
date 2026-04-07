@@ -3,30 +3,30 @@
     "status": "idle",
     "lastRun": "2026-04-07T12:22:36.949Z",
     "currentTask": null,
-    "retryCount": 2
+    "retryCount": 0
   },
   "prd_monitor": {
     "status": "idle",
     "lastRun": "2026-04-07T12:22:25.381Z",
     "currentTask": null,
-    "retryCount": 2
+    "retryCount": 0
   },
   "dbb_monitor": {
     "status": "idle",
     "lastRun": "2026-04-07T12:22:27.327Z",
     "currentTask": null,
-    "retryCount": 1
+    "retryCount": 0
   },
   "arch_monitor": {
     "status": "idle",
     "lastRun": "2026-04-07T12:20:51.574Z",
     "currentTask": null,
-    "retryCount": 1
+    "retryCount": 0
   },
   "pm": {
-    "status": "running",
-    "lastRun": "2026-04-07T14:58:27.835Z",
-    "currentTask": "管理任务和里程碑",
+    "status": "idle",
+    "lastRun": "2026-04-07T15:02:47.964Z",
+    "currentTask": null,
     "retryCount": 0
   },
   "qa_lead": {
@@ -63,7 +63,7 @@
     "status": "idle",
     "lastRun": "2026-04-07T14:49:19.953Z",
     "currentTask": null,
-    "retryCount": 1
+    "retryCount": 0
   },
   "tester-2": {
     "status": "idle",
@@ -73,7 +73,7 @@
   },
   "tester": {
     "status": "idle",
-    "lastRun": "2026-04-07T14:58:45.762Z",
+    "lastRun": "2026-04-07T15:02:59.907Z",
     "currentTask": null,
     "retryCount": 0
   },

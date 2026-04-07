@@ -5284,3 +5284,52 @@
 {"ts":"2026-04-07T14:58:27.834Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":13,"memoryTotalMB":15,"cpuUser":4.212054,"cpuSystem":6.123306}}}
 {"ts":"2026-04-07T14:58:45.763Z","type":"agent_complete","agent":"tester","data":{"details":"completed successfully","performance":{"memoryMB":12,"memoryTotalMB":15,"cpuUser":4.212483,"cpuSystem":6.1238}}}
 {"ts":"2026-04-07T14:58:45.763Z","type":"workflow","agent":"tester","data":{"details":"[SIGNAL] blocked: No claimable tasks — task-1775573582938 is in review but cannot be claimed"}}
+{"ts":"2026-04-07T14:58:45.831Z","type":"workflow","agent":"work_loop","data":{"details":"[AGENT-SIGNAL] tester → blocked: No claimable tasks — task-1775573582938 is in review but cannot be claimed"}}
+{"ts":"2026-04-07T14:58:45.859Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 42"}}
+{"ts":"2026-04-07T14:58:45.872Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T14:58:45.872Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":13,"memoryTotalMB":15,"cpuUser":4.217583,"cpuSystem":6.138156}}}
+{"ts":"2026-04-07T14:58:48.451Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 12min (active:1, done:50)"}}
+{"ts":"2026-04-07T14:58:48.452Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 12min (active:1, done:50)\"}"}}
+{"ts":"2026-04-07T14:59:15.316Z","type":"agent_start","agent":"daemon","data":{"details":"DevTeam daemon started (safety=600s, timeout=7200s)","performance":{"memoryMB":5,"memoryTotalMB":8,"cpuUser":0.023838,"cpuSystem":0.0056}}}
+{"ts":"2026-04-07T14:59:15.317Z","type":"workflow","agent":"monitor","data":{"details":"[HEALTH] Monitor started"}}
+{"ts":"2026-04-07T14:59:15.318Z","type":"workflow","agent":null,"data":{"details":"[RESUME] Resuming from checkpoint: node=work_loop, step=0"}}
+{"ts":"2026-04-07T14:59:15.318Z","type":"agent_start","agent":"work_loop","data":{"details":"[NODE] work_loop - PM 调度中心 — PM 评估后并行派发所有角色，全部完成后回 PM","performance":{"memoryMB":5,"memoryTotalMB":8,"cpuUser":0.025355,"cpuSystem":0.006236}}}
+{"ts":"2026-04-07T14:59:15.333Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 1"}}
+{"ts":"2026-04-07T14:59:15.346Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T14:59:15.346Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":6,"memoryTotalMB":10,"cpuUser":0.034611,"cpuSystem":0.017695}}}
+{"ts":"2026-04-07T14:59:40.051Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":8,"memoryTotalMB":10,"cpuUser":0.044624,"cpuSystem":0.024508}}}
+{"ts":"2026-04-07T14:59:40.051Z","type":"workflow","agent":"pm","data":{"details":"[SIGNAL] blocked: task-1775573582938 (Resolve pending CRs and sync PRD.md) is in review — waiting for tester approval "}}
+{"ts":"2026-04-07T14:59:40.052Z","type":"workflow","agent":"work_loop","data":{"details":"[AGENT-SIGNAL] pm → blocked: task-1775573582938 (Resolve pending CRs and sync PRD.md) is in review — waiting "}}
+{"ts":"2026-04-07T14:59:40.061Z","type":"workflow","agent":"work_loop","data":{"details":"[SKIP] write-dbb: milestoneNeedsDBB > 0"}}
+{"ts":"2026-04-07T14:59:40.061Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] write-design: todoWithoutDesign > 0"}}
+{"ts":"2026-04-07T14:59:40.062Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] implement: designedTasks > 0"}}
+{"ts":"2026-04-07T14:59:40.062Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] run-tests"}}
+{"ts":"2026-04-07T14:59:40.062Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] tester"}}
+{"ts":"2026-04-07T14:59:40.062Z","type":"agent_start","agent":"tester","data":{"details":"验证功能","performance":{"memoryMB":9,"memoryTotalMB":12,"cpuUser":0.049125,"cpuSystem":0.032668}}}
+{"ts":"2026-04-07T15:00:19.215Z","type":"agent_complete","agent":"daemon","data":{"details":"DevTeam daemon stopped","performance":{"memoryMB":6,"memoryTotalMB":9,"cpuUser":0.070872,"cpuSystem":0.045803}}}
+{"ts":"2026-04-07T15:00:21.522Z","type":"workflow","agent":"daemon","data":{"details":"Reset stuck agent: tester"}}
+{"ts":"2026-04-07T15:00:21.523Z","type":"agent_start","agent":"daemon","data":{"details":"DevTeam daemon started (safety=600s, timeout=7200s)","performance":{"memoryMB":5,"memoryTotalMB":7,"cpuUser":0.02478,"cpuSystem":0.006216}}}
+{"ts":"2026-04-07T15:00:21.523Z","type":"workflow","agent":"monitor","data":{"details":"[HEALTH] Monitor started"}}
+{"ts":"2026-04-07T15:00:21.524Z","type":"workflow","agent":null,"data":{"details":"[RESUME] Resuming from checkpoint: node=work_loop, step=2"}}
+{"ts":"2026-04-07T15:00:21.524Z","type":"agent_start","agent":"work_loop","data":{"details":"[NODE] work_loop - PM 调度中心 — PM 评估后并行派发所有角色，全部完成后回 PM","performance":{"memoryMB":6,"memoryTotalMB":8,"cpuUser":0.025537,"cpuSystem":0.006734}}}
+{"ts":"2026-04-07T15:00:21.539Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 1"}}
+{"ts":"2026-04-07T15:00:21.561Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T15:00:21.561Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":5,"memoryTotalMB":10,"cpuUser":0.035739,"cpuSystem":0.019091}}}
+{"ts":"2026-04-07T15:00:40.983Z","type":"task_status","agent":"tester","data":{"taskId":"task-1775573582938","from":"review","to":"testing","title":"Resolve pending CRs and sync PRD.md"}}
+{"ts":"2026-04-07T15:01:36.379Z","type":"task_status","agent":"tester","data":{"taskId":"task-1775573582938","from":"testing","to":"done","title":"Resolve pending CRs and sync PRD.md"}}
+{"ts":"2026-04-07T15:01:51.145Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775539719830","from":"blocked","to":"done","title":"Update PRD.md — add shell_exec and Python code_exec"}}
+{"ts":"2026-04-07T15:01:51.179Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775559026329","from":"blocked","to":"done","title":"Align PRD code_exec sandbox spec"}}
+{"ts":"2026-04-07T15:01:51.209Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775571299895","from":"blocked","to":"done","title":"Add shellResults to PRD AgenticResult schema"}}
+{"ts":"2026-04-07T15:02:47.966Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":10,"memoryTotalMB":12,"cpuUser":0.069426,"cpuSystem":0.053964}}}
+{"ts":"2026-04-07T15:02:47.972Z","type":"workflow","agent":"pm","data":{"details":"[SIGNAL] completed: Closed stale active milestones m9/m10/m15/m17 as completed. Marked 3 superseded blocked tasks as don"}}
+{"ts":"2026-04-07T15:02:48.322Z","type":"workflow","agent":"work_loop","data":{"details":"[SKIP] write-dbb: milestoneNeedsDBB > 0"}}
+{"ts":"2026-04-07T15:02:48.324Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] write-design: todoWithoutDesign > 0"}}
+{"ts":"2026-04-07T15:02:48.325Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] implement: designedTasks > 0"}}
+{"ts":"2026-04-07T15:02:48.325Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0"}}
+{"ts":"2026-04-07T15:02:49.170Z","type":"workflow","agent":"work_loop","data":{"details":"[BRANCH] doneCount > 0 → true → milestone_qg"}}
+{"ts":"2026-04-07T15:02:49.170Z","type":"workflow","agent":"work_loop","data":{"details":"[EXIT] todoCount == 0 && designedTasks == 0 && reviewCount == 0 && inProgressCount == 0 && testingCount == 0 && blockedCount == 0 → milestone_qg"}}
+{"ts":"2026-04-07T15:02:49.171Z","type":"agent_start","agent":"milestone_qg","data":{"details":"[NODE] milestone_qg - 里程碑 QG — 对照 DBB 验收","performance":{"memoryMB":11,"memoryTotalMB":15,"cpuUser":0.085942,"cpuSystem":0.099464}}}
+{"ts":"2026-04-07T15:02:49.180Z","type":"workflow","agent":"milestone_qg","data":{"details":"[EXEC] tester"}}
+{"ts":"2026-04-07T15:02:49.180Z","type":"agent_start","agent":"tester","data":{"details":"验证功能","performance":{"memoryMB":11,"memoryTotalMB":15,"cpuUser":0.088285,"cpuSystem":0.105835}}}
+{"ts":"2026-04-07T15:02:59.907Z","type":"agent_complete","agent":"tester","data":{"details":"completed successfully","performance":{"memoryMB":13,"memoryTotalMB":15,"cpuUser":0.094687,"cpuSystem":0.11449}}}
+{"ts":"2026-04-07T15:02:59.907Z","type":"workflow","agent":"tester","data":{"details":"[SIGNAL] completed: No tasks in review status — all tasks are done. Nothing to test."}}
