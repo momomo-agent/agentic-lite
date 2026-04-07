@@ -5845,3 +5845,11 @@ Currently, there are no tasks meeting these criteria. All available work has bee
 [2026-04-07T11:04:06.488Z] developer agent completed
 [2026-04-07 11:04:06] [agent_complete] developer completed successfully
 [2026-04-07 11:04:06] [workflow] developer [SIGNAL] completed: No available tasks to claim. All todo tasks are blocked by tasks in review status. 27 tasks done, 3 
+No tasks are currently claimable — all review tasks are held by other agents and the todo task is blocked by unfinished dependencies. I'll wait for tasks to become available.
+
+```signal
+{"status": "blocked", "summary": "No claimable tasks — all review tasks held by other agents, todo task blocked by dependencies"}
+```
+[2026-04-07T11:04:39.812Z] tester-2 agent completed
+[2026-04-07 11:04:39] [agent_complete] tester-2 completed successfully
+[2026-04-07 11:04:39] [workflow] tester-2 [SIGNAL] blocked: No claimable tasks — all review tasks held by other agents, todo task blocked by dependencies
