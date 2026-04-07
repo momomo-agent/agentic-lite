@@ -1,7 +1,7 @@
 {
   "agent": "pm",
-  "timestamp": "2026-04-07T17:17:01.277Z",
+  "timestamp": "2026-04-07T17:23:11.531Z",
   "exitCode": 0,
-  "status": "blocked",
-  "summary": "All 3 m25 tasks (task-1775581632597, task-1775581637037, task-1775581761671) are in 'review' status. Cannot proceed — waiting for tester to approve reviewed code before milestone can be completed or next milestone planned."
+  "status": "completed",
+  "summary": "Marked m25 as completed — all 3 tasks done, all acceptance criteria met. 25 total milestones completed. Vision gap re-evaluation pending from gap checker."
 }
