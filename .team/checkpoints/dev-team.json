@@ -10,23 +10,25 @@
     "work_loop",
     "milestone_qg",
     "work_loop",
+    "milestone_qg",
+    "work_loop",
     "milestone_qg"
   ],
   "loopIterations": {
     "work_loop": 4
   },
-  "transitionDepth": 8,
+  "transitionDepth": 10,
   "nodeVisitCounts": {
     "startup": 1,
     "monitor": 2,
     "pm_decide": 1,
-    "work_loop": 2,
-    "milestone_qg": 2
+    "work_loop": 3,
+    "milestone_qg": 3
   },
   "contextOverrides": {
     "lastAgentSignal": "blocked",
     "agentEscalated": 0,
     "agentBlocked": 1
   },
-  "timestamp": "2026-04-07T11:36:25.257Z"
+  "timestamp": "2026-04-07T11:40:00.706Z"
 }

@@ -95,8 +95,8 @@
     },
     {
       "id": "m10",
-      "name": "PRD Compliance — code_exec & Custom Provider",
-      "status": "planned",
+      "name": "PRD Compliance \u2014 code_exec & Custom Provider",
+      "status": "active",
       "tasks": [
         "task-1775559019099",
         "task-1775559026329"
