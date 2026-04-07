@@ -5503,3 +5503,29 @@
 {"ts":"2026-04-07T15:22:24.151Z","type":"agent_start","agent":"tester","data":{"details":"验证功能","performance":{"memoryMB":12,"memoryTotalMB":15,"cpuUser":0.279968,"cpuSystem":0.281894}}}
 {"ts":"2026-04-07T15:22:42.336Z","type":"agent_complete","agent":"tester","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":9,"cpuUser":0.287695,"cpuSystem":0.285251}}}
 {"ts":"2026-04-07T15:22:42.337Z","type":"workflow","agent":"tester","data":{"details":"[SIGNAL] completed: No tasks in review status found. All tasks are done or in-progress with tech leads."}}
+{"ts":"2026-04-07T15:22:42.493Z","type":"workflow","agent":"milestone_qg","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T15:22:42.493Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":8,"memoryTotalMB":10,"cpuUser":0.292383,"cpuSystem":0.296708}}}
+{"ts":"2026-04-07T15:23:05.992Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":8,"cpuUser":0.292919,"cpuSystem":0.297533}}}
+{"ts":"2026-04-07T15:23:05.992Z","type":"workflow","agent":"pm","data":{"details":"[SIGNAL] blocked: M19 tasks in-progress (README API docs, PRD sync). Waiting for completion before milestone can close"}}
+{"ts":"2026-04-07T15:23:05.992Z","type":"workflow","agent":"milestone_qg","data":{"details":"[AGENT-SIGNAL] pm → blocked: M19 tasks in-progress (README API docs, PRD sync). Waiting for completion before"}}
+{"ts":"2026-04-07T15:23:06.001Z","type":"workflow","agent":"milestone_qg","data":{"details":"[SKIP] cross-validate: milestoneComplete"}}
+{"ts":"2026-04-07T15:23:06.004Z","type":"workflow","agent":"milestone_qg","data":{"details":"[SKIP] mark-complete: milestoneComplete"}}
+{"ts":"2026-04-07T15:23:06.006Z","type":"workflow","agent":"milestone_qg","data":{"details":"[SKIP] auto-tag: milestoneComplete"}}
+{"ts":"2026-04-07T15:23:06.014Z","type":"workflow","agent":"milestone_qg","data":{"details":"[BRANCH] milestoneComplete → false → work_loop"}}
+{"ts":"2026-04-07T15:23:06.015Z","type":"agent_start","agent":"work_loop","data":{"details":"[NODE] work_loop - PM 调度中心 — PM 评估后并行派发所有角色，全部完成后回 PM","performance":{"memoryMB":6,"memoryTotalMB":9,"cpuUser":0.299016,"cpuSystem":0.314582}}}
+{"ts":"2026-04-07T15:23:06.029Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 1"}}
+{"ts":"2026-04-07T15:23:06.053Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T15:23:06.053Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":6,"memoryTotalMB":9,"cpuUser":0.303307,"cpuSystem":0.326533}}}
+{"ts":"2026-04-07T15:23:30.561Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":9,"memoryTotalMB":12,"cpuUser":0.310876,"cpuSystem":0.333261}}}
+{"ts":"2026-04-07T15:23:30.562Z","type":"workflow","agent":"pm","data":{"details":"[SIGNAL] completed: Checked m19 status: 2 tasks in-progress (README API docs, PRD sync). No action needed — waiting for "}}
+{"ts":"2026-04-07T15:23:30.571Z","type":"workflow","agent":"work_loop","data":{"details":"[SKIP] write-dbb: milestoneNeedsDBB > 0"}}
+{"ts":"2026-04-07T15:23:30.572Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] write-design: todoWithoutDesign > 0"}}
+{"ts":"2026-04-07T15:23:30.572Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] implement: designedTasks > 0"}}
+{"ts":"2026-04-07T15:23:30.572Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0"}}
+{"ts":"2026-04-07T15:23:30.600Z","type":"workflow","agent":"work_loop","data":{"details":"[BRANCH] doneCount > 0 → true → milestone_qg"}}
+{"ts":"2026-04-07T15:23:30.601Z","type":"workflow","agent":"work_loop","data":{"details":"[EXIT] todoCount == 0 && designedTasks == 0 && reviewCount == 0 && inProgressCount == 0 && testingCount == 0 && blockedCount == 0 → milestone_qg"}}
+{"ts":"2026-04-07T15:23:30.601Z","type":"agent_start","agent":"milestone_qg","data":{"details":"[NODE] milestone_qg - 里程碑 QG — 对照 DBB 验收","performance":{"memoryMB":9,"memoryTotalMB":12,"cpuUser":0.317487,"cpuSystem":0.353702}}}
+{"ts":"2026-04-07T15:23:30.608Z","type":"workflow","agent":"milestone_qg","data":{"details":"[EXEC] tester"}}
+{"ts":"2026-04-07T15:23:30.608Z","type":"agent_start","agent":"tester","data":{"details":"验证功能","performance":{"memoryMB":10,"memoryTotalMB":12,"cpuUser":0.319276,"cpuSystem":0.359277}}}
+{"ts":"2026-04-07T15:23:55.219Z","type":"agent_complete","agent":"tester","data":{"details":"completed successfully","performance":{"memoryMB":12,"memoryTotalMB":15,"cpuUser":0.322451,"cpuSystem":0.361751}}}
+{"ts":"2026-04-07T15:23:55.219Z","type":"workflow","agent":"tester","data":{"details":"[SIGNAL] completed: No tasks in review status found. All tasks are done or in-progress by other agents."}}
