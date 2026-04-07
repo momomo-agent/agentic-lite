@@ -6511,3 +6511,28 @@
 {"ts":"2026-04-07T17:27:56.895Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"12MB\",\"heapUsed\":\"6MB\",\"uptime\":\"3301s\"}"}}
 {"ts":"2026-04-07T17:28:14.546Z","type":"agent_complete","agent":"tester","data":{"details":"completed successfully","performance":{"memoryMB":10,"memoryTotalMB":15,"cpuUser":1.433226,"cpuSystem":2.303755}}}
 {"ts":"2026-04-07T17:28:14.547Z","type":"workflow","agent":"tester","data":{"details":"[SIGNAL] completed: No tasks in review status — all tasks are done, nothing to test"}}
+{"ts":"2026-04-07T17:28:14.728Z","type":"workflow","agent":"milestone_qg","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T17:28:14.728Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":11,"memoryTotalMB":12,"cpuUser":1.436943,"cpuSystem":2.31758}}}
+{"ts":"2026-04-07T17:28:48.714Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":14,"memoryTotalMB":16,"cpuUser":1.440896,"cpuSystem":2.321319}}}
+{"ts":"2026-04-07T17:28:48.714Z","type":"workflow","agent":"pm","data":{"details":"[SIGNAL] completed: All 25 milestones completed, 73 tasks done, 0 open architecture gaps, 0 open PRD gaps. Vision gap fi"}}
+{"ts":"2026-04-07T17:28:48.725Z","type":"workflow","agent":"milestone_qg","data":{"details":"[SKIP] cross-validate: milestoneComplete"}}
+{"ts":"2026-04-07T17:28:48.725Z","type":"workflow","agent":"milestone_qg","data":{"details":"[SKIP] mark-complete: milestoneComplete"}}
+{"ts":"2026-04-07T17:28:48.726Z","type":"workflow","agent":"milestone_qg","data":{"details":"[SKIP] auto-tag: milestoneComplete"}}
+{"ts":"2026-04-07T17:28:48.735Z","type":"workflow","agent":"milestone_qg","data":{"details":"[BRANCH] milestoneComplete → false → work_loop"}}
+{"ts":"2026-04-07T17:28:48.736Z","type":"agent_start","agent":"work_loop","data":{"details":"[NODE] work_loop - PM 调度中心 — PM 评估后并行派发所有角色，全部完成后回 PM","performance":{"memoryMB":14,"memoryTotalMB":17,"cpuUser":1.445807,"cpuSystem":2.337888}}}
+{"ts":"2026-04-07T17:28:48.752Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 1"}}
+{"ts":"2026-04-07T17:28:48.767Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T17:28:48.768Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":14,"memoryTotalMB":17,"cpuUser":1.450228,"cpuSystem":2.351649}}}
+{"ts":"2026-04-07T17:29:23.406Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":9,"memoryTotalMB":11,"cpuUser":1.460882,"cpuSystem":2.358746}}}
+{"ts":"2026-04-07T17:29:23.407Z","type":"workflow","agent":"pm","data":{"details":"[SIGNAL] completed: All 25 milestones completed, 73 tasks done. Vision gaps (shell browser safety, default filesystem, s"}}
+{"ts":"2026-04-07T17:29:23.420Z","type":"workflow","agent":"work_loop","data":{"details":"[SKIP] write-dbb: milestoneNeedsDBB > 0"}}
+{"ts":"2026-04-07T17:29:23.421Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] write-design: todoWithoutDesign > 0"}}
+{"ts":"2026-04-07T17:29:23.421Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] implement: designedTasks > 0"}}
+{"ts":"2026-04-07T17:29:23.422Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0"}}
+{"ts":"2026-04-07T17:29:23.464Z","type":"workflow","agent":"work_loop","data":{"details":"[BRANCH] doneCount > 0 → true → milestone_qg"}}
+{"ts":"2026-04-07T17:29:23.465Z","type":"workflow","agent":"work_loop","data":{"details":"[EXIT] todoCount == 0 && designedTasks == 0 && reviewCount == 0 && inProgressCount == 0 && testingCount == 0 && blockedCount == 0 → milestone_qg"}}
+{"ts":"2026-04-07T17:29:23.465Z","type":"agent_start","agent":"milestone_qg","data":{"details":"[NODE] milestone_qg - 里程碑 QG — 对照 DBB 验收","performance":{"memoryMB":9,"memoryTotalMB":12,"cpuUser":1.469367,"cpuSystem":2.385394}}}
+{"ts":"2026-04-07T17:29:23.474Z","type":"workflow","agent":"milestone_qg","data":{"details":"[EXEC] tester"}}
+{"ts":"2026-04-07T17:29:23.474Z","type":"agent_start","agent":"tester","data":{"details":"验证功能","performance":{"memoryMB":10,"memoryTotalMB":12,"cpuUser":1.471423,"cpuSystem":2.392461}}}
+{"ts":"2026-04-07T17:29:47.909Z","type":"agent_complete","agent":"tester","data":{"details":"completed successfully","performance":{"memoryMB":12,"memoryTotalMB":16,"cpuUser":1.476675,"cpuSystem":2.398448}}}
+{"ts":"2026-04-07T17:29:47.910Z","type":"workflow","agent":"tester","data":{"details":"[SIGNAL] completed: No tasks in review status found — nothing to claim or test"}}
