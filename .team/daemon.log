@@ -8674,3 +8674,61 @@ Both review tasks are already claimed by other agents. No tasks available for me
 [2026-04-07T12:55:32.752Z] tester-1 agent completed
 [2026-04-07 12:55:32] [agent_complete] tester-1 completed successfully
 [2026-04-07 12:55:32] [workflow] tester-1 [SIGNAL] completed: No claimable tasks in review status — both already claimed by other agents
+Done. Here's what was completed:
+
+- **task-1775566483597**: Wrote `design.md` documenting the custom provider fallback (documentation-only task, no code changes needed)
+- **CR submitted**: `cr-1744030590.json` requesting ARCHITECTURE.md update to document the three-step `provider='custom'` resolution path
+- **Task updated**: `hasDesign=true`
+
+All active milestone tasks now have designs.
+
+```signal
+{"status": "completed", "summary": "Wrote design for task-1775566483597 (custom provider fallback docs) and submitted CR cr-1744030590 for ARCHITECTURE.md update"}
+```
+[2026-04-07T12:56:50.289Z] tech_lead agent completed
+[2026-04-07 12:56:50] [agent_complete] tech_lead completed successfully
+[2026-04-07 12:56:50] [workflow] tech_lead [SIGNAL] completed: Wrote design for task-1775566483597 (custom provider fallback docs) and submitted CR cr-1744030590 f
+[2026-04-07 12:56:50] [workflow] work_loop [LOOP] Iteration 8
+[2026-04-07 12:56:50] [workflow] work_loop [EXEC] pm
+[2026-04-07 12:56:50] [agent_start] pm 管理任务和里程碑
+[2026-04-07T12:56:50.388Z] Running pm agent...
+Current state assessment:
+
+**m9** (README Fix, PRD Sync & DBB Verification):
+- 2 done, 1 blocked (PRD update) — CR already submitted, waiting on L2 approval
+
+**m10** (PRD Compliance):
+- 2 done, 1 blocked (PRD code_exec spec) — CR already submitted, waiting on L2 approval
+
+**m12** (Public API Surface & Architecture Spec):
+- 1 done, 2 in review (tester must approve), 1 todo blocked by review task
+
+All blocked tasks have CRs pending. The 2 review tasks in m12 are awaiting tester approval — I cannot move those. The todo task is correctly blocked by the review task.
+
+No new tasks needed. All gaps are either addressed or have pending CRs. Milestones cannot be closed until testers approve review tasks.
+
+```signal
+{"status": "completed", "summary": "Assessed all active milestones (m9, m10, m12). Blocked tasks have existing CRs pending L2 approval. Updated task-1775566483597 with milestoneId=m12 and blockedBy dependency on ARCHITECTURE.md review task. Two m12 tasks in review awaiting tester approval — no PM action possible until testers complete review."}
+```
+[2026-04-07T12:58:09.978Z] pm agent completed
+[2026-04-07 12:58:09] [agent_complete] pm completed successfully
+[2026-04-07 12:58:09] [workflow] pm [SIGNAL] completed: Assessed all active milestones (m9, m10, m12). Blocked tasks have existing CRs pending L2 approval. 
+[2026-04-07 12:58:10] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-07 12:58:10] [workflow] work_loop [PARALLEL-SKIP] write-design: todoWithoutDesign > 0
+[2026-04-07 12:58:10] [workflow] work_loop [PARALLEL] implement, run-tests
+[2026-04-07 12:58:10] [workflow] work_loop [EXEC] developer
+[2026-04-07 12:58:10] [agent_start] developer 实现功能
+[2026-04-07 12:58:10] [workflow] work_loop [PARALLEL] tester-1, tester-2
+[2026-04-07 12:58:10] [agent_start] tester-1 验证功能
+[2026-04-07 12:58:10] [agent_start] tester-2 验证功能
+[2026-04-07T12:58:10.206Z] Running developer agent...
+[2026-04-07T12:58:10.236Z] Running tester-1 agent...
+[2026-04-07T12:58:10.372Z] Running tester-2 agent...
+Both tasks in "review" status cannot be claimed (likely already assigned to other testers). There are no available tasks for me to work on right now.
+
+```signal
+{"status": "completed", "summary": "No claimable tasks found — both review tasks (task-1775565517510, task-1775565533987) are already claimed by other agents"}
+```
+[2026-04-07T12:58:29.638Z] tester-1 agent completed
+[2026-04-07 12:58:29] [agent_complete] tester-1 completed successfully
+[2026-04-07 12:58:29] [workflow] tester-1 [SIGNAL] completed: No claimable tasks found — both review tasks (task-1775565517510, task-1775565533987) are already cl

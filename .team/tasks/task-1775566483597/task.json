@@ -5,9 +5,12 @@
   "status": "todo",
   "priority": "P1",
   "assignee": "developer",
-  "blockedBy": [],
+  "blockedBy": [
+    "task-1775565533987"
+  ],
   "groupId": "m12",
-  "hasDesign": false,
+  "hasDesign": true,
   "created": "2026-04-07T12:54:43.597Z",
-  "updated": "2026-04-07T12:54:53.900Z"
+  "updated": "2026-04-07T12:57:58.263Z",
+  "milestoneId": "m12"
 }

@@ -4337,3 +4337,20 @@
 {"ts":"2026-04-07T12:55:23.906Z","type":"workflow","agent":"tester-2","data":{"details":"[SIGNAL] completed: No claimable tasks found — both review tasks are locked"}}
 {"ts":"2026-04-07T12:55:32.756Z","type":"agent_complete","agent":"tester-1","data":{"details":"completed successfully","performance":{"memoryMB":14,"memoryTotalMB":17,"cpuUser":2.221431,"cpuSystem":3.385889}}}
 {"ts":"2026-04-07T12:55:32.757Z","type":"workflow","agent":"tester-1","data":{"details":"[SIGNAL] completed: No claimable tasks in review status — both already claimed by other agents"}}
+{"ts":"2026-04-07T12:56:50.294Z","type":"agent_complete","agent":"tech_lead","data":{"details":"completed successfully","performance":{"memoryMB":10,"memoryTotalMB":12,"cpuUser":2.237209,"cpuSystem":3.411264}}}
+{"ts":"2026-04-07T12:56:50.295Z","type":"workflow","agent":"tech_lead","data":{"details":"[SIGNAL] completed: Wrote design for task-1775566483597 (custom provider fallback docs) and submitted CR cr-1744030590 f"}}
+{"ts":"2026-04-07T12:56:50.339Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 8"}}
+{"ts":"2026-04-07T12:56:50.353Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T12:56:50.353Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":9,"memoryTotalMB":12,"cpuUser":2.241958,"cpuSystem":3.426039}}}
+{"ts":"2026-04-07T12:58:09.988Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":13,"memoryTotalMB":16,"cpuUser":2.252764,"cpuSystem":3.445093}}}
+{"ts":"2026-04-07T12:58:09.990Z","type":"workflow","agent":"pm","data":{"details":"[SIGNAL] completed: Assessed all active milestones (m9, m10, m12). Blocked tasks have existing CRs pending L2 approval. "}}
+{"ts":"2026-04-07T12:58:10.012Z","type":"workflow","agent":"work_loop","data":{"details":"[SKIP] write-dbb: milestoneNeedsDBB > 0"}}
+{"ts":"2026-04-07T12:58:10.013Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] write-design: todoWithoutDesign > 0"}}
+{"ts":"2026-04-07T12:58:10.014Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] implement, run-tests"}}
+{"ts":"2026-04-07T12:58:10.015Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] developer"}}
+{"ts":"2026-04-07T12:58:10.016Z","type":"agent_start","agent":"developer","data":{"details":"实现功能","performance":{"memoryMB":15,"memoryTotalMB":17,"cpuUser":2.256287,"cpuSystem":3.457148}}}
+{"ts":"2026-04-07T12:58:10.020Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] tester-1, tester-2"}}
+{"ts":"2026-04-07T12:58:10.020Z","type":"agent_start","agent":"tester-1","data":{"details":"验证功能","performance":{"memoryMB":15,"memoryTotalMB":17,"cpuUser":2.256676,"cpuSystem":3.458118}}}
+{"ts":"2026-04-07T12:58:10.154Z","type":"agent_start","agent":"tester-2","data":{"details":"验证功能","performance":{"memoryMB":15,"memoryTotalMB":17,"cpuUser":2.257078,"cpuSystem":3.458853}}}
+{"ts":"2026-04-07T12:58:29.654Z","type":"agent_complete","agent":"tester-1","data":{"details":"completed successfully","performance":{"memoryMB":15,"memoryTotalMB":17,"cpuUser":2.261171,"cpuSystem":3.467623}}}
+{"ts":"2026-04-07T12:58:29.657Z","type":"workflow","agent":"tester-1","data":{"details":"[SIGNAL] completed: No claimable tasks found — both review tasks (task-1775565517510, task-1775565533987) are already cl"}}
