@@ -1,7 +1,7 @@
 {
   "agent": "tester",
-  "timestamp": "2026-04-07T13:01:43.888Z",
+  "timestamp": "2026-04-07T13:03:21.666Z",
   "exitCode": 0,
   "status": "completed",
-  "summary": "No claimable tasks in review status — task-1775565533987 is already claimed by another agent"
+  "summary": "No claimable tasks in review status — task-1775565533987 cannot be claimed"
 }
