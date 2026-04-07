@@ -115,12 +115,23 @@
     {
       "id": "m12",
       "name": "Public API Surface & Architecture Spec",
-      "status": "active",
+      "status": "completed",
       "tasks": [
         "task-1775565504597",
         "task-1775565517510",
         "task-1775565533987",
         "task-1775566483597"
+      ]
+    },
+    {
+      "id": "m13",
+      "name": "Type Correctness & README API Docs",
+      "status": "active",
+      "tasks": [
+        "task-1775568150743",
+        "task-1775568160405",
+        "task-1775568160446",
+        "task-1775568160484"
       ]
     }
   ]

@@ -1,0 +1,13 @@
+{
+  "id": "task-1775568160484",
+  "title": "Expand README with API reference",
+  "description": "README is missing API documentation. Add usage examples, ask() options, and AgenticResult type documentation.",
+  "status": "todo",
+  "priority": "P1",
+  "assignee": "tester-2",
+  "blockedBy": [],
+  "groupId": "m13",
+  "hasDesign": true,
+  "created": "2026-04-07T13:22:40.484Z",
+  "updated": "2026-04-07T13:28:41.707Z"
+}

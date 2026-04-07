@@ -45,7 +45,7 @@ export interface AgenticResult {
   /** Raw tool calls made */
   toolCalls?: ToolCall[]
   /** Token usage */
-  usage?: { input: number; output: number }
+  usage: { input: number; output: number }
 }
 
 export interface Source {
