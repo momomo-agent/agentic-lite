@@ -9623,3 +9623,13 @@ Task complete. I updated `README.md` to change `usage?` to `usage` (required fie
 [2026-04-07T13:46:55.924Z] developer agent completed
 [2026-04-07 13:46:55] [agent_complete] developer completed successfully
 [2026-04-07 13:46:55] [workflow] developer [SIGNAL] completed: Fixed README AgenticResult.usage from optional to required to match types.ts
+The only task in `review` status (`task-1775568160446`) cannot be claimed — it's still assigned to the developer. There's nothing for me to test right now.
+
+I'll wait for it to become claimable or for new tasks to enter `review` status.
+
+```signal
+{"status": "blocked", "summary": "No claimable review tasks — task-1775568160446 is in review but cannot be claimed (still owned by developer)"}
+```
+[2026-04-07T13:46:56.273Z] tester agent completed
+[2026-04-07 13:46:56] [agent_complete] tester completed successfully
+[2026-04-07 13:46:56] [workflow] tester [SIGNAL] blocked: No claimable review tasks — task-1775568160446 is in review but cannot be claimed (still owned by de
