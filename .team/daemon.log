@@ -8666,3 +8666,11 @@ Both tasks in "review" status cannot be claimed right now. No tasks are availabl
 [2026-04-07T12:55:23.901Z] tester-2 agent completed
 [2026-04-07 12:55:23] [agent_complete] tester-2 completed successfully
 [2026-04-07 12:55:23] [workflow] tester-2 [SIGNAL] completed: No claimable tasks found — both review tasks are locked
+Both review tasks are already claimed by other agents. No tasks available for me to claim right now.
+
+```signal
+{"status": "completed", "summary": "No claimable tasks in review status — both already claimed by other agents"}
+```
+[2026-04-07T12:55:32.752Z] tester-1 agent completed
+[2026-04-07 12:55:32] [agent_complete] tester-1 completed successfully
+[2026-04-07 12:55:32] [workflow] tester-1 [SIGNAL] completed: No claimable tasks in review status — both already claimed by other agents

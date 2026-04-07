@@ -4335,3 +4335,5 @@
 {"ts":"2026-04-07T12:55:08.854Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"12MB\",\"heapUsed\":\"12MB\",\"uptime\":\"8701s\"}"}}
 {"ts":"2026-04-07T12:55:23.905Z","type":"agent_complete","agent":"tester-2","data":{"details":"completed successfully","performance":{"memoryMB":14,"memoryTotalMB":17,"cpuUser":2.220861,"cpuSystem":3.383883}}}
 {"ts":"2026-04-07T12:55:23.906Z","type":"workflow","agent":"tester-2","data":{"details":"[SIGNAL] completed: No claimable tasks found — both review tasks are locked"}}
+{"ts":"2026-04-07T12:55:32.756Z","type":"agent_complete","agent":"tester-1","data":{"details":"completed successfully","performance":{"memoryMB":14,"memoryTotalMB":17,"cpuUser":2.221431,"cpuSystem":3.385889}}}
+{"ts":"2026-04-07T12:55:32.757Z","type":"workflow","agent":"tester-1","data":{"details":"[SIGNAL] completed: No claimable tasks in review status — both already claimed by other agents"}}
