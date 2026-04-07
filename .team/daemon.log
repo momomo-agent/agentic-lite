@@ -8732,3 +8732,11 @@ Both tasks in "review" status cannot be claimed (likely already assigned to othe
 [2026-04-07T12:58:29.638Z] tester-1 agent completed
 [2026-04-07 12:58:29] [agent_complete] tester-1 completed successfully
 [2026-04-07 12:58:29] [workflow] tester-1 [SIGNAL] completed: No claimable tasks found — both review tasks (task-1775565517510, task-1775565533987) are already cl
+The only available task (`task-1775566483597`) is blocked by `task-1775565533987` which is still in `review` status. I cannot claim any tasks right now.
+
+```signal
+{"status": "blocked", "summary": "No claimable tasks — task-1775566483597 blocked by task-1775565533987 (still in review)"}
+```
+[2026-04-07T12:58:34.770Z] developer agent completed
+[2026-04-07 12:58:34] [agent_complete] developer completed successfully
+[2026-04-07 12:58:34] [workflow] developer [SIGNAL] blocked: No claimable tasks — task-1775566483597 blocked by task-1775565533987 (still in review)
