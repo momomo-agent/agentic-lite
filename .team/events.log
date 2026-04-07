@@ -5278,3 +5278,9 @@
 {"ts":"2026-04-07T14:58:00.145Z","type":"agent_start","agent":"tester","data":{"details":"验证功能","performance":{"memoryMB":9,"memoryTotalMB":13,"cpuUser":4.199771,"cpuSystem":6.102227}}}
 {"ts":"2026-04-07T14:58:27.714Z","type":"agent_complete","agent":"tester","data":{"details":"completed successfully","performance":{"memoryMB":12,"memoryTotalMB":15,"cpuUser":4.207075,"cpuSystem":6.109065}}}
 {"ts":"2026-04-07T14:58:27.715Z","type":"workflow","agent":"tester","data":{"details":"[SIGNAL] blocked: No claimable tasks in review status. task-1775573582938 is in review but cannot be claimed (assigned"}}
+{"ts":"2026-04-07T14:58:27.794Z","type":"workflow","agent":"work_loop","data":{"details":"[AGENT-SIGNAL] tester → blocked: No claimable tasks in review status. task-1775573582938 is in review but cannot "}}
+{"ts":"2026-04-07T14:58:27.822Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 13"}}
+{"ts":"2026-04-07T14:58:27.834Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T14:58:27.834Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":13,"memoryTotalMB":15,"cpuUser":4.212054,"cpuSystem":6.123306}}}
+{"ts":"2026-04-07T14:58:45.763Z","type":"agent_complete","agent":"tester","data":{"details":"completed successfully","performance":{"memoryMB":12,"memoryTotalMB":15,"cpuUser":4.212483,"cpuSystem":6.1238}}}
+{"ts":"2026-04-07T14:58:45.763Z","type":"workflow","agent":"tester","data":{"details":"[SIGNAL] blocked: No claimable tasks — task-1775573582938 is in review but cannot be claimed"}}

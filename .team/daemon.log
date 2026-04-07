@@ -11056,3 +11056,16 @@ The only task in "review" status is `task-1775573582938` but it cannot be claime
 [2026-04-07T14:58:27.710Z] tester agent completed
 [2026-04-07 14:58:27] [agent_complete] tester completed successfully
 [2026-04-07 14:58:27] [workflow] tester [SIGNAL] blocked: No claimable tasks in review status. task-1775573582938 is in review but cannot be claimed (assigned
+[2026-04-07 14:58:27] [workflow] work_loop [AGENT-SIGNAL] tester → blocked: No claimable tasks in review status. task-1775573582938 is in review but cannot 
+[2026-04-07 14:58:27] [workflow] work_loop [LOOP] Iteration 13
+[2026-04-07 14:58:27] [workflow] work_loop [EXEC] pm
+[2026-04-07 14:58:27] [agent_start] pm 管理任务和里程碑
+[2026-04-07T14:58:27.859Z] Running pm agent...
+The only task in `review` status (`task-1775573582938`) cannot be claimed. There are no other tasks available for me to work on.
+
+```signal
+{"status": "blocked", "summary": "No claimable tasks — task-1775573582938 is in review but cannot be claimed"}
+```
+[2026-04-07T14:58:45.759Z] tester agent completed
+[2026-04-07 14:58:45] [agent_complete] tester completed successfully
+[2026-04-07 14:58:45] [workflow] tester [SIGNAL] blocked: No claimable tasks — task-1775573582938 is in review but cannot be claimed
