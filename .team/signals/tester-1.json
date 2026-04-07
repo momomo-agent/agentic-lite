@@ -1,7 +1,7 @@
 {
   "agent": "tester-1",
-  "timestamp": "2026-04-07T15:27:57.388Z",
+  "timestamp": "2026-04-07T15:47:32.448Z",
   "exitCode": 0,
   "status": "completed",
-  "summary": "Checked all tasks - both review-status tasks (task-1775575092194, task-1775575107216) cannot be claimed, likely already assigned to another agent. No work available."
+  "summary": "No claimable tasks found — all 3 review tasks (task-1775576173074, task-1775576180235, task-1775576186964) returned canClaim: false"
 }
