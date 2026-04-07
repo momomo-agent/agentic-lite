@@ -4781,3 +4781,36 @@
 {"ts":"2026-04-07T14:06:19.406Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775570165055","from":"inProgress","to":"review","title":"Document custom provider silent fallback behavior"}}
 {"ts":"2026-04-07T14:06:33.250Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":9,"memoryTotalMB":12,"cpuUser":3.240042,"cpuSystem":4.897324}}}
 {"ts":"2026-04-07T14:06:33.251Z","type":"workflow","agent":"developer","data":{"details":"[SIGNAL] completed: Completed 4 tasks: verified 3 already-correct exports/types, added JSDoc to AgenticConfig.baseUrl fo"}}
+{"ts":"2026-04-07T14:06:33.367Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 27"}}
+{"ts":"2026-04-07T14:06:33.378Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T14:06:33.379Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":10,"memoryTotalMB":13,"cpuUser":3.244721,"cpuSystem":4.909861}}}
+{"ts":"2026-04-07T14:06:48.214Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 16min (active:4, done:41)"}}
+{"ts":"2026-04-07T14:06:48.215Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 16min (active:4, done:41)\"}"}}
+{"ts":"2026-04-07T14:07:15.834Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":12,"memoryTotalMB":14,"cpuUser":3.250544,"cpuSystem":4.91463}}}
+{"ts":"2026-04-07T14:07:15.834Z","type":"workflow","agent":"pm","data":{"details":"[SIGNAL] blocked: m14 has 4 tasks in review awaiting tester approval; m9/m10 have 2 tasks blocked on pending CR cr-177"}}
+{"ts":"2026-04-07T14:07:15.835Z","type":"workflow","agent":"work_loop","data":{"details":"[AGENT-SIGNAL] pm → blocked: m14 has 4 tasks in review awaiting tester approval; m9/m10 have 2 tasks blocked "}}
+{"ts":"2026-04-07T14:07:15.843Z","type":"workflow","agent":"work_loop","data":{"details":"[SKIP] write-dbb: milestoneNeedsDBB > 0"}}
+{"ts":"2026-04-07T14:07:15.843Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] write-design: todoWithoutDesign > 0"}}
+{"ts":"2026-04-07T14:07:15.843Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] implement: designedTasks > 0"}}
+{"ts":"2026-04-07T14:07:15.843Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] run-tests"}}
+{"ts":"2026-04-07T14:07:15.843Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] tester-1, tester-2"}}
+{"ts":"2026-04-07T14:07:15.844Z","type":"agent_start","agent":"tester-1","data":{"details":"验证功能","performance":{"memoryMB":12,"memoryTotalMB":15,"cpuUser":3.253053,"cpuSystem":4.92184}}}
+{"ts":"2026-04-07T14:07:15.844Z","type":"agent_start","agent":"tester-2","data":{"details":"验证功能","performance":{"memoryMB":11,"memoryTotalMB":15,"cpuUser":3.253312,"cpuSystem":4.922294}}}
+{"ts":"2026-04-07T14:07:48.215Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 17min (active:4, done:41)"}}
+{"ts":"2026-04-07T14:07:48.215Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 17min (active:4, done:41)\"}"}}
+{"ts":"2026-04-07T14:08:38.756Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775570146832","from":"review","to":"testing","title":"Fix AgenticResult.images type to string[]"}}
+{"ts":"2026-04-07T14:08:38.788Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775570164944","from":"review","to":"testing","title":"Export ShellResult from src/index.ts"}}
+{"ts":"2026-04-07T14:08:38.818Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775570164983","from":"review","to":"testing","title":"Export shellToolDef and executeShell from tools/index.ts"}}
+{"ts":"2026-04-07T14:08:38.852Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775570165055","from":"review","to":"testing","title":"Document custom provider silent fallback behavior"}}
+{"ts":"2026-04-07T14:08:48.223Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 18min (active:4, done:41)"}}
+{"ts":"2026-04-07T14:08:48.224Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 18min (active:4, done:41)\"}"}}
+{"ts":"2026-04-07T14:09:48.225Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 19min (active:4, done:41)"}}
+{"ts":"2026-04-07T14:09:48.226Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 19min (active:4, done:41)\"}"}}
+{"ts":"2026-04-07T14:10:08.911Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"31MB\",\"heapUsed\":\"8MB\",\"uptime\":\"13201s\"}"}}
+{"ts":"2026-04-07T14:10:09.060Z","type":"agent_start","agent":"daemon","data":{"details":"Still busy (110min), skipping","performance":{"memoryMB":8,"memoryTotalMB":11,"cpuUser":3.295885,"cpuSystem":4.950133}}}
+{"ts":"2026-04-07T14:10:11.852Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775570146832","from":"testing","to":"done","title":"Fix AgenticResult.images type to string[]"}}
+{"ts":"2026-04-07T14:10:11.884Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775570164944","from":"testing","to":"done","title":"Export ShellResult from src/index.ts"}}
+{"ts":"2026-04-07T14:10:11.913Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775570164983","from":"testing","to":"done","title":"Export shellToolDef and executeShell from tools/index.ts"}}
+{"ts":"2026-04-07T14:10:11.944Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775570165055","from":"testing","to":"done","title":"Document custom provider silent fallback behavior"}}
+{"ts":"2026-04-07T14:10:36.748Z","type":"agent_complete","agent":"tester-1","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":13,"cpuUser":3.301427,"cpuSystem":4.954492}}}
+{"ts":"2026-04-07T14:10:36.748Z","type":"workflow","agent":"tester-1","data":{"details":"[SIGNAL] completed: Verified and marked done all 4 m14 review tasks — 64/64 tests passing"}}

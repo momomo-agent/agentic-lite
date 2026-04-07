@@ -2,6 +2,6 @@
   "totalTests": 64,
   "passed": 64,
   "failed": 0,
-  "edgeCases": ["README images field shows optional (images?: string[]) but types.ts defines it as required (images: string[])"],
+  "edgeCases": [],
   "coverage": "100%"
 }
