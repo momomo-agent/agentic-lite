@@ -4900,3 +4900,20 @@
 {"ts":"2026-04-07T14:27:51.334Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775571287973","from":"inProgress","to":"review","title":"Create ARCHITECTURE.md"}}
 {"ts":"2026-04-07T14:27:58.631Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":8,"memoryTotalMB":10,"cpuUser":3.578354,"cpuSystem":5.202017}}}
 {"ts":"2026-04-07T14:27:58.632Z","type":"workflow","agent":"developer","data":{"details":"[SIGNAL] completed: Reviewed and moved 3 tasks to review: types already correct, CR already filed for PRD, ARCHITECTURE."}}
+{"ts":"2026-04-07T14:27:58.769Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 31"}}
+{"ts":"2026-04-07T14:27:58.783Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T14:27:58.783Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":9,"memoryTotalMB":12,"cpuUser":3.583942,"cpuSystem":5.22349}}}
+{"ts":"2026-04-07T14:28:41.621Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":13,"cpuUser":3.5897,"cpuSystem":5.228572}}}
+{"ts":"2026-04-07T14:28:41.622Z","type":"workflow","agent":"pm","data":{"details":"[SIGNAL] blocked: m15 tasks in review (awaiting tester), m9/m10 tasks blocked on pending CR cr-1775560282316 awaiting "}}
+{"ts":"2026-04-07T14:28:41.622Z","type":"workflow","agent":"work_loop","data":{"details":"[AGENT-SIGNAL] pm → blocked: m15 tasks in review (awaiting tester), m9/m10 tasks blocked on pending CR cr-177"}}
+{"ts":"2026-04-07T14:28:41.631Z","type":"workflow","agent":"work_loop","data":{"details":"[SKIP] write-dbb: milestoneNeedsDBB > 0"}}
+{"ts":"2026-04-07T14:28:41.631Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] write-design: todoWithoutDesign > 0"}}
+{"ts":"2026-04-07T14:28:41.631Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] implement: designedTasks > 0"}}
+{"ts":"2026-04-07T14:28:41.632Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] run-tests"}}
+{"ts":"2026-04-07T14:28:41.632Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] tester-1, tester-2"}}
+{"ts":"2026-04-07T14:28:41.632Z","type":"agent_start","agent":"tester-1","data":{"details":"验证功能","performance":{"memoryMB":10,"memoryTotalMB":14,"cpuUser":3.592661,"cpuSystem":5.236575}}}
+{"ts":"2026-04-07T14:28:41.633Z","type":"agent_start","agent":"tester-2","data":{"details":"验证功能","performance":{"memoryMB":11,"memoryTotalMB":14,"cpuUser":3.59284,"cpuSystem":5.237035}}}
+{"ts":"2026-04-07T14:28:48.302Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 19min (active:3, done:45)"}}
+{"ts":"2026-04-07T14:28:48.303Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 19min (active:3, done:45)\"}"}}
+{"ts":"2026-04-07T14:29:01.141Z","type":"agent_complete","agent":"tester-2","data":{"details":"completed successfully","performance":{"memoryMB":14,"memoryTotalMB":16,"cpuUser":3.599646,"cpuSystem":5.243602}}}
+{"ts":"2026-04-07T14:29:01.142Z","type":"workflow","agent":"tester-2","data":{"details":"[SIGNAL] completed: Checked all tasks in review status — none claimable (already assigned to other agents). No work avai"}}
