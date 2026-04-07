@@ -46,7 +46,7 @@ async function injectFilesystem(vm: any, filesystem?: AgenticFileSystem) {
 }
 
 function detectLanguage(code: string): 'python' | 'javascript' {
-  const pythonPatterns = /\b(import|from|def|print|if __name__|class\s+\w+:)\b/
+  const pythonPatterns = /\b(import|from|def|print|if __name__|class\s+\w+:|with\s+open)\b/
   return pythonPatterns.test(code) ? 'python' : 'javascript'
 }
 
@@ -94,39 +94,63 @@ def open(file, mode='r', *args, **kwargs):
   }
 }
 
+async function buildFileMap(code: string, filesystem: AgenticFileSystem): Promise<Record<string, string>> {
+  const paths = [...code.matchAll(/open\(\s*['"]([^'"]+)['"]/g)].map(m => m[1])
+  const map: Record<string, string> = {}
+  for (const p of paths) {
+    const r = await filesystem.read(p)
+    if (r.content) map[p] = r.content
+    // normalize relative paths
+    if (p.startsWith('./')) {
+      const abs = p.slice(1) // './foo' -> '/foo'
+      const r2 = await filesystem.read(abs)
+      if (r2.content) map[p] = r2.content
+    }
+  }
+  return map
+}
+
 async function executePythonNode(code: string, filesystem?: AgenticFileSystem): Promise<CodeResult> {
   const { spawn } = await import('child_process')
 
   let fullCode = code
   if (filesystem) {
     const preamble = `
-import io, json as __json
-class __FS:
+import sys as _sys, io, json as _json
+_fs_data = _json.loads(_sys.stdin.readline())
+class _FS:
     def __init__(self): self._w={}
-    def read(self,p): return ""
+    def read(self,p):
+        d=_fs_data.get(p) or _fs_data.get('./'+p.lstrip('/'))
+        return d
     def write(self,p,d): self._w[p]=d
     def flush(self):
-        if self._w: print(f"__FS_WRITES__:{__json.dumps(self._w)}",flush=True)
-__fs=__FS()
+        if self._w: print(f"__FS_WRITES__:{_json.dumps(self._w)}",flush=True)
+_fs=_FS()
 _open=open
 def open(file,mode='r',*a,**k):
-    if isinstance(file,str) and (file.startswith('/')):
-        if 'r' in mode: return io.StringIO(__fs.read(file))
+    if isinstance(file,str) and (file.startswith('/') or file.startswith('./')):
+        if 'r' in mode:
+            content=_fs.read(file)
+            if content is None: raise FileNotFoundError(f"No such file: {file}")
+            return io.StringIO(content)
         if 'w' in mode:
             class W:
                 def __init__(self,p): self.p=p;self.b=[]
                 def write(self,d): self.b.append(str(d));return len(d)
-                def close(self): __fs.write(self.p,''.join(self.b))
+                def close(self): _fs.write(self.p,''.join(self.b))
                 def __enter__(self): return self
                 def __exit__(self,*a): self.close()
             return W(file)
     return _open(file,mode,*a,**k)
-import atexit; atexit.register(__fs.flush)
 `
-    fullCode = preamble + '\n' + code
+    const epilogue = `
+_fs.flush()
+`
+    fullCode = preamble + '\n' + code + '\n' + epilogue
   }
 
-  return new Promise((resolve) => {
+  return new Promise(async (resolve) => {
     const proc = spawn('python3', ['-c', fullCode])
     let stdout = ''
     let stderr = ''
@@ -134,7 +158,19 @@ import atexit; atexit.register(__fs.flush)
     proc.stdout.on('data', (data) => { stdout += data.toString() })
     proc.stderr.on('data', (data) => { stderr += data.toString() })
 
-    proc.on('close', (exitCode) => {
+    proc.on('close', async (exitCode) => {
+      // Parse and apply filesystem writes
+      const writeMatch = stdout.match(/__FS_WRITES__:(.+)$/m)
+      if (writeMatch && filesystem) {
+        try {
+          const writes = JSON.parse(writeMatch[1]) as Record<string, string>
+          for (const [path, data] of Object.entries(writes)) {
+            await filesystem.write(path, data)
+          }
+          stdout = stdout.replace(/__FS_WRITES__:.+$/m, '').trim()
+        } catch { /* ignore parse errors */ }
+      }
+
       if (exitCode !== 0) {
         resolve({ code, output: stdout, error: stderr || `Exit code ${exitCode}` })
       } else {
@@ -145,6 +181,13 @@ import atexit; atexit.register(__fs.flush)
     proc.on('error', (err) => {
       resolve({ code, output: '', error: `Python not found: ${err.message}` })
     })
+
+    // Write file map to stdin
+    if (filesystem) {
+      const fileMap = await buildFileMap(code, filesystem)
+      proc.stdin.write(JSON.stringify(fileMap) + '\n')
+      proc.stdin.end()
+    }
   })
 }
 

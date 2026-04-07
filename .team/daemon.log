@@ -2327,3 +2327,154 @@ Perfect! I've completed testing task-1775534038662. Here's what I found:
 The task is now in "blocked" status. Developer needs to fix these 3 bugs before it can pass testing.
 [2026-04-07T04:55:08.980Z] tester agent completed
 [2026-04-07 04:55:09] [agent_complete] tester completed successfully
+[2026-04-07 04:55:13] [workflow] work_loop [LOOP] Iteration 6
+[2026-04-07 04:55:13] [workflow] work_loop [EXEC] pm
+[2026-04-07 04:55:13] [agent_start] pm 管理任务和里程碑
+[2026-04-07T04:55:13.986Z] Running pm agent...
+[2026-04-07 04:58:30] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 17min (active:1, done:25)
+[2026-04-07 04:59:31] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 18min (active:1, done:25)
+[2026-04-07 04:59:45] [perf] daemon {"rss":"11MB","heapUsed":"12MB","uptime":"3902s"}
+
+
+## Project Status Summary
+
+**Milestone m8: Code Execution Expansion & Shell Tool**
+
+Current status: **Active** (2/4 tasks done, 1 blocked, 1 todo)
+
+### Completed Tasks ✅
+- Python execution support (Pyodide + child_process)
+- shell_exec tool implementation
+
+### Blocked Task ⚠️
+- **task-1775534038662**: Filesystem API injection
+  - JavaScript implementation: ✅ Working perfectly
+  - Python implementation: ❌ 3 critical bugs found by tester
+  - Blocked by fix task below
+
+### Todo Task 🔧
+- **task-1775537901346** (P0, assigned to developer): Fix Python filesystem bugs
+  - Bug #1 (P0): Python read() returns empty string - needs IPC or temp file bridge
+  - Bug #2 (P0): Python writes never applied - missing stdout marker parsing
+  - Bug #3 (P1): Relative paths not supported - needs './' prefix check
+  - Details in: `.team/tasks/task-1775534038662/test-result.md`
+
+### Test Status
+- Total: 58 tests
+- Passing: 57 (1 timeout in Python language detection)
+- Python filesystem tests marked with `.fails()` to document known bugs
+- Once bugs fixed, remove `.fails()` markers and verify all pass
+
+### Gap Analysis Status
+The gap data shows 82% match for both vision and architecture, but timestamps indicate it's from 01:34 (over 3 hours old). The monitors should re-run to reflect:
+- System prompt support (implemented in m1/m4)
+- Custom provider support (implemented in m1)
+- Multi-round tool loop (fixed in m7)
+- Code sandbox upgrade (completed in m7)
+
+### Next Actions
+1. **Developer** fixes the 3 Python filesystem bugs
+2. **Tester** verifies fixes and removes `.fails()` markers
+3. Once all m8 tasks are done, mark m8 as completed
+4. Plan m9 based on updated gap analysis
+[2026-04-07T05:00:14.890Z] pm agent completed
+[2026-04-07 05:00:15] [agent_complete] pm completed successfully
+[2026-04-07 05:00:15] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-07 05:00:15] [workflow] work_loop [PARALLEL-SKIP] implement: designedTasks > 0
+[2026-04-07 05:00:15] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-07 05:00:15] [workflow] work_loop [PARALLEL] write-design
+[2026-04-07 05:00:15] [workflow] work_loop [EXEC] tech_lead
+[2026-04-07 05:00:15] [agent_start] tech_lead 出技术方案
+[2026-04-07T05:00:16.249Z] Running tech_lead agent...
+[2026-04-07 05:00:32] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 19min (active:1, done:25)
+[2026-04-07 05:01:33] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 20min (active:1, done:25)
+Done. Here's a summary of what was completed:
+
+**Task task-1775537901346** — technical design written to `.team/tasks/task-1775537901346/design.md` and `hasDesign` marked `true`.
+
+The design covers 3 bugs in `src/tools/code.ts` → `executePythonNode()`:
+
+1. **Bug #1 (P0) — reads return empty string:** Add `buildFileMap()` to extract file paths from `open(...)` calls in the code via regex, pre-fetch their contents from `filesystem`, then pass as JSON via stdin to the Python subprocess.
+
+2. **Bug #2 (P0) — writes never applied:** Parse `__FS_WRITES__:{json}` marker from stdout after process close, apply each write to `filesystem`, then strip the marker from output.
+
+3. **Bug #3 (P1) — relative paths not supported:** Update the preamble's path check from `file.startswith('/')` to also include `file.startswith('./')`, and normalize paths in `buildFileMap`.
+
+No new dependencies required. After the fix, remove `.fails()` markers from `test/code-python-fs.test.ts`.
+[2026-04-07T05:02:24.466Z] tech_lead agent completed
+[2026-04-07 05:02:24] [agent_complete] tech_lead completed successfully
+[2026-04-07 05:02:24] [workflow] work_loop [LOOP] Iteration 7
+[2026-04-07 05:02:24] [workflow] work_loop [EXEC] pm
+[2026-04-07 05:02:24] [agent_start] pm 管理任务和里程碑
+[2026-04-07T05:02:25.101Z] Running pm agent...
+[2026-04-07 05:02:35] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 21min (active:1, done:25)
+M8 status is clear. The active milestone has 2 tasks still in progress — no action needed from PM until those complete.
+
+**Current M8 state:**
+- `task-1775537901346` — Python filesystem bug fixes → **todo** (developer assigned)
+- `task-1775534038662` — filesystem injection → **blocked** (waiting on above)
+
+**Remaining architecture gaps for future M9 planning:**
+- `partial`: Multi-round tool loop (already addressed in m7 — gap data may be stale)
+- `partial`: images field lost in final return path
+- `missing`: Custom provider support (P0)
+- `partial`: code_exec sandbox (new Function → isolated-vm)
+- `partial`: Provider auto-detection validation
+
+**Vision gaps remaining:**
+- `missing`: npm package not published
+- `missing`: system prompt support
+
+Once M8 tasks reach `done`, I'll create M9 targeting the `missing` gaps (custom provider P0, npm publish) and remaining `partial` gaps. No action required now — waiting on developer to complete `task-1775537901346`.
+[2026-04-07T05:03:21.749Z] pm agent completed
+[2026-04-07 05:03:21] [agent_complete] pm completed successfully
+[2026-04-07 05:03:21] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-07 05:03:21] [workflow] work_loop [PARALLEL-SKIP] write-design: todoWithoutDesign > 0
+[2026-04-07 05:03:21] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-07 05:03:21] [workflow] work_loop [PARALLEL] implement
+[2026-04-07 05:03:21] [workflow] work_loop [EXEC] developer
+[2026-04-07 05:03:21] [agent_start] developer 实现功能
+[2026-04-07T05:03:22.141Z] Running developer agent...
+[2026-04-07 05:03:34] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 22min (active:1, done:25)
+[2026-04-07 05:04:34] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 23min (active:1, done:25)
+[2026-04-07 05:04:43] [agent_start] daemon Still busy (70min), skipping
+[2026-04-07 05:04:43] [perf] daemon {"rss":"15MB","heapUsed":"7MB","uptime":"4201s"}
+[2026-04-07 05:05:34] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 24min (active:1, done:25)
+[2026-04-07 05:06:34] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 25min (active:1, done:25)
+[2026-04-07 05:07:34] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 26min (active:1, done:25)
+[2026-04-07 05:08:34] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 27min (active:1, done:25)
+[2026-04-07 05:09:34] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 28min (active:1, done:25)
+[2026-04-07 05:09:43] [perf] daemon {"rss":"21MB","heapUsed":"8MB","uptime":"4501s"}
+[2026-04-07 05:10:34] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 29min (active:1, done:25)
+[2026-04-07 05:11:34] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 30min (active:1, done:25)
+[2026-04-07 05:12:34] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 31min (active:1, done:25)
+[2026-04-07 05:13:34] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 32min (active:1, done:25)
+Perfect! I've successfully completed the task. Here's what was accomplished:
+
+## Task Completed: Fix Python Filesystem Injection Bugs
+
+Fixed all 3 critical bugs in the Python filesystem injection implementation:
+
+**Bug #1 (P0) - Python reads always return empty string**
+- Implemented `buildFileMap()` to extract file paths from code and pre-fetch contents
+- Pass file data via stdin as JSON to Python process
+- Python preamble now reads from stdin to populate file data
+
+**Bug #2 (P0) - Python writes never applied to filesystem**
+- Added explicit `_fs.flush()` call at end of user code
+- Parse `__FS_WRITES__` marker from stdout and apply writes to filesystem
+- Strip marker from output before returning
+
+**Bug #3 (P1) - Relative paths not supported**
+- Updated path checking to support both `/` and `./` prefixes
+- Normalize paths in both TypeScript and Python sides
+
+**Additional fixes:**
+- Fixed Python name mangling issues by using single underscores instead of double
+- Enhanced language detection to recognize `with open(...)` as Python
+
+**Test Results:** All 58 tests passing, including all 6 Python filesystem tests that were previously marked as `.fails()`.
+
+The task has been moved to 'review' status.
+[2026-04-07T05:13:58.925Z] developer agent completed
+[2026-04-07 05:13:59] [agent_complete] developer completed successfully
