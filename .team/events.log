@@ -6371,3 +6371,20 @@
 {"ts":"2026-04-07T17:15:21.539Z","type":"workflow","agent":"tester-1","data":{"details":"[SIGNAL] completed: No claimable tasks — all 3 review tasks are already claimed by another agent"}}
 {"ts":"2026-04-07T17:15:23.557Z","type":"agent_complete","agent":"tester-2","data":{"details":"completed successfully","performance":{"memoryMB":10,"memoryTotalMB":13,"cpuUser":1.052314,"cpuSystem":1.602206}}}
 {"ts":"2026-04-07T17:15:23.557Z","type":"workflow","agent":"tester-2","data":{"details":"[SIGNAL] completed: No claimable tasks found — all 3 review tasks are assigned to other agents"}}
+{"ts":"2026-04-07T17:15:23.672Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 5"}}
+{"ts":"2026-04-07T17:15:23.684Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T17:15:23.685Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":12,"memoryTotalMB":15,"cpuUser":1.058797,"cpuSystem":1.621265}}}
+{"ts":"2026-04-07T17:15:27.313Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 20min (active:3, done:69)"}}
+{"ts":"2026-04-07T17:15:27.314Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 20min (active:3, done:69)\"}"}}
+{"ts":"2026-04-07T17:15:48.057Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":14,"memoryTotalMB":15,"cpuUser":1.068748,"cpuSystem":1.631733}}}
+{"ts":"2026-04-07T17:15:48.057Z","type":"workflow","agent":"pm","data":{"details":"[SIGNAL] blocked: All 3 m25 tasks are in review status. Waiting for tester approval before milestone can be completed "}}
+{"ts":"2026-04-07T17:15:48.058Z","type":"workflow","agent":"work_loop","data":{"details":"[AGENT-SIGNAL] pm → blocked: All 3 m25 tasks are in review status. Waiting for tester approval before milesto"}}
+{"ts":"2026-04-07T17:15:48.066Z","type":"workflow","agent":"work_loop","data":{"details":"[SKIP] write-dbb: milestoneNeedsDBB > 0"}}
+{"ts":"2026-04-07T17:15:48.066Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] write-design: todoWithoutDesign > 0"}}
+{"ts":"2026-04-07T17:15:48.066Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] implement: designedTasks > 0"}}
+{"ts":"2026-04-07T17:15:48.066Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] run-tests"}}
+{"ts":"2026-04-07T17:15:48.066Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] tester-1, tester-2"}}
+{"ts":"2026-04-07T17:15:48.066Z","type":"agent_start","agent":"tester-1","data":{"details":"验证功能","performance":{"memoryMB":12,"memoryTotalMB":15,"cpuUser":1.070994,"cpuSystem":1.638787}}}
+{"ts":"2026-04-07T17:15:48.067Z","type":"agent_start","agent":"tester-2","data":{"details":"验证功能","performance":{"memoryMB":12,"memoryTotalMB":15,"cpuUser":1.071139,"cpuSystem":1.639155}}}
+{"ts":"2026-04-07T17:16:22.007Z","type":"agent_complete","agent":"tester-2","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":9,"cpuUser":1.089114,"cpuSystem":1.647875}}}
+{"ts":"2026-04-07T17:16:22.008Z","type":"workflow","agent":"tester-2","data":{"details":"[SIGNAL] completed: No claimable tasks found — all 3 review tasks are already claimed by another agent"}}
