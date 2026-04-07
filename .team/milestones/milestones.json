@@ -205,10 +205,19 @@
     {
       "id": "m21",
       "name": "Final Type & Docs Polish",
-      "status": "active",
+      "status": "completed",
       "tasks": [
         "task-1775577227989",
         "task-1775577233513"
+      ]
+    },
+    {
+      "id": "m22",
+      "name": "Vision Gap Closure — Browser Shell & Pyodide Resilience",
+      "status": "ready-for-work",
+      "tasks": [
+        "task-1775578831381",
+        "task-1775578836813"
       ]
     }
   ]

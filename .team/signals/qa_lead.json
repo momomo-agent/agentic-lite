@@ -1,7 +1,7 @@
 {
   "agent": "qa_lead",
-  "timestamp": "2026-04-07T15:56:04.567Z",
+  "timestamp": "2026-04-07T16:23:01.170Z",
   "exitCode": 0,
   "status": "completed",
-  "summary": "Wrote .team/milestones/m21/dbb.md with 5 verification criteria covering optional apiKey for custom provider, required apiKey for anthropic/openai, README images type annotation, and test regression check. Updated m21 status to ready-for-work."
+  "summary": "Wrote .team/milestones/m22/dbb.md with 7 verification criteria covering browser shell stub, Pyodide resilience, and regression safety; updated m22 status to ready-for-work"
 }

@@ -12328,3 +12328,130 @@ All tasks are in "done" status — no tasks in "review" status to claim.
 [2026-04-07T16:19:30.688Z] tester agent completed
 [2026-04-07 16:19:30] [agent_complete] tester completed successfully
 [2026-04-07 16:19:30] [workflow] tester [SIGNAL] completed: Checked task list — no tasks in review status found. All tasks are already done.
+[2026-04-07 16:19:30] [workflow] milestone_qg [EXEC] pm
+[2026-04-07 16:19:30] [agent_start] pm 管理任务和里程碑
+[2026-04-07T16:19:30.802Z] Running pm agent...
+[2026-04-07 16:20:38] [perf] daemon {"rss":"69MB","heapUsed":"10MB","uptime":"4200s"}
+[2026-04-07 16:20:38] [agent_start] daemon Still busy (50min), skipping
+m22 is set up. Here's the summary:
+
+- **m21** → marked `completed` (both tasks `done`)
+- **m22** created: "Vision Gap Closure — Browser Shell & Pyodide Resilience"- `task-1775578831381`: Browser-safe shell_exec stub (P1)
+  - `task-1775578836813`: Pyodide CDN load failure graceful handling (P1)
+
+```signal
+{"status": "completed", "summary": "Marked m21 completed, created m22 with 2 tasks targeting remaining vision gaps (shell_exec browser safety, Pyodide CDN resilience)"}
+```
+[2026-04-07T16:20:41.885Z] pm agent completed
+[2026-04-07 16:20:41] [agent_complete] pm completed successfully
+[2026-04-07 16:20:41] [workflow] pm [SIGNAL] completed: Marked m21 completed, created m22 with 2 tasks targeting remaining vision gaps (shell_exec browser s
+[2026-04-07 16:20:41] [workflow] milestone_qg [SKIP] cross-validate: milestoneComplete
+[2026-04-07 16:20:41] [workflow] milestone_qg [SKIP] mark-complete: milestoneComplete
+[2026-04-07 16:20:41] [workflow] milestone_qg [SKIP] auto-tag: milestoneComplete
+[2026-04-07 16:20:41] [workflow] milestone_qg [BRANCH] milestoneComplete → false → work_loop
+[2026-04-07 16:20:41] [agent_start] work_loop [NODE] work_loop - PM 调度中心 — PM 评估后并行派发所有角色，全部完成后回 PM
+[2026-04-07 16:20:41] [workflow] work_loop [LOOP] Iteration 1
+[2026-04-07 16:20:41] [workflow] work_loop [EXEC] pm
+[2026-04-07 16:20:41] [agent_start] pm 管理任务和里程碑
+[2026-04-07T16:20:41.966Z] Running pm agent...
+Both m22 tasks are now assigned to `dev`:
+
+- `task-1775578831381` — Browser-safe shell_exec stub
+- `task-1775578836813` — Pyodide CDN load failure graceful handling
+
+```signal
+{"status": "completed", "summary": "Assigned both m22 tasks (browser shell stub + Pyodide resilience) to dev. No new milestones needed — m22 is active and tasks are ready for implementation."}
+```
+[2026-04-07T16:21:06.428Z] pm agent completed
+[2026-04-07 16:21:06] [agent_complete] pm completed successfully
+[2026-04-07 16:21:06] [workflow] pm [SIGNAL] completed: Assigned both m22 tasks (browser shell stub + Pyodide resilience) to dev. No new milestones needed —
+[2026-04-07 16:21:06] [workflow] work_loop [EXEC] qa_lead
+[2026-04-07 16:21:06] [agent_start] qa_lead 编写验收标准
+[2026-04-07T16:21:06.471Z] Running qa_lead agent...
+DBB written and milestone updated to `ready-for-work`.
+
+```signal
+{"status": "completed", "summary": "Wrote .team/milestones/m22/dbb.md with 7 verification criteria covering browser shell stub, Pyodide resilience, and regression safety; updated m22 status to ready-for-work"}
+```
+[2026-04-07T16:23:01.170Z] qa_lead agent completed
+[2026-04-07 16:23:01] [agent_complete] qa_lead completed successfully
+[2026-04-07 16:23:01] [workflow] qa_lead [SIGNAL] completed: Wrote .team/milestones/m22/dbb.md with 7 verification criteria covering browser shell stub, Pyodide 
+[2026-04-07 16:23:01] [workflow] work_loop [PARALLEL-SKIP] implement: designedTasks > 0
+[2026-04-07 16:23:01] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-07 16:23:01] [workflow] work_loop [PARALLEL] write-design
+[2026-04-07 16:23:01] [workflow] work_loop [PARALLEL] tech_lead-1, tech_lead-2
+[2026-04-07 16:23:01] [agent_start] tech_lead-1 出技术方案
+[2026-04-07 16:23:01] [agent_start] tech_lead-2 出技术方案
+[2026-04-07T16:23:01.218Z] Running tech_lead-2 agent...
+[2026-04-07T16:23:01.218Z] Running tech_lead-1 agent...
+All done. Here's a summary of what was completed:
+
+**M22 — Browser Shell & Pyodide Resilience**
+
+- Created `.team/milestones/m22/design.md` — milestone-level technical design
+- Created `.team/tasks/task-1775578831381/design.md` — shell_exec browser stub (guard already exists in `src/tools/shell.ts`; task is test coverage only)
+- Created `.team/tasks/task-1775578836813/design.md` — Pyodide CDN failure: wrap `loadPyodide()` call in try/catch in `executePythonBrowser`, return `CodeResult` with descriptive error
+- Updated both tasks: `hasDesign: true`
+
+```signal
+{"status": "completed", "summary": "Created m22/design.md, task designs for both m22 tasks, and marked hasDesign=true on both tasks"}
+```
+[2026-04-07T16:24:14.530Z] tech_lead-2 agent completed
+[2026-04-07 16:24:14] [agent_complete] tech_lead-2 completed successfully
+[2026-04-07 16:24:14] [workflow] tech_lead-2 [SIGNAL] completed: Created m22/design.md, task designs for both m22 tasks, and marked hasDesign=true on both tasks
+[2026-04-07 16:24:38] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 5min (active:2, done:64)
+All done. Here's what was created:
+
+- `.team/milestones/m22/design.md` — milestone technical design covering both changes
+- `.team/tasks/task-1775578831381/design.md` — browser shell stub (no code change needed, test coverage only)
+- `.team/tasks/task-1775578836813/design.md` — Pyodide try/catch fix in `executePythonBrowser`
+- Both tasks updated with `hasDesign: true`
+
+```signal
+{"status": "completed", "summary": "Created m22/design.md and task designs for both m22 tasks; marked hasDesign=true on both"}
+```
+[2026-04-07T16:25:07.535Z] tech_lead-1 agent completed
+[2026-04-07 16:25:07] [agent_complete] tech_lead-1 completed successfully
+[2026-04-07 16:25:07] [workflow] tech_lead-1 [SIGNAL] completed: Created m22/design.md and task designs for both m22 tasks; marked hasDesign=true on both
+[2026-04-07 16:25:07] [workflow] work_loop [LOOP] Iteration 2
+[2026-04-07 16:25:07] [workflow] work_loop [EXEC] pm
+[2026-04-07 16:25:07] [agent_start] pm 管理任务和里程碑
+[2026-04-07T16:25:07.643Z] Running pm agent...
+[2026-04-07 16:25:08] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 6min (active:2, done:64)
+M22 is active with 2 `todo` tasks ready for development. The milestone is properly set up.
+
+**Current state:**
+- m22 "Vision Gap Closure — Browser Shell & Pyodide Resilience" — `ready-for-work`
+- `task-1775578831381`: Browser-safe shell_exec stub — `todo`, P1, assigned to dev
+- `task-1775578836813`: Pyodide CDN load failure graceful handling — `todo`, P1, assigned to dev
+
+Both tasks have designs and no blockers. The dev team can pick these up immediately.
+
+```signal
+{"status": "completed", "summary": "Reviewed m22 state — 2 todo tasks ready for dev pickup, no new milestones needed until these complete"}
+```
+[2026-04-07T16:25:35.744Z] pm agent completed
+[2026-04-07 16:25:35] [agent_complete] pm completed successfully
+[2026-04-07 16:25:35] [workflow] pm [SIGNAL] completed: Reviewed m22 state — 2 todo tasks ready for dev pickup, no new milestones needed until these complet
+[2026-04-07 16:25:35] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-07 16:25:35] [workflow] work_loop [PARALLEL-SKIP] write-design: todoWithoutDesign > 0
+[2026-04-07 16:25:35] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-07 16:25:35] [workflow] work_loop [PARALLEL] implement
+[2026-04-07 16:25:35] [workflow] work_loop [EXEC] developer
+[2026-04-07 16:25:35] [agent_start] developer 实现功能
+[2026-04-07T16:25:35.804Z] Running developer agent...
+[2026-04-07 16:25:38] [perf] daemon {"rss":"58MB","heapUsed":"10MB","uptime":"4500s"}
+[2026-04-07 16:26:08] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 7min (active:2, done:64)
+[2026-04-07 16:27:08] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 8min (active:2, done:64)
+Both tasks are complete and in review.
+
+**task-1775578831381** (Browser-safe shell_exec stub): Test coverage already existed in `test/m20-shell-browser-gate.test.ts` — no new code needed.
+
+**task-1775578836813** (Pyodide CDN failure): Wrapped the `import('pyodide')` call in try/catch in `src/tools/code.ts`, added `test/m22-pyodide-cdn-failure.test.ts`. Both tests pass.
+
+```signal
+{"status": "completed", "summary": "Implemented Pyodide CDN failure handling in src/tools/code.ts with try/catch, added test. Shell browser stub task satisfied by existing test coverage. Both tasks moved to review."}
+```
+[2026-04-07T16:27:49.063Z] developer agent completed
+[2026-04-07 16:27:49] [agent_complete] developer completed successfully
+[2026-04-07 16:27:49] [workflow] developer [SIGNAL] completed: Implemented Pyodide CDN failure handling in src/tools/code.ts with try/catch, added test. Shell brow

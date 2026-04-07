@@ -52,8 +52,12 @@ function detectLanguage(code: string): 'python' | 'javascript' {
 
 async function executePythonBrowser(code: string, filesystem?: AgenticFileSystem): Promise<CodeResult> {
   if (!pyodideInstance) {
-    const { loadPyodide } = await import('pyodide')
-    pyodideInstance = await loadPyodide()
+    try {
+      const { loadPyodide } = await import('pyodide')
+      pyodideInstance = await loadPyodide()
+    } catch (err: any) {
+      return { code, output: '', error: `Pyodide unavailable: ${err.message || String(err)}` }
+    }
   }
 
   try {
