@@ -10721,3 +10721,11 @@ The existing coverage file already matches. All three tasks are done.
 [2026-04-07T14:47:29.034Z] tester-2 agent completed
 [2026-04-07 14:47:29] [agent_complete] tester-2 completed successfully
 [2026-04-07 14:47:29] [workflow] tester-2 [SIGNAL] completed: Tested and marked done: ShellResult export (task-1775572706464), shell tool defs export (task-177557
+All three tasks are now done.
+
+```signal
+{"status": "completed", "summary": "Verified and marked done: task-1775572706464 (ShellResult export), task-1775572719168 (shell tool defs export), task-1775572728626 (custom provider fallback docs). All implementations correct, 73/74 tests passing (1 pre-existing PRD failure unrelated to these tasks)."}
+```
+[2026-04-07T14:47:33.679Z] tester-2 agent completed
+[2026-04-07 14:47:33] [agent_complete] tester-2 completed successfully
+[2026-04-07 14:47:33] [workflow] tester-2 [SIGNAL] completed: Verified and marked done: task-1775572706464 (ShellResult export), task-1775572719168 (shell tool de
