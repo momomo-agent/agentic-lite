@@ -372,3 +372,16 @@
 {"ts":"2026-04-07T02:33:06.472Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775528309091","from":"review","to":"testing","title":"添加 systemPrompt 支持"}}
 {"ts":"2026-04-07T02:33:06.503Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775528309123","from":"review","to":"testing","title":"实现 custom provider 钩子"}}
 {"ts":"2026-04-07T02:33:22.778Z","type":"agent_complete","agent":"tester-2","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":7,"cpuUser":0.191543,"cpuSystem":0.260846}}}
+{"ts":"2026-04-07T02:33:31.916Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 6min (active:4, done:12)"}}
+{"ts":"2026-04-07T02:33:31.917Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 6min (active:4, done:12)\"}"}}
+{"ts":"2026-04-07T02:34:01.700Z","type":"agent_start","agent":"daemon","data":{"details":"Still busy (60min), skipping","performance":{"memoryMB":7,"memoryTotalMB":8,"cpuUser":0.194311,"cpuSystem":0.26455}}}
+{"ts":"2026-04-07T02:34:01.703Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"56MB\",\"heapUsed\":\"7MB\",\"uptime\":\"3600s\"}"}}
+{"ts":"2026-04-07T02:34:31.919Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 7min (active:4, done:12)"}}
+{"ts":"2026-04-07T02:34:31.920Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 7min (active:4, done:12)\"}"}}
+{"ts":"2026-04-07T02:35:31.921Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 8min (active:4, done:12)"}}
+{"ts":"2026-04-07T02:35:31.922Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 8min (active:4, done:12)\"}"}}
+{"ts":"2026-04-07T02:35:52.714Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775528295380","from":"testing","to":"done","title":"修复多轮工具循环"}}
+{"ts":"2026-04-07T02:35:52.747Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775528302103","from":"testing","to":"done","title":"修复 images 字段丢失"}}
+{"ts":"2026-04-07T02:35:52.775Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775528309091","from":"testing","to":"done","title":"添加 systemPrompt 支持"}}
+{"ts":"2026-04-07T02:35:52.805Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775528309123","from":"testing","to":"done","title":"实现 custom provider 钩子"}}
+{"ts":"2026-04-07T02:36:41.920Z","type":"agent_complete","agent":"tester-1","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":7,"cpuUser":0.205374,"cpuSystem":0.278787}}}

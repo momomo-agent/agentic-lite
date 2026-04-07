@@ -1,9 +1,11 @@
 {
-  "totalTests": 8,
-  "passed": 7,
+  "totalTests": 25,
+  "passed": 24,
   "failed": 1,
   "edgeCases": [
-    "Top-level await not supported in QuickJS sandbox (not required by m3 DBB)"
+    "Top-level await not supported in QuickJS sandbox (not required by m3 DBB)",
+    "tool_use response with empty toolCalls array (handled by stopReason check)",
+    "systemPrompt passed through multiple tool rounds"
   ],
-  "coverage": "88%"
+  "coverage": "96%"
 }

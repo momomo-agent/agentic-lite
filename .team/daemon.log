@@ -786,3 +786,18 @@ All 4 review tasks are currently being tested by tester-1. No tasks available to
 Current state: 12 done, 4 in testing (all assigned to tester-1). I'll stand by until new tasks enter "review" status.
 [2026-04-07T02:33:22.775Z] tester-2 agent completed
 [2026-04-07 02:33:22] [agent_complete] tester-2 completed successfully
+[2026-04-07 02:33:31] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 6min (active:4, done:12)
+[2026-04-07 02:34:01] [agent_start] daemon Still busy (60min), skipping
+[2026-04-07 02:34:01] [perf] daemon {"rss":"56MB","heapUsed":"7MB","uptime":"3600s"}
+[2026-04-07 02:34:31] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 7min (active:4, done:12)
+[2026-04-07 02:35:31] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 8min (active:4, done:12)
+All 4 m4 tasks are complete:
+
+- **task-1775528295380** (多轮工具循环) → done ✓
+- **task-1775528302103** (images 字段丢失) → done ✓
+- **task-1775528309091** (systemPrompt 支持) → done ✓
+- **task-1775528309123** (custom provider 钩子) → done ✓
+
+All 8 m4 tests passed. The one failing test (`code-tool.test.ts` DBB-010 async await) is a pre-existing m3 issue unrelated to these tasks. Coverage updated to 96% (24/25).
+[2026-04-07T02:36:41.917Z] tester-1 agent completed
+[2026-04-07 02:36:41] [agent_complete] tester-1 completed successfully
