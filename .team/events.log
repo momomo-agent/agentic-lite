@@ -316,3 +316,26 @@
 {"ts":"2026-04-07T02:23:31.875Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 16min (active:5, done:10)\"}"}}
 {"ts":"2026-04-07T02:23:39.486Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775527727136","from":"in-progress","to":"review","title":"添加 code_exec 沙箱测试覆盖"}}
 {"ts":"2026-04-07T02:23:45.351Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":7,"memoryTotalMB":8,"cpuUser":0.165268,"cpuSystem":0.223481}}}
+{"ts":"2026-04-07T02:23:45.419Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 7"}}
+{"ts":"2026-04-07T02:23:45.420Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T02:23:45.420Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":6,"memoryTotalMB":8,"cpuUser":0.167365,"cpuSystem":0.227402}}}
+{"ts":"2026-04-07T02:24:01.695Z","type":"agent_start","agent":"daemon","data":{"details":"Still busy (50min), skipping","performance":{"memoryMB":6,"memoryTotalMB":8,"cpuUser":0.167833,"cpuSystem":0.227814}}}
+{"ts":"2026-04-07T02:24:01.697Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"56MB\",\"heapUsed\":\"6MB\",\"uptime\":\"3000s\"}"}}
+{"ts":"2026-04-07T02:24:01.877Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 16min (active:6, done:10)"}}
+{"ts":"2026-04-07T02:24:01.877Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 16min (active:6, done:10)\"}"}}
+{"ts":"2026-04-07T02:24:31.879Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 17min (active:6, done:10)"}}
+{"ts":"2026-04-07T02:24:31.879Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 17min (active:6, done:10)\"}"}}
+{"ts":"2026-04-07T02:24:35.893Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":9,"cpuUser":0.170847,"cpuSystem":0.230821}}}
+{"ts":"2026-04-07T02:24:35.896Z","type":"workflow","agent":"work_loop","data":{"details":"[SKIP] write-dbb: milestoneNeedsDBB > 0"}}
+{"ts":"2026-04-07T02:24:35.896Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] write-design: todoWithoutDesign > 0"}}
+{"ts":"2026-04-07T02:24:35.897Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] implement, run-tests"}}
+{"ts":"2026-04-07T02:24:35.897Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] developer"}}
+{"ts":"2026-04-07T02:24:35.897Z","type":"agent_start","agent":"developer","data":{"details":"实现功能","performance":{"memoryMB":6,"memoryTotalMB":8,"cpuUser":0.172223,"cpuSystem":0.233376}}}
+{"ts":"2026-04-07T02:24:35.897Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] tester-1, tester-2"}}
+{"ts":"2026-04-07T02:24:35.898Z","type":"agent_start","agent":"tester-1","data":{"details":"验证功能","performance":{"memoryMB":6,"memoryTotalMB":8,"cpuUser":0.172445,"cpuSystem":0.233896}}}
+{"ts":"2026-04-07T02:24:35.898Z","type":"agent_start","agent":"tester-2","data":{"details":"验证功能","performance":{"memoryMB":6,"memoryTotalMB":8,"cpuUser":0.172648,"cpuSystem":0.234221}}}
+{"ts":"2026-04-07T02:25:18.244Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775528309091","from":"todo","to":"inProgress","title":"添加 systemPrompt 支持"}}
+{"ts":"2026-04-07T02:25:26.959Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775527461751","from":"review","to":"testing","title":"升级 code_exec 沙箱"}}
+{"ts":"2026-04-07T02:25:31.882Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 18min (active:6, done:10)"}}
+{"ts":"2026-04-07T02:25:31.882Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 18min (active:6, done:10)\"}"}}
+{"ts":"2026-04-07T02:25:34.716Z","type":"agent_complete","agent":"tester-2","data":{"details":"completed successfully","performance":{"memoryMB":7,"memoryTotalMB":8,"cpuUser":0.174264,"cpuSystem":0.23651}}}
