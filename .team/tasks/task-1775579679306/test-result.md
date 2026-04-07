@@ -1,21 +1,20 @@
 # Test Result: task-1775579679306
 
 ## Summary
-- Tests passed: 4 (including 1 `.fails()` documenting known bug)
-- Tests failed: 0
+- Total tests: 97
+- Passed: 97
+- Failed: 0
 
-## Results
+## DBB Verification
 - DBB-005: custom provider + customProvider + no apiKey → PASS
-- DBB-005 (bug): custom provider + baseUrl + no apiKey → FAILS (documented with `.fails()`)
-- DBB-006: anthropic without apiKey throws → PASS
-- DBB-006: openai without apiKey throws → PASS
+- DBB-005: custom provider + baseUrl + no apiKey → PASS (bug fixed in task-1775580346381)
+- DBB-006: anthropic without apiKey → throws /apiKey/ → PASS
+- DBB-006: openai without apiKey → throws /apiKey/ → PASS
 
-## Bug Found
-`createOpenAIProvider` (src/providers/openai.ts:7) unconditionally throws `'apiKey is required for openai provider'` even when called from the `provider='custom'` + `baseUrl` path in `provider.ts:65`.
-
-`provider.ts:46` correctly skips apiKey validation for `provider='custom'`, but then falls through to `createOpenAIProvider` which re-validates apiKey independently.
-
-**Fix needed in `src/providers/openai.ts`**: make apiKey optional when `baseUrl` is provided (proxy/custom usage).
+## Implementation Verified
+- `src/types.ts`: `apiKey?: string` (optional)
+- `src/providers/provider.ts:46`: skips apiKey check when `provider === 'custom'`
+- `src/providers/openai.ts`: apiKey optional when baseUrl is provided
 
 ## Status
-Blocked — implementation bug in src/providers/openai.ts requires developer fix.
+PASSED — all DBB criteria met.

@@ -1,7 +1,7 @@
 {
   "agent": "tester",
-  "timestamp": "2026-04-07T16:51:04.541Z",
+  "timestamp": "2026-04-07T16:55:43.885Z",
   "exitCode": 0,
   "status": "completed",
-  "summary": "Verified task-1775580346381: openai.ts apiKey fix confirmed — custom+baseUrl provider works without apiKey. 97/97 tests pass."
+  "summary": "Tested task-1775579679306: apiKey optional for custom provider. All 97 tests pass, DBB-005 (custom provider skips apiKey) and DBB-006 (anthropic/openai require apiKey) both verified. Task marked done."
 }

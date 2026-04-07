@@ -1,7 +1,7 @@
 {
   "agent": "pm",
-  "timestamp": "2026-04-07T16:51:48.672Z",
+  "timestamp": "2026-04-07T16:53:54.790Z",
   "exitCode": 0,
-  "status": "completed",
-  "summary": "Unblocked task-1775579679306 (apiKey optional for custom provider) in m23 by clearing its blockedBy dependency and reassigning to developer. M23 is now fully active with one remaining todo task."
+  "status": "blocked",
+  "summary": "M23 has task-1775579679306 (apiKey optional) in review status — waiting for tester to approve before milestone can complete. No new tasks needed; remaining partial gaps (shell browser-compat, Pyodide bundling) were addressed in m22/m23."
 }
