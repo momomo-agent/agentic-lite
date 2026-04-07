@@ -1,7 +1,7 @@
 {
   "agent": "tech_lead-2",
-  "timestamp": "2026-04-07T15:39:56.691Z",
+  "timestamp": "2026-04-07T15:57:07.743Z",
   "exitCode": 0,
   "status": "completed",
-  "summary": "Wrote technical designs for all 3 m20 tasks (shell browser gate, default filesystem, Pyodide README docs) and marked hasDesign=true on each"
+  "summary": "Created m21/design.md and task designs for both m21 tasks; marked hasDesign=true on both"
 }

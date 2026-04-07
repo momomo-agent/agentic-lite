@@ -4,6 +4,7 @@ import type { AgenticConfig } from '../types.js'
 import type { Provider, ProviderMessage, ProviderResponse, ToolDefinition } from './provider.js'
 
 export function createAnthropicProvider(config: AgenticConfig): Provider {
+  if (!config.apiKey) throw new Error('apiKey is required for anthropic provider')
   const base = (config.baseUrl ?? 'https://api.anthropic.com').replace(/\/+$/, '')
   const endpoint = base.endsWith('/v1') ? `${base}/messages` : `${base}/v1/messages`
   const model = config.model ?? 'claude-sonnet-4-20250514'

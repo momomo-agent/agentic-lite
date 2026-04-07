@@ -11,7 +11,7 @@ export interface AgenticConfig {
   /** System prompt passed to the LLM */
   systemPrompt?: string
   /** API key for the provider */
-  apiKey: string
+  apiKey?: string
   /**
    * Base URL for custom/proxy providers.
    * When provider='custom' and customProvider is not set,

@@ -70,7 +70,7 @@ Result object returned by `ask()`:
 interface AgenticResult {
   answer: string              // Final answer text
   sources?: Source[]          // Sources used (from search tool)
-  images?: string[]           // Images from search results
+  images: string[]            // Images from search results
   codeResults?: CodeResult[]  // Code execution results
   files?: FileResult[]        // Files read/written
   shellResults?: ShellResult[] // Shell command results

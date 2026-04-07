@@ -12013,3 +12013,178 @@ All 62 tasks are in "done" status. There are no tasks in "review" status to clai
 [2026-04-07T15:52:41.999Z] tester agent completed
 [2026-04-07 15:52:42] [agent_complete] tester completed successfully
 [2026-04-07 15:52:42] [workflow] tester [SIGNAL] completed: No tasks in review status found. All 62 tasks are already done.
+[2026-04-07 15:52:42] [workflow] milestone_qg [EXEC] pm
+[2026-04-07 15:52:42] [agent_start] pm 管理任务和里程碑
+[2026-04-07T15:52:42.110Z] Running pm agent...
+Done. Here's what was completed:
+
+- **m20** marked `completed` (all 3 tasks were `done`)
+- **m21** created as `active` — "Final Type & Docs Polish" with 2 tasks:
+  - `task-1775577227989` (P1): Make `apiKey` optional for custom provider in `AgenticConfig`
+  - `task-1775577233513` (P1): Fix README `AgenticResult.images` type annotation to required
+
+These close the last two partial gaps (PRD + DBB).
+
+```signal
+{"status": "completed", "summary": "Marked m20 completed, created m21 with 2 tasks targeting remaining partial gaps: apiKey optional type fix and README images type annotation fix"}
+```
+[2026-04-07T15:54:14.929Z] pm agent completed
+[2026-04-07 15:54:14] [agent_complete] pm completed successfully
+[2026-04-07 15:54:14] [workflow] pm [SIGNAL] completed: Marked m20 completed, created m21 with 2 tasks targeting remaining partial gaps: apiKey optional typ
+[2026-04-07 15:54:14] [workflow] milestone_qg [SKIP] cross-validate: milestoneComplete
+[2026-04-07 15:54:14] [workflow] milestone_qg [SKIP] mark-complete: milestoneComplete
+[2026-04-07 15:54:14] [workflow] milestone_qg [SKIP] auto-tag: milestoneComplete
+[2026-04-07 15:54:14] [workflow] milestone_qg [BRANCH] milestoneComplete → false → work_loop
+[2026-04-07 15:54:14] [agent_start] work_loop [NODE] work_loop - PM 调度中心 — PM 评估后并行派发所有角色，全部完成后回 PM
+[2026-04-07 15:54:14] [workflow] work_loop [LOOP] Iteration 1
+[2026-04-07 15:54:14] [workflow] work_loop [EXEC] pm
+[2026-04-07 15:54:14] [agent_start] pm 管理任务和里程碑
+[2026-04-07T15:54:15.013Z] Running pm agent...
+Both m21 tasks assigned to developer.
+
+```signal
+{"status": "completed", "summary": "Assigned both m21 tasks (task-1775577227989, task-1775577233513) to developer for implementation."}
+```
+[2026-04-07T15:54:56.798Z] pm agent completed
+[2026-04-07 15:54:56] [agent_complete] pm completed successfully
+[2026-04-07 15:54:56] [workflow] pm [SIGNAL] completed: Assigned both m21 tasks (task-1775577227989, task-1775577233513) to developer for implementation.
+[2026-04-07 15:54:56] [workflow] work_loop [EXEC] qa_lead
+[2026-04-07 15:54:56] [agent_start] qa_lead 编写验收标准
+[2026-04-07T15:54:56.842Z] Running qa_lead agent...
+[2026-04-07 15:55:38] [perf] daemon {"rss":"72MB","heapUsed":"18MB","uptime":"2700s"}
+DBB written and milestone updated to `ready-for-work`.
+
+```signal
+{"status": "completed", "summary": "Wrote .team/milestones/m21/dbb.md with 5 verification criteria covering optional apiKey for custom provider, required apiKey for anthropic/openai, README images type annotation, and test regression check. Updated m21 status to ready-for-work."}
+```
+[2026-04-07T15:56:04.568Z] qa_lead agent completed
+[2026-04-07 15:56:04] [agent_complete] qa_lead completed successfully
+[2026-04-07 15:56:04] [workflow] qa_lead [SIGNAL] completed: Wrote .team/milestones/m21/dbb.md with 5 verification criteria covering optional apiKey for custom p
+[2026-04-07 15:56:04] [workflow] work_loop [PARALLEL-SKIP] implement: designedTasks > 0
+[2026-04-07 15:56:04] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-07 15:56:04] [workflow] work_loop [PARALLEL] write-design
+[2026-04-07 15:56:04] [workflow] work_loop [PARALLEL] tech_lead-1, tech_lead-2
+[2026-04-07 15:56:04] [agent_start] tech_lead-1 出技术方案
+[2026-04-07 15:56:04] [agent_start] tech_lead-2 出技术方案
+[2026-04-07T15:56:04.621Z] Running tech_lead-2 agent...
+[2026-04-07T15:56:04.626Z] Running tech_lead-1 agent...
+All done. Here's what was completed:
+
+- Created `.team/milestones/m21/design.md` — milestone-level technical approach
+- Created `.team/tasks/task-1775577227989/design.md` — design for making `apiKey` optional in `AgenticConfig`
+- Created `.team/tasks/task-1775577233513/design.md` — design for fixing README `images` type annotation
+- Marked both tasks `hasDesign: true`
+
+```signal
+{"status": "completed", "summary": "Created m21/design.md and task designs for both m21 tasks; marked hasDesign=true on both"}
+```
+[2026-04-07T15:57:07.743Z] tech_lead-2 agent completed
+[2026-04-07 15:57:07] [agent_complete] tech_lead-2 completed successfully
+[2026-04-07 15:57:07] [workflow] tech_lead-2 [SIGNAL] completed: Created m21/design.md and task designs for both m21 tasks; marked hasDesign=true on both
+[2026-04-07 15:57:08] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 5min (active:2, done:62)
+All done. Here's what was completed:
+
+- Created `.team/milestones/m21/design.md` — milestone-level technical approach
+- Created `.team/tasks/task-1775577227989/design.md` — design for making `apiKey` optional in `AgenticConfig`
+- Created `.team/tasks/task-1775577233513/design.md` — design for fixing README `images` type annotation
+- Updated both tasks: `hasDesign: true`
+
+```signal
+{"status": "completed", "summary": "Created m21 design.md and task designs for both todo tasks; marked hasDesign=true on both"}
+```
+[2026-04-07T15:57:22.509Z] tech_lead-1 agent completed
+[2026-04-07 15:57:22] [agent_complete] tech_lead-1 completed successfully
+[2026-04-07 15:57:22] [workflow] tech_lead-1 [SIGNAL] completed: Created m21 design.md and task designs for both todo tasks; marked hasDesign=true on both
+[2026-04-07 15:57:22] [workflow] work_loop [LOOP] Iteration 2
+[2026-04-07 15:57:22] [workflow] work_loop [EXEC] pm
+[2026-04-07 15:57:22] [agent_start] pm 管理任务和里程碑
+[2026-04-07T15:57:22.591Z] Running pm agent...
+[2026-04-07 15:57:38] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 6min (active:2, done:62)
+M21 is now active with 2 tasks ready for the developer:
+
+1. `task-1775577227989` — Make `apiKey` optional in `AgenticConfig` (P1)
+2. `task-1775577233513` — Fix README `AgenticResult.images` type annotation (P1)
+
+Both tasks are unblocked and assigned to `developer`.
+
+```signal
+{"status": "completed", "summary": "Activated m21 (Final Type & Docs Polish) with 2 P1 tasks ready for developer: make apiKey optional in AgenticConfig, fix README images type annotation."}
+```
+[2026-04-07T15:58:07.796Z] pm agent completed
+[2026-04-07 15:58:07] [agent_complete] pm completed successfully
+[2026-04-07 15:58:07] [workflow] pm [SIGNAL] completed: Activated m21 (Final Type & Docs Polish) with 2 P1 tasks ready for developer: make apiKey optional i
+[2026-04-07 15:58:07] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-07 15:58:07] [workflow] work_loop [PARALLEL-SKIP] write-design: todoWithoutDesign > 0
+[2026-04-07 15:58:07] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-07 15:58:07] [workflow] work_loop [PARALLEL] implement
+[2026-04-07 15:58:07] [workflow] work_loop [EXEC] developer
+[2026-04-07 15:58:07] [agent_start] developer 实现功能
+[2026-04-07T15:58:07.844Z] Running developer agent...
+[2026-04-07 15:58:38] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 7min (active:2, done:62)
+[2026-04-07 15:59:38] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 8min (active:2, done:62)
+[2026-04-07 16:00:38] [perf] daemon {"rss":"72MB","heapUsed":"13MB","uptime":"3000s"}
+[2026-04-07 16:00:38] [agent_start] daemon Still busy (30min), skipping
+[2026-04-07 16:00:38] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 9min (active:2, done:62)
+[2026-04-07T16:01:34.643Z] developer agent failed: Command failed: claude --print --dangerously-skip-permissions < "/Users/kenefe/LOCAL/momo-agent/projects/agentic-lite/.team/.prompt-developer-1775577487846.md"
+[2026-04-07 16:01:34] [error] developer failed (code=1), retry 1/2 in 1s
+[2026-04-07 16:01:34] [workflow] developer [SIGNAL] failed: Failed to authenticate. API Error: 401 {"error":{"message":"额度不足","type":"authentication_error"},"ty
+[2026-04-07 16:01:35] [agent_start] developer 实现功能
+[2026-04-07T16:01:35.703Z] Running developer agent...
+[2026-04-07 16:01:38] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 10min (active:2, done:62)
+[2026-04-07 16:02:38] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 11min (active:2, done:62)
+[2026-04-07 16:03:38] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 12min (active:2, done:62)
+[2026-04-07 16:04:38] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 13min (active:2, done:62)
+[2026-04-07T16:04:51.062Z] developer agent failed: Command failed: claude --print --dangerously-skip-permissions < "/Users/kenefe/LOCAL/momo-agent/projects/agentic-lite/.team/.prompt-developer-1775577695704.md"
+[2026-04-07 16:04:51] [error] developer failed (code=1), retry 2/2 in 2s
+[2026-04-07 16:04:51] [workflow] developer [SIGNAL] failed: Failed to authenticate. API Error: 401 {"error":{"message":"额度不足","type":"authentication_error"},"ty
+[2026-04-07 16:04:53] [agent_start] developer 实现功能
+[2026-04-07T16:04:53.091Z] Running developer agent...
+[2026-04-07 16:05:38] [perf] daemon {"rss":"67MB","heapUsed":"8MB","uptime":"3300s"}
+[2026-04-07 16:05:38] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 14min (active:2, done:62)
+[2026-04-07 16:06:38] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 15min (active:2, done:62)
+[2026-04-07 16:07:38] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 16min (active:2, done:62)
+[2026-04-07T16:07:55.708Z] developer agent failed: Command failed: claude --print --dangerously-skip-permissions < "/Users/kenefe/LOCAL/momo-agent/projects/agentic-lite/.team/.prompt-developer-1775577893092.md"
+[2026-04-07 16:07:55] [error] developer failed (code=1) after 2 retries, giving up
+[2026-04-07 16:07:55] [workflow] work_loop [STALL] No state change (1/3)
+[2026-04-07 16:07:55] [workflow] work_loop [LOOP] Iteration 3
+[2026-04-07 16:07:55] [workflow] work_loop [EXEC] pm
+[2026-04-07 16:07:55] [agent_start] pm 管理任务和里程碑
+[2026-04-07T16:07:55.790Z] Running pm agent...
+[2026-04-07 16:08:38] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 17min (active:2, done:62)
+[2026-04-07 16:09:38] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 18min (active:2, done:62)
+[2026-04-07 16:10:38] [perf] daemon {"rss":"73MB","heapUsed":"13MB","uptime":"3600s"}
+[2026-04-07 16:10:38] [agent_start] daemon Still busy (40min), skipping
+[2026-04-07 16:10:38] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 19min (active:2, done:62)
+M21 has 2 tasks in `todo` status assigned to `developer`. The gaps are already covered by these tasks. Current state is healthy — waiting for developer to complete the tasks.
+
+```signal
+{"status": "completed", "summary": "Reviewed m21 status: 2 tasks (task-1775577227989, task-1775577233513) in todo, assigned to developer. No new gaps require additional tasks. Waiting for developer to complete work."}
+```
+[2026-04-07T16:10:50.481Z] pm agent completed
+[2026-04-07 16:10:50] [agent_complete] pm completed successfully
+[2026-04-07 16:10:50] [workflow] pm [SIGNAL] completed: Reviewed m21 status: 2 tasks (task-1775577227989, task-1775577233513) in todo, assigned to developer
+[2026-04-07 16:10:50] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-07 16:10:50] [workflow] work_loop [PARALLEL-SKIP] write-design: todoWithoutDesign > 0
+[2026-04-07 16:10:50] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-07 16:10:50] [workflow] work_loop [PARALLEL] implement
+[2026-04-07 16:10:50] [workflow] work_loop [EXEC] developer
+[2026-04-07 16:10:50] [agent_start] developer 实现功能
+[2026-04-07T16:10:50.526Z] Running developer agent...
+[2026-04-07 16:11:38] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 20min (active:2, done:62)
+[2026-04-07 16:12:38] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 21min (active:2, done:62)
+Both tasks are complete.
+
+**task-1775577227989** — Make apiKey optional for custom provider:
+- `src/types.ts`: `apiKey: string` → `apiKey?: string`
+- `src/providers/anthropic.ts`: added early throw if `!config.apiKey`
+- `src/providers/openai.ts`: added early throw if `!config.apiKey`
+
+**task-1775577233513** — Fix README AgenticResult.images type annotation:
+- `README.md`: `images?: string[]` → `images: string[]`
+
+```signal
+{"status": "completed", "summary": "Made apiKey optional in AgenticConfig, added validation guards in anthropic/openai providers, fixed README images type annotation"}
+```
+[2026-04-07T16:13:33.348Z] developer agent completed
+[2026-04-07 16:13:33] [agent_complete] developer completed successfully
+[2026-04-07 16:13:33] [workflow] developer [SIGNAL] completed: Made apiKey optional in AgenticConfig, added validation guards in anthropic/openai providers, fixed 

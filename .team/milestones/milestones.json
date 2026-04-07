@@ -195,11 +195,20 @@
     {
       "id": "m20",
       "name": "Browser Compatibility & Zero-Config Filesystem",
-      "status": "ready-for-work",
+      "status": "completed",
       "tasks": [
         "task-1775576173074",
         "task-1775576180235",
         "task-1775576186964"
+      ]
+    },
+    {
+      "id": "m21",
+      "name": "Final Type & Docs Polish",
+      "status": "active",
+      "tasks": [
+        "task-1775577227989",
+        "task-1775577233513"
       ]
     }
   ]
