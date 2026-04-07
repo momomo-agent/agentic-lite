@@ -801,3 +801,12 @@ All 4 m4 tasks are complete:
 All 8 m4 tests passed. The one failing test (`code-tool.test.ts` DBB-010 async await) is a pre-existing m3 issue unrelated to these tasks. Coverage updated to 96% (24/25).
 [2026-04-07T02:36:41.917Z] tester-1 agent completed
 [2026-04-07 02:36:41] [agent_complete] tester-1 completed successfully
+[2026-04-07 02:36:41] [workflow] work_loop [BRANCH] doneCount > 0 → true → milestone_qg
+[2026-04-07 02:36:41] [workflow] work_loop [EXIT] todoCount == 0 && designedTasks == 0 && reviewCount == 0 && inProgressCount == 0 && testingCount == 0 && blockedCount == 0 → milestone_qg
+[2026-04-07 02:36:41] [agent_start] milestone_qg [NODE] milestone_qg - 里程碑 QG — 对照 DBB 验收
+[2026-04-07 02:36:41] [workflow] milestone_qg [EXEC] tester
+[2026-04-07 02:36:41] [agent_start] tester 验证功能
+[2026-04-07T02:36:42.012Z] Running tester agent...
+All tasks are in "done" status — there are no tasks in "review" status to claim. Nothing to test right now.
+[2026-04-07T02:37:12.065Z] tester agent completed
+[2026-04-07 02:37:12] [agent_complete] tester completed successfully
