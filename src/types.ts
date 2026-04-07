@@ -1,8 +1,15 @@
 // agentic-lite — Types
 
+import type { AgenticFileSystem } from 'agentic-filesystem'
+import type { Provider } from './providers/index.js'
+
 export interface AgenticConfig {
   /** LLM provider: 'anthropic' | 'openai' | 'custom' */
   provider?: 'anthropic' | 'openai' | 'custom'
+  /** Custom provider instance (required when provider='custom') */
+  customProvider?: Provider
+  /** System prompt passed to the LLM */
+  systemPrompt?: string
   /** API key for the provider */
   apiKey: string
   /** Base URL (for custom/proxy providers) */
@@ -11,6 +18,8 @@ export interface AgenticConfig {
   model?: string
   /** Which tools to enable */
   tools?: ToolName[]
+  /** Virtual filesystem for file tools (browser-compatible) */
+  filesystem?: AgenticFileSystem
   /** Tool-specific config */
   toolConfig?: {
     search?: { apiKey?: string; provider?: 'tavily' | 'serper' }

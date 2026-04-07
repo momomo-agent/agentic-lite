@@ -1,0 +1,30 @@
+{
+  "match": 82,
+  "timestamp": "2026-04-07T01:34:37.553Z",
+  "gaps": [
+    {
+      "description": "ask.ts uses a non-standard tool loop: after one round of tool calls it injects results as plain text and forces a final call without tools, rather than continuing the agentic loop for up to MAX_TOOL_ROUNDS rounds. Multi-turn tool use is effectively broken.",
+      "status": "partial"
+    },
+    {
+      "description": "images field is collected in the first tool-call branch but omitted from the return value in the final-response branch (ask.ts:68). AgenticResult.images can be silently lost.",
+      "status": "partial"
+    },
+    {
+      "description": "Provider 'custom' is declared in AgenticConfig but createProvider() falls through to openai for unknown providers with no error or custom-provider hook. Custom/proxy provider support is not implemented.",
+      "status": "missing"
+    },
+    {
+      "description": "code_exec uses new Function() (eval-equivalent) with no real sandbox. The vision doc notes this is a placeholder; isolated-vm or quickjs-emscripten is not yet integrated.",
+      "status": "partial"
+    },
+    {
+      "description": "No memory, chain, or graph modules — consistent with vision's explicit non-goals. No gap.",
+      "status": "implemented"
+    },
+    {
+      "description": "Provider auto-detection (detectProvider) relies on apiKey prefix and baseUrl string match; no validation or error for missing/invalid apiKey.",
+      "status": "partial"
+    }
+  ]
+}

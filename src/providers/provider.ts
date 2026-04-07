@@ -37,7 +37,7 @@ export interface ProviderToolContent {
 }
 
 export interface Provider {
-  chat(messages: ProviderMessage[], tools: ToolDefinition[]): Promise<ProviderResponse>
+  chat(messages: ProviderMessage[], tools: ToolDefinition[], system?: string): Promise<ProviderResponse>
 }
 
 export function createProvider(config: AgenticConfig): Provider {
@@ -46,8 +46,10 @@ export function createProvider(config: AgenticConfig): Provider {
   switch (provider) {
     case 'anthropic':
       return createAnthropicProvider(config)
+    case 'custom':
+      if (!config.customProvider) throw new Error('customProvider required when provider="custom"')
+      return config.customProvider
     case 'openai':
-      return createOpenAIProvider(config)
     default:
       return createOpenAIProvider(config)
   }

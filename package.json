@@ -11,17 +11,30 @@
       "types": "./dist/index.d.ts"
     }
   },
-  "files": ["dist", "README.md"],
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
     "test": "vitest --run"
   },
-  "keywords": ["agent", "ai", "llm", "search", "tool-use", "lightweight"],
+  "keywords": [
+    "agent",
+    "ai",
+    "llm",
+    "search",
+    "tool-use",
+    "lightweight"
+  ],
   "license": "MIT",
   "devDependencies": {
     "tsup": "^8.0.0",
     "typescript": "^5.4.0",
     "vitest": "^2.0.0"
+  },
+  "dependencies": {
+    "agentic-filesystem": "link:../agentic-filesystem"
   }
 }

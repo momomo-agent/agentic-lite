@@ -1,0 +1,14 @@
+{
+  "id": "task-1775525637125",
+  "title": "code 工具换成浏览器兼容实现",
+  "description": "code.ts 里的 new Function 沙箱改成浏览器可用的 AsyncFunction eval，去掉 Node 依赖",
+  "status": "review",
+  "priority": "P1",
+  "assignee": "developer",
+  "blockedBy": [],
+  "groupId": null,
+  "hasDesign": true,
+  "created": "2026-04-07T01:33:57.125Z",
+  "updated": "2026-04-07T01:46:38.435Z",
+  "milestoneId": "m1"
+}

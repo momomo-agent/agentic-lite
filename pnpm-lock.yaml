@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      agentic-filesystem:
+        specifier: link:../agentic-filesystem
+        version: link:../agentic-filesystem
     devDependencies:
       tsup:
         specifier: ^8.0.0

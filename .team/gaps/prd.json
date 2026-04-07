@@ -1,0 +1,8 @@
+{
+  "match": 0,
+  "timestamp": "2026-04-07T01:34:33.379Z",
+  "gaps": [
+    { "description": "PRD.md not found — cannot evaluate feature coverage", "status": "missing" },
+    { "description": "EXPECTED_DBB.md not found — cannot evaluate global verification criteria", "status": "missing" }
+  ]
+}

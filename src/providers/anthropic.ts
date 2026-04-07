@@ -9,12 +9,14 @@ export function createAnthropicProvider(config: AgenticConfig): Provider {
   const model = config.model ?? 'claude-sonnet-4-20250514'
 
   return {
-    async chat(messages: ProviderMessage[], tools: ToolDefinition[]): Promise<ProviderResponse> {
+    async chat(messages: ProviderMessage[], tools: ToolDefinition[], system?: string): Promise<ProviderResponse> {
       const body: Record<string, unknown> = {
         model,
         max_tokens: 4096,
         messages: convertMessages(messages),
       }
+
+      if (system) body.system = system
 
       if (tools.length > 0) {
         body.tools = tools.map(t => ({

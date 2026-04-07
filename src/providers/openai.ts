@@ -8,11 +8,11 @@ export function createOpenAIProvider(config: AgenticConfig): Provider {
   const model = config.model ?? 'gpt-4o'
 
   return {
-    async chat(messages: ProviderMessage[], tools: ToolDefinition[]): Promise<ProviderResponse> {
+    async chat(messages: ProviderMessage[], tools: ToolDefinition[], system?: string): Promise<ProviderResponse> {
       const body: Record<string, unknown> = {
         model,
         stream: false,
-        messages: convertMessages(messages),
+        messages: convertMessages(messages, system),
       }
 
       if (tools.length > 0) {
@@ -137,17 +137,19 @@ interface OpenAIResponse {
   usage: { prompt_tokens: number; completion_tokens: number }
 }
 
-function convertMessages(messages: ProviderMessage[]) {
-  return messages.map(m => {
+function convertMessages(messages: ProviderMessage[], system?: string) {
+  const result = []
+  if (system) result.push({ role: 'system' as const, content: system })
+  result.push(...messages.map(m => {
     if (m.role === 'tool' && Array.isArray(m.content)) {
-      // Some proxies reject role:'tool', wrap as user message
       const parts = (m.content as { toolCallId: string; content: string }[])
         .map(c => `[Tool result for ${c.toolCallId}]: ${c.content}`)
         .join('\n')
       return { role: 'user' as const, content: parts }
     }
     return { role: m.role, content: m.content }
-  }).flat()
+  }).flat())
+  return result
 }
 
 function parseResponse(data: OpenAIResponse): ProviderResponse {

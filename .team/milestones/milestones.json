@@ -1,0 +1,17 @@
+{
+  "milestones": [
+    {
+      "id": "m1",
+      "name": "Core Agentic Loop & Correctness",
+      "status": "ready-for-work",
+      "tasks": [
+        "task-1775525637055",
+        "task-1775525637091",
+        "task-1775525637125",
+        "task-1775525744093",
+        "task-1775525748440",
+        "task-1775525816399"
+      ]
+    }
+  ]
+}
