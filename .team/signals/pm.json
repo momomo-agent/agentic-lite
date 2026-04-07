@@ -1,7 +1,7 @@
 {
   "agent": "pm",
-  "timestamp": "2026-04-07T16:14:41.598Z",
+  "timestamp": "2026-04-07T16:15:46.428Z",
   "exitCode": 0,
   "status": "blocked",
-  "summary": "m21 has 2 tasks in 'review' status (task-1775577227989, task-1775577233513). Waiting for tester to approve before milestone can be completed or next milestone planned."
+  "summary": "m21 has 2 tasks in review status — waiting for tester approval before milestone can be completed"
 }
