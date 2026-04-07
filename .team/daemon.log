@@ -12496,3 +12496,19 @@ Both tasks are done.
 [2026-04-07T16:30:22.538Z] tester-1 agent completed
 [2026-04-07 16:30:22] [agent_complete] tester-1 completed successfully
 [2026-04-07 16:30:22] [workflow] tester-1 [SIGNAL] completed: Tested and passed task-1775578831381 (browser-safe shell_exec stub, 4 tests) and task-1775578836813 
+[2026-04-07 16:30:22] [workflow] work_loop [BRANCH] doneCount > 0 → true → milestone_qg
+[2026-04-07 16:30:22] [workflow] work_loop [EXIT] todoCount == 0 && designedTasks == 0 && reviewCount == 0 && inProgressCount == 0 && testingCount == 0 && blockedCount == 0 → milestone_qg
+[2026-04-07 16:30:22] [agent_start] milestone_qg [NODE] milestone_qg - 里程碑 QG — 对照 DBB 验收
+[2026-04-07 16:30:22] [workflow] milestone_qg [EXEC] tester
+[2026-04-07 16:30:22] [agent_start] tester 验证功能
+[2026-04-07T16:30:22.696Z] Running tester agent...
+[2026-04-07 16:30:38] [perf] daemon {"rss":"64MB","heapUsed":"8MB","uptime":"4800s"}
+[2026-04-07 16:30:38] [agent_start] daemon Still busy (60min), skipping
+All 66 tasks are in "done" status. There are no tasks in "review" status to claim and test.
+
+```signal
+{"status": "completed", "summary": "No tasks in review status found. All 66 tasks are already done."}
+```
+[2026-04-07T16:30:46.717Z] tester agent completed
+[2026-04-07 16:30:46] [agent_complete] tester completed successfully
+[2026-04-07 16:30:46] [workflow] tester [SIGNAL] completed: No tasks in review status found. All 66 tasks are already done.

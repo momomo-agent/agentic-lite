@@ -6013,3 +6013,12 @@
 {"ts":"2026-04-07T16:30:13.138Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775578836813","from":"testing","to":"done","title":"Pyodide CDN load failure graceful handling"}}
 {"ts":"2026-04-07T16:30:22.542Z","type":"agent_complete","agent":"tester-1","data":{"details":"completed successfully","performance":{"memoryMB":10,"memoryTotalMB":13,"cpuUser":1.663433,"cpuSystem":1.854598}}}
 {"ts":"2026-04-07T16:30:22.542Z","type":"workflow","agent":"tester-1","data":{"details":"[SIGNAL] completed: Tested and passed task-1775578831381 (browser-safe shell_exec stub, 4 tests) and task-1775578836813 "}}
+{"ts":"2026-04-07T16:30:22.662Z","type":"workflow","agent":"work_loop","data":{"details":"[BRANCH] doneCount > 0 → true → milestone_qg"}}
+{"ts":"2026-04-07T16:30:22.662Z","type":"workflow","agent":"work_loop","data":{"details":"[EXIT] todoCount == 0 && designedTasks == 0 && reviewCount == 0 && inProgressCount == 0 && testingCount == 0 && blockedCount == 0 → milestone_qg"}}
+{"ts":"2026-04-07T16:30:22.663Z","type":"agent_start","agent":"milestone_qg","data":{"details":"[NODE] milestone_qg - 里程碑 QG — 对照 DBB 验收","performance":{"memoryMB":8,"memoryTotalMB":11,"cpuUser":1.66844,"cpuSystem":1.867501}}}
+{"ts":"2026-04-07T16:30:22.670Z","type":"workflow","agent":"milestone_qg","data":{"details":"[EXEC] tester"}}
+{"ts":"2026-04-07T16:30:22.670Z","type":"agent_start","agent":"tester","data":{"details":"验证功能","performance":{"memoryMB":8,"memoryTotalMB":11,"cpuUser":1.670152,"cpuSystem":1.87289}}}
+{"ts":"2026-04-07T16:30:38.190Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"64MB\",\"heapUsed\":\"8MB\",\"uptime\":\"4800s\"}"}}
+{"ts":"2026-04-07T16:30:38.227Z","type":"agent_start","agent":"daemon","data":{"details":"Still busy (60min), skipping","performance":{"memoryMB":8,"memoryTotalMB":11,"cpuUser":1.671707,"cpuSystem":1.874309}}}
+{"ts":"2026-04-07T16:30:46.719Z","type":"agent_complete","agent":"tester","data":{"details":"completed successfully","performance":{"memoryMB":10,"memoryTotalMB":13,"cpuUser":1.675933,"cpuSystem":1.878874}}}
+{"ts":"2026-04-07T16:30:46.720Z","type":"workflow","agent":"tester","data":{"details":"[SIGNAL] completed: No tasks in review status found. All 66 tasks are already done."}}
