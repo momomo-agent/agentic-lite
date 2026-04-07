@@ -36,15 +36,15 @@
     "retryCount": 0
   },
   "tech_lead-1": {
-    "status": "running",
-    "lastRun": "2026-04-07T10:52:45.909Z",
-    "currentTask": "出技术方案",
+    "status": "idle",
+    "lastRun": "2026-04-07T10:54:12.367Z",
+    "currentTask": null,
     "retryCount": 0
   },
   "tech_lead-2": {
-    "status": "running",
-    "lastRun": "2026-04-07T10:52:45.910Z",
-    "currentTask": "出技术方案",
+    "status": "idle",
+    "lastRun": "2026-04-07T10:55:07.683Z",
+    "currentTask": null,
     "retryCount": 0
   },
   "tech_lead-3": {
@@ -66,9 +66,9 @@
     "retryCount": 0
   },
   "tester-2": {
-    "status": "running",
-    "lastRun": "2026-04-07T10:52:45.911Z",
-    "currentTask": "验证功能",
+    "status": "idle",
+    "lastRun": "2026-04-07T10:55:17.693Z",
+    "currentTask": null,
     "retryCount": 0
   },
   "tester": {
