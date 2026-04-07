@@ -25,25 +25,25 @@
   },
   "pm": {
     "status": "idle",
-    "lastRun": "2026-04-07T15:13:00.832Z",
+    "lastRun": "2026-04-07T15:22:24.104Z",
     "currentTask": null,
     "retryCount": 0
   },
   "qa_lead": {
     "status": "idle",
-    "lastRun": "2026-04-07T15:06:38.493Z",
+    "lastRun": "2026-04-07T15:20:17.794Z",
     "currentTask": null,
     "retryCount": 0
   },
   "tech_lead-1": {
     "status": "idle",
-    "lastRun": "2026-04-07T15:09:31.142Z",
+    "lastRun": "2026-04-07T15:21:26.668Z",
     "currentTask": null,
     "retryCount": 0
   },
   "tech_lead-2": {
     "status": "idle",
-    "lastRun": "2026-04-07T15:09:07.991Z",
+    "lastRun": "2026-04-07T15:21:40.043Z",
     "currentTask": null,
     "retryCount": 0
   },
@@ -73,7 +73,7 @@
   },
   "tester": {
     "status": "idle",
-    "lastRun": "2026-04-07T15:16:12.235Z",
+    "lastRun": "2026-04-07T15:22:42.335Z",
     "currentTask": null,
     "retryCount": 0
   },

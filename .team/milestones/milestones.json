@@ -176,11 +176,20 @@
     {
       "id": "m18",
       "name": "README Docs & PRD Final Sync",
-      "status": "ready-for-work",
+      "status": "completed",
       "tasks": [
         "task-1775574241209",
         "task-1775574256272",
         "task-1775574256304"
+      ]
+    },
+    {
+      "id": "m19",
+      "name": "README API Docs & PRD Final Sync",
+      "status": "ready-for-work",
+      "tasks": [
+        "task-1775575092194",
+        "task-1775575107216"
       ]
     }
   ]
