@@ -12696,3 +12696,25 @@ Both tasks in 'review' status cannot be claimed (likely already assigned to anot
 [2026-04-07T16:42:11.462Z] tester-2 agent completed
 [2026-04-07 16:42:11] [agent_complete] tester-2 completed successfully
 [2026-04-07 16:42:11] [workflow] tester-2 [SIGNAL] completed: No claimable tasks found — both review tasks (task-1775579577117, task-1775579679306) are already cl
+[2026-04-07 16:42:56] [perf] daemon {"rss":"56MB","heapUsed":"13MB","uptime":"600s"}
+[2026-04-07 16:42:56] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 10min (active:2, done:66)
+[2026-04-07 16:42:56] [agent_start] daemon Still busy (10min), skipping
+Done. Here's a summary of what was completed:
+
+**task-1775579577117** (default in-memory filesystem) → `done`
+- Implementation already existed in `ask.ts:16`
+- Wrote 4 tests in `test/m23-default-filesystem.test.ts` — all passed
+- DBB-001 through DBB-004 verified
+
+**task-1775579679306** (apiKey optional for custom provider) → `blocked`
+- `provider='custom'` + `customProvider` works fine (no apiKey needed)
+- Bug: `provider='custom'` + `baseUrl` + no `apiKey` still throws because `createOpenAIProvider` unconditionally validates apiKey
+- Wrote 4 tests in `test/m23-apikey-optional.test.ts` — all pass (bug documented with `.fails()`)
+- Developer needs to fix `src/providers/openai.ts:7` to skip apiKey check when `baseUrl` is provided
+
+```signal
+{"status": "completed", "summary": "task-1775579577117 done (4/4 tests pass); task-1775579679306 blocked (bug in openai.ts:7 — apiKey required even for custom+baseUrl path)"}
+```
+[2026-04-07T16:45:08.035Z] tester-1 agent completed
+[2026-04-07 16:45:08] [agent_complete] tester-1 completed successfully
+[2026-04-07 16:45:08] [workflow] tester-1 [SIGNAL] completed: task-1775579577117 done (4/4 tests pass); task-1775579679306 blocked (bug in openai.ts:7 — apiKey re

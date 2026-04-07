@@ -6104,3 +6104,13 @@
 {"ts":"2026-04-07T16:41:56.137Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 9min (active:2, done:66)\"}"}}
 {"ts":"2026-04-07T16:42:11.465Z","type":"agent_complete","agent":"tester-2","data":{"details":"completed successfully","performance":{"memoryMB":10,"memoryTotalMB":12,"cpuUser":0.202569,"cpuSystem":0.198357}}}
 {"ts":"2026-04-07T16:42:11.466Z","type":"workflow","agent":"tester-2","data":{"details":"[SIGNAL] completed: No claimable tasks found — both review tasks (task-1775579577117, task-1775579679306) are already cl"}}
+{"ts":"2026-04-07T16:42:18.596Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775579577117","from":"review","to":"testing","title":"Add default in-memory filesystem to AgenticConfig"}}
+{"ts":"2026-04-07T16:42:56.118Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"56MB\",\"heapUsed\":\"13MB\",\"uptime\":\"600s\"}"}}
+{"ts":"2026-04-07T16:42:56.153Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 10min (active:2, done:66)"}}
+{"ts":"2026-04-07T16:42:56.153Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 10min (active:2, done:66)\"}"}}
+{"ts":"2026-04-07T16:42:56.163Z","type":"agent_start","agent":"daemon","data":{"details":"Still busy (10min), skipping","performance":{"memoryMB":15,"memoryTotalMB":17,"cpuUser":0.212325,"cpuSystem":0.211155}}}
+{"ts":"2026-04-07T16:43:37.216Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775579577117","from":"testing","to":"done","title":"Add default in-memory filesystem to AgenticConfig"}}
+{"ts":"2026-04-07T16:43:43.194Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775579679306","from":"review","to":"testing","title":"Make AgenticConfig.apiKey optional for custom provider"}}
+{"ts":"2026-04-07T16:44:59.195Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775579679306","from":"testing","to":"blocked","title":"Make AgenticConfig.apiKey optional for custom provider"}}
+{"ts":"2026-04-07T16:45:08.042Z","type":"agent_complete","agent":"tester-1","data":{"details":"completed successfully","performance":{"memoryMB":13,"memoryTotalMB":16,"cpuUser":0.240907,"cpuSystem":0.242572}}}
+{"ts":"2026-04-07T16:45:08.045Z","type":"workflow","agent":"tester-1","data":{"details":"[SIGNAL] completed: task-1775579577117 done (4/4 tests pass); task-1775579679306 blocked (bug in openai.ts:7 — apiKey re"}}

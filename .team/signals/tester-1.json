@@ -1,7 +1,7 @@
 {
   "agent": "tester-1",
-  "timestamp": "2026-04-07T16:30:22.538Z",
+  "timestamp": "2026-04-07T16:45:08.034Z",
   "exitCode": 0,
   "status": "completed",
-  "summary": "Tested and passed task-1775578831381 (browser-safe shell_exec stub, 4 tests) and task-1775578836813 (Pyodide CDN failure handling, 1 test). Both marked done."
+  "summary": "task-1775579577117 done (4/4 tests pass); task-1775579679306 blocked (bug in openai.ts:7 — apiKey required even for custom+baseUrl path)"
 }

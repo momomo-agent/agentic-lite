@@ -1,7 +1,10 @@
 {
-  "totalTests": 89,
-  "passed": 87,
+  "totalTests": 97,
+  "passed": 95,
   "failed": 2,
-  "edgeCases": ["custom provider apiKey skip pre-existing failures (unrelated to m22 tasks)"],
+  "edgeCases": [
+    "provider='custom' + baseUrl + no apiKey: createOpenAIProvider still throws (bug in openai.ts:7, documented in task-1775579679306/test-result.md)",
+    "null filesystem (not undefined) bypasses ?? default — acceptable TypeScript behavior"
+  ],
   "coverage": "98%"
 }
