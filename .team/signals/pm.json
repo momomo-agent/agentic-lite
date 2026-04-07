@@ -1,7 +1,7 @@
 {
   "agent": "pm",
-  "timestamp": "2026-04-07T15:26:31.348Z",
+  "timestamp": "2026-04-07T15:27:24.382Z",
   "exitCode": 0,
   "status": "blocked",
-  "summary": "m19 tasks are in review status — waiting for tester approval before marking milestone complete or creating m20"
+  "summary": "m19 tasks task-1775575092194 and task-1775575107216 are both in 'review' status. Waiting for tester to approve and move to 'done' before milestone can be completed or next milestone planned."
 }
