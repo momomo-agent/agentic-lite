@@ -102,14 +102,24 @@
         "task-1775559026329",
         "task-1775562222342"
       ]
-    }
-    ,{
+    },
+    {
       "id": "m11",
       "name": "README Expansion & Type Completeness",
-      "status": "active",
+      "status": "completed",
       "tasks": [
         "task-1775564683082",
         "task-1775564688602"
+      ]
+    },
+    {
+      "id": "m12",
+      "name": "Public API Surface & Architecture Spec",
+      "status": "active",
+      "tasks": [
+        "task-1775565504597",
+        "task-1775565517510",
+        "task-1775565533987"
       ]
     }
   ]

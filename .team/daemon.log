@@ -8378,3 +8378,159 @@ All edge cases verified, no issues found. The implementation is production-ready
 [2026-04-07T12:36:58.777Z] tester-1 agent completed
 [2026-04-07 12:36:58] [agent_complete] tester-1 completed successfully
 [2026-04-07 12:36:58] [workflow] tester-1 [SIGNAL] completed: Verified README expansion and shellResults type - 61/61 tests pass, all DBB criteria met
+[2026-04-07 12:36:58] [workflow] work_loop [LOOP] Iteration 4
+[2026-04-07 12:36:58] [workflow] work_loop [EXEC] pm
+[2026-04-07 12:36:58] [agent_start] pm 管理任务和里程碑
+[2026-04-07T12:36:58.969Z] Running pm agent...
+All done. Here's the summary:
+
+**m11** → marked `completed` (both tasks done)
+
+**m12** created — "Public API Surface & Architecture Spec" with 3 tasks:
+- `task-1775565504597` — Export ShellResult and shell tools from public API
+- `task-1775565517510` — Fix `AgenticResult.images` type to `string[]`
+- `task-1775565533987` — Create `ARCHITECTURE.md`
+
+**m9/m10** remain active with 2 tasks blocked on CR `cr-1775560282316` (PRD.md update) — waiting for L2 review.
+
+```signal
+{"status": "completed", "summary": "Marked m11 completed, created m12 with 3 tasks targeting remaining architecture gaps (API exports, type strictness, ARCHITECTURE.md). m9/m10 blocked tasks noted, awaiting CR resolution."}
+```
+[2026-04-07T12:39:01.203Z] pm agent completed
+[2026-04-07 12:39:01] [agent_complete] pm completed successfully
+[2026-04-07 12:39:01] [workflow] pm [SIGNAL] completed: Marked m11 completed, created m12 with 3 tasks targeting remaining architecture gaps (API exports, t
+[2026-04-07 12:39:01] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-07 12:39:01] [workflow] work_loop [PARALLEL-SKIP] implement: designedTasks > 0
+[2026-04-07 12:39:01] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-07 12:39:01] [workflow] work_loop [PARALLEL] write-design
+[2026-04-07 12:39:01] [workflow] work_loop [PARALLEL] tech_lead-1, tech_lead-2, tech_lead-3
+[2026-04-07 12:39:01] [agent_start] tech_lead-1 出技术方案
+[2026-04-07 12:39:01] [agent_start] tech_lead-2 出技术方案
+[2026-04-07 12:39:01] [agent_start] tech_lead-3 出技术方案
+[2026-04-07T12:39:01.287Z] Running tech_lead-3 agent...
+[2026-04-07T12:39:01.287Z] Running tech_lead-2 agent...
+[2026-04-07T12:39:01.287Z] Running tech_lead-1 agent...
+[2026-04-07 12:40:08] [perf] daemon {"rss":"12MB","heapUsed":"6MB","uptime":"7801s"}
+[2026-04-07 12:40:09] [agent_start] daemon Still busy (20min), skipping
+All done. Here's what was completed for milestone m12:
+
+- `.team/milestones/m12/dbb.md` — 4 verification criteria (exports, images type, ARCHITECTURE.md exists)
+- `.team/milestones/m12/design.md` — milestone-level technical approach
+- `.team/tasks/task-1775565504597/design.md` — add `ShellResult` to `src/index.ts`, add `shellToolDef`/`executeShell` to `src/tools/index.ts`
+- `.team/tasks/task-1775565517510/design.md` — change `images?: string[]` → `images: string[]` in `types.ts`
+- `.team/tasks/task-1775565533987/design.md` — create `ARCHITECTURE.md` documenting module structure, data flow, key interfaces
+- All three tasks updated to `hasDesign: true`
+
+```signal
+{"status": "completed", "summary": "Created m12 dbb.md, design.md, and task designs for all 3 todo tasks; updated hasDesign=true"}
+```
+[2026-04-07T12:40:33.118Z] tech_lead-1 agent completed
+[2026-04-07 12:40:33] [agent_complete] tech_lead-1 completed successfully
+[2026-04-07 12:40:33] [workflow] tech_lead-1 [SIGNAL] completed: Created m12 dbb.md, design.md, and task designs for all 3 todo tasks; updated hasDesign=true
+[2026-04-07 12:40:46] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 5min (active:3, done:33)
+[2026-04-07 12:41:16] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 6min (active:3, done:33)
+Perfect! All work is complete. Here's a summary:
+
+## Work Completed
+
+### Milestone m12: Public API Surface & Architecture Spec
+
+**Milestone-level documents created:**
+- ✅ `.team/milestones/m12/dbb.md` — Verification criteria for all 3 tasks
+- ✅ `.team/milestones/m12/design.md` — Technical approach for the milestone
+
+**Task-level designs created:**
+1. ✅ `task-1775565504597` (Fix public API exports) — Design for exporting ShellResult and shell tools
+2. ✅ `task-1775565517510` (Fix images type) — Design for making AgenticResult.images required
+3. ✅ `task-1775565533987` (Create ARCHITECTURE.md) — Design for architecture documentation
+
+All three tasks now have `hasDesign: true` and are ready for implementation by developers.
+
+```signal
+{"status": "completed", "summary": "Created milestone m12 DBB and design documents, plus task-level designs for all 3 tasks (shell exports, images type fix, ARCHITECTURE.md). All tasks marked hasDesign=true."}
+```
+[2026-04-07T12:42:03.530Z] tech_lead-3 agent completed
+[2026-04-07 12:42:03] [agent_complete] tech_lead-3 completed successfully
+[2026-04-07 12:42:03] [workflow] tech_lead-3 [SIGNAL] completed: Created milestone m12 DBB and design documents, plus task-level designs for all 3 tasks (shell expor
+[2026-04-07 12:42:16] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 7min (active:3, done:33)
+
+
+Perfect! I've completed all the technical design work for milestone m12. Here's what I created:
+
+## Milestone m12 Documents
+
+**DBB (Definition of Done):**
+- `.team/milestones/m12/dbb.md` — 7 verification criteria covering API exports, type completeness, and architecture documentation
+
+**Technical Design:**
+- `.team/milestones/m12/design.md` — Overview of the 3 changes needed to complete the public API surface
+
+## Task-Level Designs
+
+**task-1775565504597: Fix public API exports**
+- Export `ShellResult` from `src/index.ts`
+- Export `shellToolDef` and `executeShell` from `src/tools/index.ts`
+- Pure additive change, no logic modifications
+
+**task-1775565517510: Fix AgenticResult.images type**
+- Change `images?: string[]` to `images: string[]` in `src/types.ts`
+- Verified `ask.ts` already returns `images: allImages` unconditionally
+- Makes the "always present" contract explicit
+
+**task-1775565533987: Create ARCHITECTURE.md**
+- Document module structure (ask.ts, providers/, tools/)
+- Document data flow (multi-round loop, tool execution)
+- Document key interfaces (AgenticConfig, AgenticResult, Provider, ToolDefinition)
+- Location: project root
+
+All three tasks are now marked with `hasDesign: true` and ready for implementation.
+
+```signal
+{"status": "completed", "summary": "Created m12 milestone DBB, design, and task-level designs for all 3 tasks"}
+```
+[2026-04-07T12:42:25.176Z] tech_lead-2 agent completed
+[2026-04-07 12:42:25] [agent_complete] tech_lead-2 completed successfully
+[2026-04-07 12:42:25] [workflow] tech_lead-2 [SIGNAL] completed: Created m12 milestone DBB, design, and task-level designs for all 3 tasks
+[2026-04-07 12:42:25] [workflow] work_loop [LOOP] Iteration 5
+[2026-04-07 12:42:25] [workflow] work_loop [EXEC] pm
+[2026-04-07 12:42:25] [agent_start] pm 管理任务和里程碑
+[2026-04-07T12:42:25.296Z] Running pm agent...
+[2026-04-07 12:43:16] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 8min (active:3, done:33)
+Status update complete.
+
+**Summary:**
+- m9 & m10: 2 tasks blocked on CR-1775560282316 (pending L2 PRD review) — cannot proceed
+- m12: 3 tasks assigned to `developer` and ready to pick up
+
+```signal
+{"status": "completed", "summary": "Assigned m12 tasks to developer. m9/m10 remain blocked pending CR-1775560282316 approval."}
+```
+[2026-04-07T12:43:22.613Z] pm agent completed
+[2026-04-07 12:43:22] [agent_complete] pm completed successfully
+[2026-04-07 12:43:22] [workflow] pm [SIGNAL] completed: Assigned m12 tasks to developer. m9/m10 remain blocked pending CR-1775560282316 approval.
+[2026-04-07 12:43:22] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-07 12:43:22] [workflow] work_loop [PARALLEL-SKIP] write-design: todoWithoutDesign > 0
+[2026-04-07 12:43:22] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-07 12:43:22] [workflow] work_loop [PARALLEL] implement
+[2026-04-07 12:43:22] [workflow] work_loop [EXEC] developer
+[2026-04-07 12:43:22] [agent_start] developer 实现功能
+[2026-04-07T12:43:22.714Z] Running developer agent...
+[2026-04-07 12:44:16] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 9min (active:3, done:33)
+[2026-04-07 12:45:08] [perf] daemon {"rss":"8MB","heapUsed":"13MB","uptime":"8101s"}
+[2026-04-07 12:45:16] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 10min (active:3, done:33)
+
+
+Task completed successfully. I've added the missing exports to the public API:
+
+**Changes made:**
+- `src/index.ts`: Added `ShellResult` to type exports
+- `src/tools/index.ts`: Added `shellToolDef` and `executeShell` exports
+
+Both exports were verified to exist in their source files (shell.ts and types.ts). The task is now ready for review.
+
+```signal
+{"status": "completed", "summary": "Added ShellResult type and shell tool exports to public API"}
+```
+[2026-04-07T12:45:26.043Z] developer agent completed
+[2026-04-07 12:45:26] [agent_complete] developer completed successfully
+[2026-04-07 12:45:26] [workflow] developer [SIGNAL] completed: Added ShellResult type and shell tool exports to public API
