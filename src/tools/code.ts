@@ -3,6 +3,7 @@
 import { newAsyncContext, getQuickJS } from 'quickjs-emscripten'
 import type { ToolDefinition } from '../providers/provider.js'
 import type { CodeResult } from '../types.js'
+import type { AgenticFileSystem } from 'agentic-filesystem'
 
 // Browser environment detection
 const isBrowser = typeof window !== 'undefined' && typeof document !== 'undefined'
@@ -10,37 +11,99 @@ const isBrowser = typeof window !== 'undefined' && typeof document !== 'undefine
 // Pyodide instance cache (browser)
 let pyodideInstance: any = null
 
+function createFsWrapper(filesystem: AgenticFileSystem) {
+  return {
+    readFileSync: (path: string): string => {
+      const result = filesystem.read(path)
+      if (result.error || !result.content) throw new Error(`ENOENT: no such file or directory, open '${path}'`)
+      return result.content
+    },
+    writeFileSync: (path: string, data: string): void => {
+      const result = filesystem.write(path, data)
+      if (result.error) throw new Error(`EACCES: permission denied, write '${path}'`)
+    },
+    existsSync: (path: string): boolean => {
+      const result = filesystem.read(path)
+      return !result.error && result.content !== null
+    },
+  }
+}
+
+function injectFilesystem(vm: any, filesystem?: AgenticFileSystem) {
+  if (!filesystem) return
+  const fsWrapper = createFsWrapper(filesystem)
+  const fsHandle = vm.newObject()
+
+  const readFn = vm.newFunction('readFileSync', (pathHandle: any) => {
+    try { return vm.newString(fsWrapper.readFileSync(String(vm.dump(pathHandle)))) }
+    catch (err: any) { throw vm.newError(err.message) }
+  })
+  vm.setProp(fsHandle, 'readFileSync', readFn)
+  readFn.dispose()
+
+  const writeFn = vm.newFunction('writeFileSync', (pathHandle: any, dataHandle: any) => {
+    try { fsWrapper.writeFileSync(String(vm.dump(pathHandle)), String(vm.dump(dataHandle))) }
+    catch (err: any) { throw vm.newError(err.message) }
+  })
+  vm.setProp(fsHandle, 'writeFileSync', writeFn)
+  writeFn.dispose()
+
+  const existsFn = vm.newFunction('existsSync', (pathHandle: any) => {
+    return vm.newBoolean(fsWrapper.existsSync(String(vm.dump(pathHandle))))
+  })
+  vm.setProp(fsHandle, 'existsSync', existsFn)
+  existsFn.dispose()
+
+  vm.setProp(vm.global, 'fs', fsHandle)
+  fsHandle.dispose()
+}
+
 function detectLanguage(code: string): 'python' | 'javascript' {
   const pythonPatterns = /\b(import|from|def|print|if __name__|class\s+\w+:)\b/
   return pythonPatterns.test(code) ? 'python' : 'javascript'
 }
 
-async function executePythonBrowser(code: string): Promise<CodeResult> {
+async function executePythonBrowser(code: string, filesystem?: AgenticFileSystem): Promise<CodeResult> {
   if (!pyodideInstance) {
     const { loadPyodide } = await import('pyodide')
     pyodideInstance = await loadPyodide()
   }
 
   try {
-    // Capture stdout
-    const output: string[] = []
-    pyodideInstance.setStdout({
-      batched: (text: string) => output.push(text)
-    })
+    if (filesystem) {
+      pyodideInstance.globals.set('__filesystem__', {
+        read: (path: string) => filesystem.read(path),
+        write: (path: string, data: string) => filesystem.write(path, data),
+      })
+      await pyodideInstance.runPythonAsync(`
+import io, js
+_original_open = open
+def open(file, mode='r', *args, **kwargs):
+    if isinstance(file, str) and (file.startswith('/') or file.startswith('./')):
+        fs = js.__filesystem__
+        if 'r' in mode:
+            result = fs.read(file)
+            if result.error: raise FileNotFoundError(f"No such file: {file}")
+            return io.StringIO(result.content)
+        elif 'w' in mode:
+            class W:
+                def __init__(self, p): self.p=p; self.b=[]
+                def write(self, d): self.b.append(str(d)); return len(d)
+                def close(self): fs.write(self.p,''.join(self.b))
+                def __enter__(self): return self
+                def __exit__(self, *a): self.close()
+            return W(file)
+    return _original_open(file, mode, *args, **kwargs)
+`)
+    }
 
+    const output: string[] = []
+    pyodideInstance.setStdout({ batched: (text: string) => output.push(text) })
     const result = await pyodideInstance.runPythonAsync(code)
     const resultStr = result !== undefined && result !== null ? String(result) : ''
-
-    return {
-      code,
-      output: [...output, ...(resultStr ? [`→ ${resultStr}`] : [])].join('\n')
-    }
+    return { code, output: [...output, ...(resultStr ? [`→ ${resultStr}`] : [])].join('\n') }
   } catch (err: any) {
-    return {
-      code,
-      output: '',
-      error: err.message || String(err)
-    }
+    return { code, output: '', error: err.message || String(err) }
   }
 }
 
