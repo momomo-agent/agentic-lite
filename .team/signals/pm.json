@@ -1,7 +1,7 @@
 {
   "agent": "pm",
-  "timestamp": "2026-04-07T17:12:12.177Z",
+  "timestamp": "2026-04-07T17:14:55.251Z",
   "exitCode": 0,
-  "status": "completed",
-  "summary": "Activated m25 with 3 existing tasks covering remaining 18% vision gaps. m24 in-progress with docs fix task."
+  "status": "blocked",
+  "summary": "All 3 m25 tasks are in 'review' status. Waiting for tester to approve and move to 'done' before milestone can be completed."
 }
