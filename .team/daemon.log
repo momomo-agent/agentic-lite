@@ -1430,3 +1430,6 @@ It looks like the developer needs to complete their work and update the task sta
 Should I wait for tasks to become available, or is there something else you'd like me to do?
 [2026-04-07T03:25:32.904Z] tester-1 agent completed
 [2026-04-07 03:25:32] [agent_complete] tester-1 completed successfully
+No tasks are currently claimable. All review tasks and the todo task are either already claimed by other agents or blocked. I'll wait for tasks to become available.
+[2026-04-07T03:25:50.700Z] tester-2 agent completed
+[2026-04-07 03:25:50] [agent_complete] tester-2 completed successfully
