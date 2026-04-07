@@ -874,3 +874,7 @@
 {"ts":"2026-04-07T04:12:47.137Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 18min (active:5, done:19)\"}"}}
 {"ts":"2026-04-07T04:13:24.919Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775530933189","from":"testing","to":"done","title":"Implement custom provider support"}}
 {"ts":"2026-04-07T04:13:48.699Z","type":"agent_complete","agent":"tester-1","data":{"details":"completed successfully","performance":{"memoryMB":8,"memoryTotalMB":9,"cpuUser":0.14505,"cpuSystem":0.344374}}}
+{"ts":"2026-04-07T04:14:42.942Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"20MB\",\"heapUsed\":\"9MB\",\"uptime\":\"1200s\"}"}}
+{"ts":"2026-04-07T04:14:42.950Z","type":"agent_start","agent":"daemon","data":{"details":"Still busy (20min), skipping","performance":{"memoryMB":9,"memoryTotalMB":10,"cpuUser":0.147278,"cpuSystem":0.347105}}}
+{"ts":"2026-04-07T04:16:10.282Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775534038627","from":"inProgress","to":"review","title":"code_exec 加 Python 支持"}}
+{"ts":"2026-04-07T04:16:20.681Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":10,"memoryTotalMB":11,"cpuUser":0.153847,"cpuSystem":0.356882}}}
