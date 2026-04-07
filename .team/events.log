@@ -4634,3 +4634,24 @@
 {"ts":"2026-04-07T13:44:57.142Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775568160446","from":"inProgress","to":"review","title":"Add shellResults to PRD AgenticResult"}}
 {"ts":"2026-04-07T13:45:04.926Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":14,"memoryTotalMB":17,"cpuUser":2.914149,"cpuSystem":4.582315}}}
 {"ts":"2026-04-07T13:45:04.926Z","type":"workflow","agent":"developer","data":{"details":"[SIGNAL] completed: Found existing CR cr-1775568177574 covering shellResults addition to PRD.md AgenticResult. No duplic"}}
+{"ts":"2026-04-07T13:45:05.030Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 21"}}
+{"ts":"2026-04-07T13:45:05.042Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T13:45:05.042Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":15,"memoryTotalMB":18,"cpuUser":2.918466,"cpuSystem":4.594093}}}
+{"ts":"2026-04-07T13:45:08.895Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"29MB\",\"heapUsed\":\"6MB\",\"uptime\":\"11701s\"}"}}
+{"ts":"2026-04-07T13:45:48.135Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 5min (active:2, done:39)"}}
+{"ts":"2026-04-07T13:45:48.136Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 5min (active:2, done:39)\"}"}}
+{"ts":"2026-04-07T13:46:00.963Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":14,"cpuUser":2.935497,"cpuSystem":4.605978}}}
+{"ts":"2026-04-07T13:46:00.963Z","type":"workflow","agent":"pm","data":{"details":"[SIGNAL] completed: Assessed current state: m13 active with 2 done/1 in review/1 todo. Multiple CRs pending for PRD.md u"}}
+{"ts":"2026-04-07T13:46:00.971Z","type":"workflow","agent":"work_loop","data":{"details":"[SKIP] write-dbb: milestoneNeedsDBB > 0"}}
+{"ts":"2026-04-07T13:46:00.971Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] write-design: todoWithoutDesign > 0"}}
+{"ts":"2026-04-07T13:46:00.971Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] implement, run-tests"}}
+{"ts":"2026-04-07T13:46:00.971Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] developer"}}
+{"ts":"2026-04-07T13:46:00.971Z","type":"agent_start","agent":"developer","data":{"details":"实现功能","performance":{"memoryMB":13,"memoryTotalMB":15,"cpuUser":2.937612,"cpuSystem":4.612344}}}
+{"ts":"2026-04-07T13:46:00.973Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] tester"}}
+{"ts":"2026-04-07T13:46:00.973Z","type":"agent_start","agent":"tester","data":{"details":"验证功能","performance":{"memoryMB":13,"memoryTotalMB":15,"cpuUser":2.937889,"cpuSystem":4.613019}}}
+{"ts":"2026-04-07T13:46:18.136Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 6min (active:2, done:39)"}}
+{"ts":"2026-04-07T13:46:18.137Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 6min (active:2, done:39)\"}"}}
+{"ts":"2026-04-07T13:46:27.123Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775568160484","from":"todo","to":"inProgress","title":"Expand README with API reference"}}
+{"ts":"2026-04-07T13:46:51.267Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775568160484","from":"inProgress","to":"review","title":"Expand README with API reference"}}
+{"ts":"2026-04-07T13:46:55.927Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":9,"cpuUser":2.956584,"cpuSystem":4.622904}}}
+{"ts":"2026-04-07T13:46:55.927Z","type":"workflow","agent":"developer","data":{"details":"[SIGNAL] completed: Fixed README AgenticResult.usage from optional to required to match types.ts"}}

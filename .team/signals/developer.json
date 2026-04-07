@@ -1,7 +1,7 @@
 {
   "agent": "developer",
-  "timestamp": "2026-04-07T13:45:04.924Z",
+  "timestamp": "2026-04-07T13:46:55.923Z",
   "exitCode": 0,
   "status": "completed",
-  "summary": "Found existing CR cr-1775568177574 covering shellResults addition to PRD.md AgenticResult. No duplicate CR submitted. Task moved to review."
+  "summary": "Fixed README AgenticResult.usage from optional to required to match types.ts"
 }

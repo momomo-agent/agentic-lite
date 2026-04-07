@@ -75,7 +75,7 @@ interface AgenticResult {
   files?: FileResult[]        // Files read/written
   shellResults?: ShellResult[] // Shell command results
   toolCalls?: ToolCall[]      // Raw tool calls made
-  usage?: {                   // Token usage
+  usage: {                    // Token usage
     input: number
     output: number
   }
