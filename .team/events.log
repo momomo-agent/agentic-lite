@@ -86,3 +86,32 @@
 {"ts":"2026-04-07T01:46:38.386Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775525637091","from":"inProgress","to":"review","title":"file 工具换成 agentic-filesystem"}}
 {"ts":"2026-04-07T01:46:38.439Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775525637125","from":"inProgress","to":"review","title":"code 工具换成浏览器兼容实现"}}
 {"ts":"2026-04-07T01:46:47.184Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":5,"memoryTotalMB":7,"cpuUser":0.074229,"cpuSystem":0.087273}}}
+{"ts":"2026-04-07T01:46:47.342Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 3"}}
+{"ts":"2026-04-07T01:46:47.343Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T01:46:47.346Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":6,"memoryTotalMB":7,"cpuUser":0.076005,"cpuSystem":0.091737}}}
+{"ts":"2026-04-07T01:47:31.753Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 14min (active:6, done:0)"}}
+{"ts":"2026-04-07T01:47:31.757Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 14min (active:6, done:0)\"}"}}
+{"ts":"2026-04-07T01:47:32.503Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":7,"cpuUser":0.078763,"cpuSystem":0.100685}}}
+{"ts":"2026-04-07T01:47:32.505Z","type":"workflow","agent":"work_loop","data":{"details":"[SKIP] write-dbb: milestoneNeedsDBB > 0"}}
+{"ts":"2026-04-07T01:47:32.506Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] write-design: todoWithoutDesign > 0"}}
+{"ts":"2026-04-07T01:47:32.506Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] implement: designedTasks > 0"}}
+{"ts":"2026-04-07T01:47:32.507Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] run-tests"}}
+{"ts":"2026-04-07T01:47:32.508Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] tester-1, tester-2"}}
+{"ts":"2026-04-07T01:47:32.508Z","type":"agent_start","agent":"tester-1","data":{"details":"验证功能","performance":{"memoryMB":6,"memoryTotalMB":7,"cpuUser":0.079707,"cpuSystem":0.102969}}}
+{"ts":"2026-04-07T01:47:32.520Z","type":"agent_start","agent":"tester-2","data":{"details":"验证功能","performance":{"memoryMB":6,"memoryTotalMB":7,"cpuUser":0.079902,"cpuSystem":0.103545}}}
+{"ts":"2026-04-07T01:48:10.922Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775525637055","from":"review","to":"testing","title":"修复 agent loop 支持多轮工具调用"}}
+{"ts":"2026-04-07T01:48:31.743Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 15min (active:6, done:0)"}}
+{"ts":"2026-04-07T01:48:31.745Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 15min (active:6, done:0)\"}"}}
+{"ts":"2026-04-07T01:49:01.676Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"47MB\",\"heapUsed\":\"6MB\",\"uptime\":\"900s\"}"}}
+{"ts":"2026-04-07T01:49:21.695Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775525637055","from":"testing","to":"done","title":"修复 agent loop 支持多轮工具调用"}}
+{"ts":"2026-04-07T01:49:28.173Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775525744093","from":"review","to":"testing","title":"修复 images 字段丢失"}}
+{"ts":"2026-04-07T01:49:28.209Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775525748440","from":"review","to":"testing","title":"添加 system prompt 支持"}}
+{"ts":"2026-04-07T01:50:26.382Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775525744093","from":"testing","to":"done","title":"修复 images 字段丢失"}}
+{"ts":"2026-04-07T01:50:26.416Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775525748440","from":"testing","to":"done","title":"添加 system prompt 支持"}}
+{"ts":"2026-04-07T01:50:31.479Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775525637091","from":"review","to":"testing","title":"file 工具换成 agentic-filesystem"}}
+{"ts":"2026-04-07T01:50:31.511Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775525637125","from":"review","to":"testing","title":"code 工具换成浏览器兼容实现"}}
+{"ts":"2026-04-07T01:50:31.547Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775525816399","from":"review","to":"testing","title":"实现 custom provider 支持"}}
+{"ts":"2026-04-07T01:51:51.481Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775525637091","from":"testing","to":"done","title":"file 工具换成 agentic-filesystem"}}
+{"ts":"2026-04-07T01:52:21.617Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775525637125","from":"testing","to":"done","title":"code 工具换成浏览器兼容实现"}}
+{"ts":"2026-04-07T01:52:21.650Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775525816399","from":"testing","to":"done","title":"实现 custom provider 支持"}}
+{"ts":"2026-04-07T01:52:29.054Z","type":"agent_complete","agent":"tester-1","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":7,"cpuUser":0.086878,"cpuSystem":0.116517}}}
