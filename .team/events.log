@@ -6369,3 +6369,5 @@
 {"ts":"2026-04-07T17:14:55.265Z","type":"agent_start","agent":"tester-2","data":{"details":"验证功能","performance":{"memoryMB":7,"memoryTotalMB":9,"cpuUser":1.042991,"cpuSystem":1.593383}}}
 {"ts":"2026-04-07T17:15:21.539Z","type":"agent_complete","agent":"tester-1","data":{"details":"completed successfully","performance":{"memoryMB":10,"memoryTotalMB":13,"cpuUser":1.051664,"cpuSystem":1.601117}}}
 {"ts":"2026-04-07T17:15:21.539Z","type":"workflow","agent":"tester-1","data":{"details":"[SIGNAL] completed: No claimable tasks — all 3 review tasks are already claimed by another agent"}}
+{"ts":"2026-04-07T17:15:23.557Z","type":"agent_complete","agent":"tester-2","data":{"details":"completed successfully","performance":{"memoryMB":10,"memoryTotalMB":13,"cpuUser":1.052314,"cpuSystem":1.602206}}}
+{"ts":"2026-04-07T17:15:23.557Z","type":"workflow","agent":"tester-2","data":{"details":"[SIGNAL] completed: No claimable tasks found — all 3 review tasks are assigned to other agents"}}
