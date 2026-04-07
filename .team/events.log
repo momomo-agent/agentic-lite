@@ -534,3 +534,9 @@
 {"ts":"2026-04-07T03:05:32.043Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 11min (active:5, done:17)\"}"}}
 {"ts":"2026-04-07T03:05:37.595Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775530614268","from":"inProgress","to":"review","title":"Add apiKey validation in detectProvider"}}
 {"ts":"2026-04-07T03:05:43.143Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":8,"memoryTotalMB":9,"cpuUser":0.3231,"cpuSystem":0.496367}}}
+{"ts":"2026-04-07T03:06:05.285Z","type":"agent_complete","agent":"tech_lead-1","data":{"details":"completed successfully","performance":{"memoryMB":8,"memoryTotalMB":10,"cpuUser":0.325282,"cpuSystem":0.500519}}}
+{"ts":"2026-04-07T03:06:08.462Z","type":"task_status","agent":"tester","data":{"taskId":"task-1775529644164","from":"review","to":"testing","title":"Fix failing test"}}
+{"ts":"2026-04-07T03:06:32.047Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 12min (active:5, done:17)"}}
+{"ts":"2026-04-07T03:06:32.048Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 12min (active:5, done:17)\"}"}}
+{"ts":"2026-04-07T03:06:56.573Z","type":"task_status","agent":"tester","data":{"taskId":"task-1775529644164","from":"testing","to":"done","title":"Fix failing test"}}
+{"ts":"2026-04-07T03:07:00.925Z","type":"agent_complete","agent":"tester","data":{"details":"completed successfully","performance":{"memoryMB":8,"memoryTotalMB":9,"cpuUser":0.328365,"cpuSystem":0.50507}}}

@@ -1101,3 +1101,20 @@ Both tasks are complete:
 No more tasks with `hasDesign=true` and `status=todo` are available.
 [2026-04-07T03:05:43.140Z] developer agent completed
 [2026-04-07 03:05:43] [agent_complete] developer completed successfully
+All done. Here's a summary of what was created:
+
+**M7 milestone files:**
+- `.team/milestones/m7/dbb.md` — verification criteria for custom provider + tool loop
+- `.team/milestones/m7/design.md` — technical approach for both tasks
+
+**Task designs:**
+- `.team/tasks/task-1775530933189/design.md` — modify `createProvider()` in `src/providers/provider.ts`: add `case 'custom'` using `createOpenAIProvider` with `baseUrl`, throw on unknown providers
+- `.team/tasks/task-1775530939117/design.md` — verify/fix the `for` loop in `src/ask.ts` continues through tool rounds correctly
+
+Both tasks marked `hasDesign: true`.
+[2026-04-07T03:06:05.281Z] tech_lead-1 agent completed
+[2026-04-07 03:06:05] [agent_complete] tech_lead-1 completed successfully
+[2026-04-07 03:06:32] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 12min (active:5, done:17)
+Task `task-1775529644164` is complete. All 26 tests pass — the fix for top-level `await` in the QuickJS sandbox (using `evalCodeAsync`) works correctly. Task marked as **done**.
+[2026-04-07T03:07:00.920Z] tester agent completed
+[2026-04-07 03:07:00] [agent_complete] tester completed successfully

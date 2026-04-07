@@ -3,8 +3,7 @@
   "passed": 26,
   "failed": 0,
   "edgeCases": [
-    "Top-level await not supported in QuickJS sandbox (not required by m3 DBB)",
-    "tool_use response with empty toolCalls array (handled by stopReason check)"
+    "Code with 'await' in string literal uses async path (safe false positive)"
   ],
-  "coverage": "98%"
+  "coverage": "100%"
 }
