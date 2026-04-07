@@ -1,10 +1,9 @@
 {
-  "totalTests": 3,
-  "passed": 1,
-  "failed": 2,
+  "totalTests": 8,
+  "passed": 7,
+  "failed": 1,
   "edgeCases": [
-    "Error object serialization: vm.dump() returns {name,message,stack} but String() gives [object Object]",
-    "Async/await not supported in QuickJS evalCode without executePendingJobs()"
+    "Top-level await not supported in QuickJS sandbox (not required by m3 DBB)"
   ],
-  "coverage": "33%"
+  "coverage": "88%"
 }

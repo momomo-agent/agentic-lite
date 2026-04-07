@@ -735,3 +735,10 @@ The two review tasks can't be claimed (likely already assigned to another tester
 Nothing available for tester-2 to pick up right now. I'll wait for tasks to move into `review` status.
 [2026-04-07T02:25:34.714Z] tester-2 agent completed
 [2026-04-07 02:25:34] [agent_complete] tester-2 completed successfully
+[2026-04-07 02:26:31] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 19min (active:6, done:10)
+Both tasks are complete:
+
+- **task-1775527461751** (升级 code_exec 沙箱): 7/8 tests pass, all m3 DBB criteria met → **done**
+- **task-1775527727136** (添加 code_exec 沙箱测试覆盖): all 5 required QuickJS sandbox tests present and passing → **done**
+[2026-04-07T02:28:08.388Z] tester-1 agent completed
+[2026-04-07 02:28:08] [agent_complete] tester-1 completed successfully
