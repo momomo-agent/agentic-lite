@@ -3537,3 +3537,20 @@
 {"ts":"2026-04-07T11:21:38.004Z","type":"agent_start","agent":"developer","data":{"details":"实现功能","performance":{"memoryMB":11,"memoryTotalMB":13,"cpuUser":0.697427,"cpuSystem":0.86171}}}
 {"ts":"2026-04-07T11:22:03.599Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":13,"memoryTotalMB":15,"cpuUser":0.702015,"cpuSystem":0.866295}}}
 {"ts":"2026-04-07T11:22:03.599Z","type":"workflow","agent":"developer","data":{"details":"[SIGNAL] blocked: No claimable tasks available. task-1775539726284 is todo but can-claim returned false. Other tasks a"}}
+{"ts":"2026-04-07T11:22:03.661Z","type":"workflow","agent":"work_loop","data":{"details":"[AGENT-SIGNAL] developer → blocked: No claimable tasks available. task-1775539726284 is todo but can-claim returned "}}
+{"ts":"2026-04-07T11:22:03.684Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 12"}}
+{"ts":"2026-04-07T11:22:03.695Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T11:22:03.695Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":13,"memoryTotalMB":16,"cpuUser":0.706,"cpuSystem":0.875754}}}
+{"ts":"2026-04-07T11:22:15.429Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 16min (active:1, done:29)"}}
+{"ts":"2026-04-07T11:22:15.430Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 16min (active:1, done:29)\"}"}}
+{"ts":"2026-04-07T11:22:34.793Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":5,"memoryTotalMB":9,"cpuUser":0.718458,"cpuSystem":0.881285}}}
+{"ts":"2026-04-07T11:22:34.794Z","type":"workflow","agent":"pm","data":{"details":"[SIGNAL] blocked: m9 and m10 stalled pending CR cr-1775560282316 (PRD update for shell_exec, Python code_exec, quickjs"}}
+{"ts":"2026-04-07T11:22:34.794Z","type":"workflow","agent":"work_loop","data":{"details":"[AGENT-SIGNAL] pm → blocked: m9 and m10 stalled pending CR cr-1775560282316 (PRD update for shell_exec, Pytho"}}
+{"ts":"2026-04-07T11:22:34.800Z","type":"workflow","agent":"work_loop","data":{"details":"[SKIP] write-dbb: milestoneNeedsDBB > 0"}}
+{"ts":"2026-04-07T11:22:34.801Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] write-design: todoWithoutDesign > 0"}}
+{"ts":"2026-04-07T11:22:34.801Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0"}}
+{"ts":"2026-04-07T11:22:34.801Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] implement"}}
+{"ts":"2026-04-07T11:22:34.801Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] developer"}}
+{"ts":"2026-04-07T11:22:34.801Z","type":"agent_start","agent":"developer","data":{"details":"实现功能","performance":{"memoryMB":5,"memoryTotalMB":8,"cpuUser":0.720824,"cpuSystem":0.887192}}}
+{"ts":"2026-04-07T11:23:06.805Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":7,"memoryTotalMB":10,"cpuUser":0.72611,"cpuSystem":0.892117}}}
+{"ts":"2026-04-07T11:23:06.805Z","type":"workflow","agent":"developer","data":{"details":"[SIGNAL] blocked: No claimable tasks. Only todo task (task-1775539726284) is blocked by task-1775539719830, which is b"}}
