@@ -16,7 +16,7 @@
     {
       "id": "m2",
       "name": "Provider Robustness & Package Release",
-      "status": "ready-for-work",
+      "status": "completed",
       "tasks": [
         "task-1775526862838",
         "task-1775526867192",
@@ -27,9 +27,10 @@
     {
       "id": "m3",
       "name": "Code Sandbox & Quality Gates",
-      "status": "planned",
+      "status": "active",
       "tasks": [
-        "task-1775527461751"
+        "task-1775527461751",
+        "task-1775527727136"
       ]
     }
   ]

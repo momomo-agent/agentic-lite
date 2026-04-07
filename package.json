@@ -38,6 +38,7 @@
     "vitest": "^2.0.0"
   },
   "dependencies": {
-    "agentic-filesystem": "link:../agentic-filesystem"
+    "agentic-filesystem": "link:../agentic-filesystem",
+    "quickjs-emscripten": "^0.29.0"
   }
 }

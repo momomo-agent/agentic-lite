@@ -1,5 +1,6 @@
-// Code execution tool — browser-compatible AsyncFunction sandbox
+// Code execution tool — quickjs-emscripten isolated sandbox
 
+import { getQuickJS } from 'quickjs-emscripten'
 import type { ToolDefinition } from '../providers/provider.js'
 import type { CodeResult } from '../types.js'
 
@@ -21,31 +22,39 @@ export async function executeCode(
   const code = String(input.code ?? '')
   if (!code) return { code: '', output: '', error: 'No code provided' }
 
+  const QuickJS = await getQuickJS()
+  const vm = QuickJS.newContext()
   const logs: string[] = []
-  const mockConsole = {
-    log: (...a: unknown[]) => logs.push(a.map(String).join(' ')),
-    error: (...a: unknown[]) => logs.push(a.map(String).join(' ')),
-    warn: (...a: unknown[]) => logs.push(a.map(String).join(' ')),
-  }
 
-  try {
-    // AsyncFunction works in browsers and Node — no Node-specific deps
-    // Try as expression first (returns value), fall back to statements
-    let fnBody: string
-    try {
-      new Function(`return (${code})`)  // syntax check
-      fnBody = `return (async () => { return (${code}) })()`
-    } catch {
-      fnBody = `return (async () => { ${code} })()`
-    }
-    const fn = new Function('console', fnBody)
-    const result = await fn(mockConsole)
-    const output = [
-      ...logs,
-      ...(result !== undefined ? [`→ ${String(result)}`] : []),
-    ].join('\n')
-    return { code, output }
-  } catch (err) {
+  // Inject console
+  const consoleHandle = vm.newObject()
+  for (const method of ['log', 'warn', 'error'] as const) {
+    const fn = vm.newFunction(method, (...args) => {
+      logs.push(args.map(h => { const v = vm.dump(h); return String(v) }).join(' '))
+    })
+    vm.setProp(consoleHandle, method, fn)
+    fn.dispose()
+  }
+  vm.setProp(vm.global, 'console', consoleHandle)
+  consoleHandle.dispose()
+
+  const result = vm.evalCode(code)
+
+  if (result.error) {
+    const err = vm.dump(result.error)
+    result.error.dispose()
+    vm.dispose()
     return { code, output: logs.join('\n'), error: String(err) }
   }
+
+  const val = vm.dump(result.value)
+  result.value.dispose()
+  vm.dispose()
+
+  const output = [
+    ...logs,
+    ...(val !== undefined && val !== null ? [`→ ${String(val)}`] : []),
+  ].join('\n')
+
+  return { code, output }
 }
