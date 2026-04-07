@@ -5100,3 +5100,38 @@
 {"ts":"2026-04-07T14:44:24.221Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775572728626","from":"inProgress","to":"review","title":"Document custom provider fallback behavior"}}
 {"ts":"2026-04-07T14:44:31.196Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":9,"memoryTotalMB":12,"cpuUser":3.919374,"cpuSystem":5.663433}}}
 {"ts":"2026-04-07T14:44:31.196Z","type":"workflow","agent":"developer","data":{"details":"[SIGNAL] completed: Verified ShellResult and shell tool exports already in place; documented custom provider fallback be"}}
+{"ts":"2026-04-07T14:44:31.320Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 37"}}
+{"ts":"2026-04-07T14:44:31.332Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T14:44:31.332Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":9,"memoryTotalMB":13,"cpuUser":3.924304,"cpuSystem":5.678159}}}
+{"ts":"2026-04-07T14:45:08.924Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"35MB\",\"heapUsed\":\"12MB\",\"uptime\":\"15301s\"}"}}
+{"ts":"2026-04-07T14:45:14.292Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":12,"memoryTotalMB":14,"cpuUser":3.929221,"cpuSystem":5.683335}}}
+{"ts":"2026-04-07T14:45:14.292Z","type":"workflow","agent":"pm","data":{"details":"[SIGNAL] completed: Activated m16, assigned 3 tasks to developers. Three tasks across m9/m10/m15 remain blocked pending "}}
+{"ts":"2026-04-07T14:45:14.300Z","type":"workflow","agent":"work_loop","data":{"details":"[SKIP] write-dbb: milestoneNeedsDBB > 0"}}
+{"ts":"2026-04-07T14:45:14.300Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] write-design: todoWithoutDesign > 0"}}
+{"ts":"2026-04-07T14:45:14.300Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] implement: designedTasks > 0"}}
+{"ts":"2026-04-07T14:45:14.300Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] run-tests"}}
+{"ts":"2026-04-07T14:45:14.300Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] tester-1, tester-2"}}
+{"ts":"2026-04-07T14:45:14.300Z","type":"agent_start","agent":"tester-1","data":{"details":"验证功能","performance":{"memoryMB":12,"memoryTotalMB":15,"cpuUser":3.931453,"cpuSystem":5.690069}}}
+{"ts":"2026-04-07T14:45:14.301Z","type":"agent_start","agent":"tester-2","data":{"details":"验证功能","performance":{"memoryMB":12,"memoryTotalMB":15,"cpuUser":3.931611,"cpuSystem":5.690494}}}
+{"ts":"2026-04-07T14:45:18.392Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 12min (active:3, done:47)"}}
+{"ts":"2026-04-07T14:45:18.392Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 12min (active:3, done:47)\"}"}}
+{"ts":"2026-04-07T14:45:44.221Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":15,"memoryTotalMB":18,"cpuUser":3.935155,"cpuSystem":5.69315}}}
+{"ts":"2026-04-07T14:45:44.222Z","type":"workflow","agent":"pm","data":{"details":"[SIGNAL] blocked: 3 tasks blocked on pending PRD.md CRs (multiple submitted, awaiting L2 action). 3 m16 tasks in teste"}}
+{"ts":"2026-04-07T14:45:44.222Z","type":"workflow","agent":"work_loop","data":{"details":"[AGENT-SIGNAL] pm → blocked: 3 tasks blocked on pending PRD.md CRs (multiple submitted, awaiting L2 action). "}}
+{"ts":"2026-04-07T14:45:44.231Z","type":"workflow","agent":"work_loop","data":{"details":"[SKIP] write-dbb: milestoneNeedsDBB > 0"}}
+{"ts":"2026-04-07T14:45:44.231Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] write-design: todoWithoutDesign > 0"}}
+{"ts":"2026-04-07T14:45:44.232Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] implement: designedTasks > 0"}}
+{"ts":"2026-04-07T14:45:44.232Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] run-tests"}}
+{"ts":"2026-04-07T14:45:44.232Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] tester-1, tester-2"}}
+{"ts":"2026-04-07T14:45:44.232Z","type":"agent_start","agent":"tester-1","data":{"details":"验证功能","performance":{"memoryMB":15,"memoryTotalMB":18,"cpuUser":3.937938,"cpuSystem":5.700957}}}
+{"ts":"2026-04-07T14:45:44.233Z","type":"agent_start","agent":"tester-2","data":{"details":"验证功能","performance":{"memoryMB":15,"memoryTotalMB":18,"cpuUser":3.938265,"cpuSystem":5.701401}}}
+{"ts":"2026-04-07T14:45:48.354Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775572706464","from":"review","to":"testing","title":"Export ShellResult from public API"}}
+{"ts":"2026-04-07T14:45:56.296Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775572719168","from":"review","to":"testing","title":"Export shell tool defs from tools/index.ts"}}
+{"ts":"2026-04-07T14:45:56.332Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775572728626","from":"review","to":"testing","title":"Document custom provider fallback behavior"}}
+{"ts":"2026-04-07T14:46:18.400Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 13min (active:3, done:47)"}}
+{"ts":"2026-04-07T14:46:18.401Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 13min (active:3, done:47)\"}"}}
+{"ts":"2026-04-07T14:47:04.909Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775572706464","from":"testing","to":"done","title":"Export ShellResult from public API"}}
+{"ts":"2026-04-07T14:47:04.943Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775572719168","from":"testing","to":"done","title":"Export shell tool defs from tools/index.ts"}}
+{"ts":"2026-04-07T14:47:04.972Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775572728626","from":"testing","to":"done","title":"Document custom provider fallback behavior"}}
+{"ts":"2026-04-07T14:47:29.038Z","type":"agent_complete","agent":"tester-2","data":{"details":"completed successfully","performance":{"memoryMB":9,"memoryTotalMB":12,"cpuUser":3.973817,"cpuSystem":5.724273}}}
+{"ts":"2026-04-07T14:47:29.038Z","type":"workflow","agent":"tester-2","data":{"details":"[SIGNAL] completed: Tested and marked done: ShellResult export (task-1775572706464), shell tool defs export (task-177557"}}

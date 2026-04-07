@@ -1,7 +1,7 @@
 {
   "agent": "pm",
-  "timestamp": "2026-04-07T14:42:52.460Z",
+  "timestamp": "2026-04-07T14:45:44.216Z",
   "exitCode": 0,
-  "status": "completed",
-  "summary": "Activated m16, assigned 3 tasks to tech leads. 3 tasks in m9/m10/m15 remain blocked on pending PRD CRs."
+  "status": "blocked",
+  "summary": "3 tasks blocked on pending PRD.md CRs (multiple submitted, awaiting L2 action). 3 m16 tasks in tester review — cannot approve. No new tasks needed until blockers resolve."
 }

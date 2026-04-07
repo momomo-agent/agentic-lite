@@ -10646,3 +10646,78 @@ All three tasks completed:
 [2026-04-07T14:44:31.192Z] developer agent completed
 [2026-04-07 14:44:31] [agent_complete] developer completed successfully
 [2026-04-07 14:44:31] [workflow] developer [SIGNAL] completed: Verified ShellResult and shell tool exports already in place; documented custom provider fallback be
+[2026-04-07 14:44:31] [workflow] work_loop [LOOP] Iteration 37
+[2026-04-07 14:44:31] [workflow] work_loop [EXEC] pm
+[2026-04-07 14:44:31] [agent_start] pm 管理任务和里程碑
+[2026-04-07T14:44:31.357Z] Running pm agent...
+[2026-04-07 14:45:08] [perf] daemon {"rss":"35MB","heapUsed":"12MB","uptime":"15301s"}
+**Status summary:**
+
+**m16 (active)** — 3 tasks assigned:
+- `task-1775572706464` → developer-1: Export ShellResult from public API
+- `task-1775572719168` → developer-2: Export shell tool defs from tools/index.ts
+- `task-1775572728626` → developer-1: Document custom provider fallback behavior
+
+**Blocked (awaiting L2 CR review):**
+- m9/m10: `cr-1775560282316` — PRD update for shell_exec + quickjs sandbox
+- m15: `cr-1775571299895` — Add shellResults to PRD AgenticResult schema
+
+No further action possible on blocked tasks until CRs are reviewed by L2.
+
+```signal
+{"status": "completed", "summary": "Activated m16, assigned 3 tasks to developers. Three tasks across m9/m10/m15 remain blocked pending L2 CR review."}
+```
+[2026-04-07T14:45:14.288Z] pm agent completed
+[2026-04-07 14:45:14] [agent_complete] pm completed successfully
+[2026-04-07 14:45:14] [workflow] pm [SIGNAL] completed: Activated m16, assigned 3 tasks to developers. Three tasks across m9/m10/m15 remain blocked pending 
+[2026-04-07 14:45:14] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-07 14:45:14] [workflow] work_loop [PARALLEL-SKIP] write-design: todoWithoutDesign > 0
+[2026-04-07 14:45:14] [workflow] work_loop [PARALLEL-SKIP] implement: designedTasks > 0
+[2026-04-07 14:45:14] [workflow] work_loop [PARALLEL] run-tests
+[2026-04-07 14:45:14] [workflow] work_loop [PARALLEL] tester-1, tester-2
+[2026-04-07 14:45:14] [agent_start] tester-1 验证功能
+[2026-04-07 14:45:14] [agent_start] tester-2 验证功能
+[2026-04-07T14:45:14.333Z] Running tester-2 agent...
+[2026-04-07T14:45:14.333Z] Running tester-1 agent...
+[2026-04-07 14:45:18] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 12min (active:3, done:47)
+Current state is clear. Here's the situation:
+
+**Blocked tasks (waiting on PRD.md CRs — cannot unblock myself):**
+- `task-1775539719830` (m9) — blocked on PRD update for shell_exec/Python
+- `task-1775559026329` (m10) — blocked on PRD code_exec sandbox spec
+- `task-1775571299895` (m15) — blocked on PRD shellResults field
+
+**In review (waiting for tester):**
+- `task-1775572706464` (m16) — Export ShellResult
+- `task-1775572719168` (m16) — Export shell tool defs
+- `task-1775572728626` (m16) — Document custom provider fallback
+
+**Action:** Multiple duplicate CRs already submitted for the same PRD.md changes. No new CRs needed. The blockers are upstream (L2 must act on the CRs). m16 review tasks must be approved by testers.
+
+Nothing actionable for PM right now — all paths are blocked on either tester review or L2 CR approval.
+
+```signal
+{"status": "blocked", "summary": "3 tasks blocked on pending PRD.md CRs (multiple submitted, awaiting L2 action). 3 m16 tasks in tester review — cannot approve. No new tasks needed until blockers resolve."}
+```
+[2026-04-07T14:45:44.217Z] pm agent completed
+[2026-04-07 14:45:44] [agent_complete] pm completed successfully
+[2026-04-07 14:45:44] [workflow] pm [SIGNAL] blocked: 3 tasks blocked on pending PRD.md CRs (multiple submitted, awaiting L2 action). 3 m16 tasks in teste
+[2026-04-07 14:45:44] [workflow] work_loop [AGENT-SIGNAL] pm → blocked: 3 tasks blocked on pending PRD.md CRs (multiple submitted, awaiting L2 action). 
+[2026-04-07 14:45:44] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-07 14:45:44] [workflow] work_loop [PARALLEL-SKIP] write-design: todoWithoutDesign > 0
+[2026-04-07 14:45:44] [workflow] work_loop [PARALLEL-SKIP] implement: designedTasks > 0
+[2026-04-07 14:45:44] [workflow] work_loop [PARALLEL] run-tests
+[2026-04-07 14:45:44] [workflow] work_loop [PARALLEL] tester-1, tester-2
+[2026-04-07 14:45:44] [agent_start] tester-1 验证功能
+[2026-04-07 14:45:44] [agent_start] tester-2 验证功能
+[2026-04-07T14:45:44.264Z] Running tester-1 agent...
+[2026-04-07T14:45:44.264Z] Running tester-2 agent...
+[2026-04-07 14:46:18] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 13min (active:3, done:47)
+The existing coverage file already matches. All three tasks are done.
+
+```signal
+{"status": "completed", "summary": "Tested and marked done: ShellResult export (task-1775572706464), shell tool defs export (task-1775572719168), custom provider fallback docs (task-1775572728626). All implementations verified correct. 73/74 tests pass; 1 pre-existing failure (PRD missing shellResults) unrelated to these tasks."}
+```
+[2026-04-07T14:47:29.034Z] tester-2 agent completed
+[2026-04-07 14:47:29] [agent_complete] tester-2 completed successfully
+[2026-04-07 14:47:29] [workflow] tester-2 [SIGNAL] completed: Tested and marked done: ShellResult export (task-1775572706464), shell tool defs export (task-177557
