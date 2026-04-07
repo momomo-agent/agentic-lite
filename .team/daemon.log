@@ -11664,3 +11664,11 @@ Both tasks are already claimed by other agents (tech_lead-2 and tech_lead-1) and
 [2026-04-07T15:26:58.506Z] tester-1 agent completed
 [2026-04-07 15:26:58] [agent_complete] tester-1 completed successfully
 [2026-04-07 15:26:58] [workflow] tester-1 [SIGNAL] completed: No claimable tasks found — both review tasks (task-1775575092194, task-1775575107216) are already as
+Both tasks in 'review' status cannot be claimed (likely already assigned to other agents). There's nothing for me to pick up right now.
+
+```signal
+{"status": "completed", "summary": "No claimable tasks found — both review tasks (task-1775575092194, task-1775575107216) are already assigned and cannot be claimed"}
+```
+[2026-04-07T15:26:59.521Z] tester-2 agent completed
+[2026-04-07 15:26:59] [agent_complete] tester-2 completed successfully
+[2026-04-07 15:26:59] [workflow] tester-2 [SIGNAL] completed: No claimable tasks found — both review tasks (task-1775575092194, task-1775575107216) are already as

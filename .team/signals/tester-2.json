@@ -1,7 +1,7 @@
 {
   "agent": "tester-2",
-  "timestamp": "2026-04-07T15:14:11.085Z",
+  "timestamp": "2026-04-07T15:26:59.520Z",
   "exitCode": 0,
   "status": "completed",
-  "summary": "No tasks available to claim — all review tasks already in testing by tester-1"
+  "summary": "No claimable tasks found — both review tasks (task-1775575092194, task-1775575107216) are already assigned and cannot be claimed"
 }
