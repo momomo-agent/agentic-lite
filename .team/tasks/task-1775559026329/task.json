@@ -5,10 +5,12 @@
   "status": "blocked",
   "priority": "P1",
   "assignee": "tester-1",
-  "blockedBy": [],
+  "blockedBy": [
+    "cr-1775560282316"
+  ],
   "groupId": "m10",
   "hasDesign": true,
   "created": "2026-04-07T10:50:26.329Z",
-  "updated": "2026-04-07T11:06:51.237Z",
+  "updated": "2026-04-07T11:13:25.792Z",
   "milestoneId": "m10"
 }

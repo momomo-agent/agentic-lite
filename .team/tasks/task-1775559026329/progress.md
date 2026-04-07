@@ -2,6 +2,9 @@
 
 ## Progress
 
-BLOCKED: Developer role permissions prohibit writing to PRD.md.
-Required change: line 11, replace "executes JS via AsyncFunction (browser-compatible)" with "executes JavaScript in an isolated quickjs-emscripten sandbox (browser-compatible)".
-This is a one-line docs-only change — needs PM or architect role to apply.
+BLOCKED: PRD.md specifies AsyncFunction eval but implementation uses quickjs-emscripten sandbox.
+
+**Change Request Submitted:** cr-1775560282316
+- Requests PRD.md update to document actual quickjs-emscripten implementation
+- Awaiting L2 (architect) approval
+- Once approved, this task can be marked done

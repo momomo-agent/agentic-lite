@@ -5,9 +5,11 @@
   "status": "blocked",
   "priority": "P1",
   "assignee": "tester-1",
-  "blockedBy": [],
+  "blockedBy": [
+    "cr-1775560282316"
+  ],
   "groupId": "m9",
   "hasDesign": true,
   "created": "2026-04-07T05:28:39.831Z",
-  "updated": "2026-04-07T11:05:25.435Z"
+  "updated": "2026-04-07T11:13:25.751Z"
 }
