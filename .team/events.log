@@ -1084,3 +1084,47 @@
 {"ts":"2026-04-07T05:17:34.915Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 36min (active:1, done:25)\"}"}}
 {"ts":"2026-04-07T05:18:21.947Z","type":"task_status","agent":"tester","data":{"taskId":"task-1775537901346","from":"testing","to":"done","title":"修复 Python filesystem 注入的 3 个 bug"}}
 {"ts":"2026-04-07T05:18:52.273Z","type":"agent_complete","agent":"tester","data":{"details":"completed successfully","performance":{"memoryMB":12,"memoryTotalMB":13,"cpuUser":0.537097,"cpuSystem":1.762035}}}
+{"ts":"2026-04-07T05:18:52.737Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 9"}}
+{"ts":"2026-04-07T05:18:52.737Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T05:18:52.756Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":12,"memoryTotalMB":14,"cpuUser":0.541929,"cpuSystem":1.778391}}}
+{"ts":"2026-04-07T05:19:43.884Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"11MB\",\"heapUsed\":\"12MB\",\"uptime\":\"5101s\"}"}}
+{"ts":"2026-04-07T05:23:25.655Z","type":"task_status","agent":"tester","data":{"taskId":"task-1775534038662","from":"blocked","to":"todo","title":"code_exec 内注入 filesystem API"}}
+{"ts":"2026-04-07T05:23:36.867Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 5min (active:1, done:26)"}}
+{"ts":"2026-04-07T05:23:36.870Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 5min (active:1, done:26)\"}"}}
+{"ts":"2026-04-07T05:24:06.851Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 6min (active:1, done:26)"}}
+{"ts":"2026-04-07T05:24:06.852Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 6min (active:1, done:26)\"}"}}
+{"ts":"2026-04-07T05:24:43.073Z","type":"agent_start","agent":"daemon","data":{"details":"Still busy (90min), skipping","performance":{"memoryMB":6,"memoryTotalMB":7,"cpuUser":0.57384,"cpuSystem":1.904249}}}
+{"ts":"2026-04-07T05:24:43.872Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"16MB\",\"heapUsed\":\"6MB\",\"uptime\":\"5401s\"}"}}
+{"ts":"2026-04-07T05:25:06.867Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 7min (active:1, done:26)"}}
+{"ts":"2026-04-07T05:25:06.868Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 7min (active:1, done:26)\"}"}}
+{"ts":"2026-04-07T05:26:06.886Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 8min (active:1, done:26)"}}
+{"ts":"2026-04-07T05:26:06.888Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 8min (active:1, done:26)\"}"}}
+{"ts":"2026-04-07T05:26:28.264Z","type":"task_created","agent":null,"data":{"taskId":"task-1775539588263","title":"Fix README — restore npm install agentic-lite","priority":"P1","group":"m9"}}
+{"ts":"2026-04-07T05:26:36.889Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 8min (active:2, done:26)"}}
+{"ts":"2026-04-07T05:26:36.890Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 8min (active:2, done:26)\"}"}}
+{"ts":"2026-04-07T05:27:06.876Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 9min (active:2, done:26)"}}
+{"ts":"2026-04-07T05:27:06.876Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 9min (active:2, done:26)\"}"}}
+{"ts":"2026-04-07T05:28:06.877Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 10min (active:2, done:26)"}}
+{"ts":"2026-04-07T05:28:06.877Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 10min (active:2, done:26)\"}"}}
+{"ts":"2026-04-07T05:28:39.831Z","type":"task_created","agent":null,"data":{"taskId":"task-1775539719830","title":"Update PRD.md — add shell_exec and Python code_exec","priority":"P1","group":"m9"}}
+{"ts":"2026-04-07T05:28:46.285Z","type":"task_created","agent":null,"data":{"taskId":"task-1775539726284","title":"Verify all EXPECTED_DBB.md criteria pass","priority":"P1","group":"m9"}}
+{"ts":"2026-04-07T05:28:57.289Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":8,"memoryTotalMB":10,"cpuUser":0.586283,"cpuSystem":1.933627}}}
+{"ts":"2026-04-07T05:28:57.297Z","type":"workflow","agent":"work_loop","data":{"details":"[SKIP] write-dbb: milestoneNeedsDBB > 0"}}
+{"ts":"2026-04-07T05:28:57.297Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0"}}
+{"ts":"2026-04-07T05:28:57.297Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] write-design, implement"}}
+{"ts":"2026-04-07T05:28:57.297Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] tech_lead-1, tech_lead-2, tech_lead-3"}}
+{"ts":"2026-04-07T05:28:57.298Z","type":"agent_start","agent":"tech_lead-1","data":{"details":"出技术方案","performance":{"memoryMB":8,"memoryTotalMB":9,"cpuUser":0.587906,"cpuSystem":1.937963}}}
+{"ts":"2026-04-07T05:28:57.298Z","type":"agent_start","agent":"tech_lead-2","data":{"details":"出技术方案","performance":{"memoryMB":8,"memoryTotalMB":9,"cpuUser":0.588077,"cpuSystem":1.938466}}}
+{"ts":"2026-04-07T05:28:57.299Z","type":"agent_start","agent":"tech_lead-3","data":{"details":"出技术方案","performance":{"memoryMB":8,"memoryTotalMB":9,"cpuUser":0.588221,"cpuSystem":1.938835}}}
+{"ts":"2026-04-07T05:28:57.299Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] developer"}}
+{"ts":"2026-04-07T05:28:57.300Z","type":"agent_start","agent":"developer","data":{"details":"实现功能","performance":{"memoryMB":8,"memoryTotalMB":9,"cpuUser":0.588402,"cpuSystem":1.939275}}}
+{"ts":"2026-04-07T05:29:06.881Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 11min (active:4, done:26)"}}
+{"ts":"2026-04-07T05:29:06.882Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 11min (active:4, done:26)\"}"}}
+{"ts":"2026-04-07T05:29:43.875Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"23MB\",\"heapUsed\":\"9MB\",\"uptime\":\"5701s\"}"}}
+{"ts":"2026-04-07T05:30:06.884Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 12min (active:4, done:26)"}}
+{"ts":"2026-04-07T05:30:06.884Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 12min (active:4, done:26)\"}"}}
+{"ts":"2026-04-07T05:30:06.993Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775534038662","from":"todo","to":"inProgress","title":"code_exec 内注入 filesystem API"}}
+{"ts":"2026-04-07T05:30:53.499Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775534038662","from":"inProgress","to":"review","title":"code_exec 内注入 filesystem API"}}
+{"ts":"2026-04-07T05:31:06.892Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 13min (active:4, done:26)"}}
+{"ts":"2026-04-07T05:31:06.893Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 13min (active:4, done:26)\"}"}}
+{"ts":"2026-04-07T05:31:19.776Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":10,"memoryTotalMB":11,"cpuUser":0.594473,"cpuSystem":1.947877}}}

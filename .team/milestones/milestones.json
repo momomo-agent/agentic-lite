@@ -82,6 +82,16 @@
         "task-1775534038696",
         "task-1775537901346"
       ]
+    },
+    {
+      "id": "m9",
+      "name": "README Fix, PRD Sync & DBB Verification",
+      "status": "planned",
+      "tasks": [
+        "task-1775539588263",
+        "task-1775539719830",
+        "task-1775539726284"
+      ]
     }
   ]
 }
