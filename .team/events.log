@@ -349,3 +349,8 @@
 {"ts":"2026-04-07T02:27:47.100Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775528295380","from":"todo","to":"inProgress","title":"修复多轮工具循环"}}
 {"ts":"2026-04-07T02:27:59.600Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775527727136","from":"testing","to":"done","title":"添加 code_exec 沙箱测试覆盖"}}
 {"ts":"2026-04-07T02:28:08.391Z","type":"agent_complete","agent":"tester-1","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":8,"cpuUser":0.17768,"cpuSystem":0.240535}}}
+{"ts":"2026-04-07T02:29:01.700Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"56MB\",\"heapUsed\":\"6MB\",\"uptime\":\"3300s\"}"}}
+{"ts":"2026-04-07T02:30:21.583Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775528295380","from":"inProgress","to":"review","title":"修复多轮工具循环"}}
+{"ts":"2026-04-07T02:30:25.894Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775528302103","from":"todo","to":"inProgress","title":"修复 images 字段丢失"}}
+{"ts":"2026-04-07T02:31:22.644Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775528302103","from":"inProgress","to":"review","title":"修复 images 字段丢失"}}
+{"ts":"2026-04-07T02:31:32.939Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":7,"cpuUser":0.182387,"cpuSystem":0.246342}}}
