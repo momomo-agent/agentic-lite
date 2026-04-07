@@ -4582,3 +4582,27 @@
 {"ts":"2026-04-07T13:33:18.080Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 14min (active:4, done:37)\"}"}}
 {"ts":"2026-04-07T13:33:34.370Z","type":"agent_complete","agent":"tester-2","data":{"details":"completed successfully","performance":{"memoryMB":9,"memoryTotalMB":12,"cpuUser":2.771419,"cpuSystem":4.404079}}}
 {"ts":"2026-04-07T13:33:34.371Z","type":"workflow","agent":"tester-2","data":{"details":"[SIGNAL] completed: No claimable tasks found. Review tasks assigned to developer, todo tasks require PRD/README writes o"}}
+{"ts":"2026-04-07T13:34:18.087Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 15min (active:4, done:37)"}}
+{"ts":"2026-04-07T13:34:18.088Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 15min (active:4, done:37)\"}"}}
+{"ts":"2026-04-07T13:35:08.887Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"12MB\",\"heapUsed\":\"14MB\",\"uptime\":\"11101s\"}"}}
+{"ts":"2026-04-07T13:35:18.100Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 16min (active:4, done:37)"}}
+{"ts":"2026-04-07T13:35:18.100Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 16min (active:4, done:37)\"}"}}
+{"ts":"2026-04-07T13:35:20.224Z","type":"error","agent":"tester-1","data":{"details":"failed (code=1), retry 1/2 in 1s"}}
+{"ts":"2026-04-07T13:35:20.224Z","type":"workflow","agent":"tester-1","data":{"details":"[SIGNAL] failed: API Error: 429 {\"error\":{\"message\":\"并发请求数量过多，请稍后再试\",\"type\":\"rate_limit_error\"},\"type\":\"error\"}"}}
+{"ts":"2026-04-07T13:35:21.226Z","type":"agent_start","agent":"tester-1","data":{"details":"验证功能","performance":{"memoryMB":5,"memoryTotalMB":8,"cpuUser":2.803618,"cpuSystem":4.432299}}}
+{"ts":"2026-04-07T13:36:18.099Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 17min (active:4, done:37)"}}
+{"ts":"2026-04-07T13:36:18.104Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 17min (active:4, done:37)\"}"}}
+{"ts":"2026-04-07T13:37:18.099Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 18min (active:4, done:37)"}}
+{"ts":"2026-04-07T13:37:18.099Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 18min (active:4, done:37)\"}"}}
+{"ts":"2026-04-07T13:38:02.203Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775568150743","from":"review","to":"testing","title":"Fix AgenticResult.usage type to required"}}
+{"ts":"2026-04-07T13:38:18.106Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 19min (active:4, done:37)"}}
+{"ts":"2026-04-07T13:38:18.107Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 19min (active:4, done:37)\"}"}}
+{"ts":"2026-04-07T13:39:18.110Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 20min (active:4, done:37)"}}
+{"ts":"2026-04-07T13:39:18.111Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 20min (active:4, done:37)\"}"}}
+{"ts":"2026-04-07T13:39:38.317Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775568150743","from":"testing","to":"done","title":"Fix AgenticResult.usage type to required"}}
+{"ts":"2026-04-07T13:39:43.552Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775568160405","from":"review","to":"testing","title":"Fix ask() systemPrompt positional param"}}
+{"ts":"2026-04-07T13:40:08.938Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"12MB\",\"heapUsed\":\"10MB\",\"uptime\":\"11401s\"}"}}
+{"ts":"2026-04-07T13:40:09.045Z","type":"agent_start","agent":"daemon","data":{"details":"Still busy (80min), skipping","performance":{"memoryMB":10,"memoryTotalMB":12,"cpuUser":2.849331,"cpuSystem":4.483491}}}
+{"ts":"2026-04-07T13:40:23.503Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775568160405","from":"testing","to":"done","title":"Fix ask() systemPrompt positional param"}}
+{"ts":"2026-04-07T13:40:31.835Z","type":"agent_complete","agent":"tester-1","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":13,"cpuUser":2.854791,"cpuSystem":4.490288}}}
+{"ts":"2026-04-07T13:40:31.836Z","type":"workflow","agent":"tester-1","data":{"details":"[SIGNAL] completed: Tested and marked done: task-1775568150743 (usage type already required) and task-1775568160405 (ask"}}
