@@ -6154,3 +6154,9 @@
 {"ts":"2026-04-07T16:49:27.765Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 6min (active:2, done:67)\"}"}}
 {"ts":"2026-04-07T16:49:50.010Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":9,"memoryTotalMB":13,"cpuUser":0.377783,"cpuSystem":0.536129}}}
 {"ts":"2026-04-07T16:49:50.017Z","type":"workflow","agent":"developer","data":{"details":"[SIGNAL] completed: No claimable tasks available. task-1775580346381 is already in review (my previous work). task-17755"}}
+{"ts":"2026-04-07T16:50:26.774Z","type":"task_status","agent":"tester","data":{"taskId":"task-1775580346381","from":"review","to":"testing","title":"Fix openai.ts apiKey validation for custom+baseUrl provider"}}
+{"ts":"2026-04-07T16:50:27.156Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 7min (active:2, done:67)"}}
+{"ts":"2026-04-07T16:50:27.157Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 7min (active:2, done:67)\"}"}}
+{"ts":"2026-04-07T16:50:58.128Z","type":"task_status","agent":"tester","data":{"taskId":"task-1775580346381","from":"testing","to":"done","title":"Fix openai.ts apiKey validation for custom+baseUrl provider"}}
+{"ts":"2026-04-07T16:51:04.670Z","type":"agent_complete","agent":"tester","data":{"details":"completed successfully","performance":{"memoryMB":10,"memoryTotalMB":13,"cpuUser":0.408746,"cpuSystem":0.602979}}}
+{"ts":"2026-04-07T16:51:04.697Z","type":"workflow","agent":"tester","data":{"details":"[SIGNAL] completed: Verified task-1775580346381: openai.ts apiKey fix confirmed — custom+baseUrl provider works without "}}

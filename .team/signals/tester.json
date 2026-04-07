@@ -1,7 +1,7 @@
 {
   "agent": "tester",
-  "timestamp": "2026-04-07T16:30:46.716Z",
+  "timestamp": "2026-04-07T16:51:04.541Z",
   "exitCode": 0,
   "status": "completed",
-  "summary": "No tasks in review status found. All 66 tasks are already done."
+  "summary": "Verified task-1775580346381: openai.ts apiKey fix confirmed — custom+baseUrl provider works without apiKey. 97/97 tests pass."
 }
