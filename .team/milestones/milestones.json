@@ -223,11 +223,19 @@
     {
       "id": "m23",
       "name": "Zero-Config Default Browser Filesystem",
-      "status": "ready-for-work",
+      "status": "completed",
       "tasks": [
         "task-1775579577117",
         "task-1775579679306",
         "task-1775580346381"
+      ]
+    }
+    ,{
+      "id": "m24",
+      "name": "README Type Accuracy & Final Gap Closure",
+      "status": "ready-for-work",
+      "tasks": [
+        "task-1775581032171"
       ]
     }
   ]
