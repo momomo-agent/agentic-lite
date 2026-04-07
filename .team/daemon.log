@@ -5605,3 +5605,13 @@ No tasks are available to claim right now. `task-1775539726284` has `hasDesign=t
 [2026-04-07T10:53:14.155Z] developer agent completed
 [2026-04-07 10:53:14] [agent_complete] developer completed successfully
 [2026-04-07 10:53:14] [workflow] developer [SIGNAL] blocked: No claimable tasks available. task-1775539726284 cannot be claimed (blocked), other todo tasks lack 
+[2026-04-07 10:53:14] [workflow] work_loop [AGENT-SIGNAL] developer → blocked: No claimable tasks available. task-1775539726284 cannot be claimed (blocked), ot
+[2026-04-07 10:53:15] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 23min (active:6, done:26)
+No tasks are available for me to claim right now. Both the `review` task (task-1775534038662) and the `testing` task (task-1775539588263) cannot be claimed.
+
+```signal
+{"status": "blocked", "summary": "No claimable tasks found. task-1775534038662 (review) and task-1775539588263 (testing) both returned canClaim: false."}
+```
+[2026-04-07T10:53:47.051Z] tester-1 agent completed
+[2026-04-07 10:53:47] [agent_complete] tester-1 completed successfully
+[2026-04-07 10:53:47] [workflow] tester-1 [SIGNAL] blocked: No claimable tasks found. task-1775534038662 (review) and task-1775539588263 (testing) both returned
