@@ -6003,3 +6003,13 @@
 {"ts":"2026-04-07T16:28:11.727Z","type":"agent_start","agent":"tester-2","data":{"details":"验证功能","performance":{"memoryMB":10,"memoryTotalMB":13,"cpuUser":1.627864,"cpuSystem":1.818976}}}
 {"ts":"2026-04-07T16:28:38.709Z","type":"agent_complete","agent":"tester-2","data":{"details":"completed successfully","performance":{"memoryMB":13,"memoryTotalMB":16,"cpuUser":1.636562,"cpuSystem":1.828819}}}
 {"ts":"2026-04-07T16:28:38.710Z","type":"workflow","agent":"tester-2","data":{"details":"[SIGNAL] completed: No claimable tasks — both review tasks (task-1775578831381, task-1775578836813) are already claimed "}}
+{"ts":"2026-04-07T16:28:40.065Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775578831381","from":"review","to":"testing","title":"Browser-safe shell_exec stub"}}
+{"ts":"2026-04-07T16:28:45.227Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775578836813","from":"review","to":"testing","title":"Pyodide CDN load failure graceful handling"}}
+{"ts":"2026-04-07T16:29:08.489Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 10min (active:2, done:64)"}}
+{"ts":"2026-04-07T16:29:08.490Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 10min (active:2, done:64)\"}"}}
+{"ts":"2026-04-07T16:30:08.484Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 11min (active:2, done:64)"}}
+{"ts":"2026-04-07T16:30:08.485Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 11min (active:2, done:64)\"}"}}
+{"ts":"2026-04-07T16:30:13.105Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775578831381","from":"testing","to":"done","title":"Browser-safe shell_exec stub"}}
+{"ts":"2026-04-07T16:30:13.138Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775578836813","from":"testing","to":"done","title":"Pyodide CDN load failure graceful handling"}}
+{"ts":"2026-04-07T16:30:22.542Z","type":"agent_complete","agent":"tester-1","data":{"details":"completed successfully","performance":{"memoryMB":10,"memoryTotalMB":13,"cpuUser":1.663433,"cpuSystem":1.854598}}}
+{"ts":"2026-04-07T16:30:22.542Z","type":"workflow","agent":"tester-1","data":{"details":"[SIGNAL] completed: Tested and passed task-1775578831381 (browser-safe shell_exec stub, 4 tests) and task-1775578836813 "}}

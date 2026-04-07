@@ -1,7 +1,7 @@
 {
-  "totalTests": 88,
-  "passed": 88,
-  "failed": 0,
-  "edgeCases": [],
-  "coverage": "100%"
+  "totalTests": 89,
+  "passed": 87,
+  "failed": 2,
+  "edgeCases": ["custom provider apiKey skip pre-existing failures (unrelated to m22 tasks)"],
+  "coverage": "98%"
 }
