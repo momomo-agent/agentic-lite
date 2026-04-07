@@ -4442,3 +4442,37 @@
 {"ts":"2026-04-07T13:09:21.319Z","type":"agent_start","agent":"developer","data":{"details":"实现功能","performance":{"memoryMB":10,"memoryTotalMB":13,"cpuUser":2.426374,"cpuSystem":3.867673}}}
 {"ts":"2026-04-07T13:09:44.510Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":8,"memoryTotalMB":11,"cpuUser":2.426902,"cpuSystem":3.869886}}}
 {"ts":"2026-04-07T13:09:44.511Z","type":"workflow","agent":"developer","data":{"details":"[SIGNAL] blocked: No claimable tasks available. The only todo task (task-1775566483597) returned canClaim=false. All o"}}
+{"ts":"2026-04-07T13:09:44.595Z","type":"workflow","agent":"work_loop","data":{"details":"[AGENT-SIGNAL] developer → blocked: No claimable tasks available. The only todo task (task-1775566483597) returned c"}}
+{"ts":"2026-04-07T13:09:44.629Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 13"}}
+{"ts":"2026-04-07T13:09:44.641Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T13:09:44.641Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":9,"memoryTotalMB":12,"cpuUser":2.431221,"cpuSystem":3.883149}}}
+{"ts":"2026-04-07T13:10:08.868Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"11MB\",\"heapUsed\":\"11MB\",\"uptime\":\"9601s\"}"}}
+{"ts":"2026-04-07T13:10:09.030Z","type":"agent_start","agent":"daemon","data":{"details":"Still busy (50min), skipping","performance":{"memoryMB":11,"memoryTotalMB":14,"cpuUser":2.438387,"cpuSystem":3.896609}}}
+{"ts":"2026-04-07T13:10:53.284Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775566483597","from":"todo","to":"in_progress","title":"Document custom provider fallback behavior"}}
+{"ts":"2026-04-07T13:11:20.537Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":9,"memoryTotalMB":11,"cpuUser":2.452448,"cpuSystem":3.917474}}}
+{"ts":"2026-04-07T13:11:20.539Z","type":"workflow","agent":"pm","data":{"details":"[SIGNAL] completed: Assessed milestones: m12 has 1 task in progress, m9 and m10 blocked by pending CR-1775560282316 awai"}}
+{"ts":"2026-04-07T13:11:20.548Z","type":"workflow","agent":"work_loop","data":{"details":"[SKIP] write-dbb: milestoneNeedsDBB > 0"}}
+{"ts":"2026-04-07T13:11:20.549Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] write-design: todoWithoutDesign > 0"}}
+{"ts":"2026-04-07T13:11:20.549Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] implement: designedTasks > 0"}}
+{"ts":"2026-04-07T13:11:20.549Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0"}}
+{"ts":"2026-04-07T13:11:20.597Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 14"}}
+{"ts":"2026-04-07T13:11:20.616Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T13:11:20.617Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":9,"memoryTotalMB":14,"cpuUser":2.458836,"cpuSystem":3.937595}}}
+{"ts":"2026-04-07T13:14:35.200Z","type":"task_status","agent":null,"data":{"taskId":"task-1775566483597","from":"in_progress","to":"todo","title":"Document custom provider fallback behavior"}}
+{"ts":"2026-04-07T13:14:43.370Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":13,"memoryTotalMB":16,"cpuUser":2.492326,"cpuSystem":4.015051}}}
+{"ts":"2026-04-07T13:14:43.374Z","type":"workflow","agent":"pm","data":{"details":"[SIGNAL] completed: Reset stale in_progress task-1775566483597 to todo/unassigned so developer can claim it. CR-17755602"}}
+{"ts":"2026-04-07T13:14:43.398Z","type":"workflow","agent":"work_loop","data":{"details":"[SKIP] write-dbb: milestoneNeedsDBB > 0"}}
+{"ts":"2026-04-07T13:14:43.399Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] write-design: todoWithoutDesign > 0"}}
+{"ts":"2026-04-07T13:14:43.399Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0"}}
+{"ts":"2026-04-07T13:14:43.400Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] implement"}}
+{"ts":"2026-04-07T13:14:43.400Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] developer"}}
+{"ts":"2026-04-07T13:14:43.401Z","type":"agent_start","agent":"developer","data":{"details":"实现功能","performance":{"memoryMB":15,"memoryTotalMB":17,"cpuUser":2.494635,"cpuSystem":4.023474}}}
+{"ts":"2026-04-07T13:14:47.908Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 7min (active:1, done:36)"}}
+{"ts":"2026-04-07T13:14:47.909Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 7min (active:1, done:36)\"}"}}
+{"ts":"2026-04-07T13:15:08.872Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"10MB\",\"heapUsed\":\"6MB\",\"uptime\":\"9901s\"}"}}
+{"ts":"2026-04-07T13:15:10.715Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775566483597","from":"todo","to":"inProgress","title":"Document custom provider fallback behavior"}}
+{"ts":"2026-04-07T13:15:17.919Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 8min (active:1, done:36)"}}
+{"ts":"2026-04-07T13:15:17.922Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 8min (active:1, done:36)\"}"}}
+{"ts":"2026-04-07T13:15:52.385Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775566483597","from":"inProgress","to":"review","title":"Document custom provider fallback behavior"}}
+{"ts":"2026-04-07T13:15:56.459Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":13,"cpuUser":2.521169,"cpuSystem":4.065689}}}
+{"ts":"2026-04-07T13:15:56.459Z","type":"workflow","agent":"developer","data":{"details":"[SIGNAL] completed: Added Provider Resolution section to ARCHITECTURE.md documenting the three-step custom provider fall"}}

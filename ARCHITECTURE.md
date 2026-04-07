@@ -41,3 +41,12 @@ ask(prompt, config)
 - `AgenticResult` — output (answer, sources, images, codeResults, files, shellResults, toolCalls, usage)
 - `Provider` — adapter interface with `chat()` method
 - `ToolDefinition` — tool name, description, input schema, and execute function
+
+## Provider Resolution
+
+### Custom Provider Fallback
+
+When `provider='custom'`:
+1. If `config.customProvider` is set → use it directly
+2. Else if `config.baseUrl` is set → fall back to OpenAI-compatible adapter (`createOpenAIProvider`)
+3. Else → throw `Error('customProvider or baseUrl is required when provider="custom"')`
