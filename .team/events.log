@@ -4919,3 +4919,39 @@
 {"ts":"2026-04-07T14:29:01.142Z","type":"workflow","agent":"tester-2","data":{"details":"[SIGNAL] completed: Checked all tasks in review status — none claimable (already assigned to other agents). No work avai"}}
 {"ts":"2026-04-07T14:29:11.544Z","type":"agent_complete","agent":"tester-1","data":{"details":"completed successfully","performance":{"memoryMB":13,"memoryTotalMB":16,"cpuUser":3.600903,"cpuSystem":5.244959}}}
 {"ts":"2026-04-07T14:29:11.544Z","type":"workflow","agent":"tester-1","data":{"details":"[SIGNAL] completed: Checked all tasks in review status — task-1775571287973, task-1775571299863, task-1775571299895 all "}}
+{"ts":"2026-04-07T14:29:11.645Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 32"}}
+{"ts":"2026-04-07T14:29:11.657Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T14:29:11.657Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":14,"memoryTotalMB":16,"cpuUser":3.605556,"cpuSystem":5.258147}}}
+{"ts":"2026-04-07T14:29:46.946Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":16,"memoryTotalMB":19,"cpuUser":3.611506,"cpuSystem":5.263408}}}
+{"ts":"2026-04-07T14:29:46.946Z","type":"workflow","agent":"pm","data":{"details":"[SIGNAL] blocked: m15 tasks in review (awaiting tester approval), m9/m10 have 2 tasks blocked on CR cr-1775560282316 ("}}
+{"ts":"2026-04-07T14:29:46.946Z","type":"workflow","agent":"work_loop","data":{"details":"[AGENT-SIGNAL] pm → blocked: m15 tasks in review (awaiting tester approval), m9/m10 have 2 tasks blocked on C"}}
+{"ts":"2026-04-07T14:29:46.952Z","type":"workflow","agent":"work_loop","data":{"details":"[SKIP] write-dbb: milestoneNeedsDBB > 0"}}
+{"ts":"2026-04-07T14:29:46.952Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] write-design: todoWithoutDesign > 0"}}
+{"ts":"2026-04-07T14:29:46.952Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] implement: designedTasks > 0"}}
+{"ts":"2026-04-07T14:29:46.953Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] run-tests"}}
+{"ts":"2026-04-07T14:29:46.953Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] tester-1, tester-2"}}
+{"ts":"2026-04-07T14:29:46.953Z","type":"agent_start","agent":"tester-1","data":{"details":"验证功能","performance":{"memoryMB":15,"memoryTotalMB":17,"cpuUser":3.613343,"cpuSystem":5.268621}}}
+{"ts":"2026-04-07T14:29:46.953Z","type":"agent_start","agent":"tester-2","data":{"details":"验证功能","performance":{"memoryMB":15,"memoryTotalMB":17,"cpuUser":3.613482,"cpuSystem":5.268991}}}
+{"ts":"2026-04-07T14:29:48.307Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 20min (active:3, done:45)"}}
+{"ts":"2026-04-07T14:29:48.308Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 20min (active:3, done:45)\"}"}}
+{"ts":"2026-04-07T14:30:08.923Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"37MB\",\"heapUsed\":\"6MB\",\"uptime\":\"14401s\"}"}}
+{"ts":"2026-04-07T14:30:09.069Z","type":"error","agent":"daemon","data":{"details":"Watchdog: busy for 130min, force reset"}}
+{"ts":"2026-04-07T14:30:09.088Z","type":"workflow","agent":null,"data":{"details":"[RESUME] Resuming from checkpoint: node=work_loop, step=2"}}
+{"ts":"2026-04-07T14:30:09.088Z","type":"agent_start","agent":"work_loop","data":{"details":"[NODE] work_loop - PM 调度中心 — PM 评估后并行派发所有角色，全部完成后回 PM","performance":{"memoryMB":6,"memoryTotalMB":9,"cpuUser":3.627557,"cpuSystem":5.27652}}}
+{"ts":"2026-04-07T14:30:09.098Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 1"}}
+{"ts":"2026-04-07T14:30:09.110Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T14:30:09.110Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":6,"memoryTotalMB":9,"cpuUser":3.630397,"cpuSystem":5.284909}}}
+{"ts":"2026-04-07T14:30:38.329Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775571287973","from":"review","to":"testing","title":"Create ARCHITECTURE.md"}}
+{"ts":"2026-04-07T14:30:46.825Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775571299863","from":"review","to":"testing","title":"Fix AgenticResult.usage and images types"}}
+{"ts":"2026-04-07T14:30:46.858Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775571299895","from":"review","to":"testing","title":"Add shellResults to PRD AgenticResult schema"}}
+{"ts":"2026-04-07T14:30:48.310Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 21min (active:3, done:45)"}}
+{"ts":"2026-04-07T14:30:48.310Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 21min (active:3, done:45)\"}"}}
+{"ts":"2026-04-07T14:31:48.314Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 22min (active:3, done:45)"}}
+{"ts":"2026-04-07T14:31:48.314Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 22min (active:3, done:45)\"}"}}
+{"ts":"2026-04-07T14:32:48.317Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 23min (active:3, done:45)"}}
+{"ts":"2026-04-07T14:32:48.318Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 23min (active:3, done:45)\"}"}}
+{"ts":"2026-04-07T14:33:27.564Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775571287973","from":"testing","to":"done","title":"Create ARCHITECTURE.md"}}
+{"ts":"2026-04-07T14:33:27.597Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775571299863","from":"testing","to":"done","title":"Fix AgenticResult.usage and images types"}}
+{"ts":"2026-04-07T14:33:27.627Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775571299895","from":"testing","to":"done","title":"Add shellResults to PRD AgenticResult schema"}}
+{"ts":"2026-04-07T14:33:37.804Z","type":"agent_complete","agent":"tester-2","data":{"details":"completed successfully","performance":{"memoryMB":16,"memoryTotalMB":18,"cpuUser":3.680417,"cpuSystem":5.321283}}}
+{"ts":"2026-04-07T14:33:37.804Z","type":"workflow","agent":"tester-2","data":{"details":"[SIGNAL] completed: Tested 3 m15 review tasks: ARCHITECTURE.md verified, types.ts usage/images types confirmed correct, "}}

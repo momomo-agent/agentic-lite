@@ -2,6 +2,6 @@
   "totalTests": 64,
   "passed": 64,
   "failed": 0,
-  "edgeCases": [],
+  "edgeCases": ["PRD.md shellResults field missing — CR cr-1775571299895 pending"],
   "coverage": "100%"
 }

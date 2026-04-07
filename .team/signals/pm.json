@@ -1,7 +1,7 @@
 {
   "agent": "pm",
-  "timestamp": "2026-04-07T14:28:41.617Z",
+  "timestamp": "2026-04-07T14:29:46.944Z",
   "exitCode": 0,
   "status": "blocked",
-  "summary": "m15 tasks in review (awaiting tester), m9/m10 tasks blocked on pending CR cr-1775560282316 awaiting L2 approval — no new tasks needed"
+  "summary": "m15 tasks in review (awaiting tester approval), m9/m10 have 2 tasks blocked on CR cr-1775560282316 (pending L2 PRD review). No new tasks created — no actionable gaps remain."
 }
