@@ -457,3 +457,20 @@
 {"ts":"2026-04-07T02:51:31.986Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 16min (active:2, done:16)\"}"}}
 {"ts":"2026-04-07T02:52:13.479Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775529644164","from":"inProgress","to":"review","title":"Fix failing test"}}
 {"ts":"2026-04-07T02:52:18.980Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":7,"memoryTotalMB":7,"cpuUser":0.269256,"cpuSystem":0.37495}}}
+{"ts":"2026-04-07T02:52:19.105Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 3"}}
+{"ts":"2026-04-07T02:52:19.105Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T02:52:19.105Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":7,"memoryTotalMB":9,"cpuUser":0.271216,"cpuSystem":0.380505}}}
+{"ts":"2026-04-07T02:52:31.988Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 17min (active:2, done:16)"}}
+{"ts":"2026-04-07T02:52:31.989Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 17min (active:2, done:16)\"}"}}
+{"ts":"2026-04-07T02:52:55.423Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":7,"memoryTotalMB":8,"cpuUser":0.272911,"cpuSystem":0.383092}}}
+{"ts":"2026-04-07T02:52:55.428Z","type":"workflow","agent":"work_loop","data":{"details":"[SKIP] write-dbb: milestoneNeedsDBB > 0"}}
+{"ts":"2026-04-07T02:52:55.429Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] write-design: todoWithoutDesign > 0"}}
+{"ts":"2026-04-07T02:52:55.429Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] implement, run-tests"}}
+{"ts":"2026-04-07T02:52:55.429Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] developer"}}
+{"ts":"2026-04-07T02:52:55.429Z","type":"agent_start","agent":"developer","data":{"details":"实现功能","performance":{"memoryMB":7,"memoryTotalMB":8,"cpuUser":0.274174,"cpuSystem":0.386196}}}
+{"ts":"2026-04-07T02:52:55.430Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] tester"}}
+{"ts":"2026-04-07T02:52:55.430Z","type":"agent_start","agent":"tester","data":{"details":"验证功能","performance":{"memoryMB":7,"memoryTotalMB":8,"cpuUser":0.274503,"cpuSystem":0.386878}}}
+{"ts":"2026-04-07T02:53:31.995Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 18min (active:2, done:16)"}}
+{"ts":"2026-04-07T02:53:31.995Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 18min (active:2, done:16)\"}"}}
+{"ts":"2026-04-07T02:53:42.316Z","type":"task_status","agent":"tester","data":{"taskId":"task-1775529723367","from":"todo","to":"testing","title":"Add systemPrompt multi-round test"}}
+{"ts":"2026-04-07T02:53:51.166Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":8,"memoryTotalMB":8,"cpuUser":0.276837,"cpuSystem":0.393439}}}
