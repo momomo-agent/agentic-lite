@@ -354,3 +354,21 @@
 {"ts":"2026-04-07T02:30:25.894Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775528302103","from":"todo","to":"inProgress","title":"修复 images 字段丢失"}}
 {"ts":"2026-04-07T02:31:22.644Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775528302103","from":"inProgress","to":"review","title":"修复 images 字段丢失"}}
 {"ts":"2026-04-07T02:31:32.939Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":7,"cpuUser":0.182387,"cpuSystem":0.246342}}}
+{"ts":"2026-04-07T02:31:32.994Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 8"}}
+{"ts":"2026-04-07T02:31:32.994Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T02:31:32.994Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":6,"memoryTotalMB":7,"cpuUser":0.184152,"cpuSystem":0.250595}}}
+{"ts":"2026-04-07T02:32:18.394Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":7,"memoryTotalMB":8,"cpuUser":0.185258,"cpuSystem":0.252011}}}
+{"ts":"2026-04-07T02:32:18.398Z","type":"workflow","agent":"work_loop","data":{"details":"[SKIP] write-dbb: milestoneNeedsDBB > 0"}}
+{"ts":"2026-04-07T02:32:18.398Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] write-design: todoWithoutDesign > 0"}}
+{"ts":"2026-04-07T02:32:18.398Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] implement: designedTasks > 0"}}
+{"ts":"2026-04-07T02:32:18.399Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] run-tests"}}
+{"ts":"2026-04-07T02:32:18.399Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] tester-1, tester-2"}}
+{"ts":"2026-04-07T02:32:18.399Z","type":"agent_start","agent":"tester-1","data":{"details":"验证功能","performance":{"memoryMB":7,"memoryTotalMB":8,"cpuUser":0.187003,"cpuSystem":0.255345}}}
+{"ts":"2026-04-07T02:32:18.400Z","type":"agent_start","agent":"tester-2","data":{"details":"验证功能","performance":{"memoryMB":7,"memoryTotalMB":8,"cpuUser":0.187191,"cpuSystem":0.255794}}}
+{"ts":"2026-04-07T02:33:00.694Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775528295380","from":"review","to":"testing","title":"修复多轮工具循环"}}
+{"ts":"2026-04-07T02:33:01.913Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 5min (active:4, done:12)"}}
+{"ts":"2026-04-07T02:33:01.914Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 5min (active:4, done:12)\"}"}}
+{"ts":"2026-04-07T02:33:06.439Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775528302103","from":"review","to":"testing","title":"修复 images 字段丢失"}}
+{"ts":"2026-04-07T02:33:06.472Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775528309091","from":"review","to":"testing","title":"添加 systemPrompt 支持"}}
+{"ts":"2026-04-07T02:33:06.503Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775528309123","from":"review","to":"testing","title":"实现 custom provider 钩子"}}
+{"ts":"2026-04-07T02:33:22.778Z","type":"agent_complete","agent":"tester-2","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":7,"cpuUser":0.191543,"cpuSystem":0.260846}}}
