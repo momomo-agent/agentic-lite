@@ -137,12 +137,22 @@
     {
       "id": "m14",
       "name": "Public API Completeness & Type Correctness",
-      "status": "active",
+      "status": "completed",
       "tasks": [
         "task-1775570146832",
         "task-1775570164944",
         "task-1775570164983",
         "task-1775570165055"
+      ]
+    },
+    {
+      "id": "m15",
+      "name": "ARCHITECTURE.md & Type Correctness",
+      "status": "active",
+      "tasks": [
+        "task-1775571287973",
+        "task-1775571299863",
+        "task-1775571299895"
       ]
     }
   ]

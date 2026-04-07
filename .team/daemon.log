@@ -9951,3 +9951,180 @@ All 64 tests pass.
 [2026-04-07T14:11:05.824Z] tester-2 agent completed
 [2026-04-07 14:11:05] [agent_complete] tester-2 completed successfully
 [2026-04-07 14:11:05] [workflow] tester-2 [SIGNAL] completed: Verified and marked done all 4 m14 review tasks — types correct, exports present, JSDoc added, 64/64
+[2026-04-07 14:11:05] [workflow] work_loop [LOOP] Iteration 28
+[2026-04-07 14:11:05] [workflow] work_loop [EXEC] pm
+[2026-04-07 14:11:05] [agent_start] pm 管理任务和里程碑
+[2026-04-07T14:11:05.966Z] Running pm agent...
+The gap files are stale — they reflect the state before m11-m14 completed. Tasks in those milestones already addressed:
+- README expansion (m11, m13)
+- ShellResult export (m12, m14)
+- shellToolDef/executeShell export (m12, m14)
+- AgenticResult.images type fix (m12, m14)
+- ARCHITECTURE.md creation (m12)
+- Custom provider fallback documentation (m12, m14)
+
+The two genuinely blocked tasks (m9 `task-1775539719830`, m10 `task-1775559026329`) are waiting on PRD.md updates — multiple CRs have been submitted. No new actionable work can be created until those CRs are resolved by an L2 agent.
+
+**No new milestone is warranted** — all actionable gaps have been addressed. The only remaining open items are PRD.md doc updates blocked on CR approval.
+
+```signal
+{"status": "blocked", "summary": "m14 marked completed. m9 and m10 remain active with 2 tasks blocked on cr-1775560282316 (PRD.md update). Multiple CRs submitted. No new gaps require a new milestone — awaiting L2 CR resolution to unblock PRD sync tasks."}
+```
+[2026-04-07T14:13:15.939Z] pm agent completed
+[2026-04-07 14:13:15] [agent_complete] pm completed successfully
+[2026-04-07 14:13:15] [workflow] pm [SIGNAL] blocked: m14 marked completed. m9 and m10 remain active with 2 tasks blocked on cr-1775560282316 (PRD.md upda
+[2026-04-07 14:13:15] [workflow] work_loop [AGENT-SIGNAL] pm → blocked: m14 marked completed. m9 and m10 remain active with 2 tasks blocked on cr-177556
+[2026-04-07 14:13:15] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-07 14:13:15] [workflow] work_loop [PARALLEL-SKIP] write-design: todoWithoutDesign > 0
+[2026-04-07 14:13:15] [workflow] work_loop [PARALLEL-SKIP] implement: designedTasks > 0
+[2026-04-07 14:13:15] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-07 14:13:16] [workflow] work_loop [STALL] No state change (1/3)
+[2026-04-07 14:13:16] [workflow] work_loop [LOOP] Iteration 29
+[2026-04-07 14:13:16] [workflow] work_loop [EXEC] pm
+[2026-04-07 14:13:16] [agent_start] pm 管理任务和里程碑
+[2026-04-07T14:13:16.115Z] Running pm agent...
+[2026-04-07 14:15:08] [perf] daemon {"rss":"28MB","heapUsed":"9MB","uptime":"13501s"}
+[2026-04-07 14:15:18] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 5min (active:3, done:45)
+[2026-04-07 14:15:48] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 6min (active:3, done:45)
+Done. Here's the summary:
+
+**M15 created — "ARCHITECTURE.md & Type Correctness"** (active)
+
+Tasks:
+- `task-1775571287973` P0 — Create ARCHITECTURE.md (missing, P0 gap)
+- `task-1775571299863` P1 — Fix AgenticResult.usage and images types
+- `task-1775571299895` P1 — Add shellResults to PRD AgenticResult schema
+
+**Blocked tasks** (m9/m10): `task-1775539719830` and `task-1775559026329` remain blocked on `cr-1775560282316` (pending PRD update CR — needs L2 review).
+
+```signal
+{"status": "completed", "summary": "Created m15 with 3 tasks targeting P0 ARCHITECTURE.md gap and 2 P1 type/PRD gaps. Two tasks in m9/m10 remain blocked pending CR cr-1775560282316 approval."}
+```
+[2026-04-07T14:15:48.421Z] pm agent completed
+[2026-04-07 14:15:48] [agent_complete] pm completed successfully
+[2026-04-07 14:15:48] [workflow] pm [SIGNAL] completed: Created m15 with 3 tasks targeting P0 ARCHITECTURE.md gap and 2 P1 type/PRD gaps. Two tasks in m9/m1
+[2026-04-07 14:15:48] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-07 14:15:48] [workflow] work_loop [PARALLEL-SKIP] implement: designedTasks > 0
+[2026-04-07 14:15:48] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-07 14:15:48] [workflow] work_loop [PARALLEL] write-design
+[2026-04-07 14:15:48] [workflow] work_loop [PARALLEL] tech_lead-1, tech_lead-2, tech_lead-3
+[2026-04-07 14:15:48] [agent_start] tech_lead-1 出技术方案
+[2026-04-07 14:15:48] [agent_start] tech_lead-2 出技术方案
+[2026-04-07 14:15:48] [agent_start] tech_lead-3 出技术方案
+[2026-04-07T14:15:48.475Z] Running tech_lead-3 agent...
+[2026-04-07T14:15:48.475Z] Running tech_lead-2 agent...
+[2026-04-07T14:15:48.475Z] Running tech_lead-1 agent...
+[2026-04-07 14:16:48] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 7min (active:3, done:45)
+[2026-04-07 14:17:48] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 8min (active:3, done:45)
+All done. Here's what was completed for milestone m15:
+
+- `.team/milestones/m15/dbb.md` — verification criteria (5 checks)
+- `.team/milestones/m15/design.md` — technical approach for all 3 tasks
+- `.team/tasks/task-1775571287973/design.md` — design for creating `ARCHITECTURE.md`
+- `.team/tasks/task-1775571299863/design.md` — design for fixing `usage`/`images` types in `types.ts`
+- `.team/tasks/task-1775571299895/design.md` — design for adding `shellResults` to `PRD.md`
+- All 3 tasks updated: `hasDesign=true`
+
+```signal
+{"status": "completed", "summary": "Created m15 dbb.md, design.md, and task designs for all 3 todo tasks; marked hasDesign=true on all"}
+```
+[2026-04-07T14:18:27.346Z] tech_lead-1 agent completed
+[2026-04-07 14:18:27] [agent_complete] tech_lead-1 completed successfully
+[2026-04-07 14:18:27] [workflow] tech_lead-1 [SIGNAL] completed: Created m15 dbb.md, design.md, and task designs for all 3 todo tasks; marked hasDesign=true on all
+All done. Here's a summary of what was completed:
+
+**M15 milestone files created:**
+- `.team/milestones/m15/dbb.md` — verification criteria (5 checks)
+- `.team/milestones/m15/design.md` — technical approach for all 3 tasks
+
+**Task designs written:**
+- `task-1775571287973/design.md` — Create `ARCHITECTURE.md` at repo root
+- `task-1775571299863/design.md` — Fix `usage` and `images` in `src/types.ts` (remove `?`)
+- `task-1775571299895/design.md` — Add `shellResults` to PRD via CR
+
+**CR submitted:**
+- `.team/change-requests/cr-1775571299895.json` — requests L2 to add `shellResults` to `PRD.md`
+
+**All 3 tasks updated:** `hasDesign: true`
+
+```signal
+{"status": "completed", "summary": "Created m15 dbb.md and design.md, wrote task designs for all 3 todo tasks, submitted CR for PRD.md shellResults addition, updated hasDesign=true on all tasks"}
+```
+[2026-04-07T14:18:29.776Z] tech_lead-3 agent completed
+[2026-04-07 14:18:29] [agent_complete] tech_lead-3 completed successfully
+[2026-04-07 14:18:29] [workflow] tech_lead-3 [SIGNAL] completed: Created m15 dbb.md and design.md, wrote task designs for all 3 todo tasks, submitted CR for PRD.md s
+[2026-04-07 14:18:48] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 9min (active:3, done:45)
+All work is complete. Here's a summary of what was done:
+
+**M15 milestone files created:**
+- `.team/milestones/m15/dbb.md` — 5 verification criteria
+- `.team/milestones/m15/design.md` — technical approach for all 3 tasks
+
+**Task designs written:**
+- `task-1775571287973` — Create ARCHITECTURE.md (doc outline, sections to cover)
+- `task-1775571299863` — Fix `usage` required + verify `images` type in types.ts
+- `task-1775571299895` — Submit CR for PRD.md shellResults addition (cannot edit PRD directly)
+
+**All 3 tasks updated:** `hasDesign=true`
+
+**CR submitted:** `.team/change-requests/cr-1775571348476.json` — requests adding `shellResults?: ShellResult[]` to PRD.md AgenticResult schema
+
+```signal
+{"status": "completed", "summary": "Created m15 dbb.md and design.md, wrote task designs for all 3 m15 tasks, marked hasDesign=true, submitted CR for PRD.md shellResults addition"}
+```
+[2026-04-07T14:19:06.110Z] tech_lead-2 agent completed
+[2026-04-07 14:19:06] [agent_complete] tech_lead-2 completed successfully
+[2026-04-07 14:19:06] [workflow] tech_lead-2 [SIGNAL] completed: Created m15 dbb.md and design.md, wrote task designs for all 3 m15 tasks, marked hasDesign=true, sub
+[2026-04-07 14:19:06] [workflow] work_loop [LOOP] Iteration 30
+[2026-04-07 14:19:06] [workflow] work_loop [EXEC] pm
+[2026-04-07 14:19:06] [agent_start] pm 管理任务和里程碑
+[2026-04-07T14:19:06.186Z] Running pm agent...
+[2026-04-07 14:19:48] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 10min (active:3, done:45)
+[2026-04-07 14:20:08] [perf] daemon {"rss":"34MB","heapUsed":"12MB","uptime":"13801s"}
+[2026-04-07 14:20:09] [agent_start] daemon Still busy (120min), skipping
+[2026-04-07 14:20:48] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 11min (active:3, done:45)
+**Status summary:**
+
+- **m9**: 2/3 done, 1 blocked on CR-1775560282316 (pending L2 PRD review)
+- **m10**: 1/2 done, 1 blocked on same CR
+- **m15**: 3 tasks assigned — tech_lead-1 (ARCHITECTURE.md), tech_lead-2 (usage/images types), tech_lead-3 (shellResults PRD)
+
+**Blocked tasks** (task-1775539719830, task-1775559026329) cannot proceed until CR-1775560282316 is approved by L2. No action I can take there.
+
+**m15 is active and unblocked** — all tasks assigned and ready to execute.
+
+```signal
+{"status": "completed", "summary": "Assigned m15 tasks to tech leads (ARCHITECTURE.md → tech_lead-1, type fixes → tech_lead-2, PRD shellResults → tech_lead-3). m9 and m10 remain partially blocked on pending CR-1775560282316 awaiting L2 PRD review."}
+```
+[2026-04-07T14:21:36.924Z] pm agent completed
+[2026-04-07 14:21:36] [agent_complete] pm completed successfully
+[2026-04-07 14:21:36] [workflow] pm [SIGNAL] completed: Assigned m15 tasks to tech leads (ARCHITECTURE.md → tech_lead-1, type fixes → tech_lead-2, PRD shell
+[2026-04-07 14:21:36] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-07 14:21:36] [workflow] work_loop [PARALLEL-SKIP] write-design: todoWithoutDesign > 0
+[2026-04-07 14:21:36] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-07 14:21:36] [workflow] work_loop [PARALLEL] implement
+[2026-04-07 14:21:36] [workflow] work_loop [EXEC] developer
+[2026-04-07 14:21:36] [agent_start] developer 实现功能
+[2026-04-07T14:21:36.965Z] Running developer agent...
+[2026-04-07 14:21:48] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 12min (active:3, done:45)
+[2026-04-07 14:22:48] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 13min (active:3, done:45)
+[2026-04-07 14:23:48] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 14min (active:3, done:45)
+[2026-04-07 14:24:48] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 15min (active:3, done:45)
+[2026-04-07 14:25:08] [perf] daemon {"rss":"41MB","heapUsed":"13MB","uptime":"14101s"}
+[2026-04-07 14:25:48] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 16min (active:3, done:45)
+[2026-04-07 14:26:48] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 17min (active:3, done:45)
+[2026-04-07 14:27:48] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 18min (active:3, done:45)
+All three tasks are complete:
+
+- **task-1775571299863** (Fix AgenticResult.usage and images types) — types already correct, no changes needed
+- **task-1775571299895** (Add shellResults to PRD) — CR already existed at `cr-1775571299895.json`, referenced it
+- **task-1775571287973** (Create ARCHITECTURE.md) — file already existed with all required sections
+
+All moved to `review` status.
+
+```signal
+{"status": "completed", "summary": "Reviewed and moved 3 tasks to review: types already correct, CR already filed for PRD, ARCHITECTURE.md already exists"}
+```
+[2026-04-07T14:27:58.626Z] developer agent completed
+[2026-04-07 14:27:58] [agent_complete] developer completed successfully
+[2026-04-07 14:27:58] [workflow] developer [SIGNAL] completed: Reviewed and moved 3 tasks to review: types already correct, CR already filed for PRD, ARCHITECTURE.
