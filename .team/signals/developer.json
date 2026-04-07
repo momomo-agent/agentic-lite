@@ -1,7 +1,7 @@
 {
   "agent": "developer",
-  "timestamp": "2026-04-07T11:04:06.487Z",
+  "timestamp": "2026-04-07T11:10:20.263Z",
   "exitCode": 0,
-  "status": "completed",
-  "summary": "No available tasks to claim. All todo tasks are blocked by tasks in review status. 27 tasks done, 3 in review, 1 blocked."
+  "status": "blocked",
+  "summary": "No claimable tasks available. Only todo task (task-1775539726284) is blocked by task-1775539719830 which is currently blocked."
 }
