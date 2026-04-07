@@ -1,11 +1,14 @@
 {
-  "totalTests": 13,
-  "passed": 13,
+  "totalTests": 20,
+  "passed": 20,
   "failed": 0,
   "edgeCases": [
     "Empty toolCalls array with stopReason=tool_use (handled by guard in implementation)",
     "file tool with no fs configured returns error string",
-    "code_exec with empty code returns error"
+    "code_exec with empty code returns error",
+    "apiKey with whitespace-only string not validated",
+    "publishConfig registry field not checked",
+    "PRD.md section completeness not verified"
   ],
   "coverage": "100%"
 }

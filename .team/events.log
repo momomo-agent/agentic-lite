@@ -191,3 +191,40 @@
 {"ts":"2026-04-07T02:02:01.789Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 10min (active:4, done:6)"}}
 {"ts":"2026-04-07T02:02:01.789Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 10min (active:4, done:6)\"}"}}
 {"ts":"2026-04-07T02:02:04.878Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":7,"cpuUser":0.112217,"cpuSystem":0.154108}}}
+{"ts":"2026-04-07T02:02:04.949Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 3"}}
+{"ts":"2026-04-07T02:02:04.949Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T02:02:04.949Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":6,"memoryTotalMB":7,"cpuUser":0.113731,"cpuSystem":0.156853}}}
+{"ts":"2026-04-07T02:03:01.793Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 11min (active:4, done:6)"}}
+{"ts":"2026-04-07T02:03:01.793Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 11min (active:4, done:6)\"}"}}
+{"ts":"2026-04-07T02:04:01.684Z","type":"agent_start","agent":"daemon","data":{"details":"Still busy (30min), skipping","performance":{"memoryMB":6,"memoryTotalMB":7,"cpuUser":0.115657,"cpuSystem":0.158942}}}
+{"ts":"2026-04-07T02:04:01.686Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"53MB\",\"heapUsed\":\"6MB\",\"uptime\":\"1800s\"}"}}
+{"ts":"2026-04-07T02:04:01.797Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 12min (active:4, done:6)"}}
+{"ts":"2026-04-07T02:04:01.797Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 12min (active:4, done:6)\"}"}}
+{"ts":"2026-04-07T02:04:21.751Z","type":"task_created","agent":null,"data":{"taskId":"task-1775527461751","title":"升级 code_exec 沙箱","priority":"P1","group":"m3"}}
+{"ts":"2026-04-07T02:04:31.799Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 12min (active:5, done:6)"}}
+{"ts":"2026-04-07T02:04:31.799Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 12min (active:5, done:6)\"}"}}
+{"ts":"2026-04-07T02:04:41.911Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":7,"cpuUser":0.117245,"cpuSystem":0.161186}}}
+{"ts":"2026-04-07T02:04:41.913Z","type":"workflow","agent":"work_loop","data":{"details":"[SKIP] write-dbb: milestoneNeedsDBB > 0"}}
+{"ts":"2026-04-07T02:04:41.913Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] implement: designedTasks > 0"}}
+{"ts":"2026-04-07T02:04:41.914Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] write-design, run-tests"}}
+{"ts":"2026-04-07T02:04:41.914Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] tech_lead"}}
+{"ts":"2026-04-07T02:04:41.914Z","type":"agent_start","agent":"tech_lead","data":{"details":"出技术方案","performance":{"memoryMB":6,"memoryTotalMB":7,"cpuUser":0.118283,"cpuSystem":0.162984}}}
+{"ts":"2026-04-07T02:04:41.914Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] tester-1, tester-2"}}
+{"ts":"2026-04-07T02:04:41.915Z","type":"agent_start","agent":"tester-1","data":{"details":"验证功能","performance":{"memoryMB":6,"memoryTotalMB":7,"cpuUser":0.118484,"cpuSystem":0.163461}}}
+{"ts":"2026-04-07T02:04:41.915Z","type":"agent_start","agent":"tester-2","data":{"details":"验证功能","performance":{"memoryMB":6,"memoryTotalMB":7,"cpuUser":0.118603,"cpuSystem":0.163758}}}
+{"ts":"2026-04-07T02:05:01.801Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 13min (active:5, done:6)"}}
+{"ts":"2026-04-07T02:05:01.801Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 13min (active:5, done:6)\"}"}}
+{"ts":"2026-04-07T02:05:22.259Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775526862838","from":"review","to":"testing","title":"修复 provider apiKey 校验"}}
+{"ts":"2026-04-07T02:05:27.849Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775526867192","from":"review","to":"testing","title":"npm 发布配置与 README 安装说明"}}
+{"ts":"2026-04-07T02:05:27.882Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775526873714","from":"review","to":"testing","title":"编写 PRD.md"}}
+{"ts":"2026-04-07T02:05:27.919Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775526877132","from":"review","to":"testing","title":"编写 EXPECTED_DBB.md"}}
+{"ts":"2026-04-07T02:06:01.808Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 14min (active:5, done:6)"}}
+{"ts":"2026-04-07T02:06:01.809Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 14min (active:5, done:6)\"}"}}
+{"ts":"2026-04-07T02:06:37.627Z","type":"agent_complete","agent":"tech_lead","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":7,"cpuUser":0.122754,"cpuSystem":0.169262}}}
+{"ts":"2026-04-07T02:07:01.810Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 15min (active:5, done:6)"}}
+{"ts":"2026-04-07T02:07:01.811Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 15min (active:5, done:6)\"}"}}
+{"ts":"2026-04-07T02:07:40.469Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775526862838","from":"testing","to":"done","title":"修复 provider apiKey 校验"}}
+{"ts":"2026-04-07T02:07:40.502Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775526867192","from":"testing","to":"done","title":"npm 发布配置与 README 安装说明"}}
+{"ts":"2026-04-07T02:07:40.535Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775526873714","from":"testing","to":"done","title":"编写 PRD.md"}}
+{"ts":"2026-04-07T02:07:40.567Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775526877132","from":"testing","to":"done","title":"编写 EXPECTED_DBB.md"}}
+{"ts":"2026-04-07T02:07:55.813Z","type":"agent_complete","agent":"tester-2","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":7,"cpuUser":0.124887,"cpuSystem":0.171161}}}
