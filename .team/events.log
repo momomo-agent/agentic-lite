@@ -5440,3 +5440,10 @@
 {"ts":"2026-04-07T15:15:38.136Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"61MB\",\"heapUsed\":\"8MB\",\"uptime\":\"300s\"}"}}
 {"ts":"2026-04-07T15:15:40.435Z","type":"agent_complete","agent":"tester-1","data":{"details":"completed successfully","performance":{"memoryMB":10,"memoryTotalMB":12,"cpuUser":0.130148,"cpuSystem":0.107608}}}
 {"ts":"2026-04-07T15:15:40.436Z","type":"workflow","agent":"tester-1","data":{"details":"[SIGNAL] completed: Tested and passed 3 review tasks: README API docs, AgenticResult.usage required type, PRD.md shell_e"}}
+{"ts":"2026-04-07T15:15:40.546Z","type":"workflow","agent":"work_loop","data":{"details":"[BRANCH] doneCount > 0 → true → milestone_qg"}}
+{"ts":"2026-04-07T15:15:40.546Z","type":"workflow","agent":"work_loop","data":{"details":"[EXIT] todoCount == 0 && designedTasks == 0 && reviewCount == 0 && inProgressCount == 0 && testingCount == 0 && blockedCount == 0 → milestone_qg"}}
+{"ts":"2026-04-07T15:15:40.546Z","type":"agent_start","agent":"milestone_qg","data":{"details":"[NODE] milestone_qg - 里程碑 QG — 对照 DBB 验收","performance":{"memoryMB":9,"memoryTotalMB":13,"cpuUser":0.13453,"cpuSystem":0.11945}}}
+{"ts":"2026-04-07T15:15:40.553Z","type":"workflow","agent":"milestone_qg","data":{"details":"[EXEC] tester"}}
+{"ts":"2026-04-07T15:15:40.553Z","type":"agent_start","agent":"tester","data":{"details":"验证功能","performance":{"memoryMB":8,"memoryTotalMB":13,"cpuUser":0.137618,"cpuSystem":0.124379}}}
+{"ts":"2026-04-07T15:16:12.235Z","type":"agent_complete","agent":"tester","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":16,"cpuUser":0.144133,"cpuSystem":0.127971}}}
+{"ts":"2026-04-07T15:16:12.236Z","type":"workflow","agent":"tester","data":{"details":"[SIGNAL] completed: Checked task list — no tasks in review status, nothing to test"}}
