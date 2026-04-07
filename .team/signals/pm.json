@@ -1,7 +1,7 @@
 {
   "agent": "pm",
-  "timestamp": "2026-04-07T17:15:48.055Z",
+  "timestamp": "2026-04-07T17:17:01.277Z",
   "exitCode": 0,
   "status": "blocked",
-  "summary": "All 3 m25 tasks are in review status. Waiting for tester approval before milestone can be completed or next milestone planned."
+  "summary": "All 3 m25 tasks (task-1775581632597, task-1775581637037, task-1775581761671) are in 'review' status. Cannot proceed — waiting for tester to approve reviewed code before milestone can be completed or next milestone planned."
 }
