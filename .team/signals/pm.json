@@ -1,7 +1,7 @@
 {
   "agent": "pm",
-  "timestamp": "2026-04-07T16:46:00.768Z",
+  "timestamp": "2026-04-07T16:49:20.200Z",
   "exitCode": 0,
-  "status": "completed",
-  "summary": "Diagnosed blocked task-1775579679306 (openai.ts apiKey bug), created fix task-1775580346381 assigned to developer P1, updated task-1775579679306 to depend on it. M23 now has clear path to completion."
+  "status": "blocked",
+  "summary": "task-1775580346381 is in review — waiting for tester approval before task-1775579679306 can unblock and m23 can complete"
 }
