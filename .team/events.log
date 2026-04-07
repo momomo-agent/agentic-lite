@@ -767,3 +767,7 @@
 {"ts":"2026-04-07T03:48:07.835Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775530933189","from":"testing","to":"blocked","title":"Implement custom provider support"}}
 {"ts":"2026-04-07T03:48:33.409Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775532498831","from":"done","to":"testing","title":"Upgrade code_exec to quickjs-emscripten sandbox"}}
 {"ts":"2026-04-07T03:48:34.074Z","type":"agent_complete","agent":"tester-2","data":{"details":"completed successfully","performance":{"memoryMB":7,"memoryTotalMB":8,"cpuUser":0.540225,"cpuSystem":0.807767}}}
+{"ts":"2026-04-07T03:48:35.761Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775530933189","from":"blocked","to":"todo","title":"Implement custom provider support"}}
+{"ts":"2026-04-07T03:48:54.587Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775532498831","from":"testing","to":"done","title":"Upgrade code_exec to quickjs-emscripten sandbox"}}
+{"ts":"2026-04-07T03:49:01.799Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"35MB\",\"heapUsed\":\"6MB\",\"uptime\":\"8100s\"}"}}
+{"ts":"2026-04-07T03:49:11.878Z","type":"agent_complete","agent":"tester-1","data":{"details":"completed successfully","performance":{"memoryMB":7,"memoryTotalMB":8,"cpuUser":0.541734,"cpuSystem":0.809657}}}
