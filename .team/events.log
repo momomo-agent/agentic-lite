@@ -3588,3 +3588,23 @@
 {"ts":"2026-04-07T11:24:37.213Z","type":"agent_start","agent":"developer","data":{"details":"实现功能","performance":{"memoryMB":13,"memoryTotalMB":15,"cpuUser":0.753258,"cpuSystem":0.935794}}}
 {"ts":"2026-04-07T11:25:08.042Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":14,"memoryTotalMB":16,"cpuUser":0.757368,"cpuSystem":0.939292}}}
 {"ts":"2026-04-07T11:25:08.043Z","type":"workflow","agent":"developer","data":{"details":"[SIGNAL] blocked: No claimable tasks available. task-1775539726284 is blocked by task-1775539719830, which is blocked "}}
+{"ts":"2026-04-07T11:25:08.109Z","type":"workflow","agent":"work_loop","data":{"details":"[AGENT-SIGNAL] developer → blocked: No claimable tasks available. task-1775539726284 is blocked by task-177553971983"}}
+{"ts":"2026-04-07T11:25:08.132Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 15"}}
+{"ts":"2026-04-07T11:25:08.144Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T11:25:08.144Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":14,"memoryTotalMB":17,"cpuUser":0.761204,"cpuSystem":0.94931}}}
+{"ts":"2026-04-07T11:25:08.442Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"34MB\",\"heapUsed\":\"5MB\",\"uptime\":\"3300s\"}"}}
+{"ts":"2026-04-07T11:25:15.439Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 19min (active:1, done:29)"}}
+{"ts":"2026-04-07T11:25:15.439Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 19min (active:1, done:29)\"}"}}
+{"ts":"2026-04-07T11:25:35.716Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":7,"memoryTotalMB":10,"cpuUser":0.767428,"cpuSystem":0.952116}}}
+{"ts":"2026-04-07T11:25:35.716Z","type":"workflow","agent":"pm","data":{"details":"[SIGNAL] blocked: m9 and m10 blocked on CR cr-1775560282316 (pending L2 review). Tasks task-1775539719830 and task-177"}}
+{"ts":"2026-04-07T11:25:35.717Z","type":"workflow","agent":"work_loop","data":{"details":"[AGENT-SIGNAL] pm → blocked: m9 and m10 blocked on CR cr-1775560282316 (pending L2 review). Tasks task-177553"}}
+{"ts":"2026-04-07T11:25:35.723Z","type":"workflow","agent":"work_loop","data":{"details":"[SKIP] write-dbb: milestoneNeedsDBB > 0"}}
+{"ts":"2026-04-07T11:25:35.723Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] write-design: todoWithoutDesign > 0"}}
+{"ts":"2026-04-07T11:25:35.724Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0"}}
+{"ts":"2026-04-07T11:25:35.724Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] implement"}}
+{"ts":"2026-04-07T11:25:35.724Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] developer"}}
+{"ts":"2026-04-07T11:25:35.724Z","type":"agent_start","agent":"developer","data":{"details":"实现功能","performance":{"memoryMB":8,"memoryTotalMB":10,"cpuUser":0.770294,"cpuSystem":0.958099}}}
+{"ts":"2026-04-07T11:26:15.445Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 20min (active:1, done:29)"}}
+{"ts":"2026-04-07T11:26:15.446Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 20min (active:1, done:29)\"}"}}
+{"ts":"2026-04-07T11:26:29.789Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":14,"cpuUser":0.780696,"cpuSystem":0.967607}}}
+{"ts":"2026-04-07T11:26:29.790Z","type":"workflow","agent":"developer","data":{"details":"[SIGNAL] blocked: All available tasks completed. Remaining tasks blocked by pending change requests (cr-1775560282316,"}}

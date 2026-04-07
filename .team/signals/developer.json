@@ -1,7 +1,7 @@
 {
   "agent": "developer",
-  "timestamp": "2026-04-07T11:25:08.039Z",
+  "timestamp": "2026-04-07T11:26:29.786Z",
   "exitCode": 0,
   "status": "blocked",
-  "summary": "No claimable tasks available. task-1775539726284 is blocked by task-1775539719830, which is blocked by cr-1775560282316. Waiting for CR resolution."
+  "summary": "All available tasks completed. Remaining tasks blocked by pending change requests (cr-1775560282316, cr-1775560123) requiring PRD.md updates outside developer permissions. Waiting for PM/architect to approve CRs and update documentation."
 }
