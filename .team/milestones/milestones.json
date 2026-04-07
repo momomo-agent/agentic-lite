@@ -32,6 +32,17 @@
         "task-1775527461751",
         "task-1775527727136"
       ]
+    },
+    {
+      "id": "m4",
+      "name": "Agentic Loop Correctness & System Prompt",
+      "status": "planned",
+      "tasks": [
+        "task-1775528295380",
+        "task-1775528302103",
+        "task-1775528309091",
+        "task-1775528309123"
+      ]
     }
   ]
 }

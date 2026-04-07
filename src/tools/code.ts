@@ -44,7 +44,8 @@ export async function executeCode(
     const err = vm.dump(result.error)
     result.error.dispose()
     vm.dispose()
-    return { code, output: logs.join('\n'), error: String(err) }
+    const errMsg = err && typeof err === 'object' ? (err.message ?? err.name ?? JSON.stringify(err)) : String(err)
+    return { code, output: logs.join('\n'), error: String(errMsg) }
   }
 
   const val = vm.dump(result.value)

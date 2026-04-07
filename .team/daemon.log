@@ -586,3 +586,96 @@ Done. Here's the summary:
 Results written to `.team/tasks/task-1775527461751/test-result.md` and `.team/gaps/test-coverage.json` (1/3 passed, 33% coverage).
 [2026-04-07T02:17:04.636Z] tester agent completed
 [2026-04-07 02:17:04] [agent_complete] tester completed successfully
+[2026-04-07 02:17:04] [workflow] work_loop [LOOP] Iteration 6
+[2026-04-07 02:17:04] [workflow] work_loop [EXEC] pm
+[2026-04-07 02:17:04] [agent_start] pm 管理任务和里程碑
+[2026-04-07T02:17:04.721Z] Running pm agent...
+[2026-04-07 02:18:01] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 10min (active:1, done:10)
+[2026-04-07 02:18:31] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 11min (active:5, done:10)
+[2026-04-07 02:19:01] [perf] daemon {"rss":"54MB","heapUsed":"6MB","uptime":"2700s"}
+[2026-04-07 02:19:31] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 12min (active:5, done:10)
+Done. Here's the summary of actions taken:
+
+**m3 fix:**
+- `task-1775527461751` (升级 code_exec 沙箱) — reassigned from `tester` → `developer`, status `blocked` → `todo`
+
+**m4 created (planned):**
+| Task | Priority | Description |
+|------|----------|-------------|
+| task-1775528295380 | P1 | 修复多轮工具循环 |
+| task-1775528302103 | P1 | 修复 images 字段丢失 |
+| task-1775528309091 | P0 | 添加 systemPrompt 支持 |
+| task-1775528309123 | P0 | 实现 custom provider 钩子 |
+
+**Remaining gaps not yet tasked:**
+- npm package publish (vision gap) — deferred; depends on m3 completion and code stability
+- Provider apiKey validation (partial) — can be added to m4 if capacity allows
+
+m4 will activate once m3 tasks are done.
+[2026-04-07T02:19:39.101Z] pm agent completed
+[2026-04-07 02:19:39] [agent_complete] pm completed successfully
+[2026-04-07 02:19:39] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-07 02:19:39] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-07 02:19:39] [workflow] work_loop [PARALLEL] write-design, implement
+[2026-04-07 02:19:39] [workflow] work_loop [PARALLEL] tech_lead-1, tech_lead-2, tech_lead-3
+[2026-04-07 02:19:39] [agent_start] tech_lead-1 出技术方案
+[2026-04-07 02:19:39] [agent_start] tech_lead-2 出技术方案
+[2026-04-07 02:19:39] [agent_start] tech_lead-3 出技术方案
+[2026-04-07 02:19:39] [workflow] work_loop [EXEC] developer
+[2026-04-07 02:19:39] [agent_start] developer 实现功能
+[2026-04-07T02:19:39.143Z] Running tech_lead-1 agent...
+[2026-04-07T02:19:39.144Z] Running developer agent...
+[2026-04-07T02:19:39.144Z] Running tech_lead-2 agent...
+[2026-04-07T02:19:39.145Z] Running tech_lead-3 agent...
+[2026-04-07 02:20:31] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 13min (active:5, done:10)
+[2026-04-07 02:21:31] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 14min (active:5, done:10)
+All done. Here's a summary of what was created:
+
+**M4 Milestone files:**
+- `.team/milestones/m4/dbb.md` — 5 verification criteria
+- `.team/milestones/m4/design.md` — technical approach overview
+
+**Task designs (all 4 tasks marked `hasDesign: true`):**
+- `task-1775528295380` — multi-round loop: verify loop doesn't early-return, throws after MAX_TOOL_ROUNDS
+- `task-1775528302103` — images fix: return `allImages` in final-response branch, `undefined` when empty
+- `task-1775528309091` — systemPrompt: already wired in types/ask/provider; verify anthropic/openai forward it correctly
+- `task-1775528309123` — custom provider: already implemented; verify `detectProvider` never returns `'custom'`, error thrown when `customProvider` missing
+[2026-04-07T02:22:23.383Z] tech_lead-3 agent completed
+[2026-04-07 02:22:23] [agent_complete] tech_lead-3 completed successfully
+[2026-04-07 02:22:31] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 15min (active:5, done:10)
+All work is complete. Here's a summary of what was done:
+
+**M3 (active):** dbb.md and design.md already existed — no action needed.
+
+**M4 (planned):** dbb.md and design.md already existed. All 4 tasks now have `hasDesign: true`:
+
+- `task-1775528295380` — 修复多轮工具循环: verify loop doesn't early-return, throw after MAX_TOOL_ROUNDS
+- `task-1775528302103` — 修复 images 字段丢失: ensure `allImages` included in final return branch
+- `task-1775528309091` — 添加 systemPrompt 支持: verify anthropic/openai providers forward `system` param
+- `task-1775528309123` — 实现 custom provider 钩子: verify `createProvider()` throws when `customProvider` missing
+
+Developers can now pick up any of these tasks — the designs are specific enough to implement without guessing.
+[2026-04-07T02:22:52.511Z] tech_lead-2 agent completed
+[2026-04-07 02:22:52] [agent_complete] tech_lead-2 completed successfully
+All done. Here's a summary of what was created:
+
+**M4 Milestone files:**
+- `.team/milestones/m4/dbb.md` — 5 verification criteria
+- `.team/milestones/m4/design.md` — overview of the 4 tasks and their scope
+
+**Task designs (all 4 tasks marked `hasDesign: true`):**
+- `task-1775528295380` — multi-round tool loop (already correct in code; needs test coverage)
+- `task-1775528302103` — images field fix (already present in current `ask.ts`; needs test)
+- `task-1775528309091` — systemPrompt wiring (already wired; needs test)
+- `task-1775528309123` — custom provider hook (already implemented; needs test)
+
+**Key finding:** All four m4 tasks appear to already be implemented in the current `src/ask.ts` and `src/providers/provider.ts`. The work for developers is primarily writing tests to verify correctness and lock in the behavior.
+[2026-04-07T02:23:07.871Z] tech_lead-1 agent completed
+[2026-04-07 02:23:07] [agent_complete] tech_lead-1 completed successfully
+[2026-04-07 02:23:31] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 16min (active:5, done:10)
+Both tasks are complete:
+
+- **task-1775527461751** (升级 code_exec 沙箱): Already implemented with `quickjs-emscripten`. Marked as review.
+- **task-1775527727136** (添加 code_exec 沙箱测试覆盖): Added 5 QuickJS sandbox tests, all passing. Also fixed error serialization bug in `code.ts` where `vm.dump()` on an error handle returns an object — now extracts `.message` properly. Marked as review.
+[2026-04-07T02:23:45.349Z] developer agent completed
+[2026-04-07 02:23:45] [agent_complete] developer completed successfully

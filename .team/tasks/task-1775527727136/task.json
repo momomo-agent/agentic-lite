@@ -2,12 +2,12 @@
   "id": "task-1775527727136",
   "title": "添加 code_exec 沙箱测试覆盖",
   "description": "为升级后的 quickjs-emscripten 沙箱编写测试，覆盖基本执行、错误隔离、浏览器兼容场景",
-  "status": "in-progress",
+  "status": "review",
   "priority": "P1",
   "assignee": "developer",
   "blockedBy": [],
   "groupId": "m3",
   "hasDesign": true,
   "created": "2026-04-07T02:08:47.136Z",
-  "updated": "2026-04-07T02:14:58.002Z"
+  "updated": "2026-04-07T02:23:39.486Z"
 }

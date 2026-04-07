@@ -22,3 +22,33 @@ describe('DBB-011: runtime errors captured', () => {
     expect(result.error).toMatch(/oops/)
   })
 })
+
+describe('QuickJS sandbox', () => {
+  it('evaluates expression and returns value', async () => {
+    const result = await executeCode({ code: '1 + 1' })
+    expect(result.output).toContain('→ 2')
+    expect(result.error).toBeUndefined()
+  })
+
+  it('captures console output and last value', async () => {
+    const result = await executeCode({ code: 'console.log("hi"); 5' })
+    expect(result.output).toContain('hi')
+    expect(result.output).toContain('→ 5')
+  })
+
+  it('captures thrown errors', async () => {
+    const result = await executeCode({ code: 'throw new Error("boom")' })
+    expect(result.error).toMatch(/boom/)
+  })
+
+  it('returns error for empty code', async () => {
+    const result = await executeCode({ code: '' })
+    expect(result.error).toBe('No code provided')
+  })
+
+  it('captures console.warn and console.error', async () => {
+    const result = await executeCode({ code: 'console.warn("w"); console.error("e")' })
+    expect(result.output).toContain('w')
+    expect(result.output).toContain('e')
+  })
+})

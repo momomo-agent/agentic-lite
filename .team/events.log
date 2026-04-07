@@ -276,3 +276,43 @@
 {"ts":"2026-04-07T02:16:31.848Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 9min (active:1, done:10)\"}"}}
 {"ts":"2026-04-07T02:16:57.946Z","type":"task_status","agent":"tester","data":{"taskId":"task-1775527461751","from":"testing","to":"blocked","title":"升级 code_exec 沙箱"}}
 {"ts":"2026-04-07T02:17:04.638Z","type":"agent_complete","agent":"tester","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":7,"cpuUser":0.146099,"cpuSystem":0.200276}}}
+{"ts":"2026-04-07T02:17:04.694Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 6"}}
+{"ts":"2026-04-07T02:17:04.694Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T02:17:04.694Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":6,"memoryTotalMB":7,"cpuUser":0.147632,"cpuSystem":0.203997}}}
+{"ts":"2026-04-07T02:17:44.757Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775527461751","from":"blocked","to":"todo","title":"升级 code_exec 沙箱"}}
+{"ts":"2026-04-07T02:18:01.854Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 10min (active:1, done:10)"}}
+{"ts":"2026-04-07T02:18:01.854Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 10min (active:1, done:10)\"}"}}
+{"ts":"2026-04-07T02:18:15.381Z","type":"task_created","agent":null,"data":{"taskId":"task-1775528295380","title":"修复多轮工具循环","priority":"P1","group":"m4"}}
+{"ts":"2026-04-07T02:18:22.104Z","type":"task_created","agent":null,"data":{"taskId":"task-1775528302103","title":"修复 images 字段丢失","priority":"P1","group":"m4"}}
+{"ts":"2026-04-07T02:18:29.091Z","type":"task_created","agent":null,"data":{"taskId":"task-1775528309091","title":"添加 systemPrompt 支持","priority":"P1","group":"m4"}}
+{"ts":"2026-04-07T02:18:29.124Z","type":"task_created","agent":null,"data":{"taskId":"task-1775528309123","title":"实现 custom provider 钩子","priority":"P1","group":"m4"}}
+{"ts":"2026-04-07T02:18:31.856Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 11min (active:5, done:10)"}}
+{"ts":"2026-04-07T02:18:31.856Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 11min (active:5, done:10)\"}"}}
+{"ts":"2026-04-07T02:19:01.694Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"54MB\",\"heapUsed\":\"6MB\",\"uptime\":\"2700s\"}"}}
+{"ts":"2026-04-07T02:19:31.860Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 12min (active:5, done:10)"}}
+{"ts":"2026-04-07T02:19:31.861Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 12min (active:5, done:10)\"}"}}
+{"ts":"2026-04-07T02:19:39.103Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":8,"cpuUser":0.154228,"cpuSystem":0.211636}}}
+{"ts":"2026-04-07T02:19:39.106Z","type":"workflow","agent":"work_loop","data":{"details":"[SKIP] write-dbb: milestoneNeedsDBB > 0"}}
+{"ts":"2026-04-07T02:19:39.106Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0"}}
+{"ts":"2026-04-07T02:19:39.107Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] write-design, implement"}}
+{"ts":"2026-04-07T02:19:39.107Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] tech_lead-1, tech_lead-2, tech_lead-3"}}
+{"ts":"2026-04-07T02:19:39.107Z","type":"agent_start","agent":"tech_lead-1","data":{"details":"出技术方案","performance":{"memoryMB":6,"memoryTotalMB":7,"cpuUser":0.155325,"cpuSystem":0.214114}}}
+{"ts":"2026-04-07T02:19:39.107Z","type":"agent_start","agent":"tech_lead-2","data":{"details":"出技术方案","performance":{"memoryMB":6,"memoryTotalMB":7,"cpuUser":0.155471,"cpuSystem":0.21449}}}
+{"ts":"2026-04-07T02:19:39.108Z","type":"agent_start","agent":"tech_lead-3","data":{"details":"出技术方案","performance":{"memoryMB":6,"memoryTotalMB":7,"cpuUser":0.155584,"cpuSystem":0.214773}}}
+{"ts":"2026-04-07T02:19:39.108Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] developer"}}
+{"ts":"2026-04-07T02:19:39.108Z","type":"agent_start","agent":"developer","data":{"details":"实现功能","performance":{"memoryMB":6,"memoryTotalMB":7,"cpuUser":0.155725,"cpuSystem":0.215127}}}
+{"ts":"2026-04-07T02:20:31.862Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 13min (active:5, done:10)"}}
+{"ts":"2026-04-07T02:20:31.862Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 13min (active:5, done:10)\"}"}}
+{"ts":"2026-04-07T02:21:22.850Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775527461751","from":"todo","to":"inProgress","title":"升级 code_exec 沙箱"}}
+{"ts":"2026-04-07T02:21:31.866Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 14min (active:5, done:10)"}}
+{"ts":"2026-04-07T02:21:31.866Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 14min (active:5, done:10)\"}"}}
+{"ts":"2026-04-07T02:21:38.475Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775527461751","from":"inProgress","to":"review","title":"升级 code_exec 沙箱"}}
+{"ts":"2026-04-07T02:22:23.387Z","type":"agent_complete","agent":"tech_lead-3","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":7,"cpuUser":0.162093,"cpuSystem":0.219618}}}
+{"ts":"2026-04-07T02:22:31.870Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 15min (active:5, done:10)"}}
+{"ts":"2026-04-07T02:22:31.870Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 15min (active:5, done:10)\"}"}}
+{"ts":"2026-04-07T02:22:52.514Z","type":"agent_complete","agent":"tech_lead-2","data":{"details":"completed successfully","performance":{"memoryMB":7,"memoryTotalMB":8,"cpuUser":0.163343,"cpuSystem":0.221107}}}
+{"ts":"2026-04-07T02:23:07.873Z","type":"agent_complete","agent":"tech_lead-1","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":7,"cpuUser":0.164175,"cpuSystem":0.222047}}}
+{"ts":"2026-04-07T02:23:31.875Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 16min (active:5, done:10)"}}
+{"ts":"2026-04-07T02:23:31.875Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 16min (active:5, done:10)\"}"}}
+{"ts":"2026-04-07T02:23:39.486Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775527727136","from":"in-progress","to":"review","title":"添加 code_exec 沙箱测试覆盖"}}
+{"ts":"2026-04-07T02:23:45.351Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":7,"memoryTotalMB":8,"cpuUser":0.165268,"cpuSystem":0.223481}}}
