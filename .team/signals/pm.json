@@ -1,7 +1,7 @@
 {
   "agent": "pm",
-  "timestamp": "2026-04-07T16:25:35.744Z",
+  "timestamp": "2026-04-07T16:28:11.713Z",
   "exitCode": 0,
-  "status": "completed",
-  "summary": "Reviewed m22 state — 2 todo tasks ready for dev pickup, no new milestones needed until these complete"
+  "status": "blocked",
+  "summary": "M22 tasks task-1775578831381 and task-1775578836813 are in 'review' status. Waiting for tester to approve before milestone can be completed or next milestone planned."
 }
