@@ -571,3 +571,7 @@
 {"ts":"2026-04-07T03:14:32.078Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 8min (active:4, done:18)"}}
 {"ts":"2026-04-07T03:14:32.078Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 8min (active:4, done:18)\"}"}}
 {"ts":"2026-04-07T03:15:06.768Z","type":"agent_complete","agent":"tester-2","data":{"details":"completed successfully","performance":{"memoryMB":9,"memoryTotalMB":10,"cpuUser":0.366744,"cpuSystem":0.56168}}}
+{"ts":"2026-04-07T03:15:20.486Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775530933189","from":"inProgress","to":"review","title":"Implement custom provider support"}}
+{"ts":"2026-04-07T03:15:32.082Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 9min (active:4, done:18)"}}
+{"ts":"2026-04-07T03:15:32.082Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 9min (active:4, done:18)\"}"}}
+{"ts":"2026-04-07T03:15:54.319Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":8,"memoryTotalMB":10,"cpuUser":0.36833,"cpuSystem":0.564127}}}

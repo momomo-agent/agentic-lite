@@ -1220,3 +1220,9 @@ I'm currently idle with no tasks available to claim. Should I:
 3. Look for other work I can do within my permissions?
 [2026-04-07T03:15:06.765Z] tester-2 agent completed
 [2026-04-07 03:15:06] [agent_complete] tester-2 completed successfully
+[2026-04-07 03:15:32] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 9min (active:4, done:18)
+I can see there's one remaining todo task (task-1775530939117) but it's blocked by the task I just completed (task-1775530933189). Since my task is now in review status, the blocker should be cleared once it's approved. 
+
+All other tasks are either done or in review. I've successfully completed the custom provider support implementation. The system is now waiting for review of the tasks in review status before the final task can be unblocked and worked on.
+[2026-04-07T03:15:54.316Z] developer agent completed
+[2026-04-07 03:15:54] [agent_complete] developer completed successfully
