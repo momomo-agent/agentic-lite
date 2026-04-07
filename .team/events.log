@@ -122,3 +122,9 @@
 {"ts":"2026-04-07T01:52:58.778Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775525816399","from":"done","to":"testing","title":"实现 custom provider 支持"}}
 {"ts":"2026-04-07T01:53:03.615Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775525816399","from":"testing","to":"done","title":"实现 custom provider 支持"}}
 {"ts":"2026-04-07T01:53:15.624Z","type":"agent_complete","agent":"tester-2","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":7,"cpuUser":0.088445,"cpuSystem":0.118661}}}
+{"ts":"2026-04-07T01:53:15.678Z","type":"workflow","agent":"work_loop","data":{"details":"[BRANCH] doneCount > 0 → true → milestone_qg"}}
+{"ts":"2026-04-07T01:53:15.679Z","type":"workflow","agent":"work_loop","data":{"details":"[EXIT] todoCount == 0 && designedTasks == 0 && reviewCount == 0 && inProgressCount == 0 && testingCount == 0 && blockedCount == 0 → milestone_qg"}}
+{"ts":"2026-04-07T01:53:15.679Z","type":"agent_start","agent":"milestone_qg","data":{"details":"[NODE] milestone_qg - 里程碑 QG — 对照 DBB 验收","performance":{"memoryMB":6,"memoryTotalMB":7,"cpuUser":0.089574,"cpuSystem":0.120255}}}
+{"ts":"2026-04-07T01:53:15.680Z","type":"workflow","agent":"milestone_qg","data":{"details":"[EXEC] tester"}}
+{"ts":"2026-04-07T01:53:15.680Z","type":"agent_start","agent":"tester","data":{"details":"验证功能","performance":{"memoryMB":6,"memoryTotalMB":7,"cpuUser":0.089914,"cpuSystem":0.121151}}}
+{"ts":"2026-04-07T01:53:27.692Z","type":"agent_complete","agent":"tester","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":7,"cpuUser":0.090255,"cpuSystem":0.121714}}}

@@ -70,5 +70,11 @@
     "lastRun": "2026-04-07T01:53:15.624Z",
     "currentTask": null,
     "retryCount": 0
+  },
+  "tester": {
+    "status": "idle",
+    "lastRun": "2026-04-07T01:53:27.692Z",
+    "currentTask": null,
+    "retryCount": 0
   }
 }
