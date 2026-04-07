@@ -12258,3 +12258,11 @@ Both tasks cannot be claimed (likely already assigned to another agent). There's
 [2026-04-07T16:15:06.604Z] tester-2 agent completed
 [2026-04-07 16:15:06] [agent_complete] tester-2 completed successfully
 [2026-04-07 16:15:06] [workflow] tester-2 [SIGNAL] completed: No claimable tasks — both review tasks (task-1775577227989, task-1775577233513) returned canClaim: f
+Both tasks cannot be claimed (likely already assigned to another agent). There are no available tasks for me to work on right now.
+
+```signal
+{"status": "completed", "summary": "No claimable tasks — both review tasks (task-1775577227989, task-1775577233513) are already claimed by another agent"}
+```
+[2026-04-07T16:15:08.832Z] tester-1 agent completed
+[2026-04-07 16:15:08] [agent_complete] tester-1 completed successfully
+[2026-04-07 16:15:08] [workflow] tester-1 [SIGNAL] completed: No claimable tasks — both review tasks (task-1775577227989, task-1775577233513) are already claimed 

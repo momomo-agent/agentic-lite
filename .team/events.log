@@ -5891,3 +5891,5 @@
 {"ts":"2026-04-07T16:14:41.614Z","type":"agent_start","agent":"tester-2","data":{"details":"验证功能","performance":{"memoryMB":12,"memoryTotalMB":14,"cpuUser":1.315823,"cpuSystem":1.46682}}}
 {"ts":"2026-04-07T16:15:06.606Z","type":"agent_complete","agent":"tester-2","data":{"details":"completed successfully","performance":{"memoryMB":12,"memoryTotalMB":14,"cpuUser":1.316164,"cpuSystem":1.467325}}}
 {"ts":"2026-04-07T16:15:06.607Z","type":"workflow","agent":"tester-2","data":{"details":"[SIGNAL] completed: No claimable tasks — both review tasks (task-1775577227989, task-1775577233513) returned canClaim: f"}}
+{"ts":"2026-04-07T16:15:08.836Z","type":"agent_complete","agent":"tester-1","data":{"details":"completed successfully","performance":{"memoryMB":15,"memoryTotalMB":17,"cpuUser":1.322203,"cpuSystem":1.472213}}}
+{"ts":"2026-04-07T16:15:08.836Z","type":"workflow","agent":"tester-1","data":{"details":"[SIGNAL] completed: No claimable tasks — both review tasks (task-1775577227989, task-1775577233513) are already claimed "}}
