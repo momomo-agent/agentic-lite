@@ -13344,3 +13344,11 @@ All 3 tasks in 'review' status cannot be claimed (likely already assigned to ano
 [2026-04-07T17:16:22.004Z] tester-2 agent completed
 [2026-04-07 17:16:22] [agent_complete] tester-2 completed successfully
 [2026-04-07 17:16:22] [workflow] tester-2 [SIGNAL] completed: No claimable tasks found — all 3 review tasks are already claimed by another agent
+All 3 review tasks cannot be claimed (likely already assigned to another tester). No tasks available for me to work on.
+
+```signal
+{"status": "completed", "summary": "No claimable tasks — all 3 review tasks are already claimed by another agent"}
+```
+[2026-04-07T17:16:22.503Z] tester-1 agent completed
+[2026-04-07 17:16:22] [agent_complete] tester-1 completed successfully
+[2026-04-07 17:16:22] [workflow] tester-1 [SIGNAL] completed: No claimable tasks — all 3 review tasks are already claimed by another agent
