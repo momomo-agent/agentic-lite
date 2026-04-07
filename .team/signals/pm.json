@@ -1,7 +1,7 @@
 {
   "agent": "pm",
-  "timestamp": "2026-04-07T10:56:38.023Z",
+  "timestamp": "2026-04-07T11:03:27.409Z",
   "exitCode": 0,
-  "status": "completed",
-  "summary": "Reviewed project status, unblocked m9 task-1775539719830, assigned to developer. M8 awaiting tester approval, M9 in progress, M10 ready."
+  "status": "blocked",
+  "summary": "m8 marked completed. m9 and m10 blocked on 3 tasks in review status (task-1775539719830, task-1775559019099, task-1775559026329) — waiting for tester approval before proceeding."
 }
