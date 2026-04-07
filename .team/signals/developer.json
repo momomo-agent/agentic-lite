@@ -1,7 +1,7 @@
 {
   "agent": "developer",
-  "timestamp": "2026-04-07T11:21:12.676Z",
+  "timestamp": "2026-04-07T11:22:03.597Z",
   "exitCode": 0,
   "status": "blocked",
-  "summary": "No claimable tasks available. Only todo task (task-1775539726284) is blocked by PRD.md update CR (cr-1775560282316) which requires L2 permissions. All other tasks are done."
+  "summary": "No claimable tasks available. task-1775539726284 is todo but can-claim returned false. Other tasks are done or blocked."
 }
