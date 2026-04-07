@@ -5874,3 +5874,20 @@
 {"ts":"2026-04-07T16:14:16.082Z","type":"workflow","agent":"tester-1","data":{"details":"[SIGNAL] completed: No tasks available to claim — both review tasks (task-1775577227989, task-1775577233513) returned ca"}}
 {"ts":"2026-04-07T16:14:28.903Z","type":"agent_complete","agent":"tester-2","data":{"details":"completed successfully","performance":{"memoryMB":9,"memoryTotalMB":13,"cpuUser":1.296303,"cpuSystem":1.414547}}}
 {"ts":"2026-04-07T16:14:28.904Z","type":"workflow","agent":"tester-2","data":{"details":"[SIGNAL] completed: No claimable tasks — both review tasks (task-1775577227989, task-1775577233513) returned canClaim: f"}}
+{"ts":"2026-04-07T16:14:29.047Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 5"}}
+{"ts":"2026-04-07T16:14:29.062Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T16:14:29.063Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":10,"memoryTotalMB":13,"cpuUser":1.302745,"cpuSystem":1.450049}}}
+{"ts":"2026-04-07T16:14:38.433Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 23min (active:2, done:62)"}}
+{"ts":"2026-04-07T16:14:38.434Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 23min (active:2, done:62)\"}"}}
+{"ts":"2026-04-07T16:14:41.602Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":13,"memoryTotalMB":16,"cpuUser":1.311694,"cpuSystem":1.457247}}}
+{"ts":"2026-04-07T16:14:41.602Z","type":"workflow","agent":"pm","data":{"details":"[SIGNAL] blocked: m21 has 2 tasks in 'review' status (task-1775577227989, task-1775577233513). Waiting for tester to a"}}
+{"ts":"2026-04-07T16:14:41.602Z","type":"workflow","agent":"work_loop","data":{"details":"[AGENT-SIGNAL] pm → blocked: m21 has 2 tasks in 'review' status (task-1775577227989, task-1775577233513). Wai"}}
+{"ts":"2026-04-07T16:14:41.613Z","type":"workflow","agent":"work_loop","data":{"details":"[SKIP] write-dbb: milestoneNeedsDBB > 0"}}
+{"ts":"2026-04-07T16:14:41.613Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] write-design: todoWithoutDesign > 0"}}
+{"ts":"2026-04-07T16:14:41.613Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] implement: designedTasks > 0"}}
+{"ts":"2026-04-07T16:14:41.613Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] run-tests"}}
+{"ts":"2026-04-07T16:14:41.614Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] tester-1, tester-2"}}
+{"ts":"2026-04-07T16:14:41.614Z","type":"agent_start","agent":"tester-1","data":{"details":"验证功能","performance":{"memoryMB":11,"memoryTotalMB":14,"cpuUser":1.31565,"cpuSystem":1.466385}}}
+{"ts":"2026-04-07T16:14:41.614Z","type":"agent_start","agent":"tester-2","data":{"details":"验证功能","performance":{"memoryMB":12,"memoryTotalMB":14,"cpuUser":1.315823,"cpuSystem":1.46682}}}
+{"ts":"2026-04-07T16:15:06.606Z","type":"agent_complete","agent":"tester-2","data":{"details":"completed successfully","performance":{"memoryMB":12,"memoryTotalMB":14,"cpuUser":1.316164,"cpuSystem":1.467325}}}
+{"ts":"2026-04-07T16:15:06.607Z","type":"workflow","agent":"tester-2","data":{"details":"[SIGNAL] completed: No claimable tasks — both review tasks (task-1775577227989, task-1775577233513) returned canClaim: f"}}
