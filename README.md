@@ -102,6 +102,18 @@ interface CodeResult {
 }
 ```
 
+#### Python execution and Pyodide
+
+`code_exec` runs Python in the browser via [Pyodide](https://pyodide.org), which is loaded dynamically from CDN (`https://cdn.jsdelivr.net/pyodide/...`).
+
+**Limitations:**
+- Requires network access to the CDN on first use
+- Blocked in environments with strict CSP or no internet access
+
+**Workarounds:**
+- **Self-host Pyodide**: Download the Pyodide distribution and serve it from your own origin. Set the `indexURL` option if the `code_exec` tool exposes it, or patch the dynamic import URL before bundling.
+- **Disable Python**: Omit `'code'` from `config.tools` to skip `code_exec` entirely when CDN access is unavailable.
+
 ### shell_exec
 
 Executes shell commands against the virtual filesystem.

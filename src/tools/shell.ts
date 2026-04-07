@@ -16,6 +16,10 @@ export const shellToolDef: ToolDefinition = {
   },
 }
 
+export function isNodeEnv(): boolean {
+  return typeof process !== 'undefined' && process.versions?.node != null
+}
+
 export async function executeShell(
   input: Record<string, unknown>,
   filesystem?: AgenticFileSystem,
@@ -23,6 +27,7 @@ export async function executeShell(
   const command = String(input.command ?? '')
 
   if (!command) return { command: '', output: '', error: 'No command provided', exitCode: 1 }
+  if (!isNodeEnv()) return { command, output: '', error: 'shell_exec not available in browser', exitCode: 1 }
   if (!filesystem) return { command, output: '', error: 'No filesystem configured', exitCode: 1 }
 
   try {

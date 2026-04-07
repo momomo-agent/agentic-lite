@@ -1,73 +1,65 @@
 {
-  "match": 93,
-  "timestamp": "2026-04-07T00:00:00.000Z",
+  "match": 95,
+  "timestamp": "2026-04-07T15:34:36.280Z",
   "gaps": [
     {
-      "description": "EXPECTED_DBB.md specifies code_exec uses AsyncFunction eval; implementation uses quickjs-emscripten sandbox (functionally superior but diverges from spec)",
+      "description": "EXPECTED_DBB: code_exec spec says AsyncFunction eval; implementation uses quickjs-emscripten sandbox instead (browser-compatible but diverges from spec wording)",
       "status": "partial"
     },
     {
-      "description": "AgenticResult.usage typed as optional (usage?) in types.ts but always returned in practice; PRD schema shows it as required field",
+      "description": "AgenticConfig.apiKey typed as required string even for provider='custom', forcing callers to pass a dummy value; type should be optional for custom provider",
       "status": "partial"
     },
     {
-      "description": "shell_exec tool implemented but not documented in PRD.md (addition beyond spec)",
+      "description": "PRD: ask() multi-round agent loop terminates on stopReason !== 'tool_use'",
       "status": "implemented"
     },
     {
-      "description": "PRD: ask() multi-round agent loop with tool execution - ask.ts:14-60",
+      "description": "PRD: search tool returning sources",
       "status": "implemented"
     },
     {
-      "description": "PRD: search tool returning sources - tools/search.ts",
+      "description": "PRD: code_exec with quickjs sandbox, auto-language detection, Pyodide (browser) / python3 subprocess (Node), fs injection",
       "status": "implemented"
     },
     {
-      "description": "PRD: code_exec tool (browser-compatible JS/Python) - tools/code.ts",
+      "description": "PRD: file_read / file_write via AgenticFileSystem (browser-compatible)",
       "status": "implemented"
     },
     {
-      "description": "PRD: file_read/file_write via AgenticFileSystem - tools/file.ts",
+      "description": "PRD: shell_exec tool via agentic-shell",
       "status": "implemented"
     },
     {
-      "description": "PRD: Provider config (anthropic/openai/custom, apiKey, model, baseUrl, customProvider, systemPrompt) - types.ts:6-28",
+      "description": "PRD: Provider config fields (provider, apiKey, model, baseUrl, customProvider, systemPrompt)",
       "status": "implemented"
     },
     {
-      "description": "PRD: AgenticResult shape (answer, sources, images, codeResults, files, toolCalls, usage) - types.ts:32-49",
+      "description": "PRD: AgenticResult shape (answer, sources, images, codeResults, files, toolCalls, usage, shellResults)",
       "status": "implemented"
     },
     {
-      "description": "DBB: Loop terminates when stopReason !== 'tool_use' - ask.ts:33",
+      "description": "DBB: AgenticResult.images populated from tool results",
       "status": "implemented"
     },
     {
-      "description": "DBB: file_read/file_write use AgenticFileSystem (browser-compatible, no Node fs) - tools/file.ts",
+      "description": "DBB: systemPrompt passed to provider system field",
       "status": "implemented"
     },
     {
-      "description": "DBB: AgenticResult.images populated from tool results - ask.ts:98",
+      "description": "DBB: provider='custom' invokes customProvider, skips apiKey validation",
       "status": "implemented"
     },
     {
-      "description": "DBB: systemPrompt passed to provider system field - ask.ts:29, anthropic.ts:19, openai.ts:142",
+      "description": "DBB: Missing/empty apiKey throws before network call for anthropic/openai",
       "status": "implemented"
     },
     {
-      "description": "DBB: provider='custom' invokes customProvider, skips apiKey validation - provider.ts:46-48, 62-65",
+      "description": "DBB: package.json publishConfig.access = 'public'",
       "status": "implemented"
     },
     {
-      "description": "DBB: Missing/empty apiKey throws before network call for anthropic/openai - provider.ts:46-48",
-      "status": "implemented"
-    },
-    {
-      "description": "DBB: package.json publishConfig.access = 'public' - package.json:32-34",
-      "status": "implemented"
-    },
-    {
-      "description": "DBB: README.md contains 'npm install agentic-lite' - README.md:5",
+      "description": "DBB: README.md contains 'npm install agentic-lite'",
       "status": "implemented"
     }
   ]

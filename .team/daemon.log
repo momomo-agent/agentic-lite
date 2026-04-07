@@ -11721,3 +11721,224 @@ Both tasks are done. All 11 DBB checks passed:
 [2026-04-07T15:29:49.211Z] tester-2 agent completed
 [2026-04-07 15:29:49] [agent_complete] tester-2 completed successfully
 [2026-04-07 15:29:49] [workflow] tester-2 [SIGNAL] completed: Verified README and PRD tasks against m19 DBB — all 11 checks passed, both tasks marked done
+[2026-04-07 15:29:49] [workflow] work_loop [BRANCH] doneCount > 0 → true → milestone_qg
+[2026-04-07 15:29:49] [workflow] work_loop [EXIT] todoCount == 0 && designedTasks == 0 && reviewCount == 0 && inProgressCount == 0 && testingCount == 0 && blockedCount == 0 → milestone_qg
+[2026-04-07 15:29:49] [error] workflow [SPIN-EXIT] Node "milestone_qg" visited 6 times (max 5) — breaking cycle
+[2026-04-07 15:30:38] [perf] daemon {"rss":"76MB","heapUsed":"16MB","uptime":"1200s"}
+[2026-04-07 15:30:38] [agent_start] startup [NODE] startup - 项目启动
+[2026-04-07 15:30:38] [workflow] startup [SKIP] init-architecture: !hasArchitecture
+[2026-04-07 15:30:38] [agent_start] monitor [NODE] monitor - 全局 Monitor 四维检查
+[2026-04-07 15:30:38] [workflow] monitor [PARALLEL] vision_monitor, prd_monitor, dbb_monitor, arch_monitor
+[2026-04-07 15:30:38] [agent_start] vision_monitor 评估愿景匹配度
+[2026-04-07 15:30:38] [agent_start] prd_monitor 评估PRD匹配度
+[2026-04-07 15:30:38] [agent_start] dbb_monitor 评估DBB匹配度
+[2026-04-07 15:30:38] [agent_start] arch_monitor 评估架构匹配度
+[2026-04-07T15:30:38.262Z] Running prd_monitor agent...
+[2026-04-07T15:30:38.264Z] Running arch_monitor agent...
+[2026-04-07T15:30:38.268Z] Running dbb_monitor agent...
+[2026-04-07T15:30:38.269Z] Running vision_monitor agent...
+All modules present and match the architecture design exactly.
+
+```signal
+{"status": "completed", "summary": "Scanned src/ against ARCHITECTURE.md. All 12 expected files present. Module structure, interfaces (AgenticConfig, AgenticResult, Provider, ToolDefinition), provider resolution logic (custom fallback chain), and data flow all match. match=100, no gaps. Wrote .team/gaps/architecture.json."}
+```
+[2026-04-07T15:32:49.390Z] arch_monitor agent completed
+[2026-04-07 15:32:49] [agent_complete] arch_monitor completed successfully
+[2026-04-07 15:32:49] [workflow] arch_monitor [SIGNAL] completed: Scanned src/ against ARCHITECTURE.md. All 12 expected files present. Module structure, interfaces (A
+```signal
+{"status": "completed", "summary": "Evaluated implementation against vision. Wrote .team/gaps/vision.json with 85% match. Core loop, file tools, JS/Python code execution, and multi-provider support are implemented. Key gaps: shell_exec is not browser-compatible, no default browser filesystem provided out of the box, and Pyodide requires external CDN load."}
+```
+[2026-04-07T15:34:16.284Z] vision_monitor agent completed
+[2026-04-07 15:34:16] [agent_complete] vision_monitor completed successfully
+[2026-04-07 15:34:16] [workflow] vision_monitor [SIGNAL] completed: Evaluated implementation against vision. Wrote .team/gaps/vision.json with 85% match. Core loop, fil
+DBB verification complete. Here's the summary:
+
+**Global DBB match: 94/100**
+**M1 milestone match: 92/100**
+
+All 9 global criteria are implemented. The only minor gap is a README documentation inconsistency where `images` is shown as optional (`images?: string[]`) but the actual type is required (`images: string[]`).
+
+All 13 M1 criteria pass — the multi-round loop, images accumulation, systemPrompt passthrough, browser-compatible file/code tools, and custom provider support are all correctly implemented.
+
+Files written:
+- `.team/gaps/dbb.json` — updated global summary
+- `.team/gaps/milestones/m1.json` — milestone detail
+- `.team/milestones/m1/review/dbb-check.md` — review summary
+
+```signal
+{"status": "completed", "summary": "Evaluated all global EXPECTED_DBB criteria and M1 milestone DBB criteria against src/. Global match 94/100, M1 match 92/100. All criteria pass except minor README images type inconsistency. Wrote dbb.json, milestones/m1.json, and m1/review/dbb-check.md."}
+```
+[2026-04-07T15:34:53.956Z] dbb_monitor agent completed
+[2026-04-07 15:34:53] [agent_complete] dbb_monitor completed successfully
+[2026-04-07 15:34:53] [workflow] dbb_monitor [SIGNAL] completed: Evaluated all global EXPECTED_DBB criteria and M1 milestone DBB criteria against src/. Global match 
+```signal
+{"status": "completed", "summary": "Evaluated PRD and EXPECTED_DBB against src/ implementation. 95% match. Two partial gaps: code_exec uses quickjs instead of AsyncFunction eval as spec states, and AgenticConfig.apiKey is typed as required even for custom provider. All other PRD features and DBB criteria are fully implemented. Wrote .team/gaps/prd.json."}
+```
+[2026-04-07T15:35:03.301Z] prd_monitor agent completed
+[2026-04-07 15:35:03] [agent_complete] prd_monitor completed successfully
+[2026-04-07 15:35:03] [workflow] prd_monitor [SIGNAL] completed: Evaluated PRD and EXPECTED_DBB against src/ implementation. 95% match. Two partial gaps: code_exec u
+[2026-04-07 15:35:03] [workflow] monitor [BRANCH] goalMet → 0 → pm_decide
+[2026-04-07 15:35:03] [agent_start] pm_decide [NODE] pm_decide - PM 决策下一步
+[2026-04-07 15:35:03] [workflow] pm_decide [SKIP] fix-arch: archNeedsUpdate > 0
+[2026-04-07 15:35:03] [workflow] pm_decide [EXEC] pm
+[2026-04-07 15:35:03] [agent_start] pm 管理任务和里程碑
+[2026-04-07T15:35:03.371Z] Running pm agent...
+[2026-04-07 15:35:38] [perf] daemon {"rss":"70MB","heapUsed":"9MB","uptime":"1500s"}
+[2026-04-07 15:36:38] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 7min (active:3, done:59)
+M20 is set up. Here's the summary:
+
+- m19 marked **completed** (all tasks done)
+- m20 **"Browser Compatibility & Zero-Config Filesystem"** created as active with 3 tasks:
+  - `task-1775576180235` (P0) — Default in-memory AgenticFileSystem for zero-config usage
+  - `task-1775576173074` (P1) — Gate shell_exec behind environment detection
+  - `task-1775576186964` (P1) — Document Pyodide CDN limitation in README
+
+```signal
+{"status": "completed", "summary": "Marked m19 completed, created m20 targeting remaining vision gaps (shell_exec browser safety, zero-config filesystem, Pyodide CDN docs) with 3 prioritized tasks"}
+```
+[2026-04-07T15:36:39.160Z] pm agent completed
+[2026-04-07 15:36:39] [agent_complete] pm completed successfully
+[2026-04-07 15:36:39] [workflow] pm [SIGNAL] completed: Marked m19 completed, created m20 targeting remaining vision gaps (shell_exec browser safety, zero-c
+[2026-04-07 15:36:39] [agent_start] work_loop [NODE] work_loop - PM 调度中心 — PM 评估后并行派发所有角色，全部完成后回 PM
+[2026-04-07 15:36:39] [workflow] work_loop [LOOP] Iteration 1
+[2026-04-07 15:36:39] [workflow] work_loop [EXEC] pm
+[2026-04-07 15:36:39] [agent_start] pm 管理任务和里程碑
+[2026-04-07T15:36:39.232Z] Running pm agent...
+M20 is fully set up and ready:
+
+- **task-1775576180235** (P0) — Default in-memory AgenticFileSystem → assigned to `tech_lead-1`
+- **task-1775576173074** (P1) — Gate shell_exec for browser safety → assigned to `tech_lead-1`
+- **task-1775576186964** (P1) — Document Pyodide CDN limitation → assigned to `tech_lead-1`
+
+All 3 tasks are `todo`, assigned, and prioritized per gap severity.
+
+```signal
+{"status": "completed", "summary": "M20 tasks assigned and prioritized: P0 default filesystem task + 2 P1 browser compatibility tasks all assigned to tech_lead-1"}
+```
+[2026-04-07T15:37:11.350Z] pm agent completed
+[2026-04-07 15:37:11] [agent_complete] pm completed successfully
+[2026-04-07 15:37:11] [workflow] pm [SIGNAL] completed: M20 tasks assigned and prioritized: P0 default filesystem task + 2 P1 browser compatibility tasks al
+[2026-04-07 15:37:11] [workflow] work_loop [EXEC] qa_lead
+[2026-04-07 15:37:11] [agent_start] qa_lead 编写验收标准
+[2026-04-07T15:37:11.395Z] Running qa_lead agent...
+[2026-04-07 15:37:38] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 8min (active:3, done:59)
+Done. Here's what was completed:
+
+- Wrote `.team/milestones/m20/dbb.md` with 6 verification criteria covering:
+  - `shell_exec` excluded in browser (DBB-001) and functional in Node.js (DBB-002)
+  - `ask()` zero-config filesystem default (DBB-003) and explicit filesystem still works (DBB-004)
+  - README Pyodide CDN documentation (DBB-005) and offline/CSP workaround guidance (DBB-006)
+- Updated m20 status from `active` → `ready-for-work`
+
+```signal
+{"status": "completed", "summary": "Wrote dbb.md for m20 with 6 testable verification criteria and updated milestone status to ready-for-work"}
+```
+[2026-04-07T15:38:10.279Z] qa_lead agent completed
+[2026-04-07 15:38:10] [agent_complete] qa_lead completed successfully
+[2026-04-07 15:38:10] [workflow] qa_lead [SIGNAL] completed: Wrote dbb.md for m20 with 6 testable verification criteria and updated milestone status to ready-for
+[2026-04-07 15:38:10] [workflow] work_loop [PARALLEL-SKIP] implement: designedTasks > 0
+[2026-04-07 15:38:10] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-07 15:38:10] [workflow] work_loop [PARALLEL] write-design
+[2026-04-07 15:38:10] [workflow] work_loop [PARALLEL] tech_lead-1, tech_lead-2, tech_lead-3
+[2026-04-07 15:38:10] [agent_start] tech_lead-1 出技术方案
+[2026-04-07 15:38:10] [agent_start] tech_lead-2 出技术方案
+[2026-04-07 15:38:10] [agent_start] tech_lead-3 出技术方案
+[2026-04-07T15:38:10.330Z] Running tech_lead-2 agent...
+[2026-04-07T15:38:10.330Z] Running tech_lead-3 agent...
+[2026-04-07T15:38:10.332Z] Running tech_lead-1 agent...
+[2026-04-07 15:38:38] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 9min (active:3, done:59)
+[2026-04-07 15:39:38] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 10min (active:3, done:59)
+All done. Here's a summary of what was completed:
+
+**M20 — Browser Compatibility & Zero-Config Filesystem**
+
+Three task designs written and marked `hasDesign: true`:
+
+1. **task-1775576173074** — Gate `shell_exec` behind `isNodeEnv()` check. Export helper from `src/tools/shell.ts`, guard both `buildToolDefs` in `src/ask.ts` and the dynamic import inside `executeShell`.
+
+2. **task-1775576180235** — Default in-memory filesystem. In `src/ask.ts`, resolve `config.filesystem ?? new AgenticFileSystem()` at the top of `ask()` and pass the resolved instance downstream.
+
+3. **task-1775576186964** — README docs for Pyodide CDN. Add a section after the `code_exec` usage example covering the CDN requirement and two workarounds (self-host or disable the tool).
+
+The milestone already had `dbb.md` and `overview.md` — no new milestone-level files were needed.
+
+```signal
+{"status": "completed", "summary": "Wrote technical designs for all 3 m20 tasks (shell browser gate, default filesystem, Pyodide README docs) and marked hasDesign=true on each"}
+```
+[2026-04-07T15:39:56.692Z] tech_lead-2 agent completed
+[2026-04-07 15:39:56] [agent_complete] tech_lead-2 completed successfully
+[2026-04-07 15:39:56] [workflow] tech_lead-2 [SIGNAL] completed: Wrote technical designs for all 3 m20 tasks (shell browser gate, default filesystem, Pyodide README 
+[2026-04-07 15:40:38] [perf] daemon {"rss":"70MB","heapUsed":"10MB","uptime":"1800s"}
+[2026-04-07 15:40:38] [agent_start] daemon Still busy (10min), skipping
+[2026-04-07 15:40:38] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 11min (active:3, done:59)
+All done. Here's what was completed:
+
+**M20 milestone design** (`design.md`) — already existed, corrected `MemoryStorage` class name.
+
+**Task designs** — all three existed and were accurate; fixed one constructor call:
+
+- `task-1775576173074` — shell_exec browser gating via `isNodeEnv()` in `shell.ts` + `buildToolDefs` guard in `ask.ts`
+- `task-1775576180235` — default `new AgenticFileSystem({ storage: new MemoryStorage() })` in `ask()` when `config.filesystem` is absent
+- `task-1775576186964` — README Pyodide CDN section with self-hosting and disable-python workarounds
+
+All three tasks marked `hasDesign: true`.
+
+```signal
+{"status": "completed", "summary": "Verified and corrected m20 milestone design.md and all 3 task designs; marked hasDesign=true on all tasks"}
+```
+[2026-04-07T15:40:40.924Z] tech_lead-1 agent completed
+[2026-04-07 15:40:40] [agent_complete] tech_lead-1 completed successfully
+[2026-04-07 15:40:40] [workflow] tech_lead-1 [SIGNAL] completed: Verified and corrected m20 milestone design.md and all 3 task designs; marked hasDesign=true on all 
+All work is already complete. Here's the summary:
+
+**M20 status:**
+- `design.md` — created at `.team/milestones/m20/design.md`
+- `dbb.md` — already existed with 6 verification criteria
+
+**All 3 tasks have `hasDesign: true` and complete `design.md` files:**
+
+1. `task-1775576173074` — shell_exec browser gate: uses `isNodeEnv()` check in `src/tools/shell.ts` and `src/ask.ts:buildToolDefs`
+2. `task-1775576180235` — zero-config filesystem: `ask()` resolves `config.filesystem ?? new AgenticFileSystem({ storage: new MemoryStorage() })` in `src/ask.ts`
+3. `task-1775576186964` — README Pyodide docs: add CDN limitation + self-hosting/disable workarounds to `README.md`
+
+The correct `AgenticFileSystem` instantiation was verified: `new AgenticFileSystem({ storage: new MemoryStorage() })` — confirmed working via live test.
+
+```signal
+{"status": "completed", "summary": "Created m20/design.md; verified all 3 tasks have complete designs and hasDesign=true"}
+```
+[2026-04-07T15:41:22.038Z] tech_lead-3 agent completed
+[2026-04-07 15:41:22] [agent_complete] tech_lead-3 completed successfully
+[2026-04-07 15:41:22] [workflow] tech_lead-3 [SIGNAL] completed: Created m20/design.md; verified all 3 tasks have complete designs and hasDesign=true
+[2026-04-07 15:41:22] [workflow] work_loop [LOOP] Iteration 2
+[2026-04-07 15:41:22] [workflow] work_loop [EXEC] pm
+[2026-04-07 15:41:22] [agent_start] pm 管理任务和里程碑
+[2026-04-07T15:41:22.125Z] Running pm agent...
+[2026-04-07 15:41:38] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 12min (active:3, done:59)
+M20 is active with 3 todo tasks covering the remaining vision gaps (85% match). All tasks are already created and assigned. No new tasks needed — the milestone is ready for tech leads to execute.
+
+```signal
+{"status": "completed", "summary": "M20 'Browser Compatibility & Zero-Config Filesystem' is active with 3 todo tasks targeting the remaining 15% vision gaps: shell_exec browser safety (P1), default in-memory filesystem (P0), and Pyodide CDN documentation (P1). All tasks assigned to tech_lead-1. No new planning needed."}
+```
+[2026-04-07T15:41:46.143Z] pm agent completed
+[2026-04-07 15:41:46] [agent_complete] pm completed successfully
+[2026-04-07 15:41:46] [workflow] pm [SIGNAL] completed: M20 'Browser Compatibility & Zero-Config Filesystem' is active with 3 todo tasks targeting the remai
+[2026-04-07 15:41:46] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-07 15:41:46] [workflow] work_loop [PARALLEL-SKIP] write-design: todoWithoutDesign > 0
+[2026-04-07 15:41:46] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-07 15:41:46] [workflow] work_loop [PARALLEL] implement
+[2026-04-07 15:41:46] [workflow] work_loop [EXEC] developer
+[2026-04-07 15:41:46] [agent_start] developer 实现功能
+[2026-04-07T15:41:46.193Z] Running developer agent...
+[2026-04-07 15:42:38] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 13min (active:3, done:59)
+[2026-04-07 15:43:38] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 14min (active:3, done:59)
+[2026-04-07 15:44:38] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 15min (active:3, done:59)
+[2026-04-07 15:45:38] [perf] daemon {"rss":"61MB","heapUsed":"6MB","uptime":"2100s"}
+[2026-04-07 15:45:38] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 16min (active:3, done:59)
+All three tasks completed successfully.
+
+```signal
+{"status": "completed", "summary": "Implemented 3 m20 tasks: (1) default in-memory AgenticFileSystem in ask.ts for zero-config usage, (2) shell_exec browser safety via isNodeEnv() guard in shell.ts and buildToolDefs, (3) Pyodide CDN documentation in README.md. All build clean."}
+```
+[2026-04-07T15:46:35.168Z] developer agent completed
+[2026-04-07 15:46:35] [agent_complete] developer completed successfully
+[2026-04-07 15:46:35] [workflow] developer [SIGNAL] completed: Implemented 3 m20 tasks: (1) default in-memory AgenticFileSystem in ask.ts for zero-config usage, (2

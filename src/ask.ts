@@ -3,17 +3,20 @@
 
 import { createProvider } from './providers/index.js'
 import type { Provider, ProviderMessage, ToolDefinition, ProviderToolCall } from './providers/index.js'
-import { shellToolDef, executeShell } from './tools/shell.js'
+import { shellToolDef, executeShell, isNodeEnv } from './tools/shell.js'
 import type { AgenticConfig, AgenticResult, ToolName, Source, CodeResult, FileResult, ShellResult, ToolCall } from './types.js'
 import { searchToolDef, executeSearch } from './tools/search.js'
 import { codeToolDef, executeCode } from './tools/code.js'
 import { fileReadToolDef, fileWriteToolDef, executeFileRead, executeFileWrite } from './tools/file.js'
+import { AgenticFileSystem, MemoryStorage } from 'agentic-filesystem'
 
 const MAX_TOOL_ROUNDS = 10
 
 export async function ask(prompt: string, config: AgenticConfig): Promise<AgenticResult> {
-  const provider = createProvider(config)
-  const enabledTools = config.tools ?? ['search']
+  const filesystem = config.filesystem ?? new AgenticFileSystem({ storage: new MemoryStorage() })
+  const resolvedConfig = { ...config, filesystem }
+  const provider = createProvider(resolvedConfig)
+  const enabledTools = resolvedConfig.tools ?? ['search']
   const toolDefs = buildToolDefs(enabledTools)
 
   const messages: ProviderMessage[] = [{ role: 'user', content: prompt }]
@@ -26,7 +29,7 @@ export async function ask(prompt: string, config: AgenticConfig): Promise<Agenti
   let totalUsage = { input: 0, output: 0 }
 
   for (let round = 0; round < MAX_TOOL_ROUNDS; round++) {
-    const response = await provider.chat(messages, toolDefs, config.systemPrompt)
+    const response = await provider.chat(messages, toolDefs, resolvedConfig.systemPrompt)
     totalUsage.input += response.usage.input
     totalUsage.output += response.usage.output
 
@@ -44,7 +47,7 @@ export async function ask(prompt: string, config: AgenticConfig): Promise<Agenti
     }
 
     // Execute tool calls and continue the loop
-    const toolResults = await executeToolCalls(response.toolCalls, config, {
+    const toolResults = await executeToolCalls(response.toolCalls, resolvedConfig, {
       allSources, allCodeResults, allFileResults, allShellResults, allToolCalls, allImages,
     })
 
@@ -131,6 +134,6 @@ function buildToolDefs(tools: ToolName[]): ToolDefinition[] {
     defs.push(fileReadToolDef)
     defs.push(fileWriteToolDef)
   }
-  if (tools.includes('shell')) defs.push(shellToolDef)
+  if (tools.includes('shell') && isNodeEnv()) defs.push(shellToolDef)
   return defs
 }

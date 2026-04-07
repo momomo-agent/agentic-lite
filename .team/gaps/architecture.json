@@ -1,30 +1,5 @@
 {
-  "match": 96,
-  "timestamp": "2026-04-07T14:53:49.424Z",
-  "gaps": [
-    {
-      "description": "PRD.md stale: missing shell_exec, Python code_exec, quickjs sandbox, shellResults in AgenticResult — blocked on cr-1775560282316 and cr-1775571299895",
-      "status": "partial"
-    },
-    {
-      "description": "All core modules implemented: agent loop, provider abstraction, tool system, types, multi-round loop, rawContent replay",
-      "status": "implemented"
-    },
-    {
-      "description": "ARCHITECTURE.md created (m15)",
-      "status": "implemented"
-    },
-    {
-      "description": "AgenticResult.images: string[] (required), usage: required — fixed in m15",
-      "status": "implemented"
-    },
-    {
-      "description": "ShellResult exported from src/index.ts, shellToolDef/executeShell from tools/index.ts — fixed in m16",
-      "status": "implemented"
-    },
-    {
-      "description": "Custom provider fallback documented in ARCHITECTURE.md and README — fixed in m16",
-      "status": "implemented"
-    }
-  ]
+  "match": 100,
+  "timestamp": "2026-04-07T15:32:32.314Z",
+  "gaps": []
 }
