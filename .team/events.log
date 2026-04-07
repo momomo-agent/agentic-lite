@@ -228,3 +228,4 @@
 {"ts":"2026-04-07T02:07:40.535Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775526873714","from":"testing","to":"done","title":"编写 PRD.md"}}
 {"ts":"2026-04-07T02:07:40.567Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775526877132","from":"testing","to":"done","title":"编写 EXPECTED_DBB.md"}}
 {"ts":"2026-04-07T02:07:55.813Z","type":"agent_complete","agent":"tester-2","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":7,"cpuUser":0.124887,"cpuSystem":0.171161}}}
+{"ts":"2026-04-07T02:07:56.067Z","type":"agent_complete","agent":"tester-1","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":7,"cpuUser":0.125325,"cpuSystem":0.171798}}}

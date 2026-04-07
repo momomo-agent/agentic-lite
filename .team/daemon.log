@@ -488,3 +488,13 @@ All 4 M2 tasks are done:
 Total: 20/20 tests passing. Coverage updated to 100%.
 [2026-04-07T02:07:55.810Z] tester-2 agent completed
 [2026-04-07 02:07:55] [agent_complete] tester-2 completed successfully
+All 4 m2 tasks are complete:
+
+- **task-1775526862838** (apiKey validation): 3/3 tests passed — `createProvider` and `detectProvider` both throw correctly on missing/empty apiKey
+- **task-1775526867192** (npm publish config): 2/2 checks passed — `publishConfig` in package.json, install instructions in README
+- **task-1775526873714** (PRD.md): 2/2 checks passed — file exists with required keywords
+- **task-1775526877132** (EXPECTED_DBB.md): 2/2 checks passed — file exists and is non-empty
+
+16 total tests, all passing. Test file written to `test/m2-provider-apikey.test.ts`. Coverage summary updated in `.team/gaps/test-coverage.json`.
+[2026-04-07T02:07:56.065Z] tester-1 agent completed
+[2026-04-07 02:07:56] [agent_complete] tester-1 completed successfully
