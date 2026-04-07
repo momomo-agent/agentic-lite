@@ -1,7 +1,7 @@
 {
   "agent": "pm",
-  "timestamp": "2026-04-07T15:11:25.869Z",
+  "timestamp": "2026-04-07T15:13:00.830Z",
   "exitCode": 0,
-  "status": "completed",
-  "summary": "M18 is active with 3 todo tasks (README docs, AgenticResult.usage fix, PRD sync) assigned to developer. No new tasks needed — existing tasks cover all remaining gaps."
+  "status": "blocked",
+  "summary": "m18 tasks (task-1775574256272, task-1775574256304) are in 'review' status. Waiting for tester to approve before milestone can be marked completed or next milestone planned."
 }
