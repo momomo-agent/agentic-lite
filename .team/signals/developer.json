@@ -1,7 +1,7 @@
 {
   "agent": "developer",
-  "timestamp": "2026-04-07T12:45:26.043Z",
+  "timestamp": "2026-04-07T12:50:45.990Z",
   "exitCode": 0,
   "status": "completed",
-  "summary": "Added ShellResult type and shell tool exports to public API"
+  "summary": "Fixed AgenticResult.images type to string[] in types.ts; created ARCHITECTURE.md documenting module structure, data flow, and key interfaces"
 }

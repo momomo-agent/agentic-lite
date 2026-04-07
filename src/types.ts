@@ -35,7 +35,7 @@ export interface AgenticResult {
   /** Sources used (from search) */
   sources?: Source[]
   /** Images from search results */
-  images?: string[]
+  images: string[]
   /** Code execution results */
   codeResults?: CodeResult[]
   /** Files read/written */
