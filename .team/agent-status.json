@@ -24,9 +24,9 @@
     "retryCount": 1
   },
   "pm": {
-    "status": "idle",
-    "lastRun": "2026-04-07T14:45:44.221Z",
-    "currentTask": null,
+    "status": "running",
+    "lastRun": "2026-04-07T14:48:46.418Z",
+    "currentTask": "管理任务和里程碑",
     "retryCount": 0
   },
   "qa_lead": {
@@ -61,7 +61,7 @@
   },
   "tester-1": {
     "status": "idle",
-    "lastRun": "2026-04-07T14:47:46.119Z",
+    "lastRun": "2026-04-07T14:49:19.953Z",
     "currentTask": null,
     "retryCount": 1
   },
