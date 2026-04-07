@@ -55,19 +55,19 @@
     },
     {
       "id": "m6",
-      "name": "Image Return Fix & Provider Validation",
+      "name": "Custom Provider Bug Fix & Test Suite Recovery",
       "status": "active",
       "tasks": [
+        "task-1775530933189",
         "task-1775530596867",
         "task-1775530614268"
       ]
     },
     {
       "id": "m7",
-      "name": "Custom Provider & Multi-Round Tool Loop",
+      "name": "Multi-Round Tool Loop & Code Sandbox Upgrade",
       "status": "planned",
       "tasks": [
-        "task-1775530933189",
         "task-1775530939117",
         "task-1775532498831"
       ]

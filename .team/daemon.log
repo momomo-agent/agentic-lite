@@ -1604,3 +1604,73 @@ case 'custom':
 This single bug is blocking 10 tests across the entire test suite. Once fixed, all three tasks should pass their tests.
 [2026-04-07T03:38:48.079Z] tester-2 agent completed
 [2026-04-07 03:38:48] [agent_complete] tester-2 completed successfully
+[2026-04-07 03:38:48] [workflow] work_loop [LOOP] Iteration 11
+[2026-04-07 03:38:48] [workflow] work_loop [EXEC] pm
+[2026-04-07 03:38:48] [agent_start] pm 管理任务和里程碑
+[2026-04-07T03:38:48.167Z] Running pm agent...
+[2026-04-07 03:39:01] [perf] daemon {"rss":"40MB","heapUsed":"12MB","uptime":"7500s"}
+[2026-04-07 03:39:02] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 32min (active:2, done:18)
+[2026-04-07 03:39:32] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 33min (active:2, done:18)
+[2026-04-07 03:40:32] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 34min (active:4, done:18)
+[2026-04-07 03:41:02] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 34min (active:3, done:18)
+[2026-04-07 03:41:32] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 35min (active:3, done:18)
+
+
+I've reorganized the milestones based on the critical issue discovered by tester-2. Here's the current status:
+
+## Critical Issue Identified
+
+**10 tests failing** (16/26 passing) due to a single bug in `src/providers/provider.ts`. The custom provider implementation requires `baseUrl` before checking for `config.customProvider`, breaking all tests that use mocked providers.
+
+## Milestone Reorganization
+
+**M6: Custom Provider Bug Fix & Test Suite Recovery** (Active)
+- **task-1775530933189** (P0) - Fix custom provider bug → Assigned to **developer**
+- **task-1775530596867** (P1) - Verify images field → Blocked, assigned to tester-2
+- **task-1775530614268** (P1) - Verify apiKey validation → Blocked, assigned to tester-2
+
+The bug fix is straightforward:
+```typescript
+case 'custom':
+  if (config.customProvider) return config.customProvider  // Add this line
+  if (!config.baseUrl) throw new Error('baseUrl is required...')
+```
+
+**M7: Multi-Round Tool Loop & Code Sandbox Upgrade** (Planned)
+- **task-1775530939117** (P1) - Fix multi-round tool loop
+- **task-1775532498831** (P1) - Upgrade to quickjs-emscripten sandbox
+
+## Current Gaps
+- Vision match: 82%
+- PRD match: 0% (PRD.md exists but needs gap re-evaluation)
+- DBB match: 0% (EXPECTED_DBB.md exists but needs gap re-evaluation)
+- Architecture match: 82%
+
+## Next Action
+Developer should pick up the P0 custom provider bug fix. Once fixed, all 26 tests should pass and m6 can be completed.
+[2026-04-07T03:42:14.291Z] pm agent completed
+[2026-04-07 03:42:14] [agent_complete] pm completed successfully
+[2026-04-07 03:42:14] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-07 03:42:14] [workflow] work_loop [PARALLEL-SKIP] write-design: todoWithoutDesign > 0
+[2026-04-07 03:42:14] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-07 03:42:14] [workflow] work_loop [PARALLEL] implement
+[2026-04-07 03:42:14] [workflow] work_loop [EXEC] developer
+[2026-04-07 03:42:14] [agent_start] developer 实现功能
+[2026-04-07T03:42:14.330Z] Running developer agent...
+[2026-04-07 03:42:32] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 36min (active:3, done:18)
+[2026-04-07 03:43:32] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 37min (active:3, done:18)
+[2026-04-07 03:44:01] [error] daemon Watchdog: busy for 130min, force reset
+[2026-04-07 03:44:01] [workflow]  [RESUME] Resuming from checkpoint: node=work_loop, step=2
+[2026-04-07 03:44:01] [agent_start] work_loop [NODE] work_loop - PM 调度中心 — PM 评估后并行派发所有角色，全部完成后回 PM
+[2026-04-07 03:44:01] [workflow] work_loop [LOOP] Iteration 1
+[2026-04-07 03:44:01] [workflow] work_loop [EXEC] pm
+[2026-04-07 03:44:01] [agent_start] pm 管理任务和里程碑
+[2026-04-07 03:44:01] [perf] daemon {"rss":"43MB","heapUsed":"13MB","uptime":"7800s"}
+[2026-04-07T03:44:01.826Z] Running pm agent...
+Task `task-1775530939117` is still blocked (its blocker needs to reach `done` status, not just `review`). No more claimable tasks available right now.
+
+Summary of work done:
+- `task-1775530933189`: Custom provider support — already implemented, moved to review
+- `task-1775532498831`: quickjs-emscripten sandbox — already implemented, all 8 tests pass, moved to review
+[2026-04-07T03:44:10.327Z] developer agent completed
+[2026-04-07 03:44:10] [agent_complete] developer completed successfully

@@ -700,3 +700,45 @@
 {"ts":"2026-04-07T03:38:32.175Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 32min (active:3, done:18)\"}"}}
 {"ts":"2026-04-07T03:38:36.264Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775530933189","from":"testing","to":"blocked","title":"Implement custom provider support"}}
 {"ts":"2026-04-07T03:38:48.082Z","type":"agent_complete","agent":"tester-2","data":{"details":"completed successfully","performance":{"memoryMB":12,"memoryTotalMB":15,"cpuUser":0.477437,"cpuSystem":0.730613}}}
+{"ts":"2026-04-07T03:38:48.142Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 11"}}
+{"ts":"2026-04-07T03:38:48.142Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T03:38:48.142Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":13,"memoryTotalMB":15,"cpuUser":0.479309,"cpuSystem":0.735673}}}
+{"ts":"2026-04-07T03:39:01.740Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"40MB\",\"heapUsed\":\"12MB\",\"uptime\":\"7500s\"}"}}
+{"ts":"2026-04-07T03:39:02.178Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 32min (active:2, done:18)"}}
+{"ts":"2026-04-07T03:39:02.179Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 32min (active:2, done:18)\"}"}}
+{"ts":"2026-04-07T03:39:32.180Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 33min (active:2, done:18)"}}
+{"ts":"2026-04-07T03:39:32.181Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 33min (active:2, done:18)\"}"}}
+{"ts":"2026-04-07T03:40:25.294Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775530596867","from":"blocked","to":"review","title":"Fix images field lost in final return path"}}
+{"ts":"2026-04-07T03:40:25.335Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775530614268","from":"blocked","to":"review","title":"Add apiKey validation in detectProvider"}}
+{"ts":"2026-04-07T03:40:32.182Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 34min (active:4, done:18)"}}
+{"ts":"2026-04-07T03:40:32.183Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 34min (active:4, done:18)\"}"}}
+{"ts":"2026-04-07T03:40:40.974Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775530933189","from":"blocked","to":"todo","title":"Implement custom provider support"}}
+{"ts":"2026-04-07T03:41:01.144Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775530596867","from":"review","to":"blocked","title":"Fix images field lost in final return path"}}
+{"ts":"2026-04-07T03:41:01.185Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775530614268","from":"review","to":"blocked","title":"Add apiKey validation in detectProvider"}}
+{"ts":"2026-04-07T03:41:02.185Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 34min (active:3, done:18)"}}
+{"ts":"2026-04-07T03:41:02.186Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 34min (active:3, done:18)\"}"}}
+{"ts":"2026-04-07T03:41:32.187Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 35min (active:3, done:18)"}}
+{"ts":"2026-04-07T03:41:32.188Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 35min (active:3, done:18)\"}"}}
+{"ts":"2026-04-07T03:42:14.294Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":12,"memoryTotalMB":13,"cpuUser":0.495188,"cpuSystem":0.758202}}}
+{"ts":"2026-04-07T03:42:14.298Z","type":"workflow","agent":"work_loop","data":{"details":"[SKIP] write-dbb: milestoneNeedsDBB > 0"}}
+{"ts":"2026-04-07T03:42:14.299Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] write-design: todoWithoutDesign > 0"}}
+{"ts":"2026-04-07T03:42:14.299Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0"}}
+{"ts":"2026-04-07T03:42:14.299Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] implement"}}
+{"ts":"2026-04-07T03:42:14.299Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] developer"}}
+{"ts":"2026-04-07T03:42:14.299Z","type":"agent_start","agent":"developer","data":{"details":"实现功能","performance":{"memoryMB":13,"memoryTotalMB":14,"cpuUser":0.496644,"cpuSystem":0.762445}}}
+{"ts":"2026-04-07T03:42:32.191Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 36min (active:3, done:18)"}}
+{"ts":"2026-04-07T03:42:32.192Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 36min (active:3, done:18)\"}"}}
+{"ts":"2026-04-07T03:42:32.417Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775530933189","from":"todo","to":"inProgress","title":"Implement custom provider support"}}
+{"ts":"2026-04-07T03:43:08.408Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775530933189","from":"inProgress","to":"review","title":"Implement custom provider support"}}
+{"ts":"2026-04-07T03:43:25.484Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775532498831","from":"todo","to":"inProgress","title":"Upgrade code_exec to quickjs-emscripten sandbox"}}
+{"ts":"2026-04-07T03:43:32.196Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 37min (active:3, done:18)"}}
+{"ts":"2026-04-07T03:43:32.197Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 37min (active:3, done:18)\"}"}}
+{"ts":"2026-04-07T03:43:49.773Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775532498831","from":"inProgress","to":"review","title":"Upgrade code_exec to quickjs-emscripten sandbox"}}
+{"ts":"2026-04-07T03:44:01.736Z","type":"error","agent":"daemon","data":{"details":"Watchdog: busy for 130min, force reset"}}
+{"ts":"2026-04-07T03:44:01.781Z","type":"workflow","agent":null,"data":{"details":"[RESUME] Resuming from checkpoint: node=work_loop, step=2"}}
+{"ts":"2026-04-07T03:44:01.782Z","type":"agent_start","agent":"work_loop","data":{"details":"[NODE] work_loop - PM 调度中心 — PM 评估后并行派发所有角色，全部完成后回 PM","performance":{"memoryMB":13,"memoryTotalMB":14,"cpuUser":0.504895,"cpuSystem":0.774274}}}
+{"ts":"2026-04-07T03:44:01.790Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 1"}}
+{"ts":"2026-04-07T03:44:01.794Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T03:44:01.794Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":13,"memoryTotalMB":15,"cpuUser":0.510361,"cpuSystem":0.781414}}}
+{"ts":"2026-04-07T03:44:01.795Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"43MB\",\"heapUsed\":\"13MB\",\"uptime\":\"7800s\"}"}}
+{"ts":"2026-04-07T03:44:10.330Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":11,"cpuUser":0.516128,"cpuSystem":0.784128}}}
