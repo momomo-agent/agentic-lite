@@ -6,10 +6,10 @@
   "priority": "P1",
   "assignee": "tester-1",
   "blockedBy": [
-    "cr-1775560282316"
+    "task-1775573582938"
   ],
   "groupId": "m9",
   "hasDesign": true,
   "created": "2026-04-07T05:28:39.831Z",
-  "updated": "2026-04-07T11:13:25.751Z"
+  "updated": "2026-04-07T14:57:36.339Z"
 }

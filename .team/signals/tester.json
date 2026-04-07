@@ -1,7 +1,7 @@
 {
   "agent": "tester",
-  "timestamp": "2026-04-07T13:46:56.273Z",
+  "timestamp": "2026-04-07T14:58:27.709Z",
   "exitCode": 0,
   "status": "blocked",
-  "summary": "No claimable review tasks — task-1775568160446 is in review but cannot be claimed (still owned by developer)"
+  "summary": "No claimable tasks in review status. task-1775573582938 is in review but cannot be claimed (assigned to developer)."
 }

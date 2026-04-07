@@ -1,7 +1,7 @@
 {
   "agent": "pm",
-  "timestamp": "2026-04-07T14:54:28.693Z",
+  "timestamp": "2026-04-07T14:58:00.133Z",
   "exitCode": 0,
   "status": "blocked",
-  "summary": "m9/m10/m15 blocked on pending CRs cr-1775560282316 and cr-1775571299895 awaiting L2 approval. Updated architecture.json gaps to reflect resolved items (m14-m16). Assigned m17 task to developer (P0) to sync PRD.md once CRs are approved."
+  "summary": "task-1775573582938 is in review awaiting tester approval; 3 tasks blocked on it; both CRs approved; no PM action possible until tester clears the review"
 }
