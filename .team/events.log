@@ -947,3 +947,20 @@
 {"ts":"2026-04-07T04:36:19.587Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 13min (active:2, done:24)\"}"}}
 {"ts":"2026-04-07T04:36:22.840Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775534038662","from":"testing","to":"blocked","title":"code_exec 内注入 filesystem API"}}
 {"ts":"2026-04-07T04:36:45.319Z","type":"agent_complete","agent":"tester-2","data":{"details":"completed successfully","performance":{"memoryMB":12,"memoryTotalMB":13,"cpuUser":0.284829,"cpuSystem":0.827627}}}
+{"ts":"2026-04-07T04:36:49.531Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 13min (active:1, done:24)"}}
+{"ts":"2026-04-07T04:36:49.535Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 13min (active:1, done:24)\"}"}}
+{"ts":"2026-04-07T04:37:19.394Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 14min (active:1, done:24)"}}
+{"ts":"2026-04-07T04:37:19.395Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 14min (active:1, done:24)\"}"}}
+{"ts":"2026-04-07T04:37:29.598Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775534038696","from":"review","to":"testing","title":"shell_exec tool"}}
+{"ts":"2026-04-07T04:38:20.698Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 15min (active:1, done:24)"}}
+{"ts":"2026-04-07T04:38:20.961Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 15min (active:1, done:24)\"}"}}
+{"ts":"2026-04-07T04:39:19.696Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 16min (active:1, done:24)"}}
+{"ts":"2026-04-07T04:39:19.724Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 16min (active:1, done:24)\"}"}}
+{"ts":"2026-04-07T04:39:43.312Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"12MB\",\"heapUsed\":\"6MB\",\"uptime\":\"2700s\"}"}}
+{"ts":"2026-04-07T04:40:19.699Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 17min (active:1, done:24)"}}
+{"ts":"2026-04-07T04:40:19.699Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 17min (active:1, done:24)\"}"}}
+{"ts":"2026-04-07T04:41:19.700Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 18min (active:1, done:24)"}}
+{"ts":"2026-04-07T04:41:19.700Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 18min (active:1, done:24)\"}"}}
+{"ts":"2026-04-07T04:41:33.934Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775534038662","from":"blocked","to":"review","title":"code_exec 内注入 filesystem API"}}
+{"ts":"2026-04-07T04:41:49.044Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775534038696","from":"testing","to":"done","title":"shell_exec tool"}}
+{"ts":"2026-04-07T04:41:58.501Z","type":"agent_complete","agent":"tester-1","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":6,"cpuUser":0.31997,"cpuSystem":0.907271}}}

@@ -41,14 +41,6 @@ async function injectFilesystem(vm: any, filesystem?: AgenticFileSystem) {
   vm.setProp(fsHandle, 'writeFileSync', writeFn)
   writeFn.dispose()
 
-  const existsFn = vm.newAsyncifiedFunction('existsSync', async (pathHandle: any) => {
-    const path = String(vm.dump(pathHandle))
-    const result = await filesystem.read(path)
-    return vm.newBoolean(!result.error && result.content !== null)
-  })
-  vm.setProp(fsHandle, 'existsSync', existsFn)
-  existsFn.dispose()
-
   vm.setProp(vm.global, 'fs', fsHandle)
   fsHandle.dispose()
 }

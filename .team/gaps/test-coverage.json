@@ -1,6 +1,6 @@
 {
-  "totalTests": 47,
-  "passed": 45,
+  "totalTests": 52,
+  "passed": 50,
   "failed": 2,
   "edgeCases": [
     "fs.existsSync returns Promise instead of boolean (async/sync mismatch)",
@@ -10,7 +10,8 @@
     "Concurrent file operations in single code block not tested",
     "Binary file handling not tested (text-only assumption)",
     "Browser Pyodide path not tested (no browser env in test runner)",
-    "shell_exec tool (separate task, not yet implemented)"
+    "shell grep/find/pwd commands not tested",
+    "shell pipe commands not tested"
   ],
   "coverage": "96%"
 }
