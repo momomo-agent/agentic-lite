@@ -4657,3 +4657,23 @@
 {"ts":"2026-04-07T13:46:55.927Z","type":"workflow","agent":"developer","data":{"details":"[SIGNAL] completed: Fixed README AgenticResult.usage from optional to required to match types.ts"}}
 {"ts":"2026-04-07T13:46:56.276Z","type":"agent_complete","agent":"tester","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":9,"cpuUser":2.957435,"cpuSystem":4.624552}}}
 {"ts":"2026-04-07T13:46:56.276Z","type":"workflow","agent":"tester","data":{"details":"[SIGNAL] blocked: No claimable review tasks — task-1775568160446 is in review but cannot be claimed (still owned by de"}}
+{"ts":"2026-04-07T13:46:56.346Z","type":"workflow","agent":"work_loop","data":{"details":"[AGENT-SIGNAL] tester → blocked: No claimable review tasks — task-1775568160446 is in review but cannot be claime"}}
+{"ts":"2026-04-07T13:46:56.371Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 22"}}
+{"ts":"2026-04-07T13:46:56.382Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T13:46:56.383Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":7,"memoryTotalMB":10,"cpuUser":2.961861,"cpuSystem":4.636402}}}
+{"ts":"2026-04-07T13:47:18.140Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 7min (active:2, done:39)"}}
+{"ts":"2026-04-07T13:47:18.141Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 7min (active:2, done:39)\"}"}}
+{"ts":"2026-04-07T13:47:57.440Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":14,"cpuUser":2.9739,"cpuSystem":4.64782}}}
+{"ts":"2026-04-07T13:47:57.440Z","type":"workflow","agent":"pm","data":{"details":"[SIGNAL] blocked: m9/m10 have tasks blocked by CR-1775560282316 (pending L2 PRD review). m13 has 2 tasks in review awa"}}
+{"ts":"2026-04-07T13:47:57.440Z","type":"workflow","agent":"work_loop","data":{"details":"[AGENT-SIGNAL] pm → blocked: m9/m10 have tasks blocked by CR-1775560282316 (pending L2 PRD review). m13 has 2"}}
+{"ts":"2026-04-07T13:47:57.449Z","type":"workflow","agent":"work_loop","data":{"details":"[SKIP] write-dbb: milestoneNeedsDBB > 0"}}
+{"ts":"2026-04-07T13:47:57.449Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] write-design: todoWithoutDesign > 0"}}
+{"ts":"2026-04-07T13:47:57.449Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] implement: designedTasks > 0"}}
+{"ts":"2026-04-07T13:47:57.450Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] run-tests"}}
+{"ts":"2026-04-07T13:47:57.450Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] tester-1, tester-2"}}
+{"ts":"2026-04-07T13:47:57.450Z","type":"agent_start","agent":"tester-1","data":{"details":"验证功能","performance":{"memoryMB":13,"memoryTotalMB":15,"cpuUser":2.976668,"cpuSystem":4.655117}}}
+{"ts":"2026-04-07T13:47:57.451Z","type":"agent_start","agent":"tester-2","data":{"details":"验证功能","performance":{"memoryMB":13,"memoryTotalMB":15,"cpuUser":2.976859,"cpuSystem":4.655599}}}
+{"ts":"2026-04-07T13:48:18.143Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 8min (active:2, done:39)"}}
+{"ts":"2026-04-07T13:48:18.144Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 8min (active:2, done:39)\"}"}}
+{"ts":"2026-04-07T13:48:21.969Z","type":"agent_complete","agent":"tester-2","data":{"details":"completed successfully","performance":{"memoryMB":13,"memoryTotalMB":15,"cpuUser":2.98322,"cpuSystem":4.66125}}}
+{"ts":"2026-04-07T13:48:21.970Z","type":"workflow","agent":"tester-2","data":{"details":"[SIGNAL] completed: No claimable tasks in review status — both task-1775568160446 and task-1775568160484 are already cla"}}
