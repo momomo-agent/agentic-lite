@@ -1,30 +1,30 @@
 {
-  "match": 82,
-  "timestamp": "2026-04-07T01:34:37.553Z",
+  "match": 95,
+  "timestamp": "2026-04-07T18:15:00.000Z",
   "gaps": [
     {
-      "description": "ask.ts uses a non-standard tool loop: after one round of tool calls it injects results as plain text and forces a final call without tools, rather than continuing the agentic loop for up to MAX_TOOL_ROUNDS rounds. Multi-turn tool use is effectively broken.",
-      "status": "partial"
-    },
-    {
-      "description": "images field is collected in the first tool-call branch but omitted from the return value in the final-response branch (ask.ts:68). AgenticResult.images can be silently lost.",
-      "status": "partial"
-    },
-    {
-      "description": "Provider 'custom' is declared in AgenticConfig but createProvider() falls through to openai for unknown providers with no error or custom-provider hook. Custom/proxy provider support is not implemented.",
-      "status": "missing"
-    },
-    {
-      "description": "code_exec uses new Function() (eval-equivalent) with no real sandbox. The vision doc notes this is a placeholder; isolated-vm or quickjs-emscripten is not yet integrated.",
-      "status": "partial"
-    },
-    {
-      "description": "No memory, chain, or graph modules — consistent with vision's explicit non-goals. No gap.",
+      "description": "Code execution implementation uses quickjs-emscripten sandbox instead of AsyncFunction eval as specified in EXPECTED_DBB.md. Both are browser-compatible, but implementation is more sophisticated than design.",
       "status": "implemented"
     },
     {
-      "description": "Provider auto-detection (detectProvider) relies on apiKey prefix and baseUrl string match; no validation or error for missing/invalid apiKey.",
+      "description": "Custom provider without customProvider hook still requires apiKey (line 65 in provider.ts), partially deviating from 'skips apiKey validation' requirement in EXPECTED_DBB.md.",
       "status": "partial"
+    },
+    {
+      "description": "Shell tool (shell_exec) added beyond PRD specification as enhancement.",
+      "status": "implemented"
+    },
+    {
+      "description": "Python code execution with auto-detection added (pyodide for browser, python3 for Node). Not specified in PRD but fully functional.",
+      "status": "implemented"
+    },
+    {
+      "description": "All core acceptance criteria met: multi-round loop with MAX_TOOL_ROUNDS=10, AgenticFileSystem for file I/O, images populated in results, systemPrompt passed to provider, apiKey validation for anthropic/openai, package.json publishConfig, README install instructions.",
+      "status": "implemented"
+    },
+    {
+      "description": "All core modules match design: agent loop (ask.ts), provider abstraction (anthropic/openai/custom), tool system (search/code/file/shell), type definitions, configuration options.",
+      "status": "implemented"
     }
   ]
 }

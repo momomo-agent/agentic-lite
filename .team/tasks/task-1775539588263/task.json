@@ -2,13 +2,13 @@
   "id": "task-1775539588263",
   "title": "Fix README — restore npm install agentic-lite",
   "description": "README.md currently says the package was renamed to agentic-core. EXPECTED_DBB requires README contains 'npm install agentic-lite'. Remove the rename notice and restore correct install instructions.",
-  "status": "todo",
+  "status": "testing",
   "priority": "P1",
-  "assignee": null,
+  "assignee": "tester-2",
   "blockedBy": [],
   "groupId": "m9",
   "hasDesign": true,
   "created": "2026-04-07T05:26:28.263Z",
-  "updated": "2026-04-07T05:30:49.323Z",
+  "updated": "2026-04-07T10:24:02.820Z",
   "milestoneId": "m9"
 }

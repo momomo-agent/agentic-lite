@@ -1,8 +1,17 @@
 {
-  "match": 0,
-  "timestamp": "2026-04-07T01:34:33.379Z",
+  "match": 88,
+  "timestamp": "2026-04-07T10:44:05.948Z",
   "gaps": [
-    { "description": "PRD.md not found — cannot evaluate feature coverage", "status": "missing" },
-    { "description": "EXPECTED_DBB.md not found — cannot evaluate global verification criteria", "status": "missing" }
+    { "description": "ask() multi-round agent loop", "status": "implemented" },
+    { "description": "search tool (web_search)", "status": "implemented" },
+    { "description": "code_exec tool — PRD specifies AsyncFunction eval; implementation uses quickjs-emscripten sandbox (browser-compatible but different mechanism)", "status": "partial" },
+    { "description": "file_read / file_write via AgenticFileSystem (browser-compatible, no Node fs)", "status": "implemented" },
+    { "description": "Provider config: provider, apiKey, model, baseUrl, customProvider, systemPrompt", "status": "implemented" },
+    { "description": "AgenticResult fields: answer, sources, images, codeResults, files, toolCalls, usage", "status": "implemented" },
+    { "description": "provider='custom' skips apiKey validation — when baseUrl used without customProvider, apiKey still required (partial skip)", "status": "partial" },
+    { "description": "systemPrompt passed to provider system field", "status": "implemented" },
+    { "description": "Missing/empty apiKey throws before network call for anthropic/openai", "status": "implemented" },
+    { "description": "package.json publishConfig access:public", "status": "implemented" },
+    { "description": "README.md contains npm install agentic-lite", "status": "implemented" }
   ]
 }

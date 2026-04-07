@@ -1,0 +1,7 @@
+{
+  "agent": "tester",
+  "timestamp": "2026-04-07T09:41:49.314Z",
+  "exitCode": 1,
+  "status": "failed",
+  "summary": "Failed to authenticate. API Error: 401 {\"error\":{\"message\":\"额度不足\",\"type\":\"authentication_error\"},\"type\":\"error\"}"
+}

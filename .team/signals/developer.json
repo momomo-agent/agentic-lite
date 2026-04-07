@@ -1,0 +1,7 @@
+{
+  "agent": "developer",
+  "timestamp": "2026-04-07T10:53:14.154Z",
+  "exitCode": 0,
+  "status": "blocked",
+  "summary": "No claimable tasks available. task-1775539726284 cannot be claimed (blocked), other todo tasks lack design or are assigned."
+}

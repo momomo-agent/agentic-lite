@@ -1,42 +1,30 @@
 {
-  "match": 82,
-  "timestamp": "2026-04-07T01:34:37.208Z",
+  "match": 88,
+  "timestamp": "2026-04-07T10:41:24.343Z",
   "gaps": [
     {
-      "description": "Single `ask()` function with provider/apiKey — core value prop is implemented",
+      "description": "Core single-function API (ask()) with provider/apiKey is fully implemented",
       "status": "implemented"
     },
     {
-      "description": "Search tool (Tavily + Serper) with structured sources/images output",
+      "description": "Search, code, file, and shell tools all implemented",
       "status": "implemented"
     },
     {
-      "description": "Code execution tool (code_exec)",
+      "description": "Multi-provider support (Anthropic, OpenAI, custom) is implemented",
       "status": "implemented"
     },
     {
-      "description": "File read/write tool",
+      "description": "Zero framework concepts (no chain/graph/memory) maintained",
       "status": "implemented"
     },
     {
-      "description": "Anthropic and OpenAI provider support with zero-config defaults",
-      "status": "implemented"
-    },
-    {
-      "description": "Multi-round tool loop exits after first tool round instead of continuing up to MAX_TOOL_ROUNDS — vision implies full agentic loop but current impl forces final answer after one tool round",
+      "description": "README and docs do not fully reflect current API surface (m9 active)",
       "status": "partial"
     },
     {
-      "description": "images field missing from final return in the tool-round path (ask.ts:68) — allImages collected but not returned",
+      "description": "agentic-filesystem peer dependency weight not verified against 'no heavy runtime' constraint",
       "status": "partial"
-    },
-    {
-      "description": "No npm-published package / README install instructions — vision says `npm install agentic-lite` but package is not yet published",
-      "status": "missing"
-    },
-    {
-      "description": "No system prompt support — users cannot customize agent persona or instructions",
-      "status": "missing"
     }
   ]
 }

@@ -86,11 +86,20 @@
     {
       "id": "m9",
       "name": "README Fix, PRD Sync & DBB Verification",
-      "status": "planned",
+      "status": "active",
       "tasks": [
         "task-1775539588263",
         "task-1775539719830",
         "task-1775539726284"
+      ]
+    },
+    {
+      "id": "m10",
+      "name": "PRD Compliance — code_exec & Custom Provider",
+      "status": "planned",
+      "tasks": [
+        "task-1775559019099",
+        "task-1775559026329"
       ]
     }
   ]
