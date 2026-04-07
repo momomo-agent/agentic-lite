@@ -6424,3 +6424,10 @@
 {"ts":"2026-04-07T17:21:05.949Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775581761671","from":"testing","to":"done","title":"Search tool graceful degradation without API key"}}
 {"ts":"2026-04-07T17:21:15.824Z","type":"agent_complete","agent":"tester-1","data":{"details":"completed successfully","performance":{"memoryMB":10,"memoryTotalMB":13,"cpuUser":1.198349,"cpuSystem":1.760356}}}
 {"ts":"2026-04-07T17:21:15.825Z","type":"workflow","agent":"tester-1","data":{"details":"[SIGNAL] completed: Tested and marked done 3 m25 tasks: default filesystem, shell browser safety, search graceful degrad"}}
+{"ts":"2026-04-07T17:21:15.941Z","type":"workflow","agent":"work_loop","data":{"details":"[BRANCH] doneCount > 0 → true → milestone_qg"}}
+{"ts":"2026-04-07T17:21:15.942Z","type":"workflow","agent":"work_loop","data":{"details":"[EXIT] todoCount == 0 && designedTasks == 0 && reviewCount == 0 && inProgressCount == 0 && testingCount == 0 && blockedCount == 0 → milestone_qg"}}
+{"ts":"2026-04-07T17:21:15.942Z","type":"agent_start","agent":"milestone_qg","data":{"details":"[NODE] milestone_qg - 里程碑 QG — 对照 DBB 验收","performance":{"memoryMB":9,"memoryTotalMB":11,"cpuUser":1.202937,"cpuSystem":1.773747}}}
+{"ts":"2026-04-07T17:21:15.950Z","type":"workflow","agent":"milestone_qg","data":{"details":"[EXEC] tester"}}
+{"ts":"2026-04-07T17:21:15.950Z","type":"agent_start","agent":"tester","data":{"details":"验证功能","performance":{"memoryMB":9,"memoryTotalMB":11,"cpuUser":1.205405,"cpuSystem":1.779629}}}
+{"ts":"2026-04-07T17:21:57.311Z","type":"agent_complete","agent":"tester","data":{"details":"completed successfully","performance":{"memoryMB":10,"memoryTotalMB":13,"cpuUser":1.212139,"cpuSystem":1.784653}}}
+{"ts":"2026-04-07T17:21:57.312Z","type":"workflow","agent":"tester","data":{"details":"[SIGNAL] completed: No tasks in review status — nothing to test at this time"}}
