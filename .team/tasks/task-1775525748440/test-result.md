@@ -1,4 +1,4 @@
-# Test Result: task-1775525748440
+# Test Result: task-1775525748440 — system prompt support
 
 ## Summary
 - Tests: 2 passed, 0 failed
@@ -8,9 +8,9 @@
 ## Results
 
 ### DBB-005: systemPrompt passed to provider
-- chat() called with 'You are a pirate.' as third argument
+- chat() called with 'You are a pirate.' as third arg
 - PASS
 
 ### DBB-006: ask() works without systemPrompt
-- No systemPrompt in config; ask() completes normally
+- No systemPrompt → completes normally
 - PASS

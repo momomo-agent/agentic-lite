@@ -1,4 +1,4 @@
-# Test Result: task-1775525744093
+# Test Result: task-1775525744093 — Fix images field
 
 ## Summary
 - Tests: 2 passed, 0 failed
@@ -8,11 +8,9 @@
 ## Results
 
 ### DBB-003: images populated from tool results
-- Mock search returns `images: ['http://img1.png']`
-- result.images contains that URL
+- search tool returns images → result.images contains them
 - PASS
 
-### DBB-004: images empty array when no images
-- No tool calls, direct final response
-- result.images is `[]` (not undefined)
+### DBB-004: images is empty array when no images
+- No tool returns images → result.images === []
 - PASS
