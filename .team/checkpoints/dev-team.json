@@ -1,28 +1,27 @@
 {
   "workflowId": "dev-team",
   "nodeId": "work_loop",
-  "stepIndex": 0,
+  "stepIndex": 2,
   "visitedNodes": [
     "startup",
     "monitor",
     "pm_decide",
-    "work_loop",
     "work_loop"
   ],
   "loopIterations": {
-    "work_loop": 2
+    "work_loop": 36
   },
-  "transitionDepth": 5,
+  "transitionDepth": 4,
   "nodeVisitCounts": {
     "startup": 1,
     "monitor": 1,
     "pm_decide": 1,
-    "work_loop": 2
+    "work_loop": 1
   },
   "contextOverrides": {
     "lastAgentSignal": "blocked",
     "agentEscalated": 0,
     "agentBlocked": 1
   },
-  "timestamp": "2026-04-07T14:34:27.676Z"
+  "timestamp": "2026-04-07T14:42:52.473Z"
 }

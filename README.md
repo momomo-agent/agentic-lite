@@ -182,12 +182,25 @@ console.log('Code executed:', result.codeResults)
 
 ### Custom Provider
 
+When `provider='custom'`, resolution order:
+1. `customProvider` set → use it directly
+2. `customProvider` absent + `baseUrl` set → falls back to OpenAI-compatible provider
+3. Both absent → throws `Error('customProvider or baseUrl is required when provider="custom"')`
+
 ```typescript
+// Option 1: baseUrl fallback (OpenAI-compatible endpoint)
 const result = await ask('Hello', {
   provider: 'custom',
   baseUrl: 'https://my-proxy.com/v1',
   apiKey: 'my-key',
   model: 'custom-model'
+})
+
+// Option 2: fully custom provider implementation
+const result = await ask('Hello', {
+  provider: 'custom',
+  customProvider: myProviderFn,
+  model: 'my-model'
 })
 ```
 
