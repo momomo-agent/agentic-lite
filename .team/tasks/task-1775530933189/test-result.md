@@ -1,6 +1,6 @@
 # Test Result: Implement custom provider support
 
-## Status: FAILED
+## Status: BLOCKED (tester-1 re-verification 2026-04-07)
 
 ## Summary
 The implementation has a critical bug. It requires `baseUrl` for all custom providers, but should check for `customProvider` first and use it when provided.

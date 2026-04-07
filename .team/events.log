@@ -757,3 +757,13 @@
 {"ts":"2026-04-07T03:44:32.198Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 38min (active:3, done:18)"}}
 {"ts":"2026-04-07T03:44:32.198Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 38min (active:3, done:18)\"}"}}
 {"ts":"2026-04-07T03:45:16.128Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":9,"cpuUser":0.522323,"cpuSystem":0.795885}}}
+{"ts":"2026-04-07T03:45:20.696Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775530933189","from":"review","to":"testing","title":"Implement custom provider support"}}
+{"ts":"2026-04-07T03:45:27.865Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775532498831","from":"review","to":"testing","title":"Upgrade code_exec to quickjs-emscripten sandbox"}}
+{"ts":"2026-04-07T03:45:32.201Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 39min (active:3, done:18)"}}
+{"ts":"2026-04-07T03:45:32.201Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 39min (active:3, done:18)\"}"}}
+{"ts":"2026-04-07T03:46:32.209Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 40min (active:3, done:18)"}}
+{"ts":"2026-04-07T03:46:32.210Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 40min (active:3, done:18)\"}"}}
+{"ts":"2026-04-07T03:47:14.520Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775532498831","from":"testing","to":"done","title":"Upgrade code_exec to quickjs-emscripten sandbox"}}
+{"ts":"2026-04-07T03:48:07.835Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775530933189","from":"testing","to":"blocked","title":"Implement custom provider support"}}
+{"ts":"2026-04-07T03:48:33.409Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775532498831","from":"done","to":"testing","title":"Upgrade code_exec to quickjs-emscripten sandbox"}}
+{"ts":"2026-04-07T03:48:34.074Z","type":"agent_complete","agent":"tester-2","data":{"details":"completed successfully","performance":{"memoryMB":7,"memoryTotalMB":8,"cpuUser":0.540225,"cpuSystem":0.807767}}}
