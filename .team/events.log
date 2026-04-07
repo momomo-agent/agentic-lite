@@ -964,3 +964,39 @@
 {"ts":"2026-04-07T04:41:33.934Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775534038662","from":"blocked","to":"review","title":"code_exec 内注入 filesystem API"}}
 {"ts":"2026-04-07T04:41:49.044Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775534038696","from":"testing","to":"done","title":"shell_exec tool"}}
 {"ts":"2026-04-07T04:41:58.501Z","type":"agent_complete","agent":"tester-1","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":6,"cpuUser":0.31997,"cpuSystem":0.907271}}}
+{"ts":"2026-04-07T04:41:58.589Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 5"}}
+{"ts":"2026-04-07T04:41:58.590Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T04:41:58.590Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":6,"memoryTotalMB":7,"cpuUser":0.322606,"cpuSystem":0.913669}}}
+{"ts":"2026-04-07T04:44:42.960Z","type":"agent_start","agent":"daemon","data":{"details":"Still busy (50min), skipping","performance":{"memoryMB":6,"memoryTotalMB":7,"cpuUser":0.328803,"cpuSystem":0.92157}}}
+{"ts":"2026-04-07T04:44:43.315Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"24MB\",\"heapUsed\":\"6MB\",\"uptime\":\"3000s\"}"}}
+{"ts":"2026-04-07T04:45:07.546Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":7,"memoryTotalMB":8,"cpuUser":0.330674,"cpuSystem":0.923576}}}
+{"ts":"2026-04-07T04:45:07.550Z","type":"workflow","agent":"work_loop","data":{"details":"[SKIP] write-dbb: milestoneNeedsDBB > 0"}}
+{"ts":"2026-04-07T04:45:07.550Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] write-design: todoWithoutDesign > 0"}}
+{"ts":"2026-04-07T04:45:07.550Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] implement: designedTasks > 0"}}
+{"ts":"2026-04-07T04:45:07.550Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] run-tests"}}
+{"ts":"2026-04-07T04:45:07.550Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] tester"}}
+{"ts":"2026-04-07T04:45:07.551Z","type":"agent_start","agent":"tester","data":{"details":"验证功能","performance":{"memoryMB":6,"memoryTotalMB":7,"cpuUser":0.332095,"cpuSystem":0.926935}}}
+{"ts":"2026-04-07T04:45:48.156Z","type":"task_status","agent":"tester","data":{"taskId":"task-1775534038662","from":"review","to":"testing","title":"code_exec 内注入 filesystem API"}}
+{"ts":"2026-04-07T04:46:50.386Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 5min (active:1, done:25)"}}
+{"ts":"2026-04-07T04:46:50.390Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 5min (active:1, done:25)\"}"}}
+{"ts":"2026-04-07T04:47:21.192Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 6min (active:1, done:25)"}}
+{"ts":"2026-04-07T04:47:21.196Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 6min (active:1, done:25)\"}"}}
+{"ts":"2026-04-07T04:48:21.438Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 7min (active:1, done:25)"}}
+{"ts":"2026-04-07T04:48:21.442Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 7min (active:1, done:25)\"}"}}
+{"ts":"2026-04-07T04:49:21.360Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 8min (active:1, done:25)"}}
+{"ts":"2026-04-07T04:49:21.364Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 8min (active:1, done:25)\"}"}}
+{"ts":"2026-04-07T04:49:43.503Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"11MB\",\"heapUsed\":\"8MB\",\"uptime\":\"3301s\"}"}}
+{"ts":"2026-04-07T04:50:23.709Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 9min (active:1, done:25)"}}
+{"ts":"2026-04-07T04:50:23.786Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 9min (active:1, done:25)\"}"}}
+{"ts":"2026-04-07T04:51:24.050Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 10min (active:1, done:25)"}}
+{"ts":"2026-04-07T04:51:24.095Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 10min (active:1, done:25)\"}"}}
+{"ts":"2026-04-07T04:52:26.829Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 11min (active:1, done:25)"}}
+{"ts":"2026-04-07T04:52:26.974Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 11min (active:1, done:25)\"}"}}
+{"ts":"2026-04-07T04:53:25.069Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 12min (active:1, done:25)"}}
+{"ts":"2026-04-07T04:53:25.084Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 12min (active:1, done:25)\"}"}}
+{"ts":"2026-04-07T04:54:26.661Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 13min (active:1, done:25)"}}
+{"ts":"2026-04-07T04:54:26.704Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 13min (active:1, done:25)\"}"}}
+{"ts":"2026-04-07T04:54:43.149Z","type":"agent_start","agent":"daemon","data":{"details":"Still busy (60min), skipping","performance":{"memoryMB":11,"memoryTotalMB":11,"cpuUser":0.380084,"cpuSystem":1.15577}}}
+{"ts":"2026-04-07T04:54:43.447Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"12MB\",\"heapUsed\":\"11MB\",\"uptime\":\"3601s\"}"}}
+{"ts":"2026-04-07T04:54:44.965Z","type":"task_status","agent":"tester","data":{"taskId":"task-1775534038662","from":"testing","to":"blocked","title":"code_exec 内注入 filesystem API"}}
+{"ts":"2026-04-07T04:55:09.160Z","type":"agent_complete","agent":"tester","data":{"details":"completed successfully","performance":{"memoryMB":10,"memoryTotalMB":11,"cpuUser":0.385162,"cpuSystem":1.179635}}}
