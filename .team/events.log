@@ -5911,3 +5911,13 @@
 {"ts":"2026-04-07T16:15:46.445Z","type":"agent_start","agent":"tester-2","data":{"details":"验证功能","performance":{"memoryMB":5,"memoryTotalMB":7,"cpuUser":1.348654,"cpuSystem":1.50846}}}
 {"ts":"2026-04-07T16:16:13.421Z","type":"agent_complete","agent":"tester-1","data":{"details":"completed successfully","performance":{"memoryMB":8,"memoryTotalMB":11,"cpuUser":1.35636,"cpuSystem":1.514823}}}
 {"ts":"2026-04-07T16:16:13.422Z","type":"workflow","agent":"tester-1","data":{"details":"[SIGNAL] completed: No claimable tasks — both review tasks (task-1775577227989, task-1775577233513) are already claimed "}}
+{"ts":"2026-04-07T16:16:38.442Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 25min (active:2, done:62)"}}
+{"ts":"2026-04-07T16:16:38.443Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 25min (active:2, done:62)\"}"}}
+{"ts":"2026-04-07T16:16:45.567Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775577227989","from":"review","to":"testing","title":"Make apiKey optional for custom provider in AgenticConfig"}}
+{"ts":"2026-04-07T16:17:38.445Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 26min (active:2, done:62)"}}
+{"ts":"2026-04-07T16:17:38.446Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 26min (active:2, done:62)\"}"}}
+{"ts":"2026-04-07T16:18:10.193Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775577227989","from":"testing","to":"done","title":"Make apiKey optional for custom provider in AgenticConfig"}}
+{"ts":"2026-04-07T16:18:16.966Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775577233513","from":"review","to":"testing","title":"Fix README AgenticResult.images type annotation to required"}}
+{"ts":"2026-04-07T16:19:10.290Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775577233513","from":"testing","to":"done","title":"Fix README AgenticResult.images type annotation to required"}}
+{"ts":"2026-04-07T16:19:14.639Z","type":"agent_complete","agent":"tester-2","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":13,"cpuUser":1.411091,"cpuSystem":1.558013}}}
+{"ts":"2026-04-07T16:19:14.640Z","type":"workflow","agent":"tester-2","data":{"details":"[SIGNAL] completed: Tested and verified 2 M21 tasks: (1) apiKey optional for custom provider - 3 tests pass; (2) README "}}

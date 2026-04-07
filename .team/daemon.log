@@ -12304,3 +12304,13 @@ Both tasks cannot be claimed (likely already assigned to another agent). No task
 [2026-04-07T16:16:13.417Z] tester-1 agent completed
 [2026-04-07 16:16:13] [agent_complete] tester-1 completed successfully
 [2026-04-07 16:16:13] [workflow] tester-1 [SIGNAL] completed: No claimable tasks — both review tasks (task-1775577227989, task-1775577233513) are already claimed 
+[2026-04-07 16:16:38] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 25min (active:2, done:62)
+[2026-04-07 16:17:38] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 26min (active:2, done:62)
+Both tasks are complete.
+
+```signal
+{"status": "completed", "summary": "Tested and verified 2 M21 tasks: (1) apiKey optional for custom provider - 3 tests pass; (2) README images required annotation - 2 tests pass. Both tasks marked done."}
+```
+[2026-04-07T16:19:14.636Z] tester-2 agent completed
+[2026-04-07 16:19:14] [agent_complete] tester-2 completed successfully
+[2026-04-07 16:19:14] [workflow] tester-2 [SIGNAL] completed: Tested and verified 2 M21 tasks: (1) apiKey optional for custom provider - 3 tests pass; (2) README 
