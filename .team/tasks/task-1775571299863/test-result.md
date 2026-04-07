@@ -6,4 +6,4 @@
 
 - [x] `usage` field in types.ts is required (no `?`): `usage: { input: number; output: number }`
 - [x] `images` field is `string[]` with no `| undefined` union
-- [x] All 64 tests pass (npm test)
+- [x] All 74 tests pass (npm test + new m15 tests)

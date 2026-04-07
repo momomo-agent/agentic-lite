@@ -13,4 +13,4 @@
 - [x] Documents multi-round loop (ask.ts loop logic)
 - [x] Documents tool system (search/code/file/shell)
 
-## Tests: 64/64 passed (npm test)
+## Tests: 74/74 passed (npm test + 7 new architecture tests)

@@ -1,7 +1,7 @@
 {
   "agent": "tester-1",
-  "timestamp": "2026-04-07T14:29:11.541Z",
+  "timestamp": "2026-04-07T14:34:57.367Z",
   "exitCode": 0,
   "status": "completed",
-  "summary": "Checked all tasks in review status — task-1775571287973, task-1775571299863, task-1775571299895 all returned canClaim: false. No tasks available to claim."
+  "summary": "Tested 3 m15 tasks: 2 done (ARCHITECTURE.md, types fix), 1 blocked (PRD missing shellResults)"
 }

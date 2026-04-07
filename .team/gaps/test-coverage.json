@@ -1,7 +1,7 @@
 {
-  "totalTests": 64,
-  "passed": 64,
-  "failed": 0,
-  "edgeCases": ["PRD.md shellResults field missing — CR cr-1775571299895 pending"],
-  "coverage": "100%"
+  "totalTests": 74,
+  "passed": 73,
+  "failed": 1,
+  "edgeCases": ["PRD.md AgenticResult section missing shellResults field — task-1775571299895 blocked"],
+  "coverage": "99%"
 }

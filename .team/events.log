@@ -4955,3 +4955,16 @@
 {"ts":"2026-04-07T14:33:27.627Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775571299895","from":"testing","to":"done","title":"Add shellResults to PRD AgenticResult schema"}}
 {"ts":"2026-04-07T14:33:37.804Z","type":"agent_complete","agent":"tester-2","data":{"details":"completed successfully","performance":{"memoryMB":16,"memoryTotalMB":18,"cpuUser":3.680417,"cpuSystem":5.321283}}}
 {"ts":"2026-04-07T14:33:37.804Z","type":"workflow","agent":"tester-2","data":{"details":"[SIGNAL] completed: Tested 3 m15 review tasks: ARCHITECTURE.md verified, types.ts usage/images types confirmed correct, "}}
+{"ts":"2026-04-07T14:34:09.931Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775571299895","from":"done","to":"blocked","title":"Add shellResults to PRD AgenticResult schema"}}
+{"ts":"2026-04-07T14:34:27.623Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":13,"cpuUser":3.698006,"cpuSystem":5.330707}}}
+{"ts":"2026-04-07T14:34:27.623Z","type":"workflow","agent":"pm","data":{"details":"[SIGNAL] blocked: m15 has 3 tasks in review awaiting tester approval; m9/m10 have tasks blocked on cr-1775560282316 (P"}}
+{"ts":"2026-04-07T14:34:27.623Z","type":"workflow","agent":"work_loop","data":{"details":"[AGENT-SIGNAL] pm → blocked: m15 has 3 tasks in review awaiting tester approval; m9/m10 have tasks blocked on"}}
+{"ts":"2026-04-07T14:34:27.631Z","type":"workflow","agent":"work_loop","data":{"details":"[SKIP] write-dbb: milestoneNeedsDBB > 0"}}
+{"ts":"2026-04-07T14:34:27.631Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] write-design: todoWithoutDesign > 0"}}
+{"ts":"2026-04-07T14:34:27.632Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] implement: designedTasks > 0"}}
+{"ts":"2026-04-07T14:34:27.632Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0"}}
+{"ts":"2026-04-07T14:34:27.664Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 2"}}
+{"ts":"2026-04-07T14:34:27.676Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T14:34:27.677Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":9,"memoryTotalMB":13,"cpuUser":3.70525,"cpuSystem":5.352882}}}
+{"ts":"2026-04-07T14:34:57.370Z","type":"agent_complete","agent":"tester-1","data":{"details":"completed successfully","performance":{"memoryMB":13,"memoryTotalMB":15,"cpuUser":3.711517,"cpuSystem":5.357135}}}
+{"ts":"2026-04-07T14:34:57.370Z","type":"workflow","agent":"tester-1","data":{"details":"[SIGNAL] completed: Tested 3 m15 tasks: 2 done (ARCHITECTURE.md, types fix), 1 blocked (PRD missing shellResults)"}}
