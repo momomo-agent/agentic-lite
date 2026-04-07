@@ -7537,3 +7537,170 @@ All tasks are in `done` or `blocked` status — no tasks in `review` status to c
 [2026-04-07T11:53:37.706Z] tester agent completed
 [2026-04-07 11:53:37] [agent_complete] tester completed successfully
 [2026-04-07 11:53:37] [workflow] tester [SIGNAL] completed: No tasks in review status found. All tasks are either done or blocked.
+[2026-04-07 11:53:37] [workflow] milestone_qg [EXEC] pm
+[2026-04-07 11:53:37] [agent_start] pm 管理任务和里程碑
+[2026-04-07T11:53:37.988Z] Running pm agent...
+The CR `cr-1775560282316` is pending L2 review. Both blocked tasks cannot proceed until it's approved. 
+
+Current status:
+- **m9**: 2/3 done, 1 blocked on CR
+- **m10**: 2/3 done, 1 blocked on CR
+
+No new tasks can be created to work around the CR — the blocked tasks specifically require PRD.md updates which need L2 approval first.
+
+```signal
+{"status": "blocked", "summary": "m9 and m10 have 2 tasks blocked on CR-1775560282316 (pending L2 PRD review). All other tasks are done. Cannot proceed until CR is approved by PRD owner."}
+```
+[2026-04-07T11:54:18.781Z] pm agent completed
+[2026-04-07 11:54:18] [agent_complete] pm completed successfully
+[2026-04-07 11:54:18] [workflow] pm [SIGNAL] blocked: m9 and m10 have 2 tasks blocked on CR-1775560282316 (pending L2 PRD review). All other tasks are don
+[2026-04-07 11:54:18] [workflow] milestone_qg [AGENT-SIGNAL] pm → blocked: m9 and m10 have 2 tasks blocked on CR-1775560282316 (pending L2 PRD review). All
+[2026-04-07 11:54:18] [workflow] milestone_qg [SKIP] cross-validate: milestoneComplete
+[2026-04-07 11:54:18] [workflow] milestone_qg [SKIP] mark-complete: milestoneComplete
+[2026-04-07 11:54:18] [workflow] milestone_qg [SKIP] auto-tag: milestoneComplete
+[2026-04-07 11:54:18] [workflow] milestone_qg [BRANCH] milestoneComplete → false → work_loop
+[2026-04-07 11:54:18] [agent_start] work_loop [NODE] work_loop - PM 调度中心 — PM 评估后并行派发所有角色，全部完成后回 PM
+[2026-04-07 11:54:18] [workflow] work_loop [LOOP] Iteration 1
+[2026-04-07 11:54:18] [workflow] work_loop [EXEC] pm
+[2026-04-07 11:54:18] [agent_start] pm 管理任务和里程碑
+[2026-04-07T11:54:18.863Z] Running pm agent...
+[2026-04-07 11:55:08] [perf] daemon {"rss":"31MB","heapUsed":"6MB","uptime":"5100s"}
+Both m9 and m10 milestones remain blocked on `cr-1775560282316` (pending L2 PRD review). No new gaps or tasks to create. Status unchanged from last signal.
+
+```signal
+{"status": "blocked", "summary": "m9 task-1775539719830 and m10 task-1775559026329 blocked on cr-1775560282316 (pending L2 PRD approval). All other tasks done. Cannot proceed until CR is reviewed."}
+```
+[2026-04-07T11:55:12.920Z] pm agent completed
+[2026-04-07 11:55:12] [agent_complete] pm completed successfully
+[2026-04-07 11:55:12] [workflow] pm [SIGNAL] blocked: m9 task-1775539719830 and m10 task-1775559026329 blocked on cr-1775560282316 (pending L2 PRD approva
+[2026-04-07 11:55:12] [workflow] work_loop [AGENT-SIGNAL] pm → blocked: m9 task-1775539719830 and m10 task-1775559026329 blocked on cr-1775560282316 (pe
+[2026-04-07 11:55:12] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-07 11:55:12] [workflow] work_loop [PARALLEL-SKIP] write-design: todoWithoutDesign > 0
+[2026-04-07 11:55:12] [workflow] work_loop [PARALLEL-SKIP] implement: designedTasks > 0
+[2026-04-07 11:55:12] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-07 11:55:12] [workflow] work_loop [LOOP] Iteration 2
+[2026-04-07 11:55:12] [workflow] work_loop [EXEC] pm
+[2026-04-07 11:55:12] [agent_start] pm 管理任务和里程碑
+[2026-04-07T11:55:13.009Z] Running pm agent...
+
+
+I've reviewed the current project state. Here's the status:
+
+## Current Milestone Status
+
+**M9 (README Fix, PRD Sync & DBB Verification)**: 2/3 tasks done, 1 blocked
+- ✅ README fix completed
+- ✅ EXPECTED_DBB verification completed  
+- ⏸️ PRD update blocked by pending CR
+
+**M10 (PRD Compliance — code_exec & Custom Provider)**: 2/3 tasks done, 1 blocked
+- ✅ Custom provider apiKey skip fixed
+- ✅ agentic-filesystem dependency verified
+- ⏸️ PRD code_exec alignment blocked by pending CR
+
+## Blocking Issue
+
+Change Request **cr-1775560282316** is pending approval and blocking 2 tasks:
+- task-1775539719830 (Update PRD - add shell_exec and Python)
+- task-1775559026329 (Align PRD code_exec sandbox spec)
+
+The CR requests updating PRD.md to reflect actual implementation:
+1. Add shell_exec tool documentation
+2. Update code_exec from "AsyncFunction eval" to "quickjs-emscripten sandbox"
+3. Document Python support and filesystem injection
+
+This is a legitimate request - the implementation has evolved beyond the original spec, and PRD should document what actually exists.
+
+## Gap Analysis
+
+All architectural gaps are resolved:
+- ✅ Vision match: 88% (remaining gaps are documentation-related, being addressed)
+- ✅ PRD match: 88% (will reach ~95% once CR is approved)
+- ✅ Architecture match: 95% (custom provider fix completed)
+- ✅ DBB match: 100% (all criteria verified)
+
+## Next Steps
+
+Cannot proceed with milestone completion until CR is reviewed and approved. Both m9 and m10 are waiting on PRD updates that require L2 approval.
+
+```signal
+{"status": "blocked", "summary": "M9 and M10 blocked by pending CR cr-1775560282316 for PRD updates. 2 tasks waiting on approval to document shell_exec, Python support, and quickjs sandbox."}
+```
+[2026-04-07T11:56:21.974Z] pm agent completed
+[2026-04-07 11:56:21] [agent_complete] pm completed successfully
+[2026-04-07 11:56:21] [workflow] pm [SIGNAL] blocked: M9 and M10 blocked by pending CR cr-1775560282316 for PRD updates. 2 tasks waiting on approval to do
+[2026-04-07 11:56:21] [workflow] work_loop [AGENT-SIGNAL] pm → blocked: M9 and M10 blocked by pending CR cr-1775560282316 for PRD updates. 2 tasks waiti
+[2026-04-07 11:56:22] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-07 11:56:22] [workflow] work_loop [PARALLEL-SKIP] write-design: todoWithoutDesign > 0
+[2026-04-07 11:56:22] [workflow] work_loop [PARALLEL-SKIP] implement: designedTasks > 0
+[2026-04-07 11:56:22] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-07 11:56:22] [workflow] work_loop [STALL] No state change (1/3)
+[2026-04-07 11:56:22] [workflow] work_loop [LOOP] Iteration 3
+[2026-04-07 11:56:22] [workflow] work_loop [EXEC] pm
+[2026-04-07 11:56:22] [agent_start] pm 管理任务和里程碑
+[2026-04-07T11:56:22.148Z] Running pm agent...
+The signal is already accurate. No update needed.
+
+**Summary:**
+- M9: 2/3 done, 1 blocked on CR
+- M10: 2/3 done, 1 blocked on CR  
+- CR `cr-1775560282316`: pending L2 review — unblocks both milestones once approved
+- No new tasks needed; all gaps are covered
+
+```signal
+{"status": "blocked", "summary": "M9 and M10 each have 1 task blocked on CR cr-1775560282316 (pending L2 approval to update PRD.md with shell_exec, Python code_exec, and quickjs sandbox docs). No PM action possible until CR is reviewed."}
+```
+[2026-04-07T11:57:32.597Z] pm agent completed
+[2026-04-07 11:57:32] [agent_complete] pm completed successfully
+[2026-04-07 11:57:32] [workflow] pm [SIGNAL] blocked: M9 and M10 each have 1 task blocked on CR cr-1775560282316 (pending L2 approval to update PRD.md wit
+[2026-04-07 11:57:32] [workflow] work_loop [AGENT-SIGNAL] pm → blocked: M9 and M10 each have 1 task blocked on CR cr-1775560282316 (pending L2 approval 
+[2026-04-07 11:57:32] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-07 11:57:32] [workflow] work_loop [PARALLEL-SKIP] write-design: todoWithoutDesign > 0
+[2026-04-07 11:57:32] [workflow] work_loop [PARALLEL-SKIP] implement: designedTasks > 0
+[2026-04-07 11:57:32] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-07 11:57:32] [workflow] work_loop [STALL] No state change (2/3)
+[2026-04-07 11:57:32] [workflow] work_loop [LOOP] Iteration 4
+[2026-04-07 11:57:32] [workflow] work_loop [EXEC] pm
+[2026-04-07 11:57:32] [agent_start] pm 管理任务和里程碑
+[2026-04-07T11:57:32.690Z] Running pm agent...
+Current state assessment:
+
+**m9 tasks:**
+- `task-1775539588263` — done ✓
+- `task-1775539719830` — blocked (CR pending)
+- `task-1775539726284` — done ✓
+
+**m10 tasks:**
+- `task-1775559019099` — done ✓
+- `task-1775559026329` — blocked (CR pending)
+- `task-1775562222342` — done ✓
+
+Both milestones are blocked by `cr-1775560282316` (PRD update, status: pending). The CR is awaiting L2 review — I cannot proceed until it's approved or rejected.
+
+**Action:** Report status and wait.
+
+```signal
+{"status": "blocked", "summary": "m9 and m10 have 2 tasks blocked on CR cr-1775560282316 (PRD.md update, pending L2 review). Cannot complete milestones until CR is resolved."}
+```
+[2026-04-07T11:57:55.511Z] pm agent completed
+[2026-04-07 11:57:55] [agent_complete] pm completed successfully
+[2026-04-07 11:57:55] [workflow] pm [SIGNAL] blocked: m9 and m10 have 2 tasks blocked on CR cr-1775560282316 (PRD.md update, pending L2 review). Cannot co
+[2026-04-07 11:57:55] [workflow] work_loop [AGENT-SIGNAL] pm → blocked: m9 and m10 have 2 tasks blocked on CR cr-1775560282316 (PRD.md update, pending L
+[2026-04-07 11:57:55] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-07 11:57:55] [workflow] work_loop [PARALLEL-SKIP] write-design: todoWithoutDesign > 0
+[2026-04-07 11:57:55] [workflow] work_loop [PARALLEL-SKIP] implement: designedTasks > 0
+[2026-04-07 11:57:55] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-07 11:57:55] [workflow] work_loop [STALL] No state change (3/3)
+[2026-04-07 11:57:55] [workflow] work_loop [STALL-EXIT] 3 iterations with no progress — forcing exit
+[2026-04-07 11:57:55] [agent_start] milestone_qg [NODE] milestone_qg - 里程碑 QG — 对照 DBB 验收
+[2026-04-07 11:57:55] [workflow] milestone_qg [EXEC] tester
+[2026-04-07 11:57:55] [agent_start] tester 验证功能
+[2026-04-07T11:57:55.649Z] Running tester agent...
+All tasks are in `done` or `blocked` status — no tasks in `review` status to claim.
+
+```signal
+{"status": "completed", "summary": "No tasks in review status found. All tasks are either done or blocked."}
+```
+[2026-04-07T11:58:10.405Z] tester agent completed
+[2026-04-07 11:58:10] [agent_complete] tester completed successfully
+[2026-04-07 11:58:10] [workflow] tester [SIGNAL] completed: No tasks in review status found. All tasks are either done or blocked.
