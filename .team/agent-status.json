@@ -60,9 +60,9 @@
     "retryCount": 0
   },
   "tester-1": {
-    "status": "running",
-    "lastRun": "2026-04-07T14:28:41.632Z",
-    "currentTask": "验证功能",
+    "status": "idle",
+    "lastRun": "2026-04-07T14:29:11.544Z",
+    "currentTask": null,
     "retryCount": 1
   },
   "tester-2": {

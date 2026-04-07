@@ -10174,3 +10174,11 @@ All three review tasks cannot be claimed (likely already assigned to another age
 [2026-04-07T14:29:01.136Z] tester-2 agent completed
 [2026-04-07 14:29:01] [agent_complete] tester-2 completed successfully
 [2026-04-07 14:29:01] [workflow] tester-2 [SIGNAL] completed: Checked all tasks in review status — none claimable (already assigned to other agents). No work avai
+All three review tasks cannot be claimed (likely already assigned to another tester). No tasks are available for me to claim right now.
+
+```signal
+{"status": "completed", "summary": "Checked all tasks in review status — task-1775571287973, task-1775571299863, task-1775571299895 all returned canClaim: false. No tasks available to claim."}
+```
+[2026-04-07T14:29:11.541Z] tester-1 agent completed
+[2026-04-07 14:29:11] [agent_complete] tester-1 completed successfully
+[2026-04-07 14:29:11] [workflow] tester-1 [SIGNAL] completed: Checked all tasks in review status — task-1775571287973, task-1775571299863, task-1775571299895 all 
