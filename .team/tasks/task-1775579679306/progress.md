@@ -4,5 +4,7 @@
 
 - Verified types.ts already has `apiKey?: string` (optional)
 - Verified provider.ts already skips apiKey check for `provider='custom'`
-- Updated README.md: apiKey field description to note it's optional for custom provider
-- Updated README.md: custom provider example comment to say "no apiKey needed"
+- Updated README.md: Option 1 example now shows baseUrl without apiKey (clarifies it's optional)
+- README already documented apiKey as optional for custom provider
+
+## Status: Complete

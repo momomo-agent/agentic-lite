@@ -200,11 +200,10 @@ When `provider='custom'`, resolution order:
 3. Both absent → throws `Error('customProvider or baseUrl is required when provider="custom"')`
 
 ```typescript
-// Option 1: baseUrl fallback (OpenAI-compatible endpoint)
+// Option 1: baseUrl fallback (OpenAI-compatible endpoint, apiKey optional)
 const result = await ask('Hello', {
   provider: 'custom',
   baseUrl: 'https://my-proxy.com/v1',
-  apiKey: 'my-key',
   model: 'custom-model'
 })
 

@@ -12815,3 +12815,43 @@ Task complete. All 97 tests pass.
 [2026-04-07T16:51:04.554Z] tester agent completed
 [2026-04-07 16:51:04] [agent_complete] tester completed successfully
 [2026-04-07 16:51:04] [workflow] tester [SIGNAL] completed: Verified task-1775580346381: openai.ts apiKey fix confirmed — custom+baseUrl provider works without 
+[2026-04-07 16:51:06] [workflow] work_loop [LOOP] Iteration 6
+[2026-04-07 16:51:06] [workflow] work_loop [EXEC] pm
+[2026-04-07 16:51:06] [agent_start] pm 管理任务和里程碑
+[2026-04-07T16:51:06.270Z] Running pm agent...
+M23 is unblocked. `task-1775579679306` (Make AgenticConfig.apiKey optional for custom provider) is now ready for the developer to pick up.
+
+Remaining open gaps from the gap files:
+
+- **vision.json** (85% match): `shell_exec` not browser-compatible (partial), Pyodide CDN dependency (partial)
+- **dbb.json** (94%): `AgenticResult.images` type mismatch in README (partial)
+- **prd.json** (95%): `apiKey` optional for custom provider (partial) — being addressed in m23
+
+M23 has one active task in progress. No new milestone needed until m23 completes.
+
+```signal
+{"status": "completed", "summary": "Unblocked task-1775579679306 (apiKey optional for custom provider) in m23 by clearing its blockedBy dependency and reassigning to developer. M23 is now fully active with one remaining todo task."}
+```
+[2026-04-07T16:51:48.674Z] pm agent completed
+[2026-04-07 16:51:48] [agent_complete] pm completed successfully
+[2026-04-07 16:51:48] [workflow] pm [SIGNAL] completed: Unblocked task-1775579679306 (apiKey optional for custom provider) in m23 by clearing its blockedBy 
+[2026-04-07 16:51:48] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-07 16:51:48] [workflow] work_loop [PARALLEL-SKIP] write-design: todoWithoutDesign > 0
+[2026-04-07 16:51:48] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-07 16:51:48] [workflow] work_loop [PARALLEL] implement
+[2026-04-07 16:51:48] [workflow] work_loop [EXEC] developer
+[2026-04-07 16:51:48] [agent_start] developer 实现功能
+[2026-04-07T16:51:48.926Z] Running developer agent...
+[2026-04-07 16:52:56] [perf] daemon {"rss":"23MB","heapUsed":"10MB","uptime":"1200s"}
+[2026-04-07 16:52:56] [agent_start] daemon Still busy (20min), skipping
+Task complete.
+
+- `apiKey` was already optional in `types.ts` and `provider.ts` already skipped the check for `provider='custom'`
+- Updated README Option 1 example to show `baseUrl` without `apiKey`, making it clear apiKey is optional for the custom+baseUrl path
+
+```signal
+{"status": "completed", "summary": "Verified apiKey is already optional for custom provider in types.ts and provider.ts. Updated README custom provider example to show baseUrl usage without apiKey."}
+```
+[2026-04-07T16:53:20.589Z] developer agent completed
+[2026-04-07 16:53:20] [agent_complete] developer completed successfully
+[2026-04-07 16:53:20] [workflow] developer [SIGNAL] completed: Verified apiKey is already optional for custom provider in types.ts and provider.ts. Updated README 
