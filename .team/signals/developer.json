@@ -1,7 +1,7 @@
 {
   "agent": "developer",
-  "timestamp": "2026-04-07T13:03:47.799Z",
+  "timestamp": "2026-04-07T13:05:51.996Z",
   "exitCode": 0,
-  "status": "completed",
-  "summary": "ARCHITECTURE.md created and in review, no other claimable tasks available"
+  "status": "blocked",
+  "summary": "No available tasks. task-1775565533987 is in review, task-1775566483597 is blocked by it. Waiting for tester to complete review."
 }

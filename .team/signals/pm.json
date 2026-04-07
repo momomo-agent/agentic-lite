@@ -1,7 +1,7 @@
 {
   "agent": "pm",
-  "timestamp": "2026-04-07T13:02:57.182Z",
+  "timestamp": "2026-04-07T13:05:16.183Z",
   "exitCode": 0,
   "status": "blocked",
-  "summary": "m9/m10 blocked on CR-1775560282316 (pending L2 review); m12 blocked on ARCHITECTURE.md review by tester. No actionable PM work until external approvals complete."
+  "summary": "3 active milestones 66-75% complete, blocked by pending CR (architect) and code review (tester). No PM action available."
 }

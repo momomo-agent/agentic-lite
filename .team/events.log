@@ -4401,3 +4401,21 @@
 {"ts":"2026-04-07T13:03:22.129Z","type":"workflow","agent":"tester","data":{"details":"[SIGNAL] completed: No claimable tasks in review status — task-1775565533987 cannot be claimed"}}
 {"ts":"2026-04-07T13:03:47.811Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":14,"cpuUser":2.348938,"cpuSystem":3.691826}}}
 {"ts":"2026-04-07T13:03:47.813Z","type":"workflow","agent":"developer","data":{"details":"[SIGNAL] completed: ARCHITECTURE.md created and in review, no other claimable tasks available"}}
+{"ts":"2026-04-07T13:03:48.011Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 11"}}
+{"ts":"2026-04-07T13:03:48.030Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T13:03:48.030Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":11,"memoryTotalMB":16,"cpuUser":2.354813,"cpuSystem":3.712699}}}
+{"ts":"2026-04-07T13:05:08.866Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"11MB\",\"heapUsed\":\"6MB\",\"uptime\":\"9301s\"}"}}
+{"ts":"2026-04-07T13:05:16.195Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":9,"cpuUser":2.368162,"cpuSystem":3.748322}}}
+{"ts":"2026-04-07T13:05:16.196Z","type":"workflow","agent":"pm","data":{"details":"[SIGNAL] blocked: 3 active milestones 66-75% complete, blocked by pending CR (architect) and code review (tester). No "}}
+{"ts":"2026-04-07T13:05:16.196Z","type":"workflow","agent":"work_loop","data":{"details":"[AGENT-SIGNAL] pm → blocked: 3 active milestones 66-75% complete, blocked by pending CR (architect) and code "}}
+{"ts":"2026-04-07T13:05:16.231Z","type":"workflow","agent":"work_loop","data":{"details":"[SKIP] write-dbb: milestoneNeedsDBB > 0"}}
+{"ts":"2026-04-07T13:05:16.231Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] write-design: todoWithoutDesign > 0"}}
+{"ts":"2026-04-07T13:05:16.232Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] implement, run-tests"}}
+{"ts":"2026-04-07T13:05:16.233Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] developer"}}
+{"ts":"2026-04-07T13:05:16.234Z","type":"agent_start","agent":"developer","data":{"details":"实现功能","performance":{"memoryMB":7,"memoryTotalMB":9,"cpuUser":2.371385,"cpuSystem":3.759579}}}
+{"ts":"2026-04-07T13:05:16.237Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] tester"}}
+{"ts":"2026-04-07T13:05:16.238Z","type":"agent_start","agent":"tester","data":{"details":"验证功能","performance":{"memoryMB":7,"memoryTotalMB":9,"cpuUser":2.371882,"cpuSystem":3.76089}}}
+{"ts":"2026-04-07T13:05:47.830Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 5min (active:2, done:35)"}}
+{"ts":"2026-04-07T13:05:47.831Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 5min (active:2, done:35)\"}"}}
+{"ts":"2026-04-07T13:05:51.999Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":14,"cpuUser":2.381445,"cpuSystem":3.776509}}}
+{"ts":"2026-04-07T13:05:52.000Z","type":"workflow","agent":"developer","data":{"details":"[SIGNAL] blocked: No available tasks. task-1775565533987 is in review, task-1775566483597 is blocked by it. Waiting fo"}}
