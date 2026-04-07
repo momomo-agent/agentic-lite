@@ -4309,3 +4309,12 @@
 {"ts":"2026-04-07T12:50:38.064Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775565533987","from":"inProgress","to":"review","title":"Create ARCHITECTURE.md"}}
 {"ts":"2026-04-07T12:50:46.005Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":13,"cpuUser":2.155818,"cpuSystem":3.260487}}}
 {"ts":"2026-04-07T12:50:46.007Z","type":"workflow","agent":"developer","data":{"details":"[SIGNAL] completed: Fixed AgenticResult.images type to string[] in types.ts; created ARCHITECTURE.md documenting module "}}
+{"ts":"2026-04-07T12:51:16.702Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 16min (active:3, done:33)"}}
+{"ts":"2026-04-07T12:51:16.707Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 16min (active:3, done:33)\"}"}}
+{"ts":"2026-04-07T12:52:16.715Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 17min (active:3, done:33)"}}
+{"ts":"2026-04-07T12:52:16.717Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 17min (active:3, done:33)\"}"}}
+{"ts":"2026-04-07T12:53:16.753Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 18min (active:3, done:33)"}}
+{"ts":"2026-04-07T12:53:16.758Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 18min (active:3, done:33)\"}"}}
+{"ts":"2026-04-07T12:53:58.689Z","type":"task_status","agent":"tester","data":{"taskId":"task-1775565504597","from":"testing","to":"done","title":"Fix public API exports — ShellResult and shell tools"}}
+{"ts":"2026-04-07T12:54:08.807Z","type":"agent_complete","agent":"tester","data":{"details":"completed successfully","performance":{"memoryMB":8,"memoryTotalMB":11,"cpuUser":2.19806,"cpuSystem":3.329248}}}
+{"ts":"2026-04-07T12:54:08.808Z","type":"workflow","agent":"tester","data":{"details":"[SIGNAL] completed: Verified public API exports for ShellResult and shell tools - all 64 tests pass, task marked done"}}

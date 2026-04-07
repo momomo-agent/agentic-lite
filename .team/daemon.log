@@ -8581,3 +8581,32 @@ Both moved to `review`.
 [2026-04-07T12:50:45.991Z] developer agent completed
 [2026-04-07 12:50:46] [agent_complete] developer completed successfully
 [2026-04-07 12:50:46] [workflow] developer [SIGNAL] completed: Fixed AgenticResult.images type to string[] in types.ts; created ARCHITECTURE.md documenting module 
+[2026-04-07 12:51:16] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 16min (active:3, done:33)
+[2026-04-07 12:52:16] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 17min (active:3, done:33)
+[2026-04-07 12:53:16] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 18min (active:3, done:33)
+Perfect! I've successfully completed testing task-1775565504597. Here's what I verified:
+
+## Test Results
+
+**Task**: Fix public API exports — ShellResult and shell tools
+
+**Status**: ✅ ALL TESTS PASSED (64/64)
+
+### DBB Verification
+- ✅ **DBB-001**: `ShellResult` is exported from `src/index.ts` in the type export statement
+- ✅ **DBB-002**: `shellToolDef` and `executeShell` are exported from `src/tools/index.ts`
+
+### Test Coverage
+- Created new test file `test/exports.test.ts` with 3 tests verifying the exports
+- All 64 tests in the suite pass (61 existing + 3 new)
+- No regressions detected
+- Implementation matches design specification exactly
+
+The implementation is clean, purely additive (no breaking changes), and all acceptance criteria are met. Task marked as **done**.
+
+```signal
+{"status": "completed", "summary": "Verified public API exports for ShellResult and shell tools - all 64 tests pass, task marked done"}
+```
+[2026-04-07T12:54:08.793Z] tester agent completed
+[2026-04-07 12:54:08] [agent_complete] tester completed successfully
+[2026-04-07 12:54:08] [workflow] tester [SIGNAL] completed: Verified public API exports for ShellResult and shell tools - all 64 tests pass, task marked done
