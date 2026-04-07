@@ -9936,3 +9936,18 @@ All 64 tests pass. Coverage: 100%.
 [2026-04-07T14:10:36.745Z] tester-1 agent completed
 [2026-04-07 14:10:36] [agent_complete] tester-1 completed successfully
 [2026-04-07 14:10:36] [workflow] tester-1 [SIGNAL] completed: Verified and marked done all 4 m14 review tasks — 64/64 tests passing
+All 4 m14 tasks are done. Summary:
+
+- **task-1775570146832**: `AgenticResult.images` is `string[]` (no `?`, no `| undefined`) ✓
+- **task-1775570164944**: `ShellResult` exported from `src/index.ts` ✓
+- **task-1775570164983**: `shellToolDef` and `executeShell` exported from `src/tools/index.ts` ✓
+- **task-1775570165055**: `baseUrl` JSDoc documents custom provider fallback behavior ✓
+
+All 64 tests pass.
+
+```signal
+{"status": "completed", "summary": "Verified and marked done all 4 m14 review tasks — types correct, exports present, JSDoc added, 64/64 tests passing"}
+```
+[2026-04-07T14:11:05.824Z] tester-2 agent completed
+[2026-04-07 14:11:05] [agent_complete] tester-2 completed successfully
+[2026-04-07 14:11:05] [workflow] tester-2 [SIGNAL] completed: Verified and marked done all 4 m14 review tasks — types correct, exports present, JSDoc added, 64/64
