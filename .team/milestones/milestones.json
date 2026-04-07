@@ -36,12 +36,21 @@
     {
       "id": "m4",
       "name": "Agentic Loop Correctness & System Prompt",
-      "status": "active",
+      "status": "completed",
       "tasks": [
         "task-1775528295380",
         "task-1775528302103",
         "task-1775528309091",
         "task-1775528309123"
+      ]
+    },
+    {
+      "id": "m5",
+      "name": "Test Coverage & Integration Verification",
+      "status": "ready-for-work",
+      "tasks": [
+        "task-1775529644164",
+        "task-1775529723367"
       ]
     }
   ]

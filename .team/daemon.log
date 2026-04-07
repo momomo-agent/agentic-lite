@@ -810,3 +810,151 @@ All 8 m4 tests passed. The one failing test (`code-tool.test.ts` DBB-010 async a
 All tasks are in "done" status — there are no tasks in "review" status to claim. Nothing to test right now.
 [2026-04-07T02:37:12.065Z] tester agent completed
 [2026-04-07 02:37:12] [agent_complete] tester completed successfully
+[2026-04-07 02:37:12] [workflow] milestone_qg [EXEC] pm
+[2026-04-07 02:37:12] [agent_start] pm 管理任务和里程碑
+[2026-04-07T02:37:12.144Z] Running pm agent...
+[2026-04-07 02:39:01] [perf] daemon {"rss":"56MB","heapUsed":"6MB","uptime":"3900s"}
+[2026-04-07 02:41:01] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 5min (active:1, done:16)
+[2026-04-07 02:41:31] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 6min (active:1, done:16)
+M5 is set up. Here's the summary:
+
+**m4 → completed** (all 4 tasks done)
+
+**m5 created: Test Coverage & Integration Verification**
+- `task-1775529644164` (P0) — Fix the 1 failing test
+- `task-1775529723367` (P1) — Add systemPrompt multi-round test
+
+Both tasks are unassigned and ready for the developer/tester to pick up.
+[2026-04-07T02:42:16.682Z] pm agent completed
+[2026-04-07 02:42:16] [agent_complete] pm completed successfully
+[2026-04-07 02:42:16] [workflow] milestone_qg [SKIP] cross-validate: milestoneComplete
+[2026-04-07 02:42:16] [workflow] milestone_qg [SKIP] mark-complete: milestoneComplete
+[2026-04-07 02:42:16] [workflow] milestone_qg [SKIP] auto-tag: milestoneComplete
+[2026-04-07 02:42:16] [workflow] milestone_qg [BRANCH] milestoneComplete → false → work_loop
+[2026-04-07 02:42:16] [agent_start] work_loop [NODE] work_loop - PM 调度中心 — PM 评估后并行派发所有角色，全部完成后回 PM
+[2026-04-07 02:42:16] [workflow] work_loop [LOOP] Iteration 1
+[2026-04-07 02:42:16] [workflow] work_loop [EXEC] pm
+[2026-04-07 02:42:16] [agent_start] pm 管理任务和里程碑
+[2026-04-07T02:42:16.730Z] Running pm agent...
+[2026-04-07 02:42:31] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 7min (active:2, done:16)
+[2026-04-07 02:43:31] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 8min (active:2, done:16)
+[2026-04-07 02:44:01] [agent_start] daemon Still busy (70min), skipping
+[2026-04-07 02:44:01] [perf] daemon {"rss":"56MB","heapUsed":"7MB","uptime":"4200s"}
+M5 is now fully assigned and active. Current status:
+
+- **m1–m4**: completed
+- **m5** (Test Coverage & Integration Verification): active- `task-1775529644164` Fix failing test → developer (todo)
+  - `task-1775529723367` Add systemPrompt multi-round test → tester-1 (todo)
+
+Waiting for agents to complete their tasks before evaluating next milestone.
+[2026-04-07T02:44:26.346Z] pm agent completed
+[2026-04-07 02:44:26] [agent_complete] pm completed successfully
+[2026-04-07 02:44:26] [workflow] work_loop [EXEC] qa_lead
+[2026-04-07 02:44:26] [agent_start] qa_lead 编写验收标准
+[2026-04-07T02:44:26.385Z] Running qa_lead agent...
+[2026-04-07 02:44:31] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 9min (active:2, done:16)
+Done. Here's what was completed:
+
+- Wrote `.team/milestones/m5/dbb.md` with 5 verification criteria covering:
+  - All tests passing (0 failures, 25+)
+  - systemPrompt forwarded across multiple tool rounds
+  - Coverage >= 98%
+  - Integration smoke test for full `ask()` with tools
+  - Multi-round loop termination (aligned with EXPECTED_DBB)
+- Updated m5 status to `ready-for-work`
+[2026-04-07T02:45:30.407Z] qa_lead agent completed
+[2026-04-07 02:45:30] [agent_complete] qa_lead completed successfully
+[2026-04-07 02:45:30] [workflow] work_loop [PARALLEL-SKIP] implement: designedTasks > 0
+[2026-04-07 02:45:30] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-07 02:45:30] [workflow] work_loop [PARALLEL] write-design
+[2026-04-07 02:45:30] [workflow] work_loop [PARALLEL] tech_lead-1, tech_lead-2
+[2026-04-07 02:45:30] [agent_start] tech_lead-1 出技术方案
+[2026-04-07 02:45:30] [agent_start] tech_lead-2 出技术方案
+[2026-04-07T02:45:30.451Z] Running tech_lead-2 agent...
+[2026-04-07T02:45:30.451Z] Running tech_lead-1 agent...
+[2026-04-07 02:45:31] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 10min (active:2, done:16)
+[2026-04-07 02:46:31] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 11min (active:2, done:16)
+All done. Here's a summary of what was created:
+
+**m5 milestone design** (`/team/milestones/m5/design.md`)
+- Documents root cause of failing test and fix approach
+- Notes no source changes needed for task 2
+
+**task-1775529644164 design** (Fix failing test)
+- Root cause: `quickjs-emscripten` `vm.evalCode()` doesn't support top-level `await`
+- Fix: detect `await` in code, use `newAsyncContext()` + `evalCodeAsync()` instead
+- File to modify: `src/tools/code.ts` → `executeCode()`
+
+**task-1775529723367 design** (systemPrompt multi-round test)
+- New file: `test/ask-system-prompt-multiround.test.ts`
+- Mock provider returns tool_use × 2 then end; assert all 3 `chat()` calls receive `systemPrompt` as 3rd arg
+- No source changes needed — `ask.ts` already passes it every round
+
+Both tasks marked `hasDesign: true`.
+[2026-04-07T02:47:17.515Z] tech_lead-1 agent completed
+[2026-04-07 02:47:17] [agent_complete] tech_lead-1 completed successfully
+[2026-04-07 02:47:31] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 12min (active:2, done:16)
+All done. Here's a summary of what was completed:
+
+**M5 milestone — Tech Lead work complete:**
+
+- `dbb.md` — already existed with 5 verification criteria (all tests pass, systemPrompt multi-round, coverage ≥98%, integration smoke test, loop termination)
+- `design.md` — already existed with correct technical approach for both tasks
+- `task-1775529644164/design.md` — already existed; covers the QuickJS async fix (`evalCodeAsync` path when code contains `await`)
+- `task-1775529723367/design.md` — already existed; covers the new multi-round systemPrompt test in `test/ask-system-prompt-multiround.test.ts`
+- Both tasks updated: `hasDesign: true`
+
+**Key findings for developers:**
+
+1. **Fix failing test** (`src/tools/code.ts`): When `code` contains `await`, use `QuickJS.newAsyncContext()` + `vm.evalCodeAsync()` instead of the sync `vm.evalCode()` path.
+
+2. **New test** (`test/ask-system-prompt-multiround.test.ts`): No source changes needed — `ask.ts` already passes `config.systemPrompt` on every `provider.chat()` call. Just add the test asserting all 3 calls receive it.
+[2026-04-07T02:47:41.425Z] tech_lead-2 agent completed
+[2026-04-07 02:47:41] [agent_complete] tech_lead-2 completed successfully
+[2026-04-07 02:47:41] [workflow] work_loop [LOOP] Iteration 2
+[2026-04-07 02:47:41] [workflow] work_loop [EXEC] pm
+[2026-04-07 02:47:41] [agent_start] pm 管理任务和里程碑
+[2026-04-07T02:47:41.473Z] Running pm agent...
+[2026-04-07 02:48:31] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 13min (active:2, done:16)
+M5 is active with 2 `todo` tasks. The situation is clear:
+
+- `task-1775529644164`: Fix failing test (`await` in code sandbox, assigned to developer)
+- `task-1775529723367`: Add systemPrompt multi-round test (assigned to tester-1)
+
+Both tasks are correctly assigned and prioritized. M5 is `ready-for-work` with the right tasks. No new milestones needed yet — m5 must complete first.
+
+The current state is healthy:
+- M1-M4: completed
+- M5: active, 2 todo tasks ready for developers/testers to pick up
+- Architecture match: 82% (gaps are stale, actual implementation is further along)
+- Test suite: 24/25 passing, 1 known failure targeted by m5
+
+No PM action needed — tasks are created, assigned, and unblocked. The team can proceed with m5 work.
+[2026-04-07T02:48:32.025Z] pm agent completed
+[2026-04-07 02:48:32] [agent_complete] pm completed successfully
+[2026-04-07 02:48:32] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-07 02:48:32] [workflow] work_loop [PARALLEL-SKIP] write-design: todoWithoutDesign > 0
+[2026-04-07 02:48:32] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-07 02:48:32] [workflow] work_loop [PARALLEL] implement
+[2026-04-07 02:48:32] [workflow] work_loop [EXEC] developer
+[2026-04-07 02:48:32] [agent_start] developer 实现功能
+[2026-04-07T02:48:32.056Z] Running developer agent...
+[2026-04-07 02:49:01] [perf] daemon {"rss":"57MB","heapUsed":"7MB","uptime":"4500s"}
+[2026-04-07 02:49:31] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 14min (active:2, done:16)
+[2026-04-07 02:50:31] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 15min (active:2, done:16)
+[2026-04-07 02:51:31] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 16min (active:2, done:16)
+Task complete. Here's a summary of what was done:
+
+**Task**: Fix failing test DBB-010 (`await Promise.resolve(42)` in `executeCode()`)
+
+**Root cause**: `quickjs-emscripten`'s `evalCode()` doesn't support top-level `await`.
+
+**Fix** (`src/tools/code.ts`):
+- When code contains `await`, use `newAsyncContext()` instead of `getQuickJS().newContext()`
+- Wrap the code in an async IIFE and capture result/error in QuickJS globals
+- Call `vm.runtime.executePendingJobs()` to flush the microtask queue
+- Read `__asyncResult` / `__asyncError` from the global scope
+
+**Result**: All 25 tests pass, task moved to `review`.
+[2026-04-07T02:52:18.976Z] developer agent completed
+[2026-04-07 02:52:18] [agent_complete] developer completed successfully
