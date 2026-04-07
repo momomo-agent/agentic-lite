@@ -13,43 +13,38 @@ let pyodideInstance: any = null
 
 function createFsWrapper(filesystem: AgenticFileSystem) {
   return {
-    readFileSync: (path: string): string => {
-      const result = filesystem.read(path)
-      if (result.error || !result.content) throw new Error(`ENOENT: no such file or directory, open '${path}'`)
-      return result.content
-    },
-    writeFileSync: (path: string, data: string): void => {
-      const result = filesystem.write(path, data)
-      if (result.error) throw new Error(`EACCES: permission denied, write '${path}'`)
-    },
-    existsSync: (path: string): boolean => {
-      const result = filesystem.read(path)
-      return !result.error && result.content !== null
-    },
+    read: (path: string) => filesystem.read(path),
+    write: (path: string, data: string) => filesystem.write(path, data),
   }
 }
 
-function injectFilesystem(vm: any, filesystem?: AgenticFileSystem) {
+async function injectFilesystem(vm: any, filesystem?: AgenticFileSystem) {
   if (!filesystem) return
-  const fsWrapper = createFsWrapper(filesystem)
   const fsHandle = vm.newObject()
 
-  const readFn = vm.newFunction('readFileSync', (pathHandle: any) => {
-    try { return vm.newString(fsWrapper.readFileSync(String(vm.dump(pathHandle)))) }
-    catch (err: any) { throw vm.newError(err.message) }
+  const readFn = vm.newAsyncifiedFunction('readFileSync', async (pathHandle: any) => {
+    const path = String(vm.dump(pathHandle))
+    const result = await filesystem.read(path)
+    if (result.error || !result.content) throw vm.newError(`ENOENT: no such file or directory, open '${path}'`)
+    return vm.newString(result.content)
   })
   vm.setProp(fsHandle, 'readFileSync', readFn)
   readFn.dispose()
 
-  const writeFn = vm.newFunction('writeFileSync', (pathHandle: any, dataHandle: any) => {
-    try { fsWrapper.writeFileSync(String(vm.dump(pathHandle)), String(vm.dump(dataHandle))) }
-    catch (err: any) { throw vm.newError(err.message) }
+  const writeFn = vm.newAsyncifiedFunction('writeFileSync', async (pathHandle: any, dataHandle: any) => {
+    const path = String(vm.dump(pathHandle))
+    const data = String(vm.dump(dataHandle))
+    const result = await filesystem.write(path, data)
+    if (result.error) throw vm.newError(`EACCES: permission denied, write '${path}'`)
+    return vm.undefined
   })
   vm.setProp(fsHandle, 'writeFileSync', writeFn)
   writeFn.dispose()
 
-  const existsFn = vm.newFunction('existsSync', (pathHandle: any) => {
-    return vm.newBoolean(fsWrapper.existsSync(String(vm.dump(pathHandle))))
+  const existsFn = vm.newAsyncifiedFunction('existsSync', async (pathHandle: any) => {
+    const path = String(vm.dump(pathHandle))
+    const result = await filesystem.read(path)
+    return vm.newBoolean(!result.error && result.content !== null)
   })
   vm.setProp(fsHandle, 'existsSync', existsFn)
   existsFn.dispose()
@@ -221,10 +216,10 @@ export async function executeCode(
     return { code, output }
   }
 
-  if (hasAwait) {
+  if (hasAwait || filesystem) {
     const vm = await newAsyncContext()
     injectConsole(vm as any)
-    injectFilesystem(vm as any, filesystem)
+    await injectFilesystem(vm as any, filesystem)
     const wrapped = `(async()=>{return(${code})})().then(v=>{globalThis.__asyncResult=v},e=>{globalThis.__asyncError=String(e)})`
     const result = await vm.evalCodeAsync(wrapped)
     if (result.error) return handleResult(result, vm)
@@ -251,7 +246,6 @@ export async function executeCode(
   const QuickJS = await getQuickJS()
   const vm = QuickJS.newContext()
   injectConsole(vm as any)
-  injectFilesystem(vm as any, filesystem)
   const result = vm.evalCode(code)
   return handleResult(result, vm)
 }

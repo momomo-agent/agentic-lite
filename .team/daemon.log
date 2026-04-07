@@ -2120,3 +2120,30 @@ Both tasks are done:
 - **task-1775534038627** (Python support in code_exec): All 39 tests pass. Python detection, Node subprocess execution, error handling, and JS fallback all verified.
 [2026-04-07T04:23:26.400Z] tester-1 agent completed
 [2026-04-07 04:23:26] [agent_complete] tester-1 completed successfully
+[2026-04-07 04:24:42] [perf] daemon {"rss":"19MB","heapUsed":"10MB","uptime":"1800s"}
+[2026-04-07 04:24:42] [agent_start] daemon Still busy (30min), skipping
+[2026-04-07 04:28:48] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 5min (active:2, done:24)
+[2026-04-07 04:29:20] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 6min (active:2, done:24)
+All tasks are complete. Here's a summary of what was done:
+
+1. **task-1775530596867** (Fix images field) — Verified `images: allImages` is already unconditional in `ask.ts`. No change needed.
+
+2. **task-1775530614268** (apiKey validation) — Verified `createProvider` already has format validation for `sk-ant-` and `sk-` prefixes. No change needed.
+
+3. **task-1775534038662** (filesystem injection into code_exec) — Implemented:
+   - Async `injectFilesystem()` using `newAsyncifiedFunction` to bridge async `AgenticFileSystem` into quickjs
+   - Python (browser): Pyodide globals + `open()` override
+   - Python (Node): preamble prepend with `open()` override + stdout markers for writes
+   - Updated `executeCode` signature to accept optional `filesystem`
+   - Passed `config.filesystem` from `ask.ts`
+
+4. **task-1775534038696** (shell_exec tool) — Implemented:
+   - New `src/tools/shell.ts` wrapping `agentic-shell`
+   - `ShellResult` interface + `shell` added to `ToolName` in `types.ts`
+   - `shellResults` added to `AgenticResult`
+   - Full wiring in `ask.ts`
+   - Added `agentic-shell` dependency
+
+All 39 tests pass throughout.
+[2026-04-07T04:29:27.473Z] developer agent completed
+[2026-04-07 04:29:27] [agent_complete] developer completed successfully

@@ -906,3 +906,13 @@
 {"ts":"2026-04-07T04:23:20.406Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775530939117","from":"testing","to":"done","title":"Fix multi-round tool loop in ask.ts"}}
 {"ts":"2026-04-07T04:23:20.438Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775534038627","from":"testing","to":"done","title":"code_exec 加 Python 支持"}}
 {"ts":"2026-04-07T04:23:26.438Z","type":"agent_complete","agent":"tester-1","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":12,"cpuUser":0.194782,"cpuSystem":0.493594}}}
+{"ts":"2026-04-07T04:24:42.949Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"19MB\",\"heapUsed\":\"10MB\",\"uptime\":\"1800s\"}"}}
+{"ts":"2026-04-07T04:24:42.950Z","type":"agent_start","agent":"daemon","data":{"details":"Still busy (30min), skipping","performance":{"memoryMB":10,"memoryTotalMB":11,"cpuUser":0.200575,"cpuSystem":0.502695}}}
+{"ts":"2026-04-07T04:25:20.190Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775534038662","from":"inProgress","to":"review","title":"code_exec 内注入 filesystem API"}}
+{"ts":"2026-04-07T04:25:26.033Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775534038696","from":"todo","to":"inProgress","title":"shell_exec tool"}}
+{"ts":"2026-04-07T04:28:48.612Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 5min (active:2, done:24)"}}
+{"ts":"2026-04-07T04:28:48.630Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 5min (active:2, done:24)\"}"}}
+{"ts":"2026-04-07T04:29:08.602Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775534038696","from":"inProgress","to":"review","title":"shell_exec tool"}}
+{"ts":"2026-04-07T04:29:21.392Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 6min (active:2, done:24)"}}
+{"ts":"2026-04-07T04:29:21.992Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 6min (active:2, done:24)\"}"}}
+{"ts":"2026-04-07T04:29:27.903Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":10,"memoryTotalMB":11,"cpuUser":0.230767,"cpuSystem":0.588281}}}

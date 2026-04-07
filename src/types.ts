@@ -27,7 +27,7 @@ export interface AgenticConfig {
   }
 }
 
-export type ToolName = 'search' | 'code' | 'file'
+export type ToolName = 'search' | 'code' | 'file' | 'shell'
 
 export interface AgenticResult {
   /** Final answer text */
@@ -40,6 +40,8 @@ export interface AgenticResult {
   codeResults?: CodeResult[]
   /** Files read/written */
   files?: FileResult[]
+  /** Shell command results */
+  shellResults?: ShellResult[]
   /** Raw tool calls made */
   toolCalls?: ToolCall[]
   /** Token usage */
@@ -62,6 +64,13 @@ export interface FileResult {
   path: string
   action: 'read' | 'write'
   content?: string
+}
+
+export interface ShellResult {
+  command: string
+  output: string
+  error?: string
+  exitCode: number
 }
 
 export interface ToolCall {

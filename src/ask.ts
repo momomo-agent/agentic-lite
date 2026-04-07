@@ -3,7 +3,8 @@
 
 import { createProvider } from './providers/index.js'
 import type { Provider, ProviderMessage, ToolDefinition, ProviderToolCall } from './providers/index.js'
-import type { AgenticConfig, AgenticResult, ToolName, Source, CodeResult, FileResult, ToolCall } from './types.js'
+import { shellToolDef, executeShell } from './tools/shell.js'
+import type { AgenticConfig, AgenticResult, ToolName, Source, CodeResult, FileResult, ShellResult, ToolCall } from './types.js'
 import { searchToolDef, executeSearch } from './tools/search.js'
 import { codeToolDef, executeCode } from './tools/code.js'
 import { fileReadToolDef, fileWriteToolDef, executeFileRead, executeFileWrite } from './tools/file.js'
@@ -20,6 +21,7 @@ export async function ask(prompt: string, config: AgenticConfig): Promise<Agenti
   const allSources: Source[] = []
   const allCodeResults: CodeResult[] = []
   const allFileResults: FileResult[] = []
+  const allShellResults: ShellResult[] = []
   const allImages: string[] = []
   let totalUsage = { input: 0, output: 0 }
 
@@ -35,6 +37,7 @@ export async function ask(prompt: string, config: AgenticConfig): Promise<Agenti
         images: allImages,
         codeResults: allCodeResults.length > 0 ? allCodeResults : undefined,
         files: allFileResults.length > 0 ? allFileResults : undefined,
+        shellResults: allShellResults.length > 0 ? allShellResults : undefined,
         toolCalls: allToolCalls.length > 0 ? allToolCalls : undefined,
         usage: totalUsage,
       }
@@ -42,7 +45,7 @@ export async function ask(prompt: string, config: AgenticConfig): Promise<Agenti
 
     // Execute tool calls and continue the loop
     const toolResults = await executeToolCalls(response.toolCalls, config, {
-      allSources, allCodeResults, allFileResults, allToolCalls, allImages,
+      allSources, allCodeResults, allFileResults, allShellResults, allToolCalls, allImages,
     })
 
     // Anthropic needs rawContent (with tool_use blocks) for assistant turn
@@ -62,6 +65,7 @@ interface Accumulators {
   allSources: Source[]
   allCodeResults: CodeResult[]
   allFileResults: FileResult[]
+  allShellResults: ShellResult[]
   allToolCalls: ToolCall[]
   allImages: string[]
 }
@@ -109,6 +113,11 @@ async function executeSingleTool(
       acc.allFileResults.push(result)
       return result.content ?? 'File written'
     }
+    case 'shell_exec': {
+      const result = await executeShell(tc.input, config.filesystem)
+      acc.allShellResults.push(result)
+      return result.error ? `Error: ${result.error}` : result.output
+    }
     default:
       return `Unknown tool: ${tc.name}`
   }
@@ -122,5 +131,6 @@ function buildToolDefs(tools: ToolName[]): ToolDefinition[] {
     defs.push(fileReadToolDef)
     defs.push(fileWriteToolDef)
   }
+  if (tools.includes('shell')) defs.push(shellToolDef)
   return defs
 }
