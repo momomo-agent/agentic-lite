@@ -47,6 +47,13 @@ export function createProvider(config: AgenticConfig): Provider {
     throw new Error('apiKey is required for provider: ' + provider)
   }
 
+  if (provider === 'anthropic' && config.apiKey && !config.apiKey.startsWith('sk-ant-')) {
+    throw new Error('Invalid apiKey format for anthropic provider (expected sk-ant- prefix)')
+  }
+  if (provider === 'openai' && config.apiKey && !config.apiKey.startsWith('sk-')) {
+    throw new Error('Invalid apiKey format for openai provider (expected sk- prefix)')
+  }
+
   switch (provider) {
     case 'anthropic':
       return createAnthropicProvider(config)

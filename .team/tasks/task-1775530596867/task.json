@@ -2,13 +2,13 @@
   "id": "task-1775530596867",
   "title": "Fix images field lost in final return path",
   "description": "ask.ts collects allImages during tool rounds but omits images from the return value in the final-response branch. Fix so AgenticResult.images is always populated when images were collected.",
-  "status": "todo",
+  "status": "review",
   "priority": "P1",
-  "assignee": null,
+  "assignee": "developer",
   "blockedBy": [],
   "groupId": "m6",
-  "hasDesign": false,
+  "hasDesign": true,
   "created": "2026-04-07T02:56:36.867Z",
-  "updated": "2026-04-07T02:57:04.773Z",
+  "updated": "2026-04-07T03:04:35.915Z",
   "milestoneId": "m6"
 }

@@ -1,0 +1,13 @@
+{
+  "id": "task-1775530933189",
+  "title": "Implement custom provider support",
+  "description": "createProvider() falls through to openai for unknown providers with no error or hook. Implement custom/proxy provider support: when provider='custom', use baseUrl+apiKey to create an OpenAI-compatible client without throwing. Add error for truly unknown providers.",
+  "status": "todo",
+  "priority": "P0",
+  "assignee": null,
+  "blockedBy": [],
+  "groupId": "m7",
+  "hasDesign": false,
+  "created": "2026-04-07T03:02:13.189Z",
+  "updated": "2026-04-07T03:02:26.050Z"
+}

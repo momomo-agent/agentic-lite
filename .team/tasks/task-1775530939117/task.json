@@ -1,0 +1,15 @@
+{
+  "id": "task-1775530939117",
+  "title": "Fix multi-round tool loop in ask.ts",
+  "description": "ask.ts exits after one tool round instead of continuing up to MAX_TOOL_ROUNDS. Refactor the tool loop to iterate until stopReason is not tool_use or MAX_TOOL_ROUNDS is reached, enabling true multi-turn agentic behavior.",
+  "status": "todo",
+  "priority": "P1",
+  "assignee": null,
+  "blockedBy": [
+    "task-1775530933189"
+  ],
+  "groupId": "m7",
+  "hasDesign": false,
+  "created": "2026-04-07T03:02:19.117Z",
+  "updated": "2026-04-07T03:02:26.097Z"
+}
