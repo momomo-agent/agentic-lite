@@ -1061,3 +1061,26 @@
 {"ts":"2026-04-07T05:13:34.174Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 32min (active:1, done:25)\"}"}}
 {"ts":"2026-04-07T05:13:49.213Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775537901346","from":"inProgress","to":"review","title":"修复 Python filesystem 注入的 3 个 bug"}}
 {"ts":"2026-04-07T05:13:59.164Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":10,"memoryTotalMB":11,"cpuUser":0.501728,"cpuSystem":1.616338}}}
+{"ts":"2026-04-07T05:14:00.745Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 8"}}
+{"ts":"2026-04-07T05:14:00.746Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T05:14:00.746Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":10,"memoryTotalMB":11,"cpuUser":0.508174,"cpuSystem":1.63748}}}
+{"ts":"2026-04-07T05:14:34.218Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 33min (active:1, done:25)"}}
+{"ts":"2026-04-07T05:14:34.221Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 33min (active:1, done:25)\"}"}}
+{"ts":"2026-04-07T05:14:43.086Z","type":"agent_start","agent":"daemon","data":{"details":"Still busy (80min), skipping","performance":{"memoryMB":11,"memoryTotalMB":12,"cpuUser":0.512431,"cpuSystem":1.656552}}}
+{"ts":"2026-04-07T05:14:43.896Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"11MB\",\"heapUsed\":\"11MB\",\"uptime\":\"4801s\"}"}}
+{"ts":"2026-04-07T05:14:45.623Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":12,"cpuUser":0.513872,"cpuSystem":1.664738}}}
+{"ts":"2026-04-07T05:14:45.670Z","type":"workflow","agent":"work_loop","data":{"details":"[SKIP] write-dbb: milestoneNeedsDBB > 0"}}
+{"ts":"2026-04-07T05:14:45.672Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] write-design: todoWithoutDesign > 0"}}
+{"ts":"2026-04-07T05:14:45.673Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] implement: designedTasks > 0"}}
+{"ts":"2026-04-07T05:14:45.673Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] run-tests"}}
+{"ts":"2026-04-07T05:14:45.674Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] tester"}}
+{"ts":"2026-04-07T05:14:45.676Z","type":"agent_start","agent":"tester","data":{"details":"验证功能","performance":{"memoryMB":10,"memoryTotalMB":12,"cpuUser":0.519562,"cpuSystem":1.679649}}}
+{"ts":"2026-04-07T05:15:36.477Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 34min (active:1, done:25)"}}
+{"ts":"2026-04-07T05:15:36.549Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 34min (active:1, done:25)\"}"}}
+{"ts":"2026-04-07T05:15:57.162Z","type":"task_status","agent":"tester","data":{"taskId":"task-1775537901346","from":"review","to":"testing","title":"修复 Python filesystem 注入的 3 个 bug"}}
+{"ts":"2026-04-07T05:16:34.922Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 35min (active:1, done:25)"}}
+{"ts":"2026-04-07T05:16:34.929Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 35min (active:1, done:25)\"}"}}
+{"ts":"2026-04-07T05:17:34.911Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 36min (active:1, done:25)"}}
+{"ts":"2026-04-07T05:17:34.915Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 36min (active:1, done:25)\"}"}}
+{"ts":"2026-04-07T05:18:21.947Z","type":"task_status","agent":"tester","data":{"taskId":"task-1775537901346","from":"testing","to":"done","title":"修复 Python filesystem 注入的 3 个 bug"}}
+{"ts":"2026-04-07T05:18:52.273Z","type":"agent_complete","agent":"tester","data":{"details":"completed successfully","performance":{"memoryMB":12,"memoryTotalMB":13,"cpuUser":0.537097,"cpuSystem":1.762035}}}
