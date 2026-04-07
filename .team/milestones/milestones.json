@@ -126,12 +126,23 @@
     {
       "id": "m13",
       "name": "Type Correctness & README API Docs",
-      "status": "active",
+      "status": "completed",
       "tasks": [
         "task-1775568150743",
         "task-1775568160405",
         "task-1775568160446",
         "task-1775568160484"
+      ]
+    },
+    {
+      "id": "m14",
+      "name": "Public API Completeness & Type Correctness",
+      "status": "active",
+      "tasks": [
+        "task-1775570146832",
+        "task-1775570164944",
+        "task-1775570164983",
+        "task-1775570165055"
       ]
     }
   ]

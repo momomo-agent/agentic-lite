@@ -9689,3 +9689,199 @@ Both tasks completed.
 [2026-04-07T13:50:56.338Z] tester-1 agent completed
 [2026-04-07 13:50:56] [agent_complete] tester-1 completed successfully
 [2026-04-07 13:50:56] [workflow] tester-1 [SIGNAL] completed: Tested and marked done 2 review tasks: PRD shellResults gap (CR already exists) and README API refer
+[2026-04-07 13:50:56] [workflow] work_loop [LOOP] Iteration 23
+[2026-04-07 13:50:56] [workflow] work_loop [EXEC] pm
+[2026-04-07 13:50:56] [agent_start] pm 管理任务和里程碑
+[2026-04-07T13:50:56.476Z] Running pm agent...
+Now let me assess remaining gaps and determine if a new milestone is needed.
+
+**Current state:**
+- m13: now completed
+- m9: 1 blocked task (PRD update — needs CR approval)
+- m10: 1 blocked task (PRD sandbox spec — needs CR approval)
+- Remaining gaps from vision.json: README missing docs (but m11/m13 addressed this), PRD stale items (blocked on CRs)
+- Architecture gaps from architecture.json: all addressed in m12/m13
+
+The two blocked tasks (task-1775539719830, task-1775559026329) are waiting on L2 to approve CRs for PRD.md. No new tasks can unblock these — they require CR approval.
+
+**Remaining actionable gaps:**
+- vision.json still shows "README.md is minimal" — but m11 and m13 both addressed README expansion. This gap is likely stale.
+- All architecture gaps were addressed in m12.
+- PRD gaps are blocked on CRs.
+
+There are no new actionable gaps that don't require CR approval. The project is in a holding pattern waiting for L2 to review the pending CRs.
+
+```signal
+{"status": "blocked", "summary": "m13 marked completed. Two tasks in m9/m10 remain blocked on CR approval (cr-1775560282316) for PRD.md updates. No new actionable gaps exist — all architecture, type, and README gaps resolved in m12/m13. Waiting for L2 to approve pending CRs before PRD sync tasks can proceed."}
+```
+[2026-04-07T13:52:13.590Z] pm agent completed
+[2026-04-07 13:52:13] [agent_complete] pm completed successfully
+[2026-04-07 13:52:13] [workflow] pm [SIGNAL] blocked: m13 marked completed. Two tasks in m9/m10 remain blocked on CR approval (cr-1775560282316) for PRD.m
+[2026-04-07 13:52:13] [workflow] work_loop [AGENT-SIGNAL] pm → blocked: m13 marked completed. Two tasks in m9/m10 remain blocked on CR approval (cr-1775
+[2026-04-07 13:52:13] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-07 13:52:13] [workflow] work_loop [PARALLEL-SKIP] write-design: todoWithoutDesign > 0
+[2026-04-07 13:52:13] [workflow] work_loop [PARALLEL-SKIP] implement: designedTasks > 0
+[2026-04-07 13:52:13] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-07 13:52:13] [workflow] work_loop [STALL] No state change (1/3)
+[2026-04-07 13:52:13] [workflow] work_loop [LOOP] Iteration 24
+[2026-04-07 13:52:13] [workflow] work_loop [EXEC] pm
+[2026-04-07 13:52:13] [agent_start] pm 管理任务和里程碑
+[2026-04-07T13:52:13.672Z] Running pm agent...
+CR submitted. Current status:
+
+- m9: 2/3 tasks done, 1 blocked (PRD write needed) → CR filed
+- m10: 2/3 tasks done, 1 blocked (PRD write needed) → same CR covers it
+- m11, m12, m13: all completed
+
+Both blocked tasks are waiting on `PRD.md` updates that require L2 approval via `cr-1775569979.json`.
+
+```signal
+{"status": "blocked", "summary": "Filed CR cr-1775569979 requesting PRD.md updates for shell_exec documentation and code_exec sandbox spec correction. Two tasks (task-1775539719830, task-1775559026329) remain blocked pending L2 review."}
+```
+[2026-04-07T13:53:15.907Z] pm agent completed
+[2026-04-07 13:53:15] [agent_complete] pm completed successfully
+[2026-04-07 13:53:15] [workflow] pm [SIGNAL] blocked: Filed CR cr-1775569979 requesting PRD.md updates for shell_exec documentation and code_exec sandbox 
+[2026-04-07 13:53:15] [workflow] work_loop [AGENT-SIGNAL] pm → blocked: Filed CR cr-1775569979 requesting PRD.md updates for shell_exec documentation an
+[2026-04-07 13:53:15] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-07 13:53:15] [workflow] work_loop [PARALLEL-SKIP] write-design: todoWithoutDesign > 0
+[2026-04-07 13:53:15] [workflow] work_loop [PARALLEL-SKIP] implement: designedTasks > 0
+[2026-04-07 13:53:15] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-07 13:53:15] [workflow] work_loop [STALL] No state change (2/3)
+[2026-04-07 13:53:15] [workflow] work_loop [LOOP] Iteration 25
+[2026-04-07 13:53:15] [workflow] work_loop [EXEC] pm
+[2026-04-07 13:53:15] [agent_start] pm 管理任务和里程碑
+[2026-04-07T13:53:15.988Z] Running pm agent...
+[2026-04-07 13:55:08] [perf] daemon {"rss":"36MB","heapUsed":"13MB","uptime":"12301s"}
+[2026-04-07 13:56:18] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 5min (active:4, done:41)
+[2026-04-07 13:56:48] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 6min (active:4, done:41)
+m14 is set up. Here's the summary:
+
+**m14 — Public API Completeness & Type Correctness** (active)
+
+| Task | Description | Priority |
+|------|-------------|----------|
+| task-1775570146832 | Fix `AgenticResult.images` type to `string[]` | P1 |
+| task-1775570164944 | Export `ShellResult` from `src/index.ts` | P1 |
+| task-1775570164983 | Export `shellToolDef`/`executeShell` from `tools/index.ts` | P1 |
+| task-1775570165055 | Document custom provider silent fallback | P2 |
+
+**Blocked tasks (waiting on CR):**
+- `task-1775539719830` (m9) and `task-1775559026329` (m10) remain blocked on `cr-1775560282316` (pending L2 review)
+
+```signal
+{"status": "completed", "summary": "Created m14 with 4 tasks targeting remaining architecture gaps (type correctness, missing exports, undocumented behavior). Blocked tasks on m9/m10 still awaiting CR approval."}
+```
+[2026-04-07T13:56:52.266Z] pm agent completed
+[2026-04-07 13:56:52] [agent_complete] pm completed successfully
+[2026-04-07 13:56:52] [workflow] pm [SIGNAL] completed: Created m14 with 4 tasks targeting remaining architecture gaps (type correctness, missing exports, u
+[2026-04-07 13:56:52] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-07 13:56:52] [workflow] work_loop [PARALLEL-SKIP] implement: designedTasks > 0
+[2026-04-07 13:56:52] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-07 13:56:52] [workflow] work_loop [PARALLEL] write-design
+[2026-04-07 13:56:52] [workflow] work_loop [PARALLEL] tech_lead-1, tech_lead-2, tech_lead-3
+[2026-04-07 13:56:52] [agent_start] tech_lead-1 出技术方案
+[2026-04-07 13:56:52] [agent_start] tech_lead-2 出技术方案
+[2026-04-07 13:56:52] [agent_start] tech_lead-3 出技术方案
+[2026-04-07T13:56:52.309Z] Running tech_lead-2 agent...
+[2026-04-07T13:56:52.309Z] Running tech_lead-1 agent...
+[2026-04-07T13:56:52.310Z] Running tech_lead-3 agent...
+[2026-04-07 13:57:48] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 7min (active:4, done:41)
+All done. Here's a summary of what was created:
+
+**M14 milestone files:**
+- `.team/milestones/m14/dbb.md` — 6 verification criteria
+- `.team/milestones/m14/design.md` — technical approach for all 4 tasks
+
+**Task designs (all 4 set `hasDesign: true`):**
+- `task-1775570146832` — verify `images: string[]` is required in `AgenticResult`
+- `task-1775570164944` — add `ShellResult` to export in `src/index.ts`
+- `task-1775570164983` — already exported; no code change needed
+- `task-1775570165055` — add JSDoc to `createProvider()` documenting fallback chain
+
+```signal
+{"status": "completed", "summary": "Created m14 dbb.md, design.md, and 4 task designs; updated all tasks hasDesign=true"}
+```
+[2026-04-07T13:58:41.007Z] tech_lead-1 agent completed
+[2026-04-07 13:58:41] [agent_complete] tech_lead-1 completed successfully
+[2026-04-07 13:58:41] [workflow] tech_lead-1 [SIGNAL] completed: Created m14 dbb.md, design.md, and 4 task designs; updated all tasks hasDesign=true
+[2026-04-07 13:58:48] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 8min (active:4, done:41)
+[2026-04-07 13:59:48] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 9min (active:4, done:41)
+All done. Here's a summary of what was created:
+
+**m14 milestone files:**
+- `.team/milestones/m14/dbb.md` — 6 verification criteria
+- `.team/milestones/m14/design.md` — technical approach for all 4 tasks
+
+**Task designs (hasDesign=true):**
+- `task-1775570146832` — verify `images: string[]` in types.ts, fix any `undefined` assignments
+- `task-1775570164944` — verify `ShellResult` export in src/index.ts (already present)
+- `task-1775570164983` — verify `shellToolDef`/`executeShell` exports in tools/index.ts (already present)
+- `task-1775570165055` — add JSDoc to `AgenticConfig.baseUrl` documenting the silent fallback
+
+**Key finding:** Tasks 2 and 3 are likely no-ops — both exports already exist in the current source. Developers should verify and close them quickly.
+
+```signal
+{"status": "completed", "summary": "Created m14 dbb.md, design.md, and 4 task designs; updated hasDesign=true for all m14 tasks"}
+```
+[2026-04-07T13:59:48.731Z] tech_lead-3 agent completed
+[2026-04-07 13:59:48] [agent_complete] tech_lead-3 completed successfully
+[2026-04-07 13:59:48] [workflow] tech_lead-3 [SIGNAL] completed: Created m14 dbb.md, design.md, and 4 task designs; updated hasDesign=true for all m14 tasks
+[2026-04-07 14:00:08] [perf] daemon {"rss":"38MB","heapUsed":"14MB","uptime":"12601s"}
+[2026-04-07 14:00:09] [agent_start] daemon Still busy (100min), skipping
+[2026-04-07 14:00:48] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 10min (active:4, done:41)
+[2026-04-07 14:01:48] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 11min (active:4, done:41)
+[2026-04-07 14:02:48] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 12min (active:4, done:41)
+All done. Here's what was completed:
+
+**M14 milestone files created:**
+- `.team/milestones/m14/dbb.md` — 4 verification criteria
+- `.team/milestones/m14/design.md` — technical approach
+
+**Task designs created and marked `hasDesign: true`:**
+- `task-1775570146832` — Verify `AgenticResult.images` is `string[]` (already correct, no code change)
+- `task-1775570164944` — Verify `ShellResult` export in `src/index.ts` (already present)
+- `task-1775570164983` — Verify `shellToolDef`/`executeShell` exports in `src/tools/index.ts` (already present)
+- `task-1775570165055` — Add JSDoc to `AgenticConfig.baseUrl` documenting the silent fallback behavior
+
+Notable: tasks 1, 2, 3 are verification-only (source already correct). Only task 4 requires a small JSDoc addition.
+
+```signal
+{"status": "completed", "summary": "Created m14 dbb.md, design.md, and 4 task designs; marked all hasDesign=true"}
+```
+[2026-04-07T14:03:09.603Z] tech_lead-2 agent completed
+[2026-04-07 14:03:09] [agent_complete] tech_lead-2 completed successfully
+[2026-04-07 14:03:09] [workflow] tech_lead-2 [SIGNAL] completed: Created m14 dbb.md, design.md, and 4 task designs; marked all hasDesign=true
+[2026-04-07 14:03:09] [workflow] work_loop [LOOP] Iteration 26
+[2026-04-07 14:03:09] [workflow] work_loop [EXEC] pm
+[2026-04-07 14:03:09] [agent_start] pm 管理任务和里程碑
+[2026-04-07T14:03:09.675Z] Running pm agent...
+[2026-04-07 14:03:48] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 13min (active:4, done:41)
+```signal
+{"status": "completed", "summary": "Assessed team state: m9/m10 blocked on pending CR cr-1775560282316 (PRD update, awaiting L2 review). m14 tasks assigned to developer. No new milestones needed — current work is in progress."}
+```
+[2026-04-07T14:04:33.969Z] pm agent completed
+[2026-04-07 14:04:33] [agent_complete] pm completed successfully
+[2026-04-07 14:04:33] [workflow] pm [SIGNAL] completed: Assessed team state: m9/m10 blocked on pending CR cr-1775560282316 (PRD update, awaiting L2 review).
+[2026-04-07 14:04:33] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-07 14:04:33] [workflow] work_loop [PARALLEL-SKIP] write-design: todoWithoutDesign > 0
+[2026-04-07 14:04:33] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-07 14:04:33] [workflow] work_loop [PARALLEL] implement
+[2026-04-07 14:04:33] [workflow] work_loop [EXEC] developer
+[2026-04-07 14:04:33] [agent_start] developer 实现功能
+[2026-04-07T14:04:34.011Z] Running developer agent...
+[2026-04-07 14:04:48] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 14min (active:4, done:41)
+[2026-04-07 14:05:08] [perf] daemon {"rss":"35MB","heapUsed":"12MB","uptime":"12901s"}
+[2026-04-07 14:05:48] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 15min (active:4, done:41)
+All 4 tasks completed and moved to review:
+
+- **task-1775570146832**: Verified `images: string[]` already correct in types.ts
+- **task-1775570164944**: Verified `ShellResult` already exported from src/index.ts
+- **task-1775570164983**: Verified `shellToolDef` and `executeShell` already exported from src/tools/index.ts
+- **task-1775570165055**: Added expanded JSDoc to `AgenticConfig.baseUrl` documenting the custom provider fallback behavior
+
+```signal
+{"status": "completed", "summary": "Completed 4 tasks: verified 3 already-correct exports/types, added JSDoc to AgenticConfig.baseUrl for custom provider fallback behavior"}
+```
+[2026-04-07T14:06:33.246Z] developer agent completed
+[2026-04-07 14:06:33] [agent_complete] developer completed successfully
+[2026-04-07 14:06:33] [workflow] developer [SIGNAL] completed: Completed 4 tasks: verified 3 already-correct exports/types, added JSDoc to AgenticConfig.baseUrl fo

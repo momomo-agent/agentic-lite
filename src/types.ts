@@ -12,7 +12,11 @@ export interface AgenticConfig {
   systemPrompt?: string
   /** API key for the provider */
   apiKey: string
-  /** Base URL (for custom/proxy providers) */
+  /**
+   * Base URL for custom/proxy providers.
+   * When provider='custom' and customProvider is not set,
+   * this falls back to an OpenAI-compatible adapter automatically.
+   */
   baseUrl?: string
   /** Model name */
   model?: string
