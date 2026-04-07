@@ -3,10 +3,11 @@
   "passed": 58,
   "failed": 0,
   "edgeCases": [
-    "Large file reads have no size limits (potential memory issues)",
+    "Pyodide browser environment not tested (requires browser test setup)",
+    "Large file size limits not enforced (potential memory issues)",
+    "fs.existsSync has known async bug (non-blocking, workaround available)",
     "Binary file support not implemented (text only)",
-    "Browser Pyodide path not tested (requires browser test environment)",
     "Concurrent file operations in single code block not tested"
   ],
-  "coverage": "100%"
+  "coverage": "95%"
 }
