@@ -4419,3 +4419,12 @@
 {"ts":"2026-04-07T13:05:47.831Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 5min (active:2, done:35)\"}"}}
 {"ts":"2026-04-07T13:05:51.999Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":14,"cpuUser":2.381445,"cpuSystem":3.776509}}}
 {"ts":"2026-04-07T13:05:52.000Z","type":"workflow","agent":"developer","data":{"details":"[SIGNAL] blocked: No available tasks. task-1775565533987 is in review, task-1775566483597 is blocked by it. Waiting fo"}}
+{"ts":"2026-04-07T13:05:52.112Z","type":"workflow","agent":"work_loop","data":{"details":"[AGENT-SIGNAL] developer → blocked: No available tasks. task-1775565533987 is in review, task-1775566483597 is block"}}
+{"ts":"2026-04-07T13:05:54.807Z","type":"task_status","agent":"tester","data":{"taskId":"task-1775565533987","from":"review","to":"testing","title":"Create ARCHITECTURE.md"}}
+{"ts":"2026-04-07T13:06:17.849Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 6min (active:2, done:35)"}}
+{"ts":"2026-04-07T13:06:17.850Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 6min (active:2, done:35)\"}"}}
+{"ts":"2026-04-07T13:07:17.856Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 7min (active:2, done:35)"}}
+{"ts":"2026-04-07T13:07:17.857Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 7min (active:2, done:35)\"}"}}
+{"ts":"2026-04-07T13:07:41.157Z","type":"task_status","agent":"tester","data":{"taskId":"task-1775565533987","from":"testing","to":"done","title":"Create ARCHITECTURE.md"}}
+{"ts":"2026-04-07T13:07:50.366Z","type":"agent_complete","agent":"tester","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":14,"cpuUser":2.400224,"cpuSystem":3.804895}}}
+{"ts":"2026-04-07T13:07:50.368Z","type":"workflow","agent":"tester","data":{"details":"[SIGNAL] completed: Verified ARCHITECTURE.md - all 4 tests passed, DBB-004 satisfied"}}
