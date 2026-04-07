@@ -10,7 +10,7 @@
     "work_loop"
   ],
   "loopIterations": {
-    "work_loop": 1
+    "work_loop": 2
   },
   "transitionDepth": 5,
   "nodeVisitCounts": {
@@ -19,6 +19,10 @@
     "pm_decide": 1,
     "work_loop": 1
   },
-  "contextOverrides": {},
-  "timestamp": "2026-04-07T10:52:45.908Z"
+  "contextOverrides": {
+    "lastAgentSignal": "blocked",
+    "agentEscalated": 0,
+    "agentBlocked": 1
+  },
+  "timestamp": "2026-04-07T10:56:38.033Z"
 }

@@ -2,14 +2,12 @@
   "id": "task-1775539719830",
   "title": "Update PRD.md — add shell_exec and Python code_exec",
   "description": "PRD.md only documents search, code_exec (JS), file_read/write. Add shell_exec tool and Python support in code_exec to match current implementation.",
-  "status": "todo",
+  "status": "review",
   "priority": "P1",
   "assignee": "developer",
-  "blockedBy": [
-    "task-1775539588263"
-  ],
+  "blockedBy": [],
   "groupId": "m9",
   "hasDesign": true,
   "created": "2026-04-07T05:28:39.831Z",
-  "updated": "2026-04-07T05:54:16.777Z"
+  "updated": "2026-04-07T11:00:42.190Z"
 }

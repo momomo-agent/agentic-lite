@@ -28,9 +28,9 @@ describe('custom provider createProvider', () => {
       .toThrow('baseUrl is required when provider="custom"')
   })
 
-  it('throws apiKey is required when provider=custom and no apiKey', () => {
-    expect(() => createProvider({ provider: 'custom', baseUrl: 'https://x.com', apiKey: '' as any, tools: [] } as any))
-      .toThrow('apiKey is required when provider="custom"')
+  it('does not throw when provider=custom with baseUrl and no apiKey', () => {
+    const provider = createProvider({ provider: 'custom', baseUrl: 'http://localhost:11434', tools: [] } as any)
+    expect(provider).toHaveProperty('chat')
   })
 
   it('throws Unknown provider for unknown provider string', () => {

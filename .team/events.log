@@ -3334,3 +3334,30 @@
 {"ts":"2026-04-07T10:55:12.824Z","type":"task_status","agent":"tester-2","data":{"taskId":"task-1775539588263","from":"testing","to":"done","title":"Fix README — restore npm install agentic-lite"}}
 {"ts":"2026-04-07T10:55:17.693Z","type":"agent_complete","agent":"tester-2","data":{"details":"completed successfully","performance":{"memoryMB":9,"memoryTotalMB":12,"cpuUser":0.354128,"cpuSystem":0.492636}}}
 {"ts":"2026-04-07T10:55:17.693Z","type":"workflow","agent":"tester-2","data":{"details":"[SIGNAL] completed: Verified task-1775539588263: README correctly contains 'npm install agentic-lite' with no agentic-co"}}
+{"ts":"2026-04-07T10:55:17.778Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 2"}}
+{"ts":"2026-04-07T10:55:17.790Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T10:55:17.790Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":10,"memoryTotalMB":13,"cpuUser":0.360602,"cpuSystem":0.50315}}}
+{"ts":"2026-04-07T10:56:38.026Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":10,"memoryTotalMB":13,"cpuUser":0.36698,"cpuSystem":0.509031}}}
+{"ts":"2026-04-07T10:56:38.027Z","type":"workflow","agent":"pm","data":{"details":"[SIGNAL] completed: Reviewed project status, unblocked m9 task-1775539719830, assigned to developer. M8 awaiting tester "}}
+{"ts":"2026-04-07T10:56:38.033Z","type":"workflow","agent":"work_loop","data":{"details":"[SKIP] write-dbb: milestoneNeedsDBB > 0"}}
+{"ts":"2026-04-07T10:56:38.033Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] write-design: todoWithoutDesign > 0"}}
+{"ts":"2026-04-07T10:56:38.034Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] implement, run-tests"}}
+{"ts":"2026-04-07T10:56:38.034Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] developer"}}
+{"ts":"2026-04-07T10:56:38.034Z","type":"agent_start","agent":"developer","data":{"details":"实现功能","performance":{"memoryMB":10,"memoryTotalMB":12,"cpuUser":0.369527,"cpuSystem":0.514463}}}
+{"ts":"2026-04-07T10:56:38.035Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] tester"}}
+{"ts":"2026-04-07T10:56:38.035Z","type":"agent_start","agent":"tester","data":{"details":"验证功能","performance":{"memoryMB":10,"memoryTotalMB":12,"cpuUser":0.36979,"cpuSystem":0.515032}}}
+{"ts":"2026-04-07T10:57:00.484Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775559019099","from":"todo","to":"inProgress","title":"Fix custom provider apiKey skip"}}
+{"ts":"2026-04-07T10:57:57.641Z","type":"task_status","agent":"tester","data":{"taskId":"task-1775534038662","from":"review","to":"testing","title":"code_exec 内注入 filesystem API"}}
+{"ts":"2026-04-07T10:58:09.440Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775559019099","from":"inProgress","to":"review","title":"Fix custom provider apiKey skip"}}
+{"ts":"2026-04-07T10:58:15.843Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775559026329","from":"todo","to":"inProgress","title":"Align PRD code_exec sandbox spec"}}
+{"ts":"2026-04-07T10:58:44.854Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775559026329","from":"inProgress","to":"review","title":"Align PRD code_exec sandbox spec"}}
+{"ts":"2026-04-07T10:58:58.940Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775539719830","from":"todo","to":"inProgress","title":"Update PRD.md — add shell_exec and Python code_exec"}}
+{"ts":"2026-04-07T11:00:08.427Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"35MB\",\"heapUsed\":\"9MB\",\"uptime\":\"1800s\"}"}}
+{"ts":"2026-04-07T11:00:08.552Z","type":"agent_start","agent":"daemon","data":{"details":"Still busy (30min), skipping","performance":{"memoryMB":9,"memoryTotalMB":11,"cpuUser":0.409242,"cpuSystem":0.546147}}}
+{"ts":"2026-04-07T11:00:15.343Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 5min (active:5, done:27)"}}
+{"ts":"2026-04-07T11:00:15.344Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 5min (active:5, done:27)\"}"}}
+{"ts":"2026-04-07T11:00:42.191Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775539719830","from":"inProgress","to":"review","title":"Update PRD.md — add shell_exec and Python code_exec"}}
+{"ts":"2026-04-07T11:00:45.345Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 6min (active:5, done:27)"}}
+{"ts":"2026-04-07T11:00:45.346Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 6min (active:5, done:27)\"}"}}
+{"ts":"2026-04-07T11:00:55.576Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":12,"memoryTotalMB":15,"cpuUser":0.419974,"cpuSystem":0.556182}}}
+{"ts":"2026-04-07T11:00:55.576Z","type":"workflow","agent":"developer","data":{"details":"[SIGNAL] completed: Fixed custom provider apiKey skip (task-1775559019099, all tests pass). Two PRD doc tasks (task-1775"}}
