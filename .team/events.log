@@ -5605,3 +5605,11 @@
 {"ts":"2026-04-07T15:27:41.410Z","type":"agent_start","agent":"tester-2","data":{"details":"验证功能","performance":{"memoryMB":8,"memoryTotalMB":11,"cpuUser":0.439829,"cpuSystem":0.545944}}}
 {"ts":"2026-04-07T15:27:57.390Z","type":"agent_complete","agent":"tester-1","data":{"details":"completed successfully","performance":{"memoryMB":8,"memoryTotalMB":11,"cpuUser":0.440273,"cpuSystem":0.546663}}}
 {"ts":"2026-04-07T15:27:57.391Z","type":"workflow","agent":"tester-1","data":{"details":"[SIGNAL] completed: Checked all tasks - both review-status tasks (task-1775575092194, task-1775575107216) cannot be clai"}}
+{"ts":"2026-04-07T15:28:08.206Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 13min (active:2, done:57)"}}
+{"ts":"2026-04-07T15:28:08.206Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 13min (active:2, done:57)\"}"}}
+{"ts":"2026-04-07T15:29:08.215Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 14min (active:2, done:57)"}}
+{"ts":"2026-04-07T15:29:08.216Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 14min (active:2, done:57)\"}"}}
+{"ts":"2026-04-07T15:29:42.644Z","type":"task_status","agent":"tech_lead-2","data":{"taskId":"task-1775575092194","from":"review","to":"done","title":"Expand README with API docs and usage examples"}}
+{"ts":"2026-04-07T15:29:42.686Z","type":"task_status","agent":"tech_lead-1","data":{"taskId":"task-1775575107216","from":"review","to":"done","title":"Sync PRD.md with actual implementation"}}
+{"ts":"2026-04-07T15:29:49.214Z","type":"agent_complete","agent":"tester-2","data":{"details":"completed successfully","performance":{"memoryMB":16,"memoryTotalMB":18,"cpuUser":0.466164,"cpuSystem":0.569133}}}
+{"ts":"2026-04-07T15:29:49.215Z","type":"workflow","agent":"tester-2","data":{"details":"[SIGNAL] completed: Verified README and PRD tasks against m19 DBB — all 11 checks passed, both tasks marked done"}}
