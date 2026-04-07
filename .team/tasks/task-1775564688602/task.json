@@ -1,0 +1,14 @@
+{
+  "id": "task-1775564688602",
+  "title": "Fix AgenticResult.shellResults type completeness",
+  "description": "Verify shellResults field in AgenticResult (types.ts) is correctly typed and matches actual return shape from shell_exec tool. Fix any type inconsistencies.",
+  "status": "review",
+  "priority": "P1",
+  "assignee": "developer",
+  "blockedBy": [],
+  "groupId": "m11",
+  "hasDesign": true,
+  "created": "2026-04-07T12:24:48.602Z",
+  "updated": "2026-04-07T12:31:39.281Z",
+  "milestoneId": "m11"
+}

@@ -2,6 +2,7 @@
 
 import type { AgenticFileSystem } from 'agentic-filesystem'
 import type { ToolDefinition } from '../providers/provider.js'
+import type { ShellResult } from '../types.js'
 
 export const shellToolDef: ToolDefinition = {
   name: 'shell_exec',
@@ -13,13 +14,6 @@ export const shellToolDef: ToolDefinition = {
     },
     required: ['command'],
   },
-}
-
-export interface ShellResult {
-  command: string
-  output: string
-  error?: string
-  exitCode: number
 }
 
 export async function executeShell(

@@ -1,29 +1,65 @@
 {
   "match": 88,
-  "timestamp": "2026-04-07T10:41:24.343Z",
+  "timestamp": "2026-04-07T20:20:15.000Z",
   "gaps": [
     {
-      "description": "Core single-function API (ask()) with provider/apiKey is fully implemented",
+      "description": "Core single-function ask() API with provider/apiKey is fully implemented",
       "status": "implemented"
     },
     {
-      "description": "Search, code, file, and shell tools all implemented",
+      "description": "Multi-round agent loop (MAX_TOOL_ROUNDS=10) with tool execution is implemented",
       "status": "implemented"
     },
     {
-      "description": "Multi-provider support (Anthropic, OpenAI, custom) is implemented",
+      "description": "All four tools (search, code_exec, file_read/write, shell_exec) are implemented and functional",
       "status": "implemented"
     },
     {
-      "description": "Zero framework concepts (no chain/graph/memory) maintained",
+      "description": "Multi-provider support (Anthropic, OpenAI, custom) is implemented with both baseUrl and customProvider modes",
       "status": "implemented"
     },
     {
-      "description": "README and docs do not fully reflect current API surface (m9 active)",
+      "description": "Zero framework concepts maintained (no chain/graph/memory abstractions)",
+      "status": "implemented"
+    },
+    {
+      "description": "Browser compatibility achieved via agentic-filesystem (IndexedDB/localStorage), quickjs-emscripten, and Pyodide",
+      "status": "implemented"
+    },
+    {
+      "description": "code_exec supports both JavaScript and Python with automatic language detection",
+      "status": "implemented"
+    },
+    {
+      "description": "Filesystem injection in code_exec allows AI to use fs.readFileSync/writeFileSync (JS) and open() (Python) naturally",
+      "status": "implemented"
+    },
+    {
+      "description": "ShellResult type added to AgenticResult interface in types.ts",
+      "status": "implemented"
+    },
+    {
+      "description": "README.md is minimal (only installation section) - missing API documentation, usage examples, tool descriptions, and quick start guide",
+      "status": "missing"
+    },
+    {
+      "description": "PRD.md is stale: describes code_exec as 'executes JS via AsyncFunction' but implementation uses quickjs-emscripten sandbox",
       "status": "partial"
     },
     {
-      "description": "agentic-filesystem peer dependency weight not verified against 'no heavy runtime' constraint",
+      "description": "PRD.md missing shell_exec tool documentation",
+      "status": "missing"
+    },
+    {
+      "description": "PRD.md missing Python support documentation for code_exec",
+      "status": "missing"
+    },
+    {
+      "description": "PRD.md AgenticResult doesn't include shellResults field (though types.ts has it)",
+      "status": "partial"
+    },
+    {
+      "description": "Node.js Python execution uses child_process/python3 which creates tension with 'no heavy runtime' vision - acceptable tradeoff for Node.js environment",
       "status": "partial"
     }
   ]

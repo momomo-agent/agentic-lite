@@ -1,29 +1,33 @@
 {
-  "match": 95,
-  "timestamp": "2026-04-07T18:15:00.000Z",
+  "match": 88,
+  "timestamp": "2026-04-07T12:20:42.807Z",
   "gaps": [
     {
-      "description": "Code execution implementation uses quickjs-emscripten sandbox instead of AsyncFunction eval as specified in EXPECTED_DBB.md. Both are browser-compatible, but implementation is more sophisticated than design.",
-      "status": "implemented"
+      "description": "No ARCHITECTURE.md exists — design intent only in .ai/vision.md with no structural spec for modules, interfaces, or data flow",
+      "status": "missing"
     },
     {
-      "description": "Custom provider without customProvider hook still requires apiKey (line 65 in provider.ts), partially deviating from 'skips apiKey validation' requirement in EXPECTED_DBB.md.",
+      "description": "ask() design spec shows systemPrompt as 3rd positional param; implementation places it inside AgenticConfig — functionally equivalent but deviates from interface spec",
       "status": "partial"
     },
     {
-      "description": "Shell tool (shell_exec) added beyond PRD specification as enhancement.",
-      "status": "implemented"
+      "description": "AgenticResult.images typed as string[] | undefined; design (DBB-004) requires always string[] — runtime returns allImages correctly but TypeScript type still allows undefined",
+      "status": "partial"
     },
     {
-      "description": "Python code execution with auto-detection added (pyodide for browser, python3 for Node). Not specified in PRD but fully functional.",
-      "status": "implemented"
+      "description": "ShellResult type defined in types.ts but not exported from src/index.ts public API surface",
+      "status": "partial"
     },
     {
-      "description": "All core acceptance criteria met: multi-round loop with MAX_TOOL_ROUNDS=10, AgenticFileSystem for file I/O, images populated in results, systemPrompt passed to provider, apiKey validation for anthropic/openai, package.json publishConfig, README install instructions.",
-      "status": "implemented"
+      "description": "tools/index.ts does not export shellToolDef/executeShell, inconsistent with other tool exports pattern",
+      "status": "partial"
     },
     {
-      "description": "All core modules match design: agent loop (ask.ts), provider abstraction (anthropic/openai/custom), tool system (search/code/file/shell), type definitions, configuration options.",
+      "description": "custom provider fallback: when provider='custom' and customProvider absent but baseUrl set, silently falls back to createOpenAIProvider — undocumented behavior",
+      "status": "partial"
+    },
+    {
+      "description": "All core modules implemented: agent loop (ask.ts), provider abstraction (anthropic/openai/custom), tool system (search/code/file/shell), types, multi-round loop, rawContent replay",
       "status": "implemented"
     }
   ]

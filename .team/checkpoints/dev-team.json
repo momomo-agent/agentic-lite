@@ -1,38 +1,27 @@
 {
   "workflowId": "dev-team",
-  "nodeId": "milestone_qg",
-  "stepIndex": 0,
+  "nodeId": "work_loop",
+  "stepIndex": 2,
   "visitedNodes": [
     "startup",
     "monitor",
-    "monitor",
     "pm_decide",
-    "work_loop",
-    "milestone_qg",
-    "work_loop",
-    "milestone_qg",
-    "work_loop",
-    "milestone_qg",
-    "work_loop",
-    "milestone_qg",
-    "work_loop",
-    "milestone_qg"
+    "work_loop"
   ],
   "loopIterations": {
-    "work_loop": 4
+    "work_loop": 2
   },
-  "transitionDepth": 14,
+  "transitionDepth": 4,
   "nodeVisitCounts": {
     "startup": 1,
-    "monitor": 2,
+    "monitor": 1,
     "pm_decide": 1,
-    "work_loop": 5,
-    "milestone_qg": 5
+    "work_loop": 1
   },
   "contextOverrides": {
     "lastAgentSignal": "blocked",
     "agentEscalated": 0,
     "agentBlocked": 1
   },
-  "timestamp": "2026-04-07T11:57:55.617Z"
+  "timestamp": "2026-04-07T12:29:53.287Z"
 }

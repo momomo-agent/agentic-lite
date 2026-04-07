@@ -1,5 +1,14 @@
 {
-  "match": 100,
-  "timestamp": "2026-04-07T10:47:03Z",
-  "gaps": []
+  "match": 89,
+  "timestamp": "2026-04-07T12:21:31Z",
+  "gaps": [
+    {
+      "description": "PRD.md does not document shell_exec tool (only lists search, code_exec, file_read/write)",
+      "status": "missing"
+    },
+    {
+      "description": "PRD.md describes code_exec as 'executes JS via AsyncFunction' but actual impl uses quickjs-emscripten and supports Python — PRD is stale",
+      "status": "partial"
+    }
+  ]
 }

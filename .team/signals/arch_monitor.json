@@ -1,7 +1,7 @@
 {
   "agent": "arch_monitor",
-  "timestamp": "2026-04-07T10:48:48.875Z",
+  "timestamp": "2026-04-07T12:20:51.570Z",
   "exitCode": 0,
   "status": "completed",
-  "summary": "Architecture analysis complete: 95% match, 1 partial gap (custom provider apiKey), 2 enhancements beyond spec"
+  "summary": "Updated architecture.json timestamp; existing gaps analysis (match: 88%) remains valid — 5 partial gaps identified covering API surface inconsistencies, type definitions, and missing ARCHITECTURE.md"
 }

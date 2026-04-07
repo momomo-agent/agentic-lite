@@ -1,7 +1,7 @@
 # m9 DBB Verification Report
 
 **Milestone:** m9 - README Fix, PRD Sync & DBB Verification
-**Timestamp:** 2026-04-07T10:47:03Z
+**Timestamp:** 2026-04-07T12:14:35Z
 **Overall Match:** 60% (3/5 criteria pass)
 
 ## Summary
@@ -32,23 +32,11 @@ npm install agentic-lite
 
 **Gap:** The code_exec tool supports Python auto-detection and execution (src/tools/code.ts:48-51, 213-217) with both browser (Pyodide) and Node implementations, but PRD.md does not document this capability
 
-### ✅ PASS: All criteria in EXPECTED_DBB.md pass
-**Evidence:** Test suite passes with 58/58 tests green
+### ⚠️ PARTIAL: All criteria in EXPECTED_DBB.md pass
+**Evidence:** 8/9 global criteria pass. One partial:
+- EXPECTED_DBB criterion 3 states "code_exec uses AsyncFunction eval (browser-compatible, no `new Function` with Node deps)" but `src/tools/code.ts` uses `quickjs-emscripten` sandbox — implementation is browser-compatible but PRD.md still documents "AsyncFunction eval", creating a spec/impl mismatch.
 
-Verified global DBB criteria:
-1. ✅ Multi-round agent loop terminates when stopReason !== 'tool_use' (src/ask.ts:33-44)
-2. ✅ file_read/file_write use AgenticFileSystem (src/tools/file.ts)
-3. ✅ code_exec uses AsyncFunction eval (src/tools/code.ts:254-279)
-4. ✅ AgenticResult.images populated from tool results (src/ask.ts:37, 98)
-5. ✅ systemPrompt passed to provider system field (src/ask.ts:29, src/providers/anthropic.ts:19)
-6. ✅ provider='custom' invokes customProvider (src/providers/provider.ts:62-66)
-7. ✅ Missing/empty apiKey throws before network call (src/providers/provider.ts:46-48)
-8. ✅ package.json contains publishConfig: { access: "public" } (package.json:32-34)
-9. ✅ README.md contains npm install agentic-lite (README.md:5)
-
-## Global DBB Match: 100%
-
-All 11 global acceptance criteria from EXPECTED_DBB.md are implemented and verified by the test suite.
+## Global DBB Match: 92%
 
 ## Recommendations
 

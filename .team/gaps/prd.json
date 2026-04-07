@@ -1,17 +1,74 @@
 {
-  "match": 88,
-  "timestamp": "2026-04-07T10:44:05.948Z",
+  "match": 93,
+  "timestamp": "2026-04-07T00:00:00.000Z",
   "gaps": [
-    { "description": "ask() multi-round agent loop", "status": "implemented" },
-    { "description": "search tool (web_search)", "status": "implemented" },
-    { "description": "code_exec tool — PRD specifies AsyncFunction eval; implementation uses quickjs-emscripten sandbox (browser-compatible but different mechanism)", "status": "partial" },
-    { "description": "file_read / file_write via AgenticFileSystem (browser-compatible, no Node fs)", "status": "implemented" },
-    { "description": "Provider config: provider, apiKey, model, baseUrl, customProvider, systemPrompt", "status": "implemented" },
-    { "description": "AgenticResult fields: answer, sources, images, codeResults, files, toolCalls, usage", "status": "implemented" },
-    { "description": "provider='custom' skips apiKey validation — when baseUrl used without customProvider, apiKey still required (partial skip)", "status": "partial" },
-    { "description": "systemPrompt passed to provider system field", "status": "implemented" },
-    { "description": "Missing/empty apiKey throws before network call for anthropic/openai", "status": "implemented" },
-    { "description": "package.json publishConfig access:public", "status": "implemented" },
-    { "description": "README.md contains npm install agentic-lite", "status": "implemented" }
+    {
+      "description": "EXPECTED_DBB.md specifies code_exec uses AsyncFunction eval; implementation uses quickjs-emscripten sandbox (functionally superior but diverges from spec)",
+      "status": "partial"
+    },
+    {
+      "description": "AgenticResult.usage typed as optional (usage?) in types.ts but always returned in practice; PRD schema shows it as required field",
+      "status": "partial"
+    },
+    {
+      "description": "shell_exec tool implemented but not documented in PRD.md (addition beyond spec)",
+      "status": "implemented"
+    },
+    {
+      "description": "PRD: ask() multi-round agent loop with tool execution - ask.ts:14-60",
+      "status": "implemented"
+    },
+    {
+      "description": "PRD: search tool returning sources - tools/search.ts",
+      "status": "implemented"
+    },
+    {
+      "description": "PRD: code_exec tool (browser-compatible JS/Python) - tools/code.ts",
+      "status": "implemented"
+    },
+    {
+      "description": "PRD: file_read/file_write via AgenticFileSystem - tools/file.ts",
+      "status": "implemented"
+    },
+    {
+      "description": "PRD: Provider config (anthropic/openai/custom, apiKey, model, baseUrl, customProvider, systemPrompt) - types.ts:6-28",
+      "status": "implemented"
+    },
+    {
+      "description": "PRD: AgenticResult shape (answer, sources, images, codeResults, files, toolCalls, usage) - types.ts:32-49",
+      "status": "implemented"
+    },
+    {
+      "description": "DBB: Loop terminates when stopReason !== 'tool_use' - ask.ts:33",
+      "status": "implemented"
+    },
+    {
+      "description": "DBB: file_read/file_write use AgenticFileSystem (browser-compatible, no Node fs) - tools/file.ts",
+      "status": "implemented"
+    },
+    {
+      "description": "DBB: AgenticResult.images populated from tool results - ask.ts:98",
+      "status": "implemented"
+    },
+    {
+      "description": "DBB: systemPrompt passed to provider system field - ask.ts:29, anthropic.ts:19, openai.ts:142",
+      "status": "implemented"
+    },
+    {
+      "description": "DBB: provider='custom' invokes customProvider, skips apiKey validation - provider.ts:46-48, 62-65",
+      "status": "implemented"
+    },
+    {
+      "description": "DBB: Missing/empty apiKey throws before network call for anthropic/openai - provider.ts:46-48",
+      "status": "implemented"
+    },
+    {
+      "description": "DBB: package.json publishConfig.access = 'public' - package.json:32-34",
+      "status": "implemented"
+    },
+    {
+      "description": "DBB: README.md contains 'npm install agentic-lite' - README.md:5",
+      "status": "implemented"
+    }
   ]
 }
