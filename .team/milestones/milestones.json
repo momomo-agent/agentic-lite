@@ -3,7 +3,7 @@
     {
       "id": "m1",
       "name": "Core Agentic Loop & Correctness",
-      "status": "ready-for-work",
+      "status": "completed",
       "tasks": [
         "task-1775525637055",
         "task-1775525637091",
@@ -11,6 +11,17 @@
         "task-1775525744093",
         "task-1775525748440",
         "task-1775525816399"
+      ]
+    },
+    {
+      "id": "m2",
+      "name": "Provider Robustness & Package Release",
+      "status": "ready-for-work",
+      "tasks": [
+        "task-1775526862838",
+        "task-1775526867192",
+        "task-1775526873714",
+        "task-1775526877132"
       ]
     }
   ]

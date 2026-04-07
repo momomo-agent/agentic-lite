@@ -1,18 +1,19 @@
 {
   "workflowId": "dev-team",
-  "nodeId": "milestone_qg",
-  "stepIndex": 0,
+  "nodeId": "work_loop",
+  "stepIndex": 2,
   "visitedNodes": [
     "startup",
     "monitor",
     "pm_decide",
     "work_loop",
-    "milestone_qg"
+    "milestone_qg",
+    "work_loop"
   ],
   "loopIterations": {
-    "work_loop": 3
+    "work_loop": 2
   },
-  "transitionDepth": 5,
+  "transitionDepth": 6,
   "contextOverrides": {},
-  "timestamp": "2026-04-07T01:53:15.680Z"
+  "timestamp": "2026-04-07T01:59:13.952Z"
 }

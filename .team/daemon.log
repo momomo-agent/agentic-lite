@@ -299,3 +299,148 @@ All tasks marked `done`. Coverage: 13/13 passed, 100%.
 All tasks are already in "done" status — there's nothing in "review" status for me to claim and test. The pipeline is clear.
 [2026-04-07T01:53:27.690Z] tester agent completed
 [2026-04-07 01:53:27] [agent_complete] tester completed successfully
+[2026-04-07 01:53:27] [workflow] milestone_qg [EXEC] pm
+[2026-04-07 01:53:27] [agent_start] pm 管理任务和里程碑
+[2026-04-07T01:53:27.770Z] Running pm agent...
+[2026-04-07 01:54:01] [agent_start] daemon Still busy (20min), skipping
+[2026-04-07 01:54:01] [perf] daemon {"rss":"51MB","heapUsed":"6MB","uptime":"1200s"}
+Done. Here's the summary:
+
+**M1** → marked `completed` (all 6 tasks done)
+
+**M2: Provider Robustness & Package Release** → created `active` with 4 tasks:
+
+| Task | Priority | Gap |
+|------|----------|-----|
+| 修复 provider apiKey 校验 | P1 | architecture partial |
+| npm 发布配置与 README 安装说明 | P0 | vision missing |
+| 编写 PRD.md | P0 | prd 0% match |
+| 编写 EXPECTED_DBB.md | P0 | dbb 0% match |
+[2026-04-07T01:54:47.800Z] pm agent completed
+[2026-04-07 01:54:47] [agent_complete] pm completed successfully
+[2026-04-07 01:54:47] [workflow] milestone_qg [SKIP] cross-validate: milestoneComplete
+[2026-04-07 01:54:47] [workflow] milestone_qg [SKIP] mark-complete: milestoneComplete
+[2026-04-07 01:54:47] [workflow] milestone_qg [SKIP] auto-tag: milestoneComplete
+[2026-04-07 01:54:47] [workflow] milestone_qg [BRANCH] milestoneComplete → false → work_loop
+[2026-04-07 01:54:47] [agent_start] work_loop [NODE] work_loop - PM 调度中心 — PM 评估后并行派发所有角色，全部完成后回 PM
+[2026-04-07 01:54:47] [workflow] work_loop [LOOP] Iteration 1
+[2026-04-07 01:54:47] [workflow] work_loop [EXEC] pm
+[2026-04-07 01:54:47] [agent_start] pm 管理任务和里程碑
+[2026-04-07T01:54:47.841Z] Running pm agent...
+M2 is well-structured. All 4 tasks are `todo` and unassigned. Current state:
+
+- **m1**: completed (6/6 tasks done)
+- **m2**: active, 4 tasks all `todo`, no assignees yet
+
+The gaps are correctly mapped:
+- `task-1775526862838` → provider apiKey validation (architecture gap, P1)
+- `task-1775526867192` → npm publish + README (vision gap, P0)
+- `task-1775526873714` → PRD.md (prd gap, P0)
+- `task-1775526877132` → EXPECTED_DBB.md (dbb gap, P0)
+
+Note: The architecture gap for `code_exec` sandbox (partial) is not yet tasked. However, the vision doc marks it as a placeholder — not a blocking gap for this milestone. M2 scope is appropriate.
+
+Tasks are ready for developer assignment. No blockers, no dependencies between m2 tasks — all can proceed in parallel.
+[2026-04-07T01:55:06.668Z] pm agent completed
+[2026-04-07 01:55:06] [agent_complete] pm completed successfully
+[2026-04-07 01:55:06] [workflow] work_loop [EXEC] qa_lead
+[2026-04-07 01:55:06] [agent_start] qa_lead 编写验收标准
+[2026-04-07T01:55:06.700Z] Running qa_lead agent...
+Done. Here's what was written:
+
+**`.team/milestones/m2/dbb.md`** — 7 verification criteria (DBB-014 through DBB-020):
+
+- DBB-014/015/016: `detectProvider()` throws on missing/empty apiKey, succeeds with valid key
+- DBB-017/018: `package.json` has `publishConfig`, README has install instructions
+- DBB-019/020: `PRD.md` and `EXPECTED_DBB.md` exist with required content
+
+**`milestones.json`** — m2 status updated from `active` → `ready-for-work`.
+[2026-04-07T01:56:13.013Z] qa_lead agent completed
+[2026-04-07 01:56:13] [agent_complete] qa_lead completed successfully
+[2026-04-07 01:56:13] [workflow] work_loop [PARALLEL-SKIP] implement: designedTasks > 0
+[2026-04-07 01:56:13] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-07 01:56:13] [workflow] work_loop [PARALLEL] write-design
+[2026-04-07 01:56:13] [workflow] work_loop [PARALLEL] tech_lead-1, tech_lead-2, tech_lead-3
+[2026-04-07 01:56:13] [agent_start] tech_lead-1 出技术方案
+[2026-04-07 01:56:13] [agent_start] tech_lead-2 出技术方案
+[2026-04-07 01:56:13] [agent_start] tech_lead-3 出技术方案
+[2026-04-07T01:56:13.051Z] Running tech_lead-2 agent...
+[2026-04-07T01:56:13.051Z] Running tech_lead-1 agent...
+[2026-04-07T01:56:13.052Z] Running tech_lead-3 agent...
+[2026-04-07 01:57:31] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 5min (active:4, done:6)
+[2026-04-07 01:58:01] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 6min (active:4, done:6)
+Tech Lead work for M2 is complete. Here's a summary of what was done:
+
+**m2/design.md** — created milestone-level technical design covering all 4 tasks and their independence.
+
+**Task designs created:**
+
+- `task-1775526862838/design.md` — add apiKey guard in `detectProvider()` in `src/providers/provider.ts`; skip guard for `provider='custom'`
+- `task-1775526867192/design.md` — add `publishConfig` to `package.json`, add Installation section to `README.md`
+- `task-1775526873714/design.md` — create `PRD.md` at project root covering agent loop, file_read, file_write, code_exec
+- `task-1775526877132/design.md` — create `EXPECTED_DBB.md` at project root with global acceptance criteria
+
+All 4 tasks updated to `hasDesign: true`. Developers can now pick up any task independently.
+[2026-04-07T01:58:06.103Z] tech_lead-1 agent completed
+[2026-04-07 01:58:06] [agent_complete] tech_lead-1 completed successfully
+All done. Here's a summary of what was created:
+
+**M2 milestone:**
+- `.team/milestones/m2/design.md` — technical approach for all 4 tasks
+
+**Task designs (all 4 tasks marked `hasDesign: true`):**
+- `task-1775526862838/design.md` — add apiKey guard in `detectProvider()`, skip for `provider: 'custom'`
+- `task-1775526867192/design.md` — add `publishConfig` to `package.json`, add install section to `README.md`
+- `task-1775526873714/design.md` — create `PRD.md` at project root
+- `task-1775526877132/design.md` — create `EXPECTED_DBB.md` at project root
+
+All tasks are independent and ready for developer pickup.
+[2026-04-07T01:58:16.271Z] tech_lead-2 agent completed
+[2026-04-07 01:58:16] [agent_complete] tech_lead-2 completed successfully
+All done. Here's a summary of what was created:
+
+**m2 milestone:**
+- `.team/milestones/m2/design.md` — technical approach for all 4 tasks
+
+**Task designs (hasDesign=true for all):**
+- `task-1775526862838` — add `!config.apiKey` guard in `createProvider()` and `detectProvider()` in `src/providers/provider.ts`
+- `task-1775526867192` — add `publishConfig` to `package.json`, add install section to `README.md`
+- `task-1775526873714` — create `PRD.md` with 5 sections covering the full feature set
+- `task-1775526877132` — create `EXPECTED_DBB.md` with global acceptance criteria
+
+All 4 m2 tasks are now ready for developer pickup.
+[2026-04-07T01:58:17.780Z] tech_lead-3 agent completed
+[2026-04-07 01:58:17] [agent_complete] tech_lead-3 completed successfully
+[2026-04-07 01:58:17] [workflow] work_loop [LOOP] Iteration 2
+[2026-04-07 01:58:17] [workflow] work_loop [EXEC] pm
+[2026-04-07 01:58:17] [agent_start] pm 管理任务和里程碑
+[2026-04-07T01:58:17.813Z] Running pm agent...
+[2026-04-07 01:59:01] [perf] daemon {"rss":"53MB","heapUsed":"6MB","uptime":"1500s"}
+[2026-04-07 01:59:01] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 7min (active:4, done:6)
+M2 is active with 4 unassigned `todo` tasks, all ready for work. No new milestone or tasks need to be created at this time.
+
+**Summary:**
+- M1 "Core Agentic Loop & Correctness" — completed ✓
+- M2 "Provider Robustness & Package Release" — active, 4 tasks pending assignment
+
+The tasks are ready to be picked up by developers. No blockers, no dependencies between tasks except that `task-1775526877132` (EXPECTED_DBB.md) logically follows `task-1775526873714` (PRD.md), but they can be worked in parallel.
+[2026-04-07T01:59:13.947Z] pm agent completed
+[2026-04-07 01:59:13] [agent_complete] pm completed successfully
+[2026-04-07 01:59:13] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-07 01:59:13] [workflow] work_loop [PARALLEL-SKIP] write-design: todoWithoutDesign > 0
+[2026-04-07 01:59:13] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-07 01:59:13] [workflow] work_loop [PARALLEL] implement
+[2026-04-07 01:59:13] [workflow] work_loop [EXEC] developer
+[2026-04-07 01:59:13] [agent_start] developer 实现功能
+[2026-04-07T01:59:14.025Z] Running developer agent...
+[2026-04-07 02:00:01] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 8min (active:4, done:6)
+[2026-04-07 02:01:01] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 9min (active:4, done:6)
+[2026-04-07 02:02:01] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 10min (active:4, done:6)
+All 4 tasks are now in review:
+
+- **task-1775526862838** — Fixed `provider.ts`: `detectProvider()` throws on missing `apiKey`, `createProvider()` throws for non-custom providers without `apiKey`
+- **task-1775526867192** — Added `publishConfig: { access: "public" }` to `package.json`, added `npm install agentic-lite` to `README.md`
+- **task-1775526873714** — Created `PRD.md` with all required sections
+- **task-1775526877132** — Created `EXPECTED_DBB.md` with 9 acceptance criteria
+[2026-04-07T02:02:04.876Z] developer agent completed
+[2026-04-07 02:02:04] [agent_complete] developer completed successfully

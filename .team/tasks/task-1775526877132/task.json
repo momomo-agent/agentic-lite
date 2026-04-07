@@ -1,0 +1,13 @@
+{
+  "id": "task-1775526877132",
+  "title": "编写 EXPECTED_DBB.md",
+  "description": "创建 EXPECTED_DBB.md，定义全局验收标准，解锁 dbb match 0% 的问题",
+  "status": "review",
+  "priority": "P0",
+  "assignee": "developer",
+  "blockedBy": [],
+  "groupId": "m2",
+  "hasDesign": true,
+  "created": "2026-04-07T01:54:37.132Z",
+  "updated": "2026-04-07T02:01:55.023Z"
+}

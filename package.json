@@ -29,6 +29,9 @@
     "lightweight"
   ],
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "tsup": "^8.0.0",
     "typescript": "^5.4.0",

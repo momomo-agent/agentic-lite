@@ -43,6 +43,10 @@ export interface Provider {
 export function createProvider(config: AgenticConfig): Provider {
   const provider = config.provider ?? detectProvider(config)
 
+  if (provider !== 'custom' && !config.apiKey) {
+    throw new Error('apiKey is required for provider: ' + provider)
+  }
+
   switch (provider) {
     case 'anthropic':
       return createAnthropicProvider(config)
@@ -56,6 +60,7 @@ export function createProvider(config: AgenticConfig): Provider {
 }
 
 function detectProvider(config: AgenticConfig): string {
+  if (!config.apiKey) throw new Error('apiKey is required')
   if (config.baseUrl?.includes('anthropic')) return 'anthropic'
   if (config.apiKey?.startsWith('sk-ant-')) return 'anthropic'
   return 'openai'
