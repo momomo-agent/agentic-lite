@@ -647,3 +647,22 @@
 {"ts":"2026-04-07T03:26:43.590Z","type":"error","agent":"developer","data":{"details":"failed (code=1), retry 1/2 in 1s"}}
 {"ts":"2026-04-07T03:26:44.592Z","type":"agent_start","agent":"developer","data":{"details":"实现功能","performance":{"memoryMB":11,"memoryTotalMB":13,"cpuUser":0.429947,"cpuSystem":0.657372}}}
 {"ts":"2026-04-07T03:27:13.036Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":12,"cpuUser":0.432751,"cpuSystem":0.661572}}}
+{"ts":"2026-04-07T03:27:13.092Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 10"}}
+{"ts":"2026-04-07T03:27:13.092Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-07T03:27:13.093Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":11,"memoryTotalMB":12,"cpuUser":0.434772,"cpuSystem":0.666519}}}
+{"ts":"2026-04-07T03:27:32.132Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 21min (active:4, done:18)"}}
+{"ts":"2026-04-07T03:27:32.133Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 21min (active:4, done:18)\"}"}}
+{"ts":"2026-04-07T03:28:18.832Z","type":"task_created","agent":null,"data":{"taskId":"task-1775532498831","title":"Upgrade code_exec to quickjs-emscripten sandbox","priority":"P1","group":"m7"}}
+{"ts":"2026-04-07T03:28:26.439Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":14,"cpuUser":0.439571,"cpuSystem":0.673629}}}
+{"ts":"2026-04-07T03:28:26.442Z","type":"workflow","agent":"work_loop","data":{"details":"[SKIP] write-dbb: milestoneNeedsDBB > 0"}}
+{"ts":"2026-04-07T03:28:26.442Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] write-design, implement, run-tests"}}
+{"ts":"2026-04-07T03:28:26.442Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] tech_lead"}}
+{"ts":"2026-04-07T03:28:26.442Z","type":"agent_start","agent":"tech_lead","data":{"details":"出技术方案","performance":{"memoryMB":11,"memoryTotalMB":12,"cpuUser":0.440498,"cpuSystem":0.676267}}}
+{"ts":"2026-04-07T03:28:26.443Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] developer"}}
+{"ts":"2026-04-07T03:28:26.443Z","type":"agent_start","agent":"developer","data":{"details":"实现功能","performance":{"memoryMB":11,"memoryTotalMB":12,"cpuUser":0.440714,"cpuSystem":0.676752}}}
+{"ts":"2026-04-07T03:28:26.443Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] tester-1, tester-2"}}
+{"ts":"2026-04-07T03:28:26.443Z","type":"agent_start","agent":"tester-1","data":{"details":"验证功能","performance":{"memoryMB":11,"memoryTotalMB":12,"cpuUser":0.440906,"cpuSystem":0.677188}}}
+{"ts":"2026-04-07T03:28:26.444Z","type":"agent_start","agent":"tester-2","data":{"details":"验证功能","performance":{"memoryMB":11,"memoryTotalMB":12,"cpuUser":0.441021,"cpuSystem":0.677457}}}
+{"ts":"2026-04-07T03:28:32.134Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 22min (active:5, done:18)"}}
+{"ts":"2026-04-07T03:28:32.135Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 22min (active:5, done:18)\"}"}}
+{"ts":"2026-04-07T03:28:50.041Z","type":"agent_complete","agent":"tester-1","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":13,"cpuUser":0.442276,"cpuSystem":0.67911}}}
