@@ -5434,3 +5434,9 @@
 {"ts":"2026-04-07T15:13:48.557Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775574256304","from":"review","to":"testing","title":"Verify PRD.md documents shell_exec, Python, quickjs, shellResults"}}
 {"ts":"2026-04-07T15:14:11.089Z","type":"agent_complete","agent":"tester-2","data":{"details":"completed successfully","performance":{"memoryMB":13,"memoryTotalMB":15,"cpuUser":0.106344,"cpuSystem":0.087658}}}
 {"ts":"2026-04-07T15:14:11.090Z","type":"workflow","agent":"tester-2","data":{"details":"[SIGNAL] completed: No tasks available to claim — all review tasks already in testing by tester-1"}}
+{"ts":"2026-04-07T15:15:34.909Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775574241209","from":"testing","to":"done","title":"Expand README with API docs and usage examples"}}
+{"ts":"2026-04-07T15:15:34.942Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775574256272","from":"testing","to":"done","title":"Fix AgenticResult.usage to required type"}}
+{"ts":"2026-04-07T15:15:34.972Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775574256304","from":"testing","to":"done","title":"Verify PRD.md documents shell_exec, Python, quickjs, shellResults"}}
+{"ts":"2026-04-07T15:15:38.136Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"61MB\",\"heapUsed\":\"8MB\",\"uptime\":\"300s\"}"}}
+{"ts":"2026-04-07T15:15:40.435Z","type":"agent_complete","agent":"tester-1","data":{"details":"completed successfully","performance":{"memoryMB":10,"memoryTotalMB":12,"cpuUser":0.130148,"cpuSystem":0.107608}}}
+{"ts":"2026-04-07T15:15:40.436Z","type":"workflow","agent":"tester-1","data":{"details":"[SIGNAL] completed: Tested and passed 3 review tasks: README API docs, AgenticResult.usage required type, PRD.md shell_e"}}
