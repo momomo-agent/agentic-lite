@@ -6409,3 +6409,18 @@
 {"ts":"2026-04-07T17:17:27.319Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 22min (active:3, done:69)\"}"}}
 {"ts":"2026-04-07T17:17:49.772Z","type":"agent_complete","agent":"tester-2","data":{"details":"completed successfully","performance":{"memoryMB":14,"memoryTotalMB":16,"cpuUser":1.124153,"cpuSystem":1.700485}}}
 {"ts":"2026-04-07T17:17:49.772Z","type":"workflow","agent":"tester-2","data":{"details":"[SIGNAL] completed: Checked all 3 tasks in review status - none claimable (already claimed by another tester)"}}
+{"ts":"2026-04-07T17:17:56.202Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"52MB\",\"heapUsed\":\"14MB\",\"uptime\":\"2700s\"}"}}
+{"ts":"2026-04-07T17:18:08.666Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775581632597","from":"review","to":"testing","title":"Auto-instantiate default AgenticFileSystem for zero-config browser use"}}
+{"ts":"2026-04-07T17:18:19.346Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775581637037","from":"review","to":"testing","title":"Shell exec browser safety — graceful error instead of crash"}}
+{"ts":"2026-04-07T17:18:19.379Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775581761671","from":"review","to":"testing","title":"Search tool graceful degradation without API key"}}
+{"ts":"2026-04-07T17:18:27.323Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 23min (active:3, done:69)"}}
+{"ts":"2026-04-07T17:18:27.324Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 23min (active:3, done:69)\"}"}}
+{"ts":"2026-04-07T17:19:27.327Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 24min (active:3, done:69)"}}
+{"ts":"2026-04-07T17:19:27.328Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 24min (active:3, done:69)\"}"}}
+{"ts":"2026-04-07T17:20:27.332Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 25min (active:3, done:69)"}}
+{"ts":"2026-04-07T17:20:27.334Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 25min (active:3, done:69)\"}"}}
+{"ts":"2026-04-07T17:21:05.885Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775581632597","from":"testing","to":"done","title":"Auto-instantiate default AgenticFileSystem for zero-config browser use"}}
+{"ts":"2026-04-07T17:21:05.919Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775581637037","from":"testing","to":"done","title":"Shell exec browser safety — graceful error instead of crash"}}
+{"ts":"2026-04-07T17:21:05.949Z","type":"task_status","agent":"tester-1","data":{"taskId":"task-1775581761671","from":"testing","to":"done","title":"Search tool graceful degradation without API key"}}
+{"ts":"2026-04-07T17:21:15.824Z","type":"agent_complete","agent":"tester-1","data":{"details":"completed successfully","performance":{"memoryMB":10,"memoryTotalMB":13,"cpuUser":1.198349,"cpuSystem":1.760356}}}
+{"ts":"2026-04-07T17:21:15.825Z","type":"workflow","agent":"tester-1","data":{"details":"[SIGNAL] completed: Tested and marked done 3 m25 tasks: default filesystem, shell browser safety, search graceful degrad"}}

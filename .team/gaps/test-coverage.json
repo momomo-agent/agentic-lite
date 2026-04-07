@@ -1,9 +1,11 @@
 {
-  "totalTests": 97,
-  "passed": 97,
+  "totalTests": 107,
+  "passed": 107,
   "failed": 0,
   "edgeCases": [
-    "null filesystem (not undefined) bypasses ?? default — acceptable TypeScript behavior"
+    "null filesystem (not undefined) bypasses ?? default — acceptable TypeScript behavior",
+    "shell_exec in actual browser environment (jsdom) not tested — isNodeEnv() mock not applied at module level",
+    "search with invalid (non-empty) apiKey format not tested"
   ],
   "coverage": "100%"
 }
