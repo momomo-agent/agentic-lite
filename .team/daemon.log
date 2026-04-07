@@ -1287,3 +1287,7 @@ There are no available tasks for me to claim right now. The only todo task (task
 Should I wait for tasks to move out of review, or would you like me to help with something else?
 [2026-04-07T03:17:25.981Z] developer agent completed
 [2026-04-07 03:17:25] [agent_complete] developer completed successfully
+[2026-04-07 03:17:32] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 11min (active:4, done:18)
+No tasks are currently in "testing" status either. The review tasks can't be claimed — they're likely blocked by dependencies or already being processed. Nothing to do right now.
+[2026-04-07T03:17:35.475Z] tester-1 agent completed
+[2026-04-07 03:17:35] [agent_complete] tester-1 completed successfully
