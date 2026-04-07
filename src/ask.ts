@@ -95,7 +95,7 @@ async function executeSingleTool(
       return result.text
     }
     case 'code_exec': {
-      const result = await executeCode(tc.input)
+      const result = await executeCode(tc.input, config.filesystem)
       acc.allCodeResults.push(result)
       return result.error ? `Error: ${result.error}` : result.output
     }

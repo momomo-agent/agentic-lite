@@ -2,6 +2,10 @@
   "totalTests": 39,
   "passed": 39,
   "failed": 0,
-  "edgeCases": [],
+  "edgeCases": [
+    "Browser Pyodide path not tested (no browser env in test runner)",
+    "Python with filesystem injection (separate task, not yet implemented)",
+    "shell_exec tool (separate task, not yet implemented)"
+  ],
   "coverage": "100%"
 }

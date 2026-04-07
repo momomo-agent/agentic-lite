@@ -2113,3 +2113,10 @@ The project is progressing well with the critical custom provider bug fixed. The
 Both review tasks can't be claimed right now (likely assigned to another agent). No tasks are available for me to claim at this time.
 [2026-04-07T04:21:00.720Z] tester-2 agent completed
 [2026-04-07 04:21:00] [agent_complete] tester-2 completed successfully
+Both tasks are done:
+
+- **task-1775530939117** (Fix multi-round tool loop): All 39 tests pass. The loop implementation in `ask.ts` is correct — iterates up to `MAX_TOOL_ROUNDS`, returns on non-tool_use stop, throws on limit exceeded.
+
+- **task-1775534038627** (Python support in code_exec): All 39 tests pass. Python detection, Node subprocess execution, error handling, and JS fallback all verified.
+[2026-04-07T04:23:26.400Z] tester-1 agent completed
+[2026-04-07 04:23:26] [agent_complete] tester-1 completed successfully

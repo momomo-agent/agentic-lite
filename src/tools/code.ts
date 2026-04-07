@@ -107,11 +107,40 @@ def open(file, mode='r', *args, **kwargs):
   }
 }
 
-async function executePythonNode(code: string): Promise<CodeResult> {
+async function executePythonNode(code: string, filesystem?: AgenticFileSystem): Promise<CodeResult> {
   const { spawn } = await import('child_process')
 
+  let fullCode = code
+  if (filesystem) {
+    const preamble = `
+import io, json as __json
+class __FS:
+    def __init__(self): self._w={}
+    def read(self,p): return ""
+    def write(self,p,d): self._w[p]=d
+    def flush(self):
+        if self._w: print(f"__FS_WRITES__:{__json.dumps(self._w)}",flush=True)
+__fs=__FS()
+_open=open
+def open(file,mode='r',*a,**k):
+    if isinstance(file,str) and (file.startswith('/')):
+        if 'r' in mode: return io.StringIO(__fs.read(file))
+        if 'w' in mode:
+            class W:
+                def __init__(self,p): self.p=p;self.b=[]
+                def write(self,d): self.b.append(str(d));return len(d)
+                def close(self): __fs.write(self.p,''.join(self.b))
+                def __enter__(self): return self
+                def __exit__(self,*a): self.close()
+            return W(file)
+    return _open(file,mode,*a,**k)
+import atexit; atexit.register(__fs.flush)
+`
+    fullCode = preamble + '\n' + code
+  }
+
   return new Promise((resolve) => {
-    const proc = spawn('python3', ['-c', code])
+    const proc = spawn('python3', ['-c', fullCode])
     let stdout = ''
     let stderr = ''
 
@@ -146,19 +175,15 @@ export const codeToolDef: ToolDefinition = {
 
 export async function executeCode(
   input: Record<string, unknown>,
+  filesystem?: AgenticFileSystem,
 ): Promise<CodeResult> {
   const code = String(input.code ?? '')
   if (!code) return { code: '', output: '', error: 'No code provided' }
 
   const language = detectLanguage(code)
 
-  // Route to Python execution
   if (language === 'python') {
-    if (isBrowser) {
-      return executePythonBrowser(code)
-    } else {
-      return executePythonNode(code)
-    }
+    return isBrowser ? executePythonBrowser(code, filesystem) : executePythonNode(code, filesystem)
   }
 
   // JavaScript execution
@@ -199,6 +224,7 @@ export async function executeCode(
   if (hasAwait) {
     const vm = await newAsyncContext()
     injectConsole(vm as any)
+    injectFilesystem(vm as any, filesystem)
     const wrapped = `(async()=>{return(${code})})().then(v=>{globalThis.__asyncResult=v},e=>{globalThis.__asyncError=String(e)})`
     const result = await vm.evalCodeAsync(wrapped)
     if (result.error) return handleResult(result, vm)
@@ -225,6 +251,7 @@ export async function executeCode(
   const QuickJS = await getQuickJS()
   const vm = QuickJS.newContext()
   injectConsole(vm as any)
+  injectFilesystem(vm as any, filesystem)
   const result = vm.evalCode(code)
   return handleResult(result, vm)
 }
