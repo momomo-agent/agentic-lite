@@ -12314,3 +12314,17 @@ Both tasks are complete.
 [2026-04-07T16:19:14.636Z] tester-2 agent completed
 [2026-04-07 16:19:14] [agent_complete] tester-2 completed successfully
 [2026-04-07 16:19:14] [workflow] tester-2 [SIGNAL] completed: Tested and verified 2 M21 tasks: (1) apiKey optional for custom provider - 3 tests pass; (2) README 
+[2026-04-07 16:19:14] [workflow] work_loop [BRANCH] doneCount > 0 → true → milestone_qg
+[2026-04-07 16:19:14] [workflow] work_loop [EXIT] todoCount == 0 && designedTasks == 0 && reviewCount == 0 && inProgressCount == 0 && testingCount == 0 && blockedCount == 0 → milestone_qg
+[2026-04-07 16:19:14] [agent_start] milestone_qg [NODE] milestone_qg - 里程碑 QG — 对照 DBB 验收
+[2026-04-07 16:19:14] [workflow] milestone_qg [EXEC] tester
+[2026-04-07 16:19:14] [agent_start] tester 验证功能
+[2026-04-07T16:19:14.776Z] Running tester agent...
+All tasks are in "done" status — no tasks in "review" status to claim.
+
+```signal
+{"status": "completed", "summary": "Checked task list — no tasks in review status found. All tasks are already done."}
+```
+[2026-04-07T16:19:30.688Z] tester agent completed
+[2026-04-07 16:19:30] [agent_complete] tester completed successfully
+[2026-04-07 16:19:30] [workflow] tester [SIGNAL] completed: Checked task list — no tasks in review status found. All tasks are already done.
