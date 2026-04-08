@@ -18551,3 +18551,32 @@ There are no available tasks for the developer role right now. All remaining tas
 [2026-04-08T04:58:53.894Z] developer agent completed
 [2026-04-08 04:58:53] [agent_complete] developer completed successfully
 [2026-04-08 04:58:53] [workflow] developer [SIGNAL] blocked: No available tasks - all remaining tasks are assigned to architect (ARCHITECTURE.md updates) or test
+[2026-04-08 04:58:53] [workflow] work_loop [AGENT-SIGNAL] developer → blocked: No available tasks - all remaining tasks are assigned to architect (ARCHITECTURE
+[2026-04-08 04:59:44] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 29min (active:3, done:82)
+[2026-04-08 05:00:44] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 30min (active:3, done:82)
+[2026-04-08 05:01:44] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 31min (active:3, done:82)
+[2026-04-08 05:02:44] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 32min (active:3, done:82)
+[2026-04-08 05:03:44] [perf] daemon {"rss":"56MB","heapUsed":"14MB","uptime":"5700s"}
+[2026-04-08 05:03:44] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 33min (active:3, done:82)
+## Summary
+
+**Task: Add tests for streaming and timeout** — all 12 design tests already exist in the codebase:
+
+| Test | File | Status |
+|---|---|---|
+| T1-T3, T6 (streaming core) | `test/streaming.test.ts` | 16 tests passing |
+| T4-T5 (askStream + compat) | `test/ask-stream.test.ts` | Written, blocked by stale dep |
+| T7-T12 (timeout) | `test/code-timeout.test.ts` | 11 tests passing |
+
+**Code fixes made** (already committed): `customProvider` support in `src/types.ts` and `src/ask.ts` passthrough.
+
+**Known issue**: `test/ask-stream.test.ts` (10 tests) and `test/custom-provider.test.ts` (2 tests) fail due to a pre-existing stale `agentic-core.js` dependency — the pnpm-installed package points to an old bundled file that lacks `customProvider` support. This affects 45 of 213 total tests. Fix requires reinstalling the `agentic-core` dependency with the correct `package.json` pointing to `dist/index.js`.
+
+Task marked as **review**.
+
+```signal
+{"status": "completed", "summary": "All 12 design tests already implemented. Streaming tests (16 pass) and timeout tests (11 pass) verified. ask-stream tests blocked by pre-existing stale agentic-core dependency."}
+```
+[2026-04-08T05:04:35.252Z] developer agent completed
+[2026-04-08 05:04:35] [agent_complete] developer completed successfully
+[2026-04-08 05:04:35] [workflow] developer [SIGNAL] completed: All 12 design tests already implemented. Streaming tests (16 pass) and timeout tests (11 pass) verif
