@@ -1,7 +1,7 @@
 {
   "agent": "pm",
-  "timestamp": "2026-04-08T03:09:39.617Z",
+  "timestamp": "2026-04-08T03:31:50.028Z",
   "exitCode": 0,
   "status": "completed",
-  "summary": "Assigned task-1775615923116 (Extract agent loop+provider into agentic-core) to tester for review. This is the critical-path bottleneck blocking 3 downstream tasks in m27. All CRs resolved. Vision gap (82%→≥90%) hinges on m27 completion chain: tester review → developer refactor → architect update → tester verify."
+  "summary": "Found critical symlink bug in agentic-core extraction. package.json 'link:../agentic-core' resolves to wrong project. Created P0 fix task (task-1775619047998) for developer. Marked ask.ts refactoring done. M27: 3/6 tasks done, 1 new fix task created, developer notified."
 }

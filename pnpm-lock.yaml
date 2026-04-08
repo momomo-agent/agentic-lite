@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      agentic-core:
+        specifier: link:./packages/agentic-core
+        version: link:packages/agentic-core
       agentic-filesystem:
         specifier: link:../agentic-filesystem
         version: link:../agentic-filesystem

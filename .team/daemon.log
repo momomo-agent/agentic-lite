@@ -17200,3 +17200,75 @@ All CRs are resolved. No new milestones needed — m27 is the right one to close
 [2026-04-08T03:14:41.425Z] tester agent completed
 [2026-04-08 03:14:41] [agent_complete] tester completed successfully
 [2026-04-08 03:14:41] [workflow] tester [SIGNAL] completed: Tested agentic-core extraction: 67 new tests all passing, 0 regressions, task marked done
+[2026-04-08 03:16:43] [perf] daemon {"rss":"54MB","heapUsed":"12MB","uptime":"5100s"}
+[2026-04-08 03:19:45] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 5min (active:3, done:76)
+[2026-04-08 03:20:15] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 6min (active:3, done:76)
+[2026-04-08 03:21:15] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 7min (active:3, done:76)
+[2026-04-08 03:21:43] [agent_start] daemon Still busy (60min), skipping
+[2026-04-08 03:21:43] [perf] daemon {"rss":"54MB","heapUsed":"12MB","uptime":"5400s"}
+[2026-04-08 03:22:15] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 8min (active:3, done:76)
+[2026-04-08 03:23:15] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 9min (active:3, done:76)
+[2026-04-08 03:24:15] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 10min (active:3, done:76)
+[2026-04-08 03:25:15] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 11min (active:3, done:76)
+[2026-04-08 03:26:15] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 12min (active:3, done:76)
+[2026-04-08 03:26:43] [perf] daemon {"rss":"43MB","heapUsed":"12MB","uptime":"5700s"}
+[2026-04-08 03:27:15] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 13min (active:3, done:76)
+[2026-04-08 03:28:15] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 14min (active:3, done:76)
+[2026-04-08 03:28:44] [workflow] daemon Reset stuck agent: developer
+[2026-04-08 03:28:44] [agent_complete] daemon DevTeam daemon stopped
+[2026-04-08 03:28:44] [workflow] validator [WARNING] config.dashboard: no dashboard configuration — run "team web" will show empty UI
+[2026-04-08 03:28:44] [agent_start] daemon DevTeam daemon started (safety=600s, timeout=3900s)
+[2026-04-08 03:28:44] [workflow] monitor [HEALTH] Monitor started
+[2026-04-08 03:28:44] [workflow]  [RESUME] Resuming from checkpoint: node=work_loop, step=3
+[2026-04-08 03:28:44] [agent_start] work_loop [NODE] work_loop - PM 调度中心 — PM 评估后并行派发所有角色，全部完成后回 PM
+[2026-04-08 03:28:44] [workflow] work_loop [LOOP] Iteration 1
+[2026-04-08 03:28:44] [workflow] work_loop [SHELL] node /Users/kenefe/LOCAL/momo-agent/tools/team/scripts/goal-check.js
+[2026-04-08 03:28:44] [workflow] work_loop [EXEC] pm
+[2026-04-08 03:28:44] [agent_start] pm 管理任务和里程碑
+[2026-04-08T03:28:44.490Z] Running pm agent...
+```signal
+{"status": "completed", "summary": "Found critical symlink bug in agentic-core extraction. package.json 'link:../agentic-core' resolves to wrong project. Created P0 fix task (task-1775619047998) for developer. Marked ask.ts refactoring done. M27: 3/6 tasks done, 1 new fix task created, developer notified."}
+```
+[2026-04-08T03:31:50.029Z] pm agent completed
+[2026-04-08 03:31:50] [agent_complete] pm completed successfully
+[2026-04-08 03:31:50] [workflow] pm [SIGNAL] completed: Found critical symlink bug in agentic-core extraction. package.json 'link:../agentic-core' resolves 
+[2026-04-08 03:31:50] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-08 03:31:50] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-08 03:31:50] [error] eval archTaskCount > 0: archTaskCount is not defined
+[2026-04-08 03:31:50] [workflow] work_loop [PARALLEL-SKIP] update-architecture: archTaskCount > 0
+[2026-04-08 03:31:50] [workflow] work_loop [PARALLEL] write-design, implement
+[2026-04-08 03:31:50] [workflow] work_loop [EXEC] tech_lead
+[2026-04-08 03:31:50] [agent_start] tech_lead 出技术方案
+[2026-04-08 03:31:50] [workflow] work_loop [EXEC] developer
+[2026-04-08 03:31:50] [agent_start] developer 实现功能
+[2026-04-08T03:31:50.083Z] Running tech_lead agent...
+[2026-04-08T03:31:50.083Z] Running developer agent...
+[2026-04-08 03:33:44] [perf] daemon {"rss":"76MB","heapUsed":"13MB","uptime":"300s"}
+[2026-04-08 03:34:14] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 5min (active:3, done:75)
+```signal
+{"status": "completed", "summary": "Wrote technical design for task-1775619047998 (Fix agentic-core symlink and broken tests). The design identifies the root cause: package.json has `agentic-core: link:../agentic-core` pointing to the wrong standalone project instead of `link:./packages/agentic-core`. Fix is: 1) change the symlink path in package.json, 2) run pnpm install, 3) verify all 174 tests pass. Also confirmed milestone m27 already has dbb.md and design.md, and the other 2 todo tasks (1775615948444, 1775615948484) already have design.md files."}
+```
+[2026-04-08T03:34:34.559Z] tech_lead agent completed
+[2026-04-08 03:34:34] [agent_complete] tech_lead completed successfully
+[2026-04-08 03:34:34] [workflow] tech_lead [SIGNAL] completed: Wrote technical design for task-1775619047998 (Fix agentic-core symlink and broken tests). The desig
+[2026-04-08 03:34:44] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 6min (active:3, done:75)
+Task completed. Here's a summary:
+
+**Fixed agentic-core symlink and broken tests** (task-1775619047998)
+
+**Root cause:** `package.json` dependency `"agentic-core": "link:../agentic-core"` pointed to the standalone project in the parent directory (version 0.2.0 with different exports), instead of the local monorepo package at `packages/agentic-core` (version 0.1.0).
+
+**Fix:** Changed to `"agentic-core": "link:./packages/agentic-core"` in `package.json`, then ran `pnpm install --no-frozen-lockfile`.
+
+**Result:** All 174 tests pass across 32 test files (was 33 failures before the fix). No test imports needed changing — the re-exports in `src/providers/` already worked correctly once the symlink pointed to the right package.
+
+**Files changed:**
+- `package.json` — 1 line fix
+- `pnpm-lock.yaml` — auto-updated
+
+```signal
+{"status": "completed", "summary": "Fixed agentic-core symlink (link:../agentic-core → link:./packages/agentic-core). All 174 tests now pass (was 33 failures)."}
+```
+[2026-04-08T03:34:51.125Z] developer agent completed
+[2026-04-08 03:34:51] [agent_complete] developer completed successfully
+[2026-04-08 03:34:51] [workflow] developer [SIGNAL] completed: Fixed agentic-core symlink (link:../agentic-core → link:./packages/agentic-core). All 174 tests now 

@@ -7633,3 +7633,63 @@
 {"ts":"2026-04-08T03:14:23.257Z","type":"task_status","agent":"tester","data":{"taskId":"task-1775615923116","from":"testing","to":"done","title":"Extract agent loop + provider into agentic-core"}}
 {"ts":"2026-04-08T03:14:41.430Z","type":"agent_complete","agent":"tester","data":{"details":"completed successfully","performance":{"memoryMB":12,"memoryTotalMB":15,"cpuUser":2.339443,"cpuSystem":2.51326}}}
 {"ts":"2026-04-08T03:14:41.431Z","type":"workflow","agent":"tester","data":{"details":"[SIGNAL] completed: Tested agentic-core extraction: 67 new tests all passing, 0 regressions, task marked done"}}
+{"ts":"2026-04-08T03:16:43.886Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"54MB\",\"heapUsed\":\"12MB\",\"uptime\":\"5100s\"}"}}
+{"ts":"2026-04-08T03:19:45.358Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 5min (active:3, done:76)"}}
+{"ts":"2026-04-08T03:19:45.358Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 5min (active:3, done:76)\"}"}}
+{"ts":"2026-04-08T03:20:15.361Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 6min (active:3, done:76)"}}
+{"ts":"2026-04-08T03:20:15.361Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 6min (active:3, done:76)\"}"}}
+{"ts":"2026-04-08T03:21:15.372Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 7min (active:3, done:76)"}}
+{"ts":"2026-04-08T03:21:15.373Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 7min (active:3, done:76)\"}"}}
+{"ts":"2026-04-08T03:21:43.558Z","type":"agent_start","agent":"daemon","data":{"details":"Still busy (60min), skipping","performance":{"memoryMB":12,"memoryTotalMB":15,"cpuUser":2.517183,"cpuSystem":2.630733}}}
+{"ts":"2026-04-08T03:21:43.889Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"54MB\",\"heapUsed\":\"12MB\",\"uptime\":\"5400s\"}"}}
+{"ts":"2026-04-08T03:22:15.374Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 8min (active:3, done:76)"}}
+{"ts":"2026-04-08T03:22:15.375Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 8min (active:3, done:76)\"}"}}
+{"ts":"2026-04-08T03:23:15.377Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 9min (active:3, done:76)"}}
+{"ts":"2026-04-08T03:23:15.378Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 9min (active:3, done:76)\"}"}}
+{"ts":"2026-04-08T03:24:15.380Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 10min (active:3, done:76)"}}
+{"ts":"2026-04-08T03:24:15.383Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 10min (active:3, done:76)\"}"}}
+{"ts":"2026-04-08T03:25:15.381Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 11min (active:3, done:76)"}}
+{"ts":"2026-04-08T03:25:15.387Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 11min (active:3, done:76)\"}"}}
+{"ts":"2026-04-08T03:26:15.391Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 12min (active:3, done:76)"}}
+{"ts":"2026-04-08T03:26:15.392Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 12min (active:3, done:76)\"}"}}
+{"ts":"2026-04-08T03:26:43.890Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"43MB\",\"heapUsed\":\"12MB\",\"uptime\":\"5700s\"}"}}
+{"ts":"2026-04-08T03:27:15.404Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 13min (active:3, done:76)"}}
+{"ts":"2026-04-08T03:27:15.405Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 13min (active:3, done:76)\"}"}}
+{"ts":"2026-04-08T03:28:15.394Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 14min (active:3, done:76)"}}
+{"ts":"2026-04-08T03:28:15.394Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 14min (active:3, done:76)\"}"}}
+{"ts":"2026-04-08T03:28:44.026Z","type":"workflow","agent":"daemon","data":{"details":"Reset stuck agent: developer"}}
+{"ts":"2026-04-08T03:28:44.027Z","type":"agent_complete","agent":"daemon","data":{"details":"DevTeam daemon stopped","performance":{"memoryMB":12,"memoryTotalMB":15,"cpuUser":2.674037,"cpuSystem":2.741413}}}
+{"ts":"2026-04-08T03:28:44.098Z","type":"workflow","agent":"validator","data":{"details":"[WARNING] config.dashboard: no dashboard configuration — run \"team web\" will show empty UI"}}
+{"ts":"2026-04-08T03:28:44.123Z","type":"agent_start","agent":"daemon","data":{"details":"DevTeam daemon started (safety=600s, timeout=3900s)","performance":{"memoryMB":5,"memoryTotalMB":8,"cpuUser":0.029283,"cpuSystem":0.008106}}}
+{"ts":"2026-04-08T03:28:44.124Z","type":"workflow","agent":"monitor","data":{"details":"[HEALTH] Monitor started"}}
+{"ts":"2026-04-08T03:28:44.125Z","type":"workflow","agent":null,"data":{"details":"[RESUME] Resuming from checkpoint: node=work_loop, step=3"}}
+{"ts":"2026-04-08T03:28:44.125Z","type":"agent_start","agent":"work_loop","data":{"details":"[NODE] work_loop - PM 调度中心 — PM 评估后并行派发所有角色，全部完成后回 PM","performance":{"memoryMB":5,"memoryTotalMB":8,"cpuUser":0.030144,"cpuSystem":0.008796}}}
+{"ts":"2026-04-08T03:28:44.148Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 1"}}
+{"ts":"2026-04-08T03:28:44.163Z","type":"workflow","agent":"work_loop","data":{"details":"[SHELL] node /Users/kenefe/LOCAL/momo-agent/tools/team/scripts/goal-check.js"}}
+{"ts":"2026-04-08T03:28:44.462Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-08T03:28:44.463Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":5,"memoryTotalMB":10,"cpuUser":0.044827,"cpuSystem":0.033101}}}
+{"ts":"2026-04-08T03:30:13.479Z","type":"task_status","agent":"tester","data":{"taskId":"task-1775615888978","from":"done","to":"cancelled","title":"Create agentic-core package structure"}}
+{"ts":"2026-04-08T03:30:13.512Z","type":"task_status","agent":"tester","data":{"taskId":"task-1775615923116","from":"done","to":"cancelled","title":"Extract agent loop + provider into agentic-core"}}
+{"ts":"2026-04-08T03:30:48.011Z","type":"task_created","agent":null,"data":{"taskId":"task-1775619047998","title":"Fix agentic-core symlink and broken tests","priority":"P1","group":"m27"}}
+{"ts":"2026-04-08T03:31:03.385Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775613090477","from":"todo","to":"done","title":"重构 ask.ts — 换用 agentic-core"}}
+{"ts":"2026-04-08T03:31:50.033Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":8,"memoryTotalMB":10,"cpuUser":0.114125,"cpuSystem":0.075166}}}
+{"ts":"2026-04-08T03:31:50.034Z","type":"workflow","agent":"pm","data":{"details":"[SIGNAL] completed: Found critical symlink bug in agentic-core extraction. package.json 'link:../agentic-core' resolves "}}
+{"ts":"2026-04-08T03:31:50.048Z","type":"workflow","agent":"work_loop","data":{"details":"[SKIP] write-dbb: milestoneNeedsDBB > 0"}}
+{"ts":"2026-04-08T03:31:50.049Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0"}}
+{"ts":"2026-04-08T03:31:50.049Z","type":"error","agent":"eval","data":{"details":"archTaskCount > 0: archTaskCount is not defined"}}
+{"ts":"2026-04-08T03:31:50.049Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] update-architecture: archTaskCount > 0"}}
+{"ts":"2026-04-08T03:31:50.049Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] write-design, implement"}}
+{"ts":"2026-04-08T03:31:50.050Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] tech_lead"}}
+{"ts":"2026-04-08T03:31:50.050Z","type":"agent_start","agent":"tech_lead","data":{"details":"出技术方案","performance":{"memoryMB":8,"memoryTotalMB":10,"cpuUser":0.118838,"cpuSystem":0.087004}}}
+{"ts":"2026-04-08T03:31:50.051Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] developer"}}
+{"ts":"2026-04-08T03:31:50.051Z","type":"agent_start","agent":"developer","data":{"details":"实现功能","performance":{"memoryMB":8,"memoryTotalMB":10,"cpuUser":0.119214,"cpuSystem":0.087562}}}
+{"ts":"2026-04-08T03:33:44.127Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"76MB\",\"heapUsed\":\"13MB\",\"uptime\":\"300s\"}"}}
+{"ts":"2026-04-08T03:34:14.161Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 5min (active:3, done:75)"}}
+{"ts":"2026-04-08T03:34:14.164Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 5min (active:3, done:75)\"}"}}
+{"ts":"2026-04-08T03:34:33.065Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775619047998","from":"todo","to":"review","title":"Fix agentic-core symlink and broken tests"}}
+{"ts":"2026-04-08T03:34:34.561Z","type":"agent_complete","agent":"tech_lead","data":{"details":"completed successfully","performance":{"memoryMB":12,"memoryTotalMB":15,"cpuUser":0.199641,"cpuSystem":0.143803}}}
+{"ts":"2026-04-08T03:34:34.562Z","type":"workflow","agent":"tech_lead","data":{"details":"[SIGNAL] completed: Wrote technical design for task-1775619047998 (Fix agentic-core symlink and broken tests). The desig"}}
+{"ts":"2026-04-08T03:34:44.163Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 6min (active:3, done:75)"}}
+{"ts":"2026-04-08T03:34:44.164Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 6min (active:3, done:75)\"}"}}
+{"ts":"2026-04-08T03:34:51.130Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":7,"memoryTotalMB":10,"cpuUser":0.222604,"cpuSystem":0.156974}}}
+{"ts":"2026-04-08T03:34:51.131Z","type":"workflow","agent":"developer","data":{"details":"[SIGNAL] completed: Fixed agentic-core symlink (link:../agentic-core → link:./packages/agentic-core). All 174 tests now "}}
