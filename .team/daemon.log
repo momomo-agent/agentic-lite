@@ -17414,3 +17414,87 @@ No todo/in-progress tasks are missing designs.
 [2026-04-08T03:43:31.267Z] developer agent completed
 [2026-04-08 03:43:31] [agent_complete] developer completed successfully
 [2026-04-08 03:43:31] [workflow] developer [SIGNAL] completed: Removed src/providers/ dead code — switched all imports to agentic-core, deleted providers directory
+[2026-04-08 03:43:31] [workflow] work_loop [LOOP] Iteration 4
+[2026-04-08 03:43:31] [workflow] work_loop [SHELL] node /Users/kenefe/LOCAL/momo-agent/tools/team/scripts/goal-check.js
+[2026-04-08 03:43:31] [workflow] work_loop [EXEC] pm
+[2026-04-08 03:43:31] [agent_start] pm 管理任务和里程碑
+[2026-04-08T03:43:31.583Z] Running pm agent...
+[2026-04-08 03:43:44] [perf] daemon {"rss":"71MB","heapUsed":"8MB","uptime":"900s"}
+[2026-04-08 03:44:44] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 5min (active:2, done:77)
+[2026-04-08 03:45:14] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 6min (active:2, done:77)
+[2026-04-08 03:45:44] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 6min (active:3, done:77)
+[2026-04-08 03:46:14] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 7min (active:3, done:77)
+Here's my assessment and actions:
+
+**Current State:**
+- Vision 82%, PRD 95% — only Vision is below the 90% target
+- No pending CRs to process
+- M27 (agentic-core Extraction) has 4 done, 1 in review, 2 todo, 1 cancelled
+
+**What I did:**
+- Created **task-1775619938776** "Trim ask.ts to under 100 lines" (P0, assigned to developer) — ask.ts is 115 lines, needs to be ≤99 to close the vision gap
+- Updated **goal-status.md** to reflect that the agentic-core dependency is now in place and provider layer is delegated
+
+**M27 remaining work to hit Vision ≥90%:**
+| Task | Owner | Status |
+|------|-------|--------|
+| Remove src/providers/ dead code | developer | **review** — tester needs to approve |
+| Trim ask.ts to < 100 lines | developer | **todo** — new task |
+| Update ARCHITECTURE.md | architect | **todo** — blocked by dead code review |
+
+Once ask.ts ≤ 99 lines + ARCHITECTURE.md updated to reflect agentic-core structure, vision should reach ~90%.
+
+```signal
+{"status": "completed", "summary": "No pending CRs. Created P0 task to trim ask.ts from 115→<100 lines. M27 has 3 remaining tasks (1 review, 2 todo) to close the vision gap from 82% to ≥90%."}
+```
+[2026-04-08T03:46:19.832Z] pm agent completed
+[2026-04-08 03:46:19] [agent_complete] pm completed successfully
+[2026-04-08 03:46:19] [workflow] pm [SIGNAL] completed: No pending CRs. Created P0 task to trim ask.ts from 115→<100 lines. M27 has 3 remaining tasks (1 rev
+[2026-04-08 03:46:19] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-08 03:46:19] [error] eval archTaskCount > 0: archTaskCount is not defined
+[2026-04-08 03:46:19] [workflow] work_loop [PARALLEL-SKIP] update-architecture: archTaskCount > 0
+[2026-04-08 03:46:19] [workflow] work_loop [PARALLEL] write-design, implement, run-tests
+[2026-04-08 03:46:19] [workflow] work_loop [EXEC] tech_lead
+[2026-04-08 03:46:19] [agent_start] tech_lead 出技术方案
+[2026-04-08 03:46:19] [workflow] work_loop [EXEC] developer
+[2026-04-08 03:46:19] [agent_start] developer 实现功能
+[2026-04-08 03:46:19] [workflow] work_loop [EXEC] tester
+[2026-04-08 03:46:19] [agent_start] tester 验证功能
+[2026-04-08T03:46:19.885Z] Running tech_lead agent...
+[2026-04-08T03:46:19.885Z] Running developer agent...
+[2026-04-08T03:46:19.885Z] Running tester agent...
+[2026-04-08 03:47:14] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 8min (active:3, done:77)
+All milestone and task designs are complete. Here's a summary:
+
+**Milestone m27 ("agentic-core Extraction")** — has both dbb.md (10 DBB criteria) and design.md (full technical approach). No action needed.
+
+**Task designs:**
+- `task-1775615948444` — "Update ARCHITECTURE.md for agentic-core structure" — already has a complete design.md (assigned to architect, blocked on task-1775619570532)
+- `task-1775619938776` — "Trim ask.ts to under 100 lines" — **created design.md** with specific strategy: remove Accumulators interface (inline into handleToolCall param), remove section comment, compress accumulator initialization. Updated `hasDesign: true`.
+
+```signal
+{"status": "completed", "summary": "Verified m27 dbb.md + design.md exist and are complete. Wrote technical design for task-1775619938776 (trim ask.ts to ≤99 lines) and set hasDesign=true. All m27 todo tasks now have designs."}
+```
+[2026-04-08T03:47:24.339Z] tech_lead agent completed
+[2026-04-08 03:47:24] [agent_complete] tech_lead completed successfully
+[2026-04-08 03:47:24] [workflow] tech_lead [SIGNAL] completed: Verified m27 dbb.md + design.md exist and are complete. Wrote technical design for task-177561993877
+No more tasks in review. Testing complete.
+
+**Results for task-1775619570532 (Remove src/providers/ dead code):**
+
+- All 5 acceptance criteria verified and passing
+- All 174 tests pass, build succeeds
+- `src/providers/` deleted, zero residual import references
+- All public API exports preserved via `agentic-core`
+- Task marked as done
+
+**Minor DBB gaps noted (not blocking):**
+- ARCHITECTURE.md still references `src/providers/` and doesn't mention `agentic-core` (DBB-009)
+- `src/ask.ts` is 115 lines vs target < 100 (DBB-003)
+
+```signal
+{"status": "completed", "summary": "Tested task-1775619570532: all 174 tests pass, imports verified, providers dir deleted, task marked done"}
+```
+[2026-04-08T03:48:04.492Z] tester agent completed
+[2026-04-08 03:48:04] [agent_complete] tester completed successfully
+[2026-04-08 03:48:04] [workflow] tester [SIGNAL] completed: Tested task-1775619570532: all 174 tests pass, imports verified, providers dir deleted, task marked 

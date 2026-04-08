@@ -48,19 +48,17 @@ export async function ask(prompt: string, config: AgenticConfig): Promise<Agenti
 
 // --- Tool execution ---
 
-interface Accumulators {
-  allSources: Source[]
-  allCodeResults: CodeResult[]
-  allFileResults: FileResult[]
-  allShellResults: ShellResult[]
-  allToolCalls: ToolCall[]
-  allImages: string[]
-}
-
 async function handleToolCall(
   tc: ProviderToolCall,
   config: AgenticConfig,
-  acc: Accumulators,
+  acc: {
+    allSources: Source[]
+    allCodeResults: CodeResult[]
+    allFileResults: FileResult[]
+    allShellResults: ShellResult[]
+    allToolCalls: ToolCall[]
+    allImages: string[]
+  },
 ): Promise<string> {
   let output: string
   switch (tc.name) {
