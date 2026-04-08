@@ -1,126 +1,124 @@
-// agentic-lite — Integration layer
-// Connects agentic-core agent loop with tool implementations
+// agentic-lite — thin integration layer over agentic-core
+// agentic-core handles LLM calls, agent loop, streaming
+// agentic-lite provides file/code/shell tools + OS system prompt
 
-import { createProvider, runAgentLoop, runAgentLoopStream, type ProviderToolCall, type ToolDefinition, type AgentStreamChunk } from 'agentic-core'
-import { shellToolDef, executeShell, isNodeEnv } from './tools/shell.js'
-import type { AgenticConfig, AgenticResult, ToolName, Source, CodeResult, FileResult, ShellResult, ToolCall } from './types.js'
-import { searchToolDef, executeSearch } from './tools/search.js'
-import { codeToolDef, executeCode } from './tools/code.js'
-import { fileReadToolDef, fileWriteToolDef, executeFileRead, executeFileWrite } from './tools/file.js'
+import { executeCode } from './tools/code.js'
+import { executeFileRead, executeFileWrite, fileReadToolDef, fileWriteToolDef } from './tools/file.js'
+import { executeShell, isNodeEnv, shellToolDef } from './tools/shell.js'
 import { AgenticFileSystem, MemoryStorage } from 'agentic-filesystem'
+import type { AgenticConfig, AgenticResult, ToolCall } from './types.js'
 
-export async function ask(prompt: string, config: AgenticConfig): Promise<AgenticResult> {
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const { agenticAsk } = require('agentic-core')
+
+const OS_SYSTEM_PROMPT = `You are an AI assistant running on a computer. You have access to a filesystem and can execute code. Use the available tools to complete tasks.`
+
+function buildTools(config: AgenticConfig) {
+  const tools: any[] = []
+  const fs = config.filesystem
+  const enabled = config.tools ?? ['file', 'code']
+
+  if (enabled.includes('file')) {
+    tools.push({
+      ...fileReadToolDef,
+      parameters: fileReadToolDef.parameters,
+      execute: (input: any) => executeFileRead(input, fs).then(r => r.content ?? r.error ?? 'done'),
+    })
+    tools.push({
+      ...fileWriteToolDef,
+      parameters: fileWriteToolDef.parameters,
+      execute: (input: any) => executeFileWrite(input, fs).then(r => r.content ?? r.error ?? 'File written'),
+    })
+  }
+
+  if (enabled.includes('code')) {
+    tools.push({
+      name: 'code_exec',
+      description: 'Execute JavaScript or Python code in a sandbox',
+      parameters: { type: 'object', properties: { code: { type: 'string' }, language: { type: 'string', enum: ['javascript', 'python'] } }, required: ['code'] },
+      execute: (input: any) => executeCode(input, fs).then(r => r.error ? `Error: ${r.error}` : r.output),
+    })
+  }
+
+  if (enabled.includes('shell') && isNodeEnv()) {
+    tools.push({
+      ...shellToolDef,
+      parameters: shellToolDef.parameters,
+      execute: (input: any) => executeShell(input, fs).then(r => r.error ? `Error: ${r.error}` : r.output),
+    })
+  }
+
+  return tools
+}
+
+export async function ask(prompt: string, config: AgenticConfig = {}): Promise<AgenticResult> {
   const filesystem = config.filesystem ?? new AgenticFileSystem({ storage: new MemoryStorage() })
   const resolvedConfig = { ...config, filesystem }
-  const provider = createProvider(resolvedConfig)
-  const enabledTools = resolvedConfig.tools ?? ['search']
-  const toolDefs = buildToolDefs(enabledTools)
-  const allSources: Source[] = []
-  const allCodeResults: CodeResult[] = []
-  const allFileResults: FileResult[] = []
-  const allShellResults: ShellResult[] = []
-  const allToolCalls: ToolCall[] = []
-  const allImages: string[] = []
-  const result = await runAgentLoop({
-    provider,
-    prompt,
-    systemPrompt: resolvedConfig.systemPrompt,
-    toolDefs,
-    executeToolCall: (tc: ProviderToolCall) => handleToolCall(tc, resolvedConfig, {
-      allSources, allCodeResults, allFileResults, allShellResults, allToolCalls, allImages,
-    }),
+
+  const toolCalls: ToolCall[] = []
+  const tools = buildTools(resolvedConfig).map(t => ({
+    ...t,
+    execute: async (input: any) => {
+      const output = await t.execute(input)
+      toolCalls.push({ tool: t.name, input, output })
+      return output
+    },
+  }))
+
+  const chunks: string[] = []
+  const result = await agenticAsk(prompt, {
+    provider: config.provider ?? 'anthropic',
+    apiKey: config.apiKey,
+    baseUrl: config.baseUrl,
+    model: config.model,
+    system: config.systemPrompt ?? OS_SYSTEM_PROMPT,
+    tools,
+    stream: false,
+  }, (type: string, data: any) => {
+    if (type === 'chunk') chunks.push(data)
   })
+
   return {
-    answer: result.answer,
-    sources: allSources.length > 0 ? allSources : undefined,
-    images: allImages,
-    codeResults: allCodeResults.length > 0 ? allCodeResults : undefined,
-    files: allFileResults.length > 0 ? allFileResults : undefined,
-    shellResults: allShellResults.length > 0 ? allShellResults : undefined,
-    toolCalls: allToolCalls.length > 0 ? allToolCalls : undefined,
+    answer: result.answer ?? chunks.join(''),
+    toolCalls: toolCalls.length > 0 ? toolCalls : undefined,
     usage: result.usage,
   }
 }
 
-export async function* askStream(prompt: string, config: AgenticConfig = {}): AsyncGenerator<AgentStreamChunk> {
+export async function* askStream(prompt: string, config: AgenticConfig = {}): AsyncGenerator<{ type: string; text?: string; name?: string; input?: any; output?: any }> {
   const filesystem = config.filesystem ?? new AgenticFileSystem({ storage: new MemoryStorage() })
   const resolvedConfig = { ...config, filesystem }
-  const provider = createProvider(resolvedConfig)
-  const enabledTools = resolvedConfig.tools ?? ['search']
-  const toolDefs = buildToolDefs(enabledTools)
-  const allSources: Source[] = []
-  const allCodeResults: CodeResult[] = []
-  const allFileResults: FileResult[] = []
-  const allShellResults: ShellResult[] = []
-  const allToolCalls: ToolCall[] = []
-  const allImages: string[] = []
 
-  for await (const chunk of runAgentLoopStream({
-    provider,
-    prompt,
-    systemPrompt: resolvedConfig.systemPrompt,
-    toolDefs,
-    executeToolCall: (tc: ProviderToolCall) => handleToolCall(tc, resolvedConfig, {
-      allSources, allCodeResults, allFileResults, allShellResults, allToolCalls, allImages,
-    }),
-  })) {
-    yield chunk
-  }
-}
+  const tools = buildTools(resolvedConfig)
+  const chunks: { type: string; text?: string; name?: string; input?: any; output?: any }[] = []
+  let resolve: (() => void) | null = null
+  let done = false
 
-async function handleToolCall(
-  tc: ProviderToolCall,
-  config: AgenticConfig,
-  acc: { allSources: Source[]; allCodeResults: CodeResult[]; allFileResults: FileResult[]; allShellResults: ShellResult[]; allToolCalls: ToolCall[]; allImages: string[] },
-): Promise<string> {
-  let output: string
-  switch (tc.name) {
-    case 'web_search': {
-      const result = await executeSearch(tc.input, config.toolConfig?.search)
-      acc.allSources.push(...result.sources)
-      if (result.images) acc.allImages.push(...result.images)
-      output = result.text
-      break
-    }
-    case 'code_exec': {
-      const timeout = config.toolConfig?.code?.timeout
-      const result = await executeCode(tc.input, config.filesystem, timeout)
-      acc.allCodeResults.push(result)
-      output = result.error ? `Error: ${result.error}` : result.output
-      break
-    }
-    case 'file_read': {
-      const result = await executeFileRead(tc.input, config.filesystem)
-      acc.allFileResults.push(result)
-      output = result.content ?? 'File read complete'
-      break
-    }
-    case 'file_write': {
-      const result = await executeFileWrite(tc.input, config.filesystem)
-      acc.allFileResults.push(result)
-      output = result.content ?? 'File written'
-      break
-    }
-    case 'shell_exec': {
-      const result = await executeShell(tc.input, config.filesystem)
-      acc.allShellResults.push(result)
-      output = result.error ? `Error: ${result.error}` : result.output
-      break
-    }
-    default:
-      output = `Unknown tool: ${tc.name}`
+  const push = (chunk: any) => {
+    chunks.push(chunk)
+    resolve?.()
+    resolve = null
   }
-  acc.allToolCalls.push({ tool: tc.name, input: tc.input, output })
-  return output
-}
-function buildToolDefs(tools: ToolName[]): ToolDefinition[] {
-  const defs: ToolDefinition[] = []
-  if (tools.includes('search')) defs.push(searchToolDef)
-  if (tools.includes('code')) defs.push(codeToolDef)
-  if (tools.includes('file')) {
-    defs.push(fileReadToolDef)
-    defs.push(fileWriteToolDef)
+
+  const promise = agenticAsk(prompt, {
+    provider: config.provider ?? 'anthropic',
+    apiKey: config.apiKey,
+    baseUrl: config.baseUrl,
+    model: config.model,
+    system: config.systemPrompt ?? OS_SYSTEM_PROMPT,
+    tools,
+    stream: true,
+  }, (type: string, data: any) => {
+    if (type === 'chunk') push({ type: 'text', text: data })
+  }).then(() => { done = true; resolve?.(); resolve = null })
+
+  let i = 0
+  while (!done || i < chunks.length) {
+    if (i < chunks.length) {
+      yield chunks[i++]
+    } else {
+      await new Promise<void>(r => { resolve = r })
+    }
   }
-  if (tools.includes('shell') && isNodeEnv()) defs.push(shellToolDef)
-  return defs
+  await promise
 }

@@ -1,7 +1,7 @@
 {
   "agent": "developer",
-  "timestamp": "2026-04-08T04:36:09.929Z",
+  "timestamp": "2026-04-08T04:37:39.560Z",
   "exitCode": 0,
-  "status": "completed",
-  "summary": "No available tasks for developer. All developer tasks are done (82 total), 4 remaining todo tasks assigned to architect/tester."
+  "status": "blocked",
+  "summary": "No claimable tasks available — the 3 unblocked tasks all require writing to ARCHITECTURE.md (forbidden by my permissions), and the only test task is already assigned to 'tester'. Need PM to either create source code tasks, reassign existing tasks, or update permissions to allow ARCHITECTURE.md edits."
 }
