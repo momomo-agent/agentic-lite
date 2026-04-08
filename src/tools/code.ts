@@ -79,6 +79,10 @@ async function executePythonBrowser(code: string, filesystem?: AgenticFileSystem
       }
       const loadPyodide = (window as any).loadPyodide || (await import('pyodide')).loadPyodide
       pyodideInstance = await loadPyodide()
+      // Install common packages via micropip
+      await pyodideInstance.loadPackage('micropip')
+      const micropip = pyodideInstance.pyimport('micropip')
+      await micropip.install(['numpy', 'matplotlib'])
     } catch (err: any) {
       return { code, output: '', error: `Pyodide unavailable: ${err.message || String(err)}` }
     }

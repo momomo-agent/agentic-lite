@@ -939,6 +939,9 @@ async function executePythonBrowser(code, filesystem) {
       }
       const loadPyodide = window.loadPyodide || (await import("pyodide")).loadPyodide;
       pyodideInstance = await loadPyodide();
+      await pyodideInstance.loadPackage("micropip");
+      const micropip = pyodideInstance.pyimport("micropip");
+      await micropip.install(["numpy", "matplotlib"]);
     } catch (err) {
       return { code, output: "", error: `Pyodide unavailable: ${err.message || String(err)}` };
     }
