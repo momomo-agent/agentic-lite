@@ -1,7 +1,7 @@
 {
   "agent": "developer",
-  "timestamp": "2026-04-08T03:34:51.124Z",
+  "timestamp": "2026-04-08T03:36:45.457Z",
   "exitCode": 0,
-  "status": "completed",
-  "summary": "Fixed agentic-core symlink (link:../agentic-core → link:./packages/agentic-core). All 174 tests now pass (was 33 failures)."
+  "status": "blocked",
+  "summary": "No claimable tasks available. Both todo tasks (task-1775615948444, task-1775615948484) are blocked by task-1775619047998 which is still in review status."
 }
