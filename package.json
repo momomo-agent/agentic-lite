@@ -38,6 +38,7 @@
     "vitest": "^2.0.0"
   },
   "dependencies": {
+    "agentic-core": "link:../agentic-core",
     "agentic-filesystem": "link:../agentic-filesystem",
     "agentic-shell": "link:../agentic-shell",
     "pyodide": "^0.25.0",

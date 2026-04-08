@@ -17097,3 +17097,106 @@ No more tasks in review status. Testing complete.
 [2026-04-08T02:56:50.248Z] tester agent completed
 [2026-04-08 02:56:50] [agent_complete] tester completed successfully
 [2026-04-08 02:56:50] [workflow] tester [SIGNAL] completed: Tested task-1775615888978 (Create agentic-core package structure). All acceptance criteria pass: 4 f
+[2026-04-08 02:56:50] [workflow] work_loop [LOOP] Iteration 4
+[2026-04-08 02:56:50] [workflow] work_loop [SHELL] node /Users/kenefe/LOCAL/momo-agent/tools/team/scripts/goal-check.js
+[2026-04-08 02:56:50] [workflow] work_loop [EXEC] pm
+[2026-04-08 02:56:50] [agent_start] pm 管理任务和里程碑
+[2026-04-08T02:56:50.876Z] Running pm agent...
+No pending CRs. Milestone m27 is in progress with 1/5 tasks complete. The critical path is clear: developer is now working on the agent loop extraction (task-1775615923116), which unblocks the remaining 3 tasks.
+
+```signal
+{"status": "completed", "summary": "No pending CRs. Milestone m27 (agentic-core extraction) is active — 1/5 tasks done. Developer unblocked on agent loop extraction (task-1775615923116). Critical vision gap (82%→≥90%) is the only remaining goal blocker."}
+```
+[2026-04-08T02:58:33.337Z] pm agent completed
+[2026-04-08 02:58:33] [agent_complete] pm completed successfully
+[2026-04-08 02:58:33] [workflow] pm [SIGNAL] completed: No pending CRs. Milestone m27 (agentic-core extraction) is active — 1/5 tasks done. Developer unbloc
+[2026-04-08 02:58:33] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-08 02:58:33] [workflow] work_loop [PARALLEL-SKIP] write-design: todoWithoutDesign > 0
+[2026-04-08 02:58:33] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-08 02:58:33] [error] eval archTaskCount > 0: archTaskCount is not defined
+[2026-04-08 02:58:33] [workflow] work_loop [PARALLEL-SKIP] update-architecture: archTaskCount > 0
+[2026-04-08 02:58:33] [workflow] work_loop [PARALLEL] implement
+[2026-04-08 02:58:33] [workflow] work_loop [EXEC] developer
+[2026-04-08 02:58:33] [agent_start] developer 实现功能
+[2026-04-08T02:58:33.383Z] Running developer agent...
+[2026-04-08 03:01:43] [agent_start] daemon Still busy (40min), skipping
+[2026-04-08 03:01:43] [perf] daemon {"rss":"48MB","heapUsed":"7MB","uptime":"4200s"}
+[2026-04-08 03:01:45] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 5min (active:4, done:75)
+[2026-04-08 03:02:15] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 6min (active:4, done:75)
+[2026-04-08 03:03:15] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 7min (active:4, done:75)
+[2026-04-08 03:04:15] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 8min (active:4, done:75)
+[2026-04-08 03:05:15] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 9min (active:4, done:75)
+[2026-04-08 03:06:15] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 10min (active:4, done:75)
+[2026-04-08 03:06:43] [perf] daemon {"rss":"48MB","heapUsed":"7MB","uptime":"4500s"}
+[2026-04-08 03:07:15] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 11min (active:4, done:75)
+[2026-04-08 03:08:15] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 12min (active:4, done:75)
+[2026-04-08 03:08:33] [error] developer hung (0% CPU for 10min across process tree), killing
+[2026-04-08 03:08:33] [error] developer timed out after 3900s, skipping
+[2026-04-08 03:08:33] [workflow] post [POST] task-1775615923116: inProgress → review
+[2026-04-08 03:08:33] [workflow] work_loop [LOOP] Iteration 5
+[2026-04-08 03:08:33] [workflow] work_loop [SHELL] node /Users/kenefe/LOCAL/momo-agent/tools/team/scripts/goal-check.js
+[2026-04-08 03:08:33] [workflow] work_loop [EXEC] pm
+[2026-04-08 03:08:33] [agent_start] pm 管理任务和里程碑
+[2026-04-08T03:08:33.659Z] Running pm agent...
+[2026-04-08 03:09:15] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 13min (active:4, done:75)
+Good. Task chain for m27 is now properly set up:
+
+1. **task-1775615923116** (Extract loop+provider) — **review**, assigned to **tester** ← unblocks everything
+2. **task-1775613090477** (Refactor ask.ts) — **todo**, developer, blocked by #1
+3. **task-1775615948444** (Update ARCHITECTURE.md) — **todo**, architect, blocked by #2
+4. **task-1775615948484** (Verify tests) — **todo**, tester, blocked by #2
+
+The critical path: **tester reviews task-1775615923116 → developer refactors ask.ts → architect updates docs + tester verifies tests → vision gap closes**.
+
+All CRs are resolved. No new milestones needed — m27 is the right one to close the 82%→≥90% vision gap.
+
+```signal
+{"status": "completed", "summary": "Assigned task-1775615923116 (Extract agent loop+provider into agentic-core) to tester for review. This is the critical-path bottleneck blocking 3 downstream tasks in m27. All CRs resolved. Vision gap (82%→≥90%) hinges on m27 completion chain: tester review → developer refactor → architect update → tester verify."}
+```
+[2026-04-08T03:09:39.618Z] pm agent completed
+[2026-04-08 03:09:39] [agent_complete] pm completed successfully
+[2026-04-08 03:09:39] [workflow] pm [SIGNAL] completed: Assigned task-1775615923116 (Extract agent loop+provider into agentic-core) to tester for review. Th
+[2026-04-08 03:09:39] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-08 03:09:39] [workflow] work_loop [PARALLEL-SKIP] write-design: todoWithoutDesign > 0
+[2026-04-08 03:09:39] [error] eval archTaskCount > 0: archTaskCount is not defined
+[2026-04-08 03:09:39] [workflow] work_loop [PARALLEL-SKIP] update-architecture: archTaskCount > 0
+[2026-04-08 03:09:39] [workflow] work_loop [PARALLEL] implement, run-tests
+[2026-04-08 03:09:39] [workflow] work_loop [EXEC] developer
+[2026-04-08 03:09:39] [agent_start] developer 实现功能
+[2026-04-08 03:09:39] [workflow] work_loop [EXEC] tester
+[2026-04-08 03:09:39] [agent_start] tester 验证功能
+[2026-04-08T03:09:39.667Z] Running tester agent...
+[2026-04-08T03:09:39.668Z] Running developer agent...
+[2026-04-08 03:10:15] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 14min (active:4, done:75)
+[2026-04-08 03:11:15] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 15min (active:4, done:75)
+[2026-04-08 03:11:43] [agent_start] daemon Still busy (50min), skipping
+[2026-04-08 03:11:43] [perf] daemon {"rss":"54MB","heapUsed":"12MB","uptime":"4800s"}
+[2026-04-08 03:12:15] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 16min (active:4, done:75)
+[2026-04-08 03:13:15] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 17min (active:4, done:75)
+[2026-04-08 03:14:15] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 18min (active:4, done:75)
+## Testing Complete: task-1775615923116
+
+**Result: PASS — 67 new tests, 0 failures, 0 regressions**
+
+### What was verified:
+- **Build**: agentic-core builds cleanly (9.35 KB JS + 2.15 KB types)
+- **Exports**: All 14 required types/functions present in dist/index.d.ts
+- **Import safety**: No forbidden imports (agentic-lite, agentic-filesystem, agentic-shell, quickjs, pyodide) across 6 source files
+- **Agent loop**: 8 tests covering single-round, multi-round, usage accumulation, max rounds limit, systemPrompt passthrough, message sequencing
+- **Provider factory**: 13 tests covering anthropic/openai/custom creation, key validation, auto-detection, error cases
+
+### Files created:
+- `test/agentic-core-build.test.ts` — 46 tests (build, exports, import safety)
+- `test/agentic-core-loop.test.ts` — 21 tests (loop behavior, provider factory)
+- `.team/tasks/task-1775615923116/test-result.md` — detailed results
+- `.team/gaps/test-coverage.json` — updated coverage (174 total, 100% pass)
+
+### Regression check:
+- All 107 existing tests + 67 new tests = **174/174 passing**
+
+```signal
+{"status": "completed", "summary": "Tested agentic-core extraction: 67 new tests all passing, 0 regressions, task marked done"}
+```
+[2026-04-08T03:14:41.425Z] tester agent completed
+[2026-04-08 03:14:41] [agent_complete] tester completed successfully
+[2026-04-08 03:14:41] [workflow] tester [SIGNAL] completed: Tested agentic-core extraction: 67 new tests all passing, 0 regressions, task marked done

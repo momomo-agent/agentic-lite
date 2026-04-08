@@ -2,15 +2,15 @@
   "id": "task-1775615923116",
   "title": "Extract agent loop + provider into agentic-core",
   "description": "Move the agent loop (MAX_TOOL_ROUNDS loop, message management, tool dispatch) and provider abstraction (createProvider, Provider interface, anthropic/openai adapters, types) from agentic-lite into the new agentic-core package. agentic-core should expose: runAgentLoop(), createProvider(), and all provider types. Acceptance: agentic-core exports working loop and provider, builds cleanly.",
-  "status": "todo",
+  "status": "done",
   "priority": "P0",
-  "assignee": "developer",
+  "assignee": "tester",
   "blockedBy": [
     "task-1775615888978"
   ],
   "groupId": "m27",
   "hasDesign": true,
   "created": "2026-04-08T02:38:43.117Z",
-  "updated": "2026-04-08T02:50:05.517Z",
+  "updated": "2026-04-08T03:14:23.256Z",
   "milestoneId": "m27"
 }

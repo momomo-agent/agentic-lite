@@ -1,11 +1,13 @@
 {
-  "totalTests": 107,
-  "passed": 107,
+  "totalTests": 174,
+  "passed": 174,
   "failed": 0,
   "edgeCases": [
-    "null filesystem (not undefined) bypasses ?? default — acceptable TypeScript behavior",
-    "shell_exec in actual browser environment (jsdom) not tested — isNodeEnv() mock not applied at module level",
-    "search with invalid (non-empty) apiKey format not tested"
+    "Empty toolCalls array with stopReason='tool_use' — loop behavior untested in this edge case",
+    "Tool executor returning non-string/non-serializable output",
+    "rawContent undefined in provider response (fallback to text)",
+    "Provider throwing during chat() — error propagation not tested",
+    "Concurrent tool execution order not verified"
   ],
   "coverage": "100%"
 }

@@ -1,4 +1,9 @@
-export { createProvider } from './provider.js'
-export { createAnthropicProvider } from './anthropic.js'
-export { createOpenAIProvider } from './openai.js'
-export type { Provider, ProviderMessage, ProviderResponse, ToolDefinition, ProviderToolCall } from './provider.js'
+// Re-export provider abstractions from agentic-core
+export { createProvider, createAnthropicProvider, createOpenAIProvider } from 'agentic-core'
+export type {
+  Provider,
+  ProviderMessage,
+  ProviderResponse,
+  ToolDefinition,
+  ProviderToolCall,
+} from 'agentic-core'

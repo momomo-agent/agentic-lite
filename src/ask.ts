@@ -1,16 +1,14 @@
-// agentic-lite — Core agent loop
-// One function call, structured result with tool use
+// agentic-lite — Integration layer
+// Connects agentic-core agent loop with tool implementations
 
-import { createProvider } from './providers/index.js'
-import type { Provider, ProviderMessage, ToolDefinition, ProviderToolCall } from './providers/index.js'
+import { createProvider, runAgentLoop } from 'agentic-core'
+import type { ProviderToolCall, ToolDefinition } from 'agentic-core'
 import { shellToolDef, executeShell, isNodeEnv } from './tools/shell.js'
 import type { AgenticConfig, AgenticResult, ToolName, Source, CodeResult, FileResult, ShellResult, ToolCall } from './types.js'
 import { searchToolDef, executeSearch } from './tools/search.js'
 import { codeToolDef, executeCode } from './tools/code.js'
 import { fileReadToolDef, fileWriteToolDef, executeFileRead, executeFileWrite } from './tools/file.js'
 import { AgenticFileSystem, MemoryStorage } from 'agentic-filesystem'
-
-const MAX_TOOL_ROUNDS = 10
 
 export async function ask(prompt: string, config: AgenticConfig): Promise<AgenticResult> {
   const filesystem = config.filesystem ?? new AgenticFileSystem({ storage: new MemoryStorage() })
@@ -19,47 +17,33 @@ export async function ask(prompt: string, config: AgenticConfig): Promise<Agenti
   const enabledTools = resolvedConfig.tools ?? ['search']
   const toolDefs = buildToolDefs(enabledTools)
 
-  const messages: ProviderMessage[] = [{ role: 'user', content: prompt }]
-  const allToolCalls: ToolCall[] = []
   const allSources: Source[] = []
   const allCodeResults: CodeResult[] = []
   const allFileResults: FileResult[] = []
   const allShellResults: ShellResult[] = []
+  const allToolCalls: ToolCall[] = []
   const allImages: string[] = []
-  let totalUsage = { input: 0, output: 0 }
 
-  for (let round = 0; round < MAX_TOOL_ROUNDS; round++) {
-    const response = await provider.chat(messages, toolDefs, resolvedConfig.systemPrompt)
-    totalUsage.input += response.usage.input
-    totalUsage.output += response.usage.output
-
-    if (response.stopReason !== 'tool_use' || response.toolCalls.length === 0) {
-      return {
-        answer: response.text,
-        sources: allSources.length > 0 ? allSources : undefined,
-        images: allImages,
-        codeResults: allCodeResults.length > 0 ? allCodeResults : undefined,
-        files: allFileResults.length > 0 ? allFileResults : undefined,
-        shellResults: allShellResults.length > 0 ? allShellResults : undefined,
-        toolCalls: allToolCalls.length > 0 ? allToolCalls : undefined,
-        usage: totalUsage,
-      }
-    }
-
-    // Execute tool calls and continue the loop
-    const toolResults = await executeToolCalls(response.toolCalls, resolvedConfig, {
+  const result = await runAgentLoop({
+    provider,
+    prompt,
+    systemPrompt: resolvedConfig.systemPrompt,
+    toolDefs,
+    executeToolCall: (tc: ProviderToolCall) => handleToolCall(tc, resolvedConfig, {
       allSources, allCodeResults, allFileResults, allShellResults, allToolCalls, allImages,
-    })
+    }),
+  })
 
-    // Anthropic needs rawContent (with tool_use blocks) for assistant turn
-    messages.push({ role: 'assistant', content: response.rawContent ?? response.text ?? '' })
-    messages.push({
-      role: 'tool',
-      content: toolResults.map(r => ({ type: 'tool_result' as const, toolCallId: r.toolCallId, content: r.content })),
-    })
+  return {
+    answer: result.answer,
+    sources: allSources.length > 0 ? allSources : undefined,
+    images: allImages,
+    codeResults: allCodeResults.length > 0 ? allCodeResults : undefined,
+    files: allFileResults.length > 0 ? allFileResults : undefined,
+    shellResults: allShellResults.length > 0 ? allShellResults : undefined,
+    toolCalls: allToolCalls.length > 0 ? allToolCalls : undefined,
+    usage: result.usage,
   }
-
-  throw new Error(`Agent loop exceeded ${MAX_TOOL_ROUNDS} rounds`)
 }
 
 // --- Tool execution ---
@@ -73,57 +57,49 @@ interface Accumulators {
   allImages: string[]
 }
 
-async function executeToolCalls(
-  toolCalls: ProviderToolCall[],
-  config: AgenticConfig,
-  acc: Accumulators,
-): Promise<{ type: 'tool_result'; toolCallId: string; content: string }[]> {
-  const results = []
-
-  for (const tc of toolCalls) {
-    const output = await executeSingleTool(tc, config, acc)
-    acc.allToolCalls.push({ tool: tc.name, input: tc.input, output })
-    results.push({ type: 'tool_result' as const, toolCallId: tc.id, content: String(output) })
-  }
-
-  return results
-}
-
-async function executeSingleTool(
+async function handleToolCall(
   tc: ProviderToolCall,
   config: AgenticConfig,
   acc: Accumulators,
 ): Promise<string> {
+  let output: string
   switch (tc.name) {
     case 'web_search': {
       const result = await executeSearch(tc.input, config.toolConfig?.search)
       acc.allSources.push(...result.sources)
       if (result.images) acc.allImages.push(...result.images)
-      return result.text
+      output = result.text
+      break
     }
     case 'code_exec': {
       const result = await executeCode(tc.input, config.filesystem)
       acc.allCodeResults.push(result)
-      return result.error ? `Error: ${result.error}` : result.output
+      output = result.error ? `Error: ${result.error}` : result.output
+      break
     }
     case 'file_read': {
       const result = await executeFileRead(tc.input, config.filesystem)
       acc.allFileResults.push(result)
-      return result.content ?? 'File read complete'
+      output = result.content ?? 'File read complete'
+      break
     }
     case 'file_write': {
       const result = await executeFileWrite(tc.input, config.filesystem)
       acc.allFileResults.push(result)
-      return result.content ?? 'File written'
+      output = result.content ?? 'File written'
+      break
     }
     case 'shell_exec': {
       const result = await executeShell(tc.input, config.filesystem)
       acc.allShellResults.push(result)
-      return result.error ? `Error: ${result.error}` : result.output
+      output = result.error ? `Error: ${result.error}` : result.output
+      break
     }
     default:
-      return `Unknown tool: ${tc.name}`
+      output = `Unknown tool: ${tc.name}`
   }
+  acc.allToolCalls.push({ tool: tc.name, input: tc.input, output })
+  return output
 }
 
 function buildToolDefs(tools: ToolName[]): ToolDefinition[] {
