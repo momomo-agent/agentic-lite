@@ -1,7 +1,7 @@
 {
   "agent": "developer",
-  "timestamp": "2026-04-08T05:45:35.990Z",
+  "timestamp": "2026-04-08T05:47:36.275Z",
   "exitCode": 0,
-  "status": "completed",
-  "summary": "Created CR cr-1775627079958 proposing ARCHITECTURE.md updates for agentic-core/agentic-lite split, task moved to review"
+  "status": "blocked",
+  "summary": "No claimable tasks available. The only todo task (task-1775622465587) is blocked by task-1775620598483 which is still in_progress with the architect."
 }
