@@ -16897,3 +16897,148 @@ Done. Here's what I completed for M27:
 [2026-04-08T02:42:47.898Z] developer agent completed
 [2026-04-08 02:42:47] [agent_complete] developer completed successfully
 [2026-04-08 02:42:47] [workflow] developer [SIGNAL] blocked: No claimable tasks available. All todo tasks either lack a design (hasDesign=false) or are blocked b
+[2026-04-08 02:42:48] [workflow] work_loop [AGENT-SIGNAL] developer → blocked: No claimable tasks available. All todo tasks either lack a design (hasDesign=fal
+[2026-04-08 02:43:45] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 52min (active:5, done:74)
+[2026-04-08 02:44:45] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 53min (active:5, done:74)
+All done. Here's a summary of what was completed:
+
+**Milestone m27** — "agentic-core Extraction — Close Critical Vision Gap"
+
+| Artifact | Status |
+|---|---|
+| `.team/milestones/m27/dbb.md` | Already existed (10 DBB criteria) |
+| `.team/milestones/m27/design.md` | Already existed (comprehensive) |
+
+**Task designs created** (4 tasks, all had `hasDesign: false`):
+
+| Task | Design | Key Points |
+|---|---|---|
+| `task-1775615888978` — Create agentic-core package structure | `design.md` created | package.json, tsconfig, tsup, directory layout |
+| `task-1775615923116` — Extract agent loop + providers | `design.md` created | 6 files: types.ts, loop.ts, providers/{anthropic,openai,index}.ts, index.ts. Key design: `ProviderConfig` decoupled from `AgenticConfig`, generic `runAgentLoop()` with callback |
+| `task-1775615948444` — Update ARCHITECTURE.md | `design.md` created | Module structure, data flow, dependency graph updates. Submits CR to architect |
+| `task-1775615948484` — Verify all tests pass | `design.md` created | Verification gate, common failure scenarios documented |
+
+**Task `task-1775613090477`** (Refactor ask.ts) already had `hasDesign: true` — no changes needed.
+
+All 5 tasks now have `hasDesign: true`.
+
+```signal
+{"status": "completed", "summary": "Created technical designs for all 4 un-designed m27 tasks, updated hasDesign flags. m27 dbb.md and design.md already existed with comprehensive content."}
+```
+[2026-04-08T02:44:57.653Z] tech_lead-3 agent completed
+[2026-04-08 02:44:57] [agent_complete] tech_lead-3 completed successfully
+[2026-04-08 02:44:57] [workflow] tech_lead-3 [SIGNAL] completed: Created technical designs for all 4 un-designed m27 tasks, updated hasDesign flags. m27 dbb.md and d
+All deliverables are complete. Here's a summary:
+
+**Milestone M27 — agentic-core Extraction:**
+
+1. **dbb.md** — Already existed with 10 DBB criteria (DBB-001 through DBB-010)
+2. **design.md** — Created: covers architecture before/after, separation of concerns, `runAgentLoop` interface, backward compatibility, dependency graph, risk mitigation, and task sequence
+
+**Task Designs (all had existing design.md, updated hasDesign flag):**
+
+| Task | Title | Design |
+|------|-------|--------|
+| task-1775615888978 | Create agentic-core package structure | package.json, tsconfig, tsup setup |
+| task-1775615923116 | Extract agent loop + provider | 6 files: types.ts, anthropic.ts, openai.ts, providers/index.ts, loop.ts, index.ts |
+| task-1775615948444 | Update ARCHITECTURE.md | Module structure, data flow, dependency diagram updates |
+| task-1775615948484 | Verify all tests pass | Build order, common failure modes, fix strategies |
+
+**Key design decisions:**
+- `ProviderConfig` (agentic-core) decouples from `AgenticConfig` (agentic-lite) to avoid circular deps
+- `runAgentLoop` takes an `onToolCall` callback — agentic-core never references tool implementations
+- agentic-lite re-exports core types for backward compatibility
+- agentic-core has zero runtime dependencies (only uses global `fetch`)
+
+```signal
+{"status": "completed", "summary": "Created milestone m27 design.md and updated hasDesign=true for all 4 todo tasks. DBB already existed with 10 criteria. All task designs cover exact files, interfaces, algorithms, edge cases, and verification steps."}
+```
+[2026-04-08T02:45:36.874Z] tech_lead-2 agent completed
+[2026-04-08 02:45:36] [agent_complete] tech_lead-2 completed successfully
+[2026-04-08 02:45:36] [workflow] tech_lead-2 [SIGNAL] completed: Created milestone m27 design.md and updated hasDesign=true for all 4 todo tasks. DBB already existed
+[2026-04-08 02:45:45] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 54min (active:5, done:74)
+[2026-04-08 02:46:43] [perf] daemon {"rss":"31MB","heapUsed":"9MB","uptime":"3300s"}
+[2026-04-08 02:46:45] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 55min (active:5, done:74)
+[2026-04-08 02:47:45] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 56min (active:5, done:74)
+[2026-04-08 02:48:45] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 57min (active:5, done:74)
+Milestone m27 is in good shape. Here's a summary of what was verified:
+
+**Milestone m27: agentic-core Extraction — Close Critical Vision Gap**
+- `dbb.md` — exists with 10 DBB criteria (DBB-001 through DBB-010)
+- `design.md` — exists with full technical design (before/after architecture, `runAgentLoop` interface, dependency graph, risk mitigation, task sequence)
+
+**5 tasks — all now have `hasDesign=true`:**
+
+| Task | Description | Status | Design |
+|------|------------|--------|--------|
+| task-1775615888978 | Create agentic-core package structure | todo | Updated hasDesign |
+| task-1775615923116 | Extract agent loop + provider into agentic-core | todo | Updated hasDesign |
+| task-1775613090477 | Refactor ask.ts to use agentic-core | todo | Already had hasDesign |
+| task-1775615948444 | Update ARCHITECTURE.md | todo | Updated hasDesign |
+| task-1775615948484 | Verify all 107 tests pass | todo | Updated hasDesign |
+
+**Dependency chain:** 1775615888978 → 1775615923116 → 1775613090477 → {1775615948444, 1775615948484}
+
+```signal
+{"status": "completed", "summary": "Verified m27 milestone has dbb.md and design.md. Updated hasDesign=true for all 4 tasks that had design.md files but were marked false. All 5 m27 tasks now have complete technical designs."}
+```
+[2026-04-08T02:49:05.267Z] tech_lead-1 agent completed
+[2026-04-08 02:49:05] [agent_complete] tech_lead-1 completed successfully
+[2026-04-08 02:49:05] [workflow] tech_lead-1 [SIGNAL] completed: Verified m27 milestone has dbb.md and design.md. Updated hasDesign=true for all 4 tasks that had des
+[2026-04-08 02:49:05] [workflow] work_loop [LOOP] Iteration 2
+[2026-04-08 02:49:05] [workflow] work_loop [SHELL] node /Users/kenefe/LOCAL/momo-agent/tools/team/scripts/goal-check.js
+[2026-04-08 02:49:05] [workflow] work_loop [EXEC] pm
+[2026-04-08 02:49:05] [agent_start] pm 管理任务和里程碑
+[2026-04-08T02:49:05.649Z] Running pm agent...
+[2026-04-08 02:49:45] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 58min (active:5, done:74)
+**PM Status Report**
+
+**Goal**: Vision ≥90% + PRD ≥90%
+**Current**: Vision 82% (CRITICAL) | PRD 95% | DBB 100% | Architecture 93%
+
+**What I found:**
+- All 12 CRs are already resolved — no pending change requests
+- Milestone m27 ("agentic-core Extraction") is the active milestone, targeting the only critical gap: vision mandates `agentic-lite = agentic-core + agentic-filesystem + agentic-shell`, but no `agentic-core` dependency exists
+
+**What I did:**
+- Fixed task-1775615923116's missing milestoneId (assigned to m27)
+- Kicked off development by assigning the first unblocked task (task-1775615888978 — "Create agentic-core package structure") to the developer
+
+**Milestone m27 task chain (5 tasks):**
+1. `task-1775615888978` — Create agentic-core package structure → **developer, assigned**
+2. `task-1775615923116` — Extract agent loop + provider → developer (blocked by #1)
+3. `task-1775613090477` — Refactor ask.ts to thin integration layer → developer (blocked by #2)
+4. `task-1775615948444` — Update ARCHITECTURE.md → architect (blocked by #3)
+5. `task-1775615948484` — Verify all 107 tests pass → tester (blocked by #3)
+
+**No new tasks or milestones needed** — m27 already has the right plan to close the vision gap.
+
+```signal
+{"status": "completed", "summary": "All CRs resolved. Milestone m27 (agentic-core extraction) is active with 5 tasks targeting the critical vision gap (82%→≥90%). Fixed missing milestoneId on task-1775615923116. Developer kicked off on first P0 task (package structure). Task dependency chain is clear through test verification."}
+```
+[2026-04-08T02:50:38.335Z] pm agent completed
+[2026-04-08 02:50:38] [agent_complete] pm completed successfully
+[2026-04-08 02:50:38] [workflow] pm [SIGNAL] completed: All CRs resolved. Milestone m27 (agentic-core extraction) is active with 5 tasks targeting the criti
+[2026-04-08 02:50:38] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-08 02:50:38] [workflow] work_loop [PARALLEL-SKIP] write-design: todoWithoutDesign > 0
+[2026-04-08 02:50:38] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-08 02:50:38] [error] eval archTaskCount > 0: archTaskCount is not defined
+[2026-04-08 02:50:38] [workflow] work_loop [PARALLEL-SKIP] update-architecture: archTaskCount > 0
+[2026-04-08 02:50:38] [workflow] work_loop [PARALLEL] implement
+[2026-04-08 02:50:38] [workflow] work_loop [EXEC] developer
+[2026-04-08 02:50:38] [agent_start] developer 实现功能
+[2026-04-08T02:50:38.380Z] Running developer agent...
+[2026-04-08 02:50:45] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 59min (active:5, done:74)
+[2026-04-08 02:51:43] [agent_start] daemon Still busy (30min), skipping
+[2026-04-08 02:51:43] [perf] daemon {"rss":"42MB","heapUsed":"12MB","uptime":"3600s"}
+[2026-04-08 02:51:45] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 60min (active:5, done:74)
+[2026-04-08 02:52:45] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 61min (active:5, done:74)
+[2026-04-08 02:53:45] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 62min (active:5, done:74)
+The next task in the chain is blocked until the current one is reviewed and marked "done". No other unblocked, unassigned tasks are available.
+
+```signal
+{"status": "completed", "summary": "Created agentic-core package structure at packages/agentic-core/ with package.json, tsconfig.json, tsup.config.ts, and src/index.ts placeholder. Build verified — dist/index.js and dist/index.d.ts generated successfully."}
+```
+[2026-04-08T02:53:54.283Z] developer agent completed
+[2026-04-08 02:53:54] [agent_complete] developer completed successfully
+[2026-04-08 02:53:54] [workflow] developer [SIGNAL] completed: Created agentic-core package structure at packages/agentic-core/ with package.json, tsconfig.json, t

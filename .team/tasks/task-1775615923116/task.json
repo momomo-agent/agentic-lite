@@ -9,7 +9,8 @@
     "task-1775615888978"
   ],
   "groupId": "m27",
-  "hasDesign": false,
+  "hasDesign": true,
   "created": "2026-04-08T02:38:43.117Z",
-  "updated": "2026-04-08T02:39:31.057Z"
+  "updated": "2026-04-08T02:50:05.517Z",
+  "milestoneId": "m27"
 }
