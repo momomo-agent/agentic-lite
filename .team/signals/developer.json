@@ -1,7 +1,7 @@
 {
   "agent": "developer",
-  "timestamp": "2026-04-08T04:39:40.722Z",
+  "timestamp": "2026-04-08T04:43:13.174Z",
   "exitCode": 0,
   "status": "completed",
-  "summary": "No developer tasks available — all 4 remaining todo tasks are assigned to architect or tester. 82/88 tasks done, 2 cancelled, 4 todo with non-developer assignees."
+  "summary": "No available tasks — all developer work is done, remaining tasks assigned to architect/tester"
 }

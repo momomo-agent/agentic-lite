@@ -1,22 +1,15 @@
 // agentic-lite — Types
 
 import type { AgenticFileSystem } from 'agentic-filesystem'
-import type { Provider } from 'agentic-core'
 
 export interface AgenticConfig {
-  /** LLM provider: 'anthropic' | 'openai' | 'custom' */
-  provider?: 'anthropic' | 'openai' | 'custom'
-  /** Custom provider instance (required when provider='custom') */
-  customProvider?: Provider
+  /** LLM provider: 'anthropic' | 'openai' */
+  provider?: 'anthropic' | 'openai'
   /** System prompt passed to the LLM */
   systemPrompt?: string
   /** API key for the provider */
   apiKey?: string
-  /**
-   * Base URL for custom/proxy providers.
-   * When provider='custom' and customProvider is not set,
-   * this falls back to an OpenAI-compatible adapter automatically.
-   */
+  /** Base URL for custom/proxy providers */
   baseUrl?: string
   /** Model name */
   model?: string
@@ -34,22 +27,14 @@ export interface AgenticConfig {
 export type ToolName = 'search' | 'code' | 'file' | 'shell'
 
 export interface AgenticResult {
-  /** Final answer text */
   answer: string
-  /** Sources used (from search) */
   sources?: Source[]
-  /** Images from search results */
-  images: string[]
-  /** Code execution results */
+  images?: string[]
   codeResults?: CodeResult[]
-  /** Files read/written */
   files?: FileResult[]
-  /** Shell command results */
   shellResults?: ShellResult[]
-  /** Raw tool calls made */
   toolCalls?: ToolCall[]
-  /** Token usage */
-  usage: { input: number; output: number }
+  usage?: { input: number; output: number }
 }
 
 export interface Source {
@@ -68,6 +53,7 @@ export interface FileResult {
   path: string
   action: 'read' | 'write'
   content?: string
+  error?: string
 }
 
 export interface ShellResult {
