@@ -64,6 +64,25 @@ function detectLanguage(code: string): 'python' | 'javascript' {
   return pythonPatterns.test(code) ? 'python' : 'javascript'
 }
 
+async function executeJavaScriptBrowser(code: string, filesystem?: AgenticFileSystem): Promise<CodeResult> {
+  try {
+    const AsyncFunction = Object.getPrototypeOf(async function(){}).constructor
+    const logs: string[] = []
+    const _console = { 
+      log: (...a: any[]) => logs.push(a.join(' ')), 
+      warn: (...a: any[]) => logs.push(a.join(' ')), 
+      error: (...a: any[]) => logs.push(a.join(' ')) 
+    }
+    const fsWrapper = filesystem ? createFsWrapper(filesystem) : undefined
+    const fn = new AsyncFunction('console', 'fs', `return (async () => { ${code} })()`)
+    const result = await fn(_console, fsWrapper)
+    const output = [...logs, ...(result !== undefined && result !== null ? [`→ ${String(result)}`] : [])].join('\n')
+    return { code, output }
+  } catch (err: any) {
+    return { code, output: '', error: err.message || String(err) }
+  }
+}
+
 async function executePythonBrowser(code: string, filesystem?: AgenticFileSystem): Promise<CodeResult> {
   if (!pyodideInstance) {
     try {
@@ -262,7 +281,11 @@ export async function executeCode(
       : executePythonNode(code, filesystem, timeout)
   }
 
-  // JavaScript execution
+  // JavaScript execution — use AsyncFunction in browser, quickjs in Node
+  if (isBrowser) {
+    return executeJavaScriptBrowser(code, filesystem, logs)
+  }
+
   const hasAwait = /\bawait\b/.test(code)
   const logs: string[] = []
 

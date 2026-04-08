@@ -898,6 +898,12 @@ function withTimeout(promise, timeoutMs) {
   });
 }
 var pyodideInstance = null;
+function createFsWrapper(filesystem) {
+  return {
+    read: (path) => filesystem.read(path),
+    write: (path, data) => filesystem.write(path, data)
+  };
+}
 async function injectFilesystem(vm, filesystem) {
   if (!filesystem) return;
   const fsHandle = vm.newObject();
@@ -924,6 +930,25 @@ async function injectFilesystem(vm, filesystem) {
 function detectLanguage(code) {
   const pythonPatterns = /\b(import|from|def|print|if __name__|class\s+\w+:|with\s+open)\b/;
   return pythonPatterns.test(code) ? "python" : "javascript";
+}
+async function executeJavaScriptBrowser(code, filesystem) {
+  try {
+    const AsyncFunction = Object.getPrototypeOf(async function() {
+    }).constructor;
+    const logs = [];
+    const _console = {
+      log: (...a) => logs.push(a.join(" ")),
+      warn: (...a) => logs.push(a.join(" ")),
+      error: (...a) => logs.push(a.join(" "))
+    };
+    const fsWrapper = filesystem ? createFsWrapper(filesystem) : void 0;
+    const fn = new AsyncFunction("console", "fs", `return (async () => { ${code} })()`);
+    const result = await fn(_console, fsWrapper);
+    const output = [...logs, ...result !== void 0 && result !== null ? [`\u2192 ${String(result)}`] : []].join("\n");
+    return { code, output };
+  } catch (err) {
+    return { code, output: "", error: err.message || String(err) };
+  }
 }
 async function executePythonBrowser(code, filesystem) {
   if (!pyodideInstance) {
@@ -1088,6 +1113,9 @@ async function executeCode(input, filesystem, timeout) {
   const language = detectLanguage(code);
   if (language === "python") {
     return isBrowser ? withTimeout(executePythonBrowser(code, filesystem), timeout) : executePythonNode(code, filesystem, timeout);
+  }
+  if (isBrowser) {
+    return executeJavaScriptBrowser(code, filesystem, logs);
   }
   const hasAwait = /\bawait\b/.test(code);
   const logs = [];
