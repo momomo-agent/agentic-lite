@@ -1,6 +1,6 @@
 {
-  "totalTests": 237,
-  "passed": 237,
+  "totalTests": 241,
+  "passed": 241,
   "failed": 0,
   "edgeCases": [
     "JS timeout cannot interrupt synchronous QuickJS execution (vm.evalCode blocks event loop, withTimeout timer never fires)",
@@ -10,5 +10,5 @@
     "Anthropic/OpenAI SSE parsing tested only via mocks (no integration test with real endpoints)",
     "Pyodide browser timeout path untested (requires browser environment)"
   ],
-  "coverage": "85%"
+  "coverage": "87%"
 }
