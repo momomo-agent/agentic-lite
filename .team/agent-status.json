@@ -25,7 +25,7 @@
   },
   "pm": {
     "status": "idle",
-    "lastRun": "2026-04-08T03:46:19.835Z",
+    "lastRun": "2026-04-08T03:51:59.671Z",
     "currentTask": null,
     "retryCount": 0
   },
@@ -55,7 +55,7 @@
   },
   "developer": {
     "status": "idle",
-    "lastRun": "2026-04-08T03:50:47.476Z",
+    "lastRun": "2026-04-08T03:53:11.537Z",
     "currentTask": null,
     "retryCount": 0
   },
@@ -72,9 +72,9 @@
     "retryCount": 0
   },
   "tester": {
-    "status": "idle",
-    "lastRun": "2026-04-08T03:48:04.495Z",
-    "currentTask": null,
+    "status": "running",
+    "lastRun": "2026-04-08T03:51:59.687Z",
+    "currentTask": "验证功能",
     "retryCount": 0
   },
   "tech_lead": {
