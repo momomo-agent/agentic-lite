@@ -29,7 +29,13 @@
 <body>
   <h1>⚡ agentic-lite + agentic-render</h1>
   <div class="row">
-    <input id="key" placeholder="API key (sk-ant-...)" />
+    <input id="key" placeholder="API key" />
+  </div>
+  <div class="row">
+    <input id="baseurl" placeholder="Base URL (e.g. https://api.xiaomimimo.com/anthropic)" value="https://api.xiaomimimo.com/anthropic" />
+  </div>
+  <div class="row">
+    <input id="model" placeholder="Model (e.g. mimo-v2-pro)" value="mimo-v2-pro" />
   </div>
   <div class="row">
     <textarea id="prompt" rows="3" placeholder="输入任务，例如：写一首关于代码的诗，然后统计字数">写一首关于代码的诗，然后用 code_exec 统计字数</textarea>
@@ -48,6 +54,8 @@
 
     btn.addEventListener('click', async () => {
       const apiKey = document.getElementById('key').value.trim()
+      const baseUrl = document.getElementById('baseurl').value.trim()
+      const model = document.getElementById('model').value.trim()
       const prompt = document.getElementById('prompt').value.trim()
       if (!apiKey || !prompt) return
 
@@ -63,8 +71,8 @@
       try {
         for await (const chunk of askStream(prompt, {
           apiKey,
-          baseUrl: 'https://api.xiaomimimo.com/anthropic',
-          model: 'mimo-v2-pro',
+          baseUrl: baseUrl || 'https://api.xiaomimimo.com/anthropic',
+          model: model || 'mimo-v2-pro',
           provider: 'anthropic',
           tools: ['file', 'code'],
           filesystem,
