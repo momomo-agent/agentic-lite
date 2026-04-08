@@ -8267,3 +8267,10 @@
 {"ts":"2026-04-08T05:05:44.564Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 35min (active:2, done:82)\"}"}}
 {"ts":"2026-04-08T05:05:45.364Z","type":"agent_complete","agent":"tester","data":{"details":"completed successfully","performance":{"memoryMB":8,"memoryTotalMB":11,"cpuUser":2.883408,"cpuSystem":2.687679}}}
 {"ts":"2026-04-08T05:05:45.364Z","type":"workflow","agent":"tester","data":{"details":"[SIGNAL] blocked: Tested streaming & timeout: 29/39 tests pass. Core runAgentLoopStream (16/16) and code timeout (11/1"}}
+{"ts":"2026-04-08T05:05:45.457Z","type":"workflow","agent":"work_loop","data":{"details":"[AGENT-SIGNAL] tester → blocked: Tested streaming & timeout: 29/39 tests pass. Core runAgentLoopStream (16/16) an"}}
+{"ts":"2026-04-08T05:05:45.497Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 3"}}
+{"ts":"2026-04-08T05:05:45.509Z","type":"workflow","agent":"work_loop","data":{"details":"[SHELL] node /Users/kenefe/LOCAL/momo-agent/tools/team/scripts/goal-check.js"}}
+{"ts":"2026-04-08T05:05:45.670Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-08T05:05:45.671Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":8,"memoryTotalMB":13,"cpuUser":2.894248,"cpuSystem":2.71804}}}
+{"ts":"2026-04-08T05:05:54.985Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":8,"memoryTotalMB":13,"cpuUser":2.895048,"cpuSystem":2.718525}}}
+{"ts":"2026-04-08T05:05:54.985Z","type":"workflow","agent":"developer","data":{"details":"[SIGNAL] completed: No developer tasks available — all remaining todo/inProgress tasks are assigned to architect or test"}}
