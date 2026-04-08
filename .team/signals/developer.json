@@ -1,7 +1,7 @@
 {
   "agent": "developer",
-  "timestamp": "2026-04-08T05:32:06.595Z",
+  "timestamp": "2026-04-08T05:42:59.796Z",
   "exitCode": 0,
   "status": "completed",
-  "summary": "No available tasks to claim — all remaining tasks are assigned to architect or tester. Developer has nothing to work on."
+  "summary": "No available tasks to claim. All remaining tasks (3) are assigned to 'architect'. All developer tasks are done. Waiting for new work."
 }
