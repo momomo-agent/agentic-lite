@@ -8274,3 +8274,61 @@
 {"ts":"2026-04-08T05:05:45.671Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":8,"memoryTotalMB":13,"cpuUser":2.894248,"cpuSystem":2.71804}}}
 {"ts":"2026-04-08T05:05:54.985Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":8,"memoryTotalMB":13,"cpuUser":2.895048,"cpuSystem":2.718525}}}
 {"ts":"2026-04-08T05:05:54.985Z","type":"workflow","agent":"developer","data":{"details":"[SIGNAL] completed: No developer tasks available — all remaining todo/inProgress tasks are assigned to architect or test"}}
+{"ts":"2026-04-08T05:05:55.101Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 20"}}
+{"ts":"2026-04-08T05:05:55.114Z","type":"workflow","agent":"work_loop","data":{"details":"[SHELL] node /Users/kenefe/LOCAL/momo-agent/tools/team/scripts/goal-check.js"}}
+{"ts":"2026-04-08T05:05:55.279Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-08T05:05:55.280Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":9,"memoryTotalMB":11,"cpuUser":2.90548,"cpuSystem":2.749346}}}
+{"ts":"2026-04-08T05:06:13.306Z","type":"task_status","agent":"tester","data":{"taskId":"task-1775620603459","from":"blocked","to":"todo","title":"Add tests for streaming and timeout"}}
+{"ts":"2026-04-08T05:06:14.576Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 35min (active:3, done:82)"}}
+{"ts":"2026-04-08T05:06:14.577Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 35min (active:3, done:82)\"}"}}
+{"ts":"2026-04-08T05:06:44.578Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 36min (active:3, done:82)"}}
+{"ts":"2026-04-08T05:06:44.579Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 36min (active:3, done:82)\"}"}}
+{"ts":"2026-04-08T05:06:45.924Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":8,"memoryTotalMB":11,"cpuUser":2.940861,"cpuSystem":2.778059}}}
+{"ts":"2026-04-08T05:06:45.924Z","type":"workflow","agent":"pm","data":{"details":"[SIGNAL] completed: Goal already met (Vision 100% + PRD 100%). Unblocked streaming tests task (all blockers done). Added"}}
+{"ts":"2026-04-08T05:06:45.938Z","type":"workflow","agent":"work_loop","data":{"details":"[SKIP] write-dbb: milestoneNeedsDBB > 0"}}
+{"ts":"2026-04-08T05:06:45.938Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] write-design: todoWithoutDesign > 0"}}
+{"ts":"2026-04-08T05:06:45.938Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0"}}
+{"ts":"2026-04-08T05:06:45.938Z","type":"error","agent":"eval","data":{"details":"archTaskCount > 0: archTaskCount is not defined"}}
+{"ts":"2026-04-08T05:06:45.938Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] update-architecture: archTaskCount > 0"}}
+{"ts":"2026-04-08T05:06:45.939Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] implement"}}
+{"ts":"2026-04-08T05:06:45.939Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] developer"}}
+{"ts":"2026-04-08T05:06:45.939Z","type":"agent_start","agent":"developer","data":{"details":"实现功能","performance":{"memoryMB":8,"memoryTotalMB":13,"cpuUser":2.945415,"cpuSystem":2.789543}}}
+{"ts":"2026-04-08T05:06:47.694Z","type":"task_created","agent":null,"data":{"taskId":"task-1775624807693","title":"Fix askStream() to use runAgentLoopStream instead of legacy agenticAsk","priority":"P1","group":"m28"}}
+{"ts":"2026-04-08T05:07:14.578Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 36min (active:4, done:82)"}}
+{"ts":"2026-04-08T05:07:14.579Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 36min (active:4, done:82)\"}"}}
+{"ts":"2026-04-08T05:07:19.057Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":13,"memoryTotalMB":19,"cpuUser":2.958308,"cpuSystem":2.803664}}}
+{"ts":"2026-04-08T05:07:19.057Z","type":"workflow","agent":"pm","data":{"details":"[SIGNAL] completed: Goal met (Vision 100% + PRD 100%). Created P0 task to fix askStream() implementation bug found by te"}}
+{"ts":"2026-04-08T05:07:19.071Z","type":"workflow","agent":"work_loop","data":{"details":"[SKIP] write-dbb: milestoneNeedsDBB > 0"}}
+{"ts":"2026-04-08T05:07:19.071Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0"}}
+{"ts":"2026-04-08T05:07:19.071Z","type":"error","agent":"eval","data":{"details":"archTaskCount > 0: archTaskCount is not defined"}}
+{"ts":"2026-04-08T05:07:19.071Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] update-architecture: archTaskCount > 0"}}
+{"ts":"2026-04-08T05:07:19.072Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] write-design, implement"}}
+{"ts":"2026-04-08T05:07:19.072Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] tech_lead"}}
+{"ts":"2026-04-08T05:07:19.072Z","type":"agent_start","agent":"tech_lead","data":{"details":"出技术方案","performance":{"memoryMB":16,"memoryTotalMB":20,"cpuUser":2.962596,"cpuSystem":2.815185}}}
+{"ts":"2026-04-08T05:07:19.072Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] developer"}}
+{"ts":"2026-04-08T05:07:19.073Z","type":"agent_start","agent":"developer","data":{"details":"实现功能","performance":{"memoryMB":16,"memoryTotalMB":20,"cpuUser":2.962817,"cpuSystem":2.815656}}}
+{"ts":"2026-04-08T05:07:44.578Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 37min (active:4, done:82)"}}
+{"ts":"2026-04-08T05:07:44.579Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 37min (active:4, done:82)\"}"}}
+{"ts":"2026-04-08T05:08:13.853Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775624807693","from":"todo","to":"inProgress","title":"Fix askStream() to use runAgentLoopStream instead of legacy agenticAsk"}}
+{"ts":"2026-04-08T05:08:44.193Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"38MB\",\"heapUsed\":\"14MB\",\"uptime\":\"6000s\"}"}}
+{"ts":"2026-04-08T05:08:44.524Z","type":"agent_start","agent":"daemon","data":{"details":"Still busy (20min), skipping","performance":{"memoryMB":14,"memoryTotalMB":20,"cpuUser":2.992759,"cpuSystem":2.838676}}}
+{"ts":"2026-04-08T05:08:44.593Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 38min (active:4, done:82)"}}
+{"ts":"2026-04-08T05:08:44.593Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 38min (active:4, done:82)\"}"}}
+{"ts":"2026-04-08T05:09:28.560Z","type":"agent_complete","agent":"tech_lead","data":{"details":"completed successfully","performance":{"memoryMB":8,"memoryTotalMB":10,"cpuUser":3.022075,"cpuSystem":2.897331}}}
+{"ts":"2026-04-08T05:09:28.566Z","type":"workflow","agent":"tech_lead","data":{"details":"[SIGNAL] completed: Created technical design for task-1775624807693 (fix askStream to use runAgentLoopStream). All 7 m28"}}
+{"ts":"2026-04-08T05:09:45.067Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 39min (active:4, done:82)"}}
+{"ts":"2026-04-08T05:09:45.092Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 39min (active:4, done:82)\"}"}}
+{"ts":"2026-04-08T05:10:45.030Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 40min (active:4, done:82)"}}
+{"ts":"2026-04-08T05:10:45.031Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 40min (active:4, done:82)\"}"}}
+{"ts":"2026-04-08T05:11:45.136Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 41min (active:4, done:82)"}}
+{"ts":"2026-04-08T05:11:45.140Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 41min (active:4, done:82)\"}"}}
+{"ts":"2026-04-08T05:12:45.254Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 42min (active:4, done:82)"}}
+{"ts":"2026-04-08T05:12:45.256Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 42min (active:4, done:82)\"}"}}
+{"ts":"2026-04-08T05:13:44.259Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"11MB\",\"heapUsed\":\"8MB\",\"uptime\":\"6300s\"}"}}
+{"ts":"2026-04-08T05:13:45.070Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 43min (active:4, done:82)"}}
+{"ts":"2026-04-08T05:13:45.072Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 43min (active:4, done:82)\"}"}}
+{"ts":"2026-04-08T05:14:45.247Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 44min (active:4, done:82)"}}
+{"ts":"2026-04-08T05:14:45.251Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 44min (active:4, done:82)\"}"}}
+{"ts":"2026-04-08T05:14:58.968Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775624807693","from":"inProgress","to":"review","title":"Fix askStream() to use runAgentLoopStream instead of legacy agenticAsk"}}
+{"ts":"2026-04-08T05:15:36.002Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":8,"memoryTotalMB":10,"cpuUser":3.182877,"cpuSystem":3.197795}}}
+{"ts":"2026-04-08T05:15:36.008Z","type":"workflow","agent":"developer","data":{"details":"[SIGNAL] completed: Fixed askStream() to use runAgentLoopStream from agentic-core. Rewrote both ask() and askStream() to"}}

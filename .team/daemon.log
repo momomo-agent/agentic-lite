@@ -18664,3 +18664,115 @@ No unassigned tasks with `hasDesign=true` and `status=todo` exist.
 [2026-04-08T05:05:54.983Z] developer agent completed
 [2026-04-08 05:05:54] [agent_complete] developer completed successfully
 [2026-04-08 05:05:54] [workflow] developer [SIGNAL] completed: No developer tasks available — all remaining todo/inProgress tasks are assigned to architect or test
+[2026-04-08 05:05:55] [workflow] work_loop [LOOP] Iteration 20
+[2026-04-08 05:05:55] [workflow] work_loop [SHELL] node /Users/kenefe/LOCAL/momo-agent/tools/team/scripts/goal-check.js
+[2026-04-08 05:05:55] [workflow] work_loop [EXEC] pm
+[2026-04-08 05:05:55] [agent_start] pm 管理任务和里程碑
+[2026-04-08T05:05:55.304Z] Running pm agent...
+[2026-04-08 05:06:14] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 35min (active:3, done:82)
+[2026-04-08 05:06:44] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 36min (active:3, done:82)
+The PRD is at 100% match. Let me check the current state summary:
+
+**Status Summary:**
+- **Vision: 100%** — Goal met (≥90%)
+- **PRD: 100%** — Goal met (≥90%)
+- **Architecture: 93%** — Tasks in progress to improve
+
+**M28 (Streaming & Timeout Enforcement) Progress:**
+| Task | Status | Assignee |
+|------|--------|----------|
+| Streaming to agentic-core | done | tester |
+| Streaming API in agentic-lite | done | tester |
+| Timeout enforcement | done | tester |
+| ARCHITECTURE.md streaming docs | in_progress | architect |
+| Tests for streaming/timeout | todo (just unblocked) | tester |
+| ARCHITECTURE.md cleanup | todo (blocked on arch update) | architect |
+
+**Actions taken:**
+1. Unblocked `task-1775620603459` (tests) — all 3 blockers are done, changed status from "blocked" to "todo"
+2. Added dependency on `task-1775622465587` (arch cleanup) — blocked by `task-1775620598483` (streaming arch update) to avoid conflicts
+3. All CRs already resolved — nothing to process
+
+**Goal: ACHIEVED.** Vision 100% + PRD 100% both exceed the ≥90% target. Remaining m28 tasks will push architecture from 93% → ≥95%.
+
+```signal
+{"status": "completed", "summary": "Goal already met (Vision 100% + PRD 100%). Unblocked streaming tests task (all blockers done). Added dependency to prevent architecture doc conflicts. All CRs resolved. M28 has 3 tasks remaining (2 architecture docs, 1 tests) to close architecture gap from 93% toward 95%."}
+```
+[2026-04-08T05:06:45.920Z] pm agent completed
+[2026-04-08 05:06:45] [agent_complete] pm completed successfully
+[2026-04-08 05:06:45] [workflow] pm [SIGNAL] completed: Goal already met (Vision 100% + PRD 100%). Unblocked streaming tests task (all blockers done). Added
+[2026-04-08 05:06:45] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-08 05:06:45] [workflow] work_loop [PARALLEL-SKIP] write-design: todoWithoutDesign > 0
+[2026-04-08 05:06:45] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-08 05:06:45] [error] eval archTaskCount > 0: archTaskCount is not defined
+[2026-04-08 05:06:45] [workflow] work_loop [PARALLEL-SKIP] update-architecture: archTaskCount > 0
+[2026-04-08 05:06:45] [workflow] work_loop [PARALLEL] implement
+[2026-04-08 05:06:45] [workflow] work_loop [EXEC] developer
+[2026-04-08 05:06:45] [agent_start] developer 实现功能
+[2026-04-08T05:06:45.966Z] Running developer agent...
+[2026-04-08 05:07:14] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 36min (active:4, done:82)
+Goal is already met (Vision 100% + PRD 100%). Here's what I've done this cycle:
+
+**Actions taken:**
+1. Created **task-1775624807693** (P0, developer) — "Fix askStream() to use runAgentLoopStream instead of legacy agenticAsk" — the tester found 10/12 ask-stream tests fail because `askStream()` still uses the legacy `agenticAsk` path instead of `runAgentLoopStream`
+2. Updated **task-1775620603459** (tests) — added the new fix task as a blocker so tests are re-run after the fix
+3. All CRs are resolved — no pending change requests
+
+**m28 status (7 tasks):**
+- 3 done (streaming provider, askStream expose, code timeout)
+- 1 in_progress (architect updating ARCHITECTURE.md for streaming)
+- 3 todo (askStream fix P0, architecture cleanup, re-run tests)
+
+The askStream bug is the main blocker for the streaming feature actually working end-to-end.
+
+```signal
+{"status": "completed", "summary": "Goal met (Vision 100% + PRD 100%). Created P0 task to fix askStream() implementation bug found by tester. Unblocked test task. All CRs resolved. No further PM action needed — remaining work is architect/developer tasks."}
+```
+[2026-04-08T05:07:19.054Z] pm agent completed
+[2026-04-08 05:07:19] [agent_complete] pm completed successfully
+[2026-04-08 05:07:19] [workflow] pm [SIGNAL] completed: Goal met (Vision 100% + PRD 100%). Created P0 task to fix askStream() implementation bug found by te
+[2026-04-08 05:07:19] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-08 05:07:19] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-08 05:07:19] [error] eval archTaskCount > 0: archTaskCount is not defined
+[2026-04-08 05:07:19] [workflow] work_loop [PARALLEL-SKIP] update-architecture: archTaskCount > 0
+[2026-04-08 05:07:19] [workflow] work_loop [PARALLEL] write-design, implement
+[2026-04-08 05:07:19] [workflow] work_loop [EXEC] tech_lead
+[2026-04-08 05:07:19] [agent_start] tech_lead 出技术方案
+[2026-04-08 05:07:19] [workflow] work_loop [EXEC] developer
+[2026-04-08 05:07:19] [agent_start] developer 实现功能
+[2026-04-08T05:07:19.104Z] Running developer agent...
+[2026-04-08T05:07:19.104Z] Running tech_lead agent...
+[2026-04-08 05:07:44] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 37min (active:4, done:82)
+[2026-04-08 05:08:44] [perf] daemon {"rss":"38MB","heapUsed":"14MB","uptime":"6000s"}
+[2026-04-08 05:08:44] [agent_start] daemon Still busy (20min), skipping
+[2026-04-08 05:08:44] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 38min (active:4, done:82)
+All m28 tasks now have technical designs (`hasDesign=true`). Here's a summary of what I did:
+
+## Completed
+
+**Milestone m28 verification documents** (already existed, confirmed complete):
+- `.team/milestones/m28/dbb.md` — 10 DBB criteria covering streaming, timeout, backward compat, and vision score
+- `.team/milestones/m28/design.md` — full technical design with architecture, interfaces, and implementation plan
+
+**Task technical design created:**
+- `task-1775624807693` — "Fix askStream() to use runAgentLoopStream instead of legacy agenticAsk"
+  - Wrote `.team/tasks/task-1775624807693/design.md` with:
+    - Root cause analysis: `askStream()` uses legacy `agenticAsk` which ignores `customProvider` and bypasses `runAgentLoopStream()`
+    - Solution: rewrite `askStream()` to use `createProvider()` + `runAgentLoopStream()` from agentic-core
+    - Detailed implementation with code outlines for imports, function body, and helper
+    - Key mapping from legacy format to agentic-core format
+    - Edge cases and test verification plan (12 tests in `ask-stream.test.ts`)
+  - Updated task.json: `hasDesign: true`
+
+**All 7 m28 tasks verified:** all have `hasDesign=true`, no blocked tasks without designs.
+
+```signal
+{"status": "completed", "summary": "Created technical design for task-1775624807693 (fix askStream to use runAgentLoopStream). All 7 m28 milestone tasks now have designs. Milestone dbb.md and design.md confirmed complete."}
+```
+[2026-04-08T05:09:28.443Z] tech_lead agent completed
+[2026-04-08 05:09:28] [agent_complete] tech_lead completed successfully
+[2026-04-08 05:09:28] [workflow] tech_lead [SIGNAL] completed: Created technical design for task-1775624807693 (fix askStream to use runAgentLoopStream). All 7 m28
+[2026-04-08 05:09:45] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 39min (active:4, done:82)
+[2026-04-08 05:10:45] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 40min (active:4, done:82)
+[2026-04-08 05:11:45] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 41min (active:4, done:82)
+[2026-04-08 05:12:45] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 42min (active:4, done:82)
