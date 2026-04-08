@@ -18365,3 +18365,92 @@ All remaining todo tasks are either assigned to "architect" (3 ARCHITECTURE.md t
 [2026-04-08T04:45:32.821Z] developer agent completed
 [2026-04-08 04:45:32] [agent_complete] developer completed successfully
 [2026-04-08 04:45:32] [workflow] developer [SIGNAL] blocked: No available tasks for developer. 4 remaining todo tasks: 3 are ARCHITECTURE.md tasks (assigned to a
+[2026-04-08 04:45:32] [workflow] work_loop [AGENT-SIGNAL] developer → blocked: No available tasks for developer. 4 remaining todo tasks: 3 are ARCHITECTURE.md 
+[2026-04-08 04:45:32] [workflow] work_loop [LOOP] Iteration 17
+[2026-04-08 04:45:32] [workflow] work_loop [SHELL] node /Users/kenefe/LOCAL/momo-agent/tools/team/scripts/goal-check.js
+[2026-04-08 04:45:33] [workflow] work_loop [EXEC] pm
+[2026-04-08 04:45:33] [agent_start] pm 管理任务和里程碑
+[2026-04-08T04:45:33.122Z] Running pm agent...
+[2026-04-08 04:45:44] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 15min (active:4, done:82)
+**Summary:**
+
+- **Goal status: MET** — Vision 100%, PRD 100% (both well above the ≥90% threshold)
+- **m28 progress:** 3/6 tasks done. The 3 core implementation tasks (streaming, timeout enforcement) are complete.
+- **Remaining m28 tasks** (all in `todo`):
+  - `task-1775620598483` — Update ARCHITECTURE.md for streaming API (architect)
+  - `task-1775620603459` — Add tests for streaming and timeout (tester, blocked by all 3 done tasks)
+  - `task-1775622465587` — Clean ARCHITECTURE.md of leftover task instructions (architect)
+- **All 12 CRs:** All resolved, no pending change requests.
+- **Fixed:** Re-attached task-1775622465587 to m28 milestone (it was missing its milestoneId).
+
+The remaining tasks are documentation and testing — no vision or PRD gaps remain. The architect needs to update ARCHITECTURE.md (two tasks), and the tester needs to add streaming/timeout tests.
+
+```signal
+{"status": "completed", "summary": "Goal is met: Vision 100%, PRD 100%. m28 has 3/6 tasks done (streaming + timeout code complete). Remaining: 2 ARCHITECTURE.md tasks (architect) + 1 test task (tester). All CRs resolved. Fixed orphaned task milestoneId."}
+```
+[2026-04-08T04:46:31.113Z] pm agent completed
+[2026-04-08 04:46:31] [agent_complete] pm completed successfully
+[2026-04-08 04:46:31] [workflow] pm [SIGNAL] completed: Goal is met: Vision 100%, PRD 100%. m28 has 3/6 tasks done (streaming + timeout code complete). Rema
+[2026-04-08 04:46:31] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-08 04:46:31] [workflow] work_loop [PARALLEL-SKIP] write-design: todoWithoutDesign > 0
+[2026-04-08 04:46:31] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-08 04:46:31] [error] eval archTaskCount > 0: archTaskCount is not defined
+[2026-04-08 04:46:31] [workflow] work_loop [PARALLEL-SKIP] update-architecture: archTaskCount > 0
+[2026-04-08 04:46:31] [workflow] work_loop [PARALLEL] implement
+[2026-04-08 04:46:31] [workflow] work_loop [EXEC] developer
+[2026-04-08 04:46:31] [agent_start] developer 实现功能
+[2026-04-08T04:46:31.160Z] Running developer agent...
+[2026-04-08 04:46:44] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 16min (active:4, done:82)
+[2026-04-08 04:47:44] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 17min (active:4, done:82)
+[2026-04-08 04:48:44] [perf] daemon {"rss":"58MB","heapUsed":"13MB","uptime":"4800s"}
+[2026-04-08 04:48:44] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 18min (active:4, done:82)
+[2026-04-08 04:48:44] [error] daemon Watchdog: busy for 80min, force reset
+[2026-04-08 04:48:44] [workflow]  [RESUME] Resuming from checkpoint: node=work_loop, step=3
+[2026-04-08 04:48:44] [agent_start] work_loop [NODE] work_loop - PM 调度中心 — PM 评估后并行派发所有角色，全部完成后回 PM
+[2026-04-08 04:48:44] [workflow] work_loop [LOOP] Iteration 1
+[2026-04-08 04:48:44] [workflow] work_loop [SHELL] node /Users/kenefe/LOCAL/momo-agent/tools/team/scripts/goal-check.js
+[2026-04-08 04:48:44] [workflow] work_loop [EXEC] pm
+[2026-04-08 04:48:44] [agent_start] pm 管理任务和里程碑
+[2026-04-08T04:48:44.750Z] Running pm agent...
+[2026-04-08 04:49:14] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 18min (active:3, done:82)
+Goal is already achieved (Vision 100% + PRD 100%). 
+
+**M28 Status**: 3/6 tasks done. Remaining:
+- 2 architecture doc tasks (architect assigned)
+- 1 test task (tester, blocked on streaming impl which is now done)
+
+All 12 CRs are resolved. No blocking issues. The remaining tasks are quality improvements that won't change the Vision/PRD scores.
+
+```signal
+{"status": "completed", "summary": "Goal already met: Vision 100% + PRD 100%. M28 has 3/6 tasks done. 2 architect doc tasks and 1 test task remain. All CRs resolved."}
+```
+[2026-04-08T04:49:37.002Z] pm agent completed
+[2026-04-08 04:49:37] [agent_complete] pm completed successfully
+[2026-04-08 04:49:37] [workflow] pm [SIGNAL] completed: Goal already met: Vision 100% + PRD 100%. M28 has 3/6 tasks done. 2 architect doc tasks and 1 test t
+[2026-04-08 04:49:37] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-08 04:49:37] [workflow] work_loop [PARALLEL-SKIP] write-design: todoWithoutDesign > 0
+[2026-04-08 04:49:37] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-08 04:49:37] [error] eval archTaskCount > 0: archTaskCount is not defined
+[2026-04-08 04:49:37] [workflow] work_loop [PARALLEL-SKIP] update-architecture: archTaskCount > 0
+[2026-04-08 04:49:37] [workflow] work_loop [PARALLEL] implement
+[2026-04-08 04:49:37] [workflow] work_loop [EXEC] developer
+[2026-04-08 04:49:37] [agent_start] developer 实现功能
+[2026-04-08T04:49:37.049Z] Running developer agent...
+[2026-04-08 04:49:44] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 19min (active:3, done:82)
+[2026-04-08 04:50:44] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 20min (active:3, done:82)
+I've confirmed all developer tasks are done, but there are 45 test failures in the test suite. These failures are caused by the `agentic-core` npm package being updated to no longer support `customProvider` and now requiring `apiKey` unconditionally. The tests in agentic-lite that test through the `ask.ts` wrapper are broken because they rely on `customProvider` mock support.
+
+No unassigned tasks with designs are available for me to claim. I'll report this status.
+
+**Summary:**
+- All 3 developer tasks are done
+- Test suite has 45 failures (14 files) — root cause is `agentic-core` npm package API changed (removed `customProvider` support, added mandatory `apiKey` validation)
+- Remaining tasks are assigned to architect and tester
+- No tasks available for developer to claim
+
+```signal
+{"status": "blocked", "summary": "All developer tasks complete. 45 test failures due to agentic-core API change (customProvider removed, apiKey now mandatory). No unassigned tasks available."}
+```
+[2026-04-08T04:51:11.493Z] developer agent completed
+[2026-04-08 04:51:11] [agent_complete] developer completed successfully
+[2026-04-08 04:51:11] [workflow] developer [SIGNAL] blocked: All developer tasks complete. 45 test failures due to agentic-core API change (customProvider remove
