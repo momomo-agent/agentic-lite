@@ -72,9 +72,9 @@
     "retryCount": 0
   },
   "tester": {
-    "status": "running",
-    "lastRun": "2026-04-08T04:12:48.394Z",
-    "currentTask": "验证功能",
+    "status": "idle",
+    "lastRun": "2026-04-08T04:23:43.228Z",
+    "currentTask": null,
     "retryCount": 0
   },
   "tech_lead": {
