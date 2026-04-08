@@ -1,14 +1,14 @@
 {
-  "totalTests": 256,
-  "passed": 256,
-  "failed": 0,
+  "totalTests": 6,
+  "passed": 2,
+  "failed": 4,
   "edgeCases": [
-    "JS timeout cannot interrupt synchronous QuickJS execution (vm.evalCode blocks event loop, withTimeout timer never fires)",
-    "toolConfig.code.timeout not wired into ask() — timeout parameter works in executeCode directly but is ignored by ask() config path",
-    "Streaming + timeout combined: no test for streaming code execution that times out",
-    "askStream with toolConfig.code.timeout propagation untested",
-    "Pyodide browser timeout path untested (requires browser environment)",
-    "OpenAI stream() skips finish_reason when delta is undefined (continue before checking finish_reason at openai.ts:110)"
+    "ask() without emit callback crashes agentic-core — emit('status', ...) called unconditionally at agentic-core.js:354",
+    "askStream() in browser simulation (process deleted) crashes vitest worker with unhandled ReferenceError",
+    "Search tool removed from buildTools() — no search integration tests possible with current code",
+    "AgenticResult.images field no longer returned by ask() — regression from previous version",
+    "Multi-round tool execution with new agenticAsk wrapper not tested",
+    "Tool call tracking via closure wrapping not verified for concurrent or error cases"
   ],
-  "coverage": "90%"
+  "coverage": "33%"
 }

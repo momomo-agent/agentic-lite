@@ -64,7 +64,8 @@
       try {
         for await (const chunk of askStream(prompt, {
           apiKey,
-          baseUrl: 'https://code.newcli.com/claude/ultra',
+          baseUrl: 'https://api.xiaomimimo.com/anthropic',
+          model: 'mimo-v2-pro',
           provider: 'anthropic',
           tools: ['file', 'code'],
           filesystem,
@@ -81,7 +82,6 @@
             if (last) last.innerHTML += ` → <span class="result">${String(chunk.output).slice(0, 100)}</span>`
           }
         }
-        renderer.finish()
       } catch (err) {
         outputEl.textContent = `Error: ${err.message}`
       } finally {

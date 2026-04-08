@@ -8497,3 +8497,23 @@
 {"ts":"2026-04-08T05:31:59.527Z","type":"workflow","agent":"developer","data":{"details":"[SIGNAL] completed: No available tasks for developer. All developer tasks are done (3/3). Project goal achieved: Vision "}}
 {"ts":"2026-04-08T05:32:06.600Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":14,"memoryTotalMB":16,"cpuUser":3.682826,"cpuSystem":3.971256}}}
 {"ts":"2026-04-08T05:32:06.601Z","type":"workflow","agent":"developer","data":{"details":"[SIGNAL] completed: No available tasks to claim — all remaining tasks are assigned to architect or tester. Developer has"}}
+{"ts":"2026-04-08T05:32:16.355Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 10min (active:3, done:84)"}}
+{"ts":"2026-04-08T05:32:16.355Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 10min (active:3, done:84)\"}"}}
+{"ts":"2026-04-08T05:33:16.356Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 11min (active:3, done:84)"}}
+{"ts":"2026-04-08T05:33:16.357Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 11min (active:3, done:84)\"}"}}
+{"ts":"2026-04-08T05:33:44.209Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"41MB\",\"heapUsed\":\"8MB\",\"uptime\":\"7500s\"}"}}
+{"ts":"2026-04-08T05:34:16.360Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 12min (active:3, done:84)"}}
+{"ts":"2026-04-08T05:34:16.360Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 12min (active:3, done:84)\"}"}}
+{"ts":"2026-04-08T05:35:16.370Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 13min (active:3, done:84)"}}
+{"ts":"2026-04-08T05:35:16.371Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 13min (active:3, done:84)\"}"}}
+{"ts":"2026-04-08T05:38:16.384Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 16min (active:3, done:84)"}}
+{"ts":"2026-04-08T05:38:16.385Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 16min (active:3, done:84)\"}"}}
+{"ts":"2026-04-08T05:39:16.388Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 17min (active:3, done:84)"}}
+{"ts":"2026-04-08T05:39:16.389Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 17min (active:3, done:84)\"}"}}
+{"ts":"2026-04-08T05:40:16.399Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 18min (active:3, done:84)"}}
+{"ts":"2026-04-08T05:40:16.399Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 18min (active:3, done:84)\"}"}}
+{"ts":"2026-04-08T05:40:45.263Z","type":"task_status","agent":"tester","data":{"taskId":"task-1775625626971","from":"testing","to":"blocked","title":"Browser verification + ask.ts slimming"}}
+{"ts":"2026-04-08T05:40:46.387Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 18min (active:2, done:84)"}}
+{"ts":"2026-04-08T05:40:46.387Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 18min (active:2, done:84)\"}"}}
+{"ts":"2026-04-08T05:41:14.757Z","type":"agent_complete","agent":"tester","data":{"details":"completed successfully","performance":{"memoryMB":8,"memoryTotalMB":11,"cpuUser":3.879542,"cpuSystem":4.097435}}}
+{"ts":"2026-04-08T05:41:14.759Z","type":"workflow","agent":"tester","data":{"details":"[SIGNAL] completed: "}}

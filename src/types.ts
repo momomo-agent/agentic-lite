@@ -6,7 +6,6 @@ export interface AgenticConfig {
   /** LLM provider: 'anthropic' | 'openai' | 'custom' */
   provider?: 'anthropic' | 'openai' | 'custom'
   /** Custom provider implementation (for testing/proxy) */
-  customProvider?: import('agentic-core').Provider
   /** System prompt passed to the LLM */
   systemPrompt?: string
   /** API key for the provider */
@@ -31,7 +30,7 @@ export type ToolName = 'search' | 'code' | 'file' | 'shell'
 export interface AgenticResult {
   answer: string
   sources?: Source[]
-  images: string[]
+  images?: string[]
   codeResults?: CodeResult[]
   files?: FileResult[]
   shellResults?: ShellResult[]
