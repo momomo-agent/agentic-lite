@@ -8354,3 +8354,5 @@
 {"ts":"2026-04-08T05:16:51.021Z","type":"task_status","agent":"tester","data":{"taskId":"task-1775620603459","from":"todo","to":"testing","title":"Add tests for streaming and timeout"}}
 {"ts":"2026-04-08T05:16:54.353Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":13,"memoryTotalMB":17,"cpuUser":3.257608,"cpuSystem":3.358552}}}
 {"ts":"2026-04-08T05:16:54.382Z","type":"workflow","agent":"developer","data":{"details":"[SIGNAL] completed: No claimable tasks available. All todo tasks are assigned to architect/tester or blocked. Developer "}}
+{"ts":"2026-04-08T05:17:34.830Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":8,"memoryTotalMB":11,"cpuUser":3.274339,"cpuSystem":3.387028}}}
+{"ts":"2026-04-08T05:17:34.832Z","type":"workflow","agent":"developer","data":{"details":"[SIGNAL] completed: Rewrote ask() and askStream() to use runAgentLoop/runAgentLoopStream from agentic-core, added search"}}

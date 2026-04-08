@@ -14,6 +14,7 @@
 - Added `search` tool to `buildTools()` (was missing — search was not wired up)
 - Imported `searchToolDef` and `executeSearch` from `./tools/search.js`
 - Added `imagesCollector` parameter to `buildTools` to collect images from search results
+- Search tool returns `r.text` (not JSON.stringify) and pushes images into collector
 
 ### 3. `src/types.ts` — Added `customProvider` field + fixed type constraints
 - Added `customProvider?: import('agentic-core').Provider` to `AgenticConfig`
