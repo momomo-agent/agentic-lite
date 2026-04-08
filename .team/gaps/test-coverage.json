@@ -1,6 +1,6 @@
 {
-  "totalTests": 199,
-  "passed": 199,
+  "totalTests": 211,
+  "passed": 211,
   "failed": 0,
   "edgeCases": [
     "Empty toolCalls array with stopReason='tool_use' — loop behavior untested in this edge case",
@@ -12,7 +12,9 @@
     "OpenAI SSE parsing: chunk with no choices array",
     "Streaming with real API endpoints (integration test missing)",
     "JS timeout cannot interrupt sync QuickJS execution (withTimeout limitation)",
-    "JS timeout cannot interrupt QuickJS evalCodeAsync (event loop limitation)"
+    "JS timeout cannot interrupt QuickJS evalCodeAsync (event loop limitation)",
+    "askStream() with code/file/shell tools — tool execution path tested only with search tool",
+    "External custom providers missing stream() method — compile-time error only, no runtime test"
   ],
   "coverage": "100%"
 }

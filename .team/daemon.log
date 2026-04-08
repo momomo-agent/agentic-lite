@@ -18025,3 +18025,68 @@ There are no available tasks to claim. All todo tasks with `hasDesign=true` are 
 [2026-04-08T04:28:42.609Z] developer agent completed
 [2026-04-08 04:28:42] [agent_complete] developer completed successfully
 [2026-04-08 04:28:42] [workflow] developer [SIGNAL] completed: No claimable tasks available. All todo tasks with designs are assigned to other roles. My task task-
+[2026-04-08 04:28:44] [perf] daemon {"rss":"56MB","heapUsed":"13MB","uptime":"3600s"}
+[2026-04-08 04:28:44] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 5min (active:5, done:81)
+[2026-04-08 04:28:44] [agent_start] daemon Still busy (60min), skipping
+[2026-04-08 04:29:14] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 6min (active:5, done:81)
+All done. Here's a summary of what I did:
+
+**Milestone m28**: Already has `dbb.md` (10 DBB criteria covering streaming, timeout, backward compat, architecture docs, vision score) and `design.md` (full technical design for streaming + timeout). No changes needed.
+
+**Task designs reviewed**:
+- `task-1775620598483` (Update ARCHITECTURE.md for streaming API) — already `hasDesign: true`
+- `task-1775620603459` (Add tests for streaming and timeout) — already `hasDesign: true`
+- `task-1775622465587` (Clean ARCHITECTURE.md) — **created design**, now `hasDesign: true`
+
+**New design for task-1775622465587** covers 6 verified changes:
+1. Remove leftover task instructions (lines 55-75)
+2. Fix Provider/ToolDefinition location to `packages/agentic-core/src/types.ts`
+3. Fix Module Structure — remove nonexistent `src/providers/` listing, add agentic-core package
+4. Fix `createOpenAIProvider` call to use config object pattern
+5. Fix `tools/index.ts` description from "tool registry" to "barrel export"
+6. Add `toolConfig`, `baseUrl`, `customProvider` to AgenticConfig fields
+
+```signal
+{"status": "completed", "summary": "Verified m28 dbb.md and design.md exist. Created technical design for task-1775622465587 (ARCHITECTURE.md cleanup) with 6 verified changes against actual codebase. Updated hasDesign to true. All m28 todo tasks now have designs."}
+```
+[2026-04-08T04:29:46.252Z] tech_lead agent completed
+[2026-04-08 04:29:46] [agent_complete] tech_lead completed successfully
+[2026-04-08 04:29:46] [workflow] tech_lead [SIGNAL] completed: Verified m28 dbb.md and design.md exist. Created technical design for task-1775622465587 (ARCHITECTU
+[2026-04-08 04:30:14] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 7min (active:5, done:81)
+All done. No more tasks in review status.
+
+## Summary
+
+**Task**: `task-1775620587853` — Expose streaming API in agentic-lite  
+**Status**: done
+
+### What I tested:
+- **DBB-001**: Provider interface has `stream()` method - PASS
+- **DBB-002**: Anthropic provider implements `stream()` - PASS
+- **DBB-003**: OpenAI provider implements `stream()` - PASS
+- **DBB-004**: `runAgentLoopStream()` exists in agentic-core - PASS
+- **DBB-005**: `askStream()` is exported from agentic-lite - PASS
+- **DBB-006**: Backward compatibility (all existing tests pass) - PASS
+
+### Results:
+- **211 tests total**: 211 passed, 0 failed
+- **12 new tests** written in `test/ask-stream.test.ts` covering:
+  - Export verification
+  - Text-only streaming
+  - Tool use streaming
+  - Config handling (systemPrompt, default filesystem)
+  - Error propagation
+  - Multi-round streaming
+  - Backward compatibility
+
+### Files written:
+- `test/ask-stream.test.ts` — 12 new tests
+- `.team/tasks/task-1775620587853/test-result.md` — detailed results
+- `.team/gaps/test-coverage.json` — updated with 211 tests
+
+```signal
+{"status": "completed", "summary": "Verified streaming API (task-1775620587853). All 211 tests pass (199 existing + 12 new). All DBB-001 through DBB-006 criteria met. Task marked done."}
+```
+[2026-04-08T04:31:59.645Z] tester agent completed
+[2026-04-08 04:31:59] [agent_complete] tester completed successfully
+[2026-04-08 04:31:59] [workflow] tester [SIGNAL] completed: Verified streaming API (task-1775620587853). All 211 tests pass (199 existing + 12 new). All DBB-001

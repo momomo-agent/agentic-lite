@@ -7990,3 +7990,16 @@
 {"ts":"2026-04-08T04:28:37.553Z","type":"task_status","agent":"tester","data":{"taskId":"task-1775620587853","from":"review","to":"testing","title":"Expose streaming API in agentic-lite"}}
 {"ts":"2026-04-08T04:28:42.613Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":13,"memoryTotalMB":16,"cpuUser":1.714648,"cpuSystem":1.495866}}}
 {"ts":"2026-04-08T04:28:42.613Z","type":"workflow","agent":"developer","data":{"details":"[SIGNAL] completed: No claimable tasks available. All todo tasks with designs are assigned to other roles. My task task-"}}
+{"ts":"2026-04-08T04:28:44.167Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"56MB\",\"heapUsed\":\"13MB\",\"uptime\":\"3600s\"}"}}
+{"ts":"2026-04-08T04:28:44.377Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 5min (active:5, done:81)"}}
+{"ts":"2026-04-08T04:28:44.377Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 5min (active:5, done:81)\"}"}}
+{"ts":"2026-04-08T04:28:44.487Z","type":"agent_start","agent":"daemon","data":{"details":"Still busy (60min), skipping","performance":{"memoryMB":7,"memoryTotalMB":10,"cpuUser":1.728504,"cpuSystem":1.506249}}}
+{"ts":"2026-04-08T04:29:14.380Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 6min (active:5, done:81)"}}
+{"ts":"2026-04-08T04:29:14.381Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 6min (active:5, done:81)\"}"}}
+{"ts":"2026-04-08T04:29:46.254Z","type":"agent_complete","agent":"tech_lead","data":{"details":"completed successfully","performance":{"memoryMB":7,"memoryTotalMB":10,"cpuUser":1.757913,"cpuSystem":1.522577}}}
+{"ts":"2026-04-08T04:29:46.255Z","type":"workflow","agent":"tech_lead","data":{"details":"[SIGNAL] completed: Verified m28 dbb.md and design.md exist. Created technical design for task-1775622465587 (ARCHITECTU"}}
+{"ts":"2026-04-08T04:30:14.388Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 7min (active:5, done:81)"}}
+{"ts":"2026-04-08T04:30:14.388Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 7min (active:5, done:81)\"}"}}
+{"ts":"2026-04-08T04:30:57.111Z","type":"task_status","agent":"tester","data":{"taskId":"task-1775620587853","from":"testing","to":"done","title":"Expose streaming API in agentic-lite"}}
+{"ts":"2026-04-08T04:31:59.648Z","type":"agent_complete","agent":"tester","data":{"details":"completed successfully","performance":{"memoryMB":7,"memoryTotalMB":10,"cpuUser":1.817003,"cpuSystem":1.562898}}}
+{"ts":"2026-04-08T04:31:59.649Z","type":"workflow","agent":"tester","data":{"details":"[SIGNAL] completed: Verified streaming API (task-1775620587853). All 211 tests pass (199 existing + 12 new). All DBB-001"}}
