@@ -63,11 +63,17 @@ function buildTools(config: AgenticConfig, imagesCollector?: string[]) {
   return tools
 }
 
-export async function ask(prompt: string, config: AgenticConfig = {}): Promise<AgenticResult> {
+interface AgentSetup {
+  provider: Provider
+  toolDefs: ToolDefinition[]
+  executeToolCall: (tc: ProviderToolCall) => Promise<string>
+  images: string[]
+}
+
+function setupAgent(config: AgenticConfig): AgentSetup {
   const filesystem = config.filesystem ?? new AgenticFileSystem({ storage: new MemoryStorage() })
   const resolvedConfig = { ...config, filesystem }
 
-  // Build a Provider from config
   const provider: Provider = createProvider({
     provider: config.provider ?? 'anthropic',
     customProvider: config.customProvider,
@@ -76,7 +82,6 @@ export async function ask(prompt: string, config: AgenticConfig = {}): Promise<A
     model: config.model,
   })
 
-  // Separate tool definitions from execute callbacks
   const images: string[] = []
   const tools = buildTools(resolvedConfig, images)
   const toolDefs: ToolDefinition[] = tools.map(t => ({
@@ -84,7 +89,6 @@ export async function ask(prompt: string, config: AgenticConfig = {}): Promise<A
     description: t.description,
     parameters: t.parameters,
   }))
-
   const toolMap = new Map(tools.map(t => [t.name, t]))
 
   const executeToolCall = async (tc: ProviderToolCall): Promise<string> => {
@@ -92,6 +96,12 @@ export async function ask(prompt: string, config: AgenticConfig = {}): Promise<A
     if (!tool) return `Error: Unknown tool ${tc.name}`
     return String(await tool.execute(tc.input))
   }
+
+  return { provider, toolDefs, executeToolCall, images }
+}
+
+export async function ask(prompt: string, config: AgenticConfig = {}): Promise<AgenticResult> {
+  const { provider, toolDefs, executeToolCall, images } = setupAgent(config)
 
   const result = await runAgentLoop({
     provider,
@@ -110,35 +120,8 @@ export async function ask(prompt: string, config: AgenticConfig = {}): Promise<A
 }
 
 export async function* askStream(prompt: string, config: AgenticConfig = {}): AsyncGenerator<{ type: string; text?: string; toolCall?: { tool: string; input: Record<string, unknown> }; output?: string; result?: any }> {
-  const filesystem = config.filesystem ?? new AgenticFileSystem({ storage: new MemoryStorage() })
-  const resolvedConfig = { ...config, filesystem }
+  const { provider, toolDefs, executeToolCall } = setupAgent(config)
 
-  // Build a Provider from config
-  const provider: Provider = createProvider({
-    provider: config.provider ?? 'anthropic',
-    customProvider: config.customProvider,
-    apiKey: config.apiKey,
-    baseUrl: config.baseUrl,
-    model: config.model,
-  })
-
-  // Separate tool definitions from execute callbacks
-  const tools = buildTools(resolvedConfig)
-  const toolDefs: ToolDefinition[] = tools.map(t => ({
-    name: t.name,
-    description: t.description,
-    parameters: t.parameters,
-  }))
-
-  const toolMap = new Map(tools.map(t => [t.name, t]))
-
-  const executeToolCall = async (tc: ProviderToolCall): Promise<string> => {
-    const tool = toolMap.get(tc.name)
-    if (!tool) return `Error: Unknown tool ${tc.name}`
-    return String(await tool.execute(tc.input))
-  }
-
-  // Stream from runAgentLoopStream
   for await (const chunk of runAgentLoopStream({
     provider,
     prompt,

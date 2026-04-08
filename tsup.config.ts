@@ -6,6 +6,6 @@ export default defineConfig({
   dts: true,
   clean: true,
   target: 'es2022',
-  external: ['quickjs-emscripten', 'agentic-shell', 'agentic-core'],
-  noExternal: ['agentic-filesystem'],
+  external: ['quickjs-emscripten', 'agentic-shell'],
+  noExternal: ['agentic-filesystem', 'agentic-core'],
 })
