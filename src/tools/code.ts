@@ -67,7 +67,17 @@ function detectLanguage(code: string): 'python' | 'javascript' {
 async function executePythonBrowser(code: string, filesystem?: AgenticFileSystem): Promise<CodeResult> {
   if (!pyodideInstance) {
     try {
-      const { loadPyodide } = await import('pyodide')
+      // Load Pyodide from CDN in browser
+      if (typeof window !== 'undefined' && !(window as any).loadPyodide) {
+        const script = document.createElement('script')
+        script.src = 'https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js'
+        document.head.appendChild(script)
+        await new Promise((resolve, reject) => {
+          script.onload = resolve
+          script.onerror = reject
+        })
+      }
+      const loadPyodide = (window as any).loadPyodide || (await import('pyodide')).loadPyodide
       pyodideInstance = await loadPyodide()
     } catch (err: any) {
       return { code, output: '', error: `Pyodide unavailable: ${err.message || String(err)}` }
