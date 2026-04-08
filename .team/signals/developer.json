@@ -1,7 +1,7 @@
 {
   "agent": "developer",
-  "timestamp": "2026-04-08T03:53:11.532Z",
+  "timestamp": "2026-04-08T03:58:38.592Z",
   "exitCode": 0,
-  "status": "completed",
-  "summary": "No available developer tasks — all developer work is done. Remaining tasks are assigned to architect (ARCHITECTURE.md update) and tester (ask.ts trim verification)."
+  "status": "blocked",
+  "summary": "No claimable tasks available. The two developer tasks (streaming: task-1775620573568, timeout: task-1775620592995) lack design.md files (hasDesign=false). Need tech lead or architect to create designs before implementation can proceed."
 }

@@ -17570,3 +17570,93 @@ Task marked as `done`.
 [2026-04-08T03:53:32.447Z] tester agent completed
 [2026-04-08 03:53:32] [agent_complete] tester completed successfully
 [2026-04-08 03:53:32] [workflow] tester [SIGNAL] completed: Tested task-1775619938776: ask.ts trimmed to 99 lines, all 174 tests pass, public API unchanged. Tas
+[2026-04-08 03:53:32] [workflow] work_loop [LOOP] Iteration 6
+[2026-04-08 03:53:32] [workflow] work_loop [SHELL] node /Users/kenefe/LOCAL/momo-agent/tools/team/scripts/goal-check.js
+[2026-04-08 03:53:32] [workflow] work_loop [EXEC] pm
+[2026-04-08 03:53:32] [agent_start] pm 管理任务和里程碑
+[2026-04-08T03:53:32.753Z] Running pm agent...
+[2026-04-08 03:53:44] [perf] daemon {"rss":"80MB","heapUsed":"11MB","uptime":"1500s"}
+Task completed. Here's a summary of what was done:
+
+**Refactored `ask.ts` to use `agentic-core`** (task-1775613090477):
+
+1. **Added `agentic-core` as dependency** — `package.json` + `tsup.config.ts`
+2. **Replaced local provider code with re-exports** — `src/providers/provider.ts` and `src/providers/index.ts` now re-export from `agentic-core`
+3. **Refactored `ask.ts`** — 140 lines → 99 lines. Uses `runAgentLoop()` from agentic-core with a `handleToolCall` closure callback for tool execution
+
+**Verification**:
+- All 32 test files pass (174 tests)
+- Build succeeds
+- ask.ts is 99 lines (under 100-line target)
+
+```signal
+{"status": "completed", "summary": "Refactored ask.ts to use agentic-core — 140→99 lines, all 174 tests pass, build succeeds"}
+```
+[2026-04-08T03:56:20.933Z] developer agent completed
+```signal
+{"status": "completed", "summary": "Created m28 milestone with 5 tasks for remaining vision gaps (streaming + timeout). Vision.json is stale at 82% — actual code already resolves the critical agentic-core gap: ask.ts is 99 lines, imports from agentic-core, src/providers deleted, 174/174 tests pass. Only streaming and code timeout remain as real gaps. PRD is at 95% (goal met)."}
+```
+
+## Summary
+
+**What I found:**
+- The vision.json at 82% is **stale** — it describes the pre-extraction state (ask.ts at 140 lines, no agentic-core, providers self-contained)
+- **Reality**: m27's extraction work is functionally complete:
+  - `ask.ts` is 99 lines (target: <100)
+  - Imports `createProvider`, `runAgentLoop`, `ToolDefinition` from `agentic-core`
+  - `src/providers/` deleted
+  - `packages/agentic-core/` has loop.ts, providers/, types.ts, index.ts
+  - 174/174 tests pass
+- m27 has 1 task in review + 1 task in todo (architect) — can't mark complete yet
+
+**What I did:**
+- Created **m28: Streaming & Timeout Enforcement** with 5 tasks:
+  1. `P0` Add streaming to agentic-core Provider interface (developer)
+  2. `P0` Expose streaming API in agentic-lite — blocked on #1 (developer)
+  3. `P1` Enforce toolConfig.code.timeout in executeCode (developer)
+  4. `P1` Update ARCHITECTURE.md for streaming — blocked on #1 (architect)
+  5. `P1` Add tests for streaming and timeout — blocked on #1, #2, #3 (tester)
+
+**Remaining gaps after m28 completes:**
+- Streaming support (vision mandates it as agentic-core responsibility)
+- Code timeout enforcement (minor)
+
+**Next steps for other agents:**
+- Vision monitor should re-evaluate — the agentic-core extraction gap is already resolved in code
+- Tester needs to approve task-1775613090477 (in review) to unblock m27 completion
+- Architect needs to handle task-1775615948444 (ARCHITECTURE.md update)
+[2026-04-08T03:57:55.546Z] pm agent completed
+[2026-04-08 03:57:55] [agent_complete] pm completed successfully
+[2026-04-08 03:57:55] [workflow] pm [SIGNAL] completed: Created m28 milestone with 5 tasks for remaining vision gaps (streaming + timeout). Vision.json is s
+[2026-04-08 03:57:55] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-08 03:57:55] [error] eval archTaskCount > 0: archTaskCount is not defined
+[2026-04-08 03:57:55] [workflow] work_loop [PARALLEL-SKIP] update-architecture: archTaskCount > 0
+[2026-04-08 03:57:55] [workflow] work_loop [PARALLEL] write-design, implement, run-tests
+[2026-04-08 03:57:55] [workflow] work_loop [PARALLEL] tech_lead-1, tech_lead-2, tech_lead-3
+[2026-04-08 03:57:55] [agent_start] tech_lead-1 出技术方案
+[2026-04-08 03:57:55] [agent_start] tech_lead-2 出技术方案
+[2026-04-08 03:57:55] [agent_start] tech_lead-3 出技术方案
+[2026-04-08 03:57:55] [workflow] work_loop [EXEC] developer
+[2026-04-08 03:57:55] [agent_start] developer 实现功能
+[2026-04-08 03:57:55] [workflow] work_loop [EXEC] tester
+[2026-04-08 03:57:55] [agent_start] tester 验证功能
+[2026-04-08T03:57:55.607Z] Running developer agent...
+[2026-04-08T03:57:55.607Z] Running tech_lead-2 agent...
+[2026-04-08T03:57:55.607Z] Running tech_lead-3 agent...
+[2026-04-08T03:57:55.607Z] Running tester agent...
+[2026-04-08T03:57:55.611Z] Running tech_lead-1 agent...
+No tasks are available for me to claim. The criteria requires `status=todo`, `hasDesign=true`, and all `blockedBy` tasks done. Currently:
+
+- **task-1775620573568** (streaming) — assigned to me, but `hasDesign=false` (no design.md)
+- **task-1775620592995** (timeout) — assigned to me, but `hasDesign=false` (no design.md)
+- **task-1775613090477** (refactor ask.ts) — already in `review`, not actionable
+- **task-1775615948444** (Update ARCHITECTURE.md) — assigned to architect
+
+I cannot claim tasks without technical designs per my instructions.
+
+```signal
+{"status": "blocked", "summary": "No claimable tasks available. The two developer tasks (streaming: task-1775620573568, timeout: task-1775620592995) lack design.md files (hasDesign=false). Need tech lead or architect to create designs before implementation can proceed."}
+```
+[2026-04-08T03:58:38.592Z] developer agent completed
+[2026-04-08 03:58:38] [agent_complete] developer completed successfully
+[2026-04-08 03:58:38] [workflow] developer [SIGNAL] blocked: No claimable tasks available. The two developer tasks (streaming: task-1775620573568, timeout: task-

@@ -270,6 +270,18 @@
         "task-1775619570532",
         "task-1775619938776"
       ]
+    },
+    {
+      "id": "m28",
+      "name": "Streaming & Timeout Enforcement — Final Vision Gaps",
+      "status": "planned",
+      "tasks": [
+        "task-1775620573568",
+        "task-1775620587853",
+        "task-1775620592995",
+        "task-1775620598483",
+        "task-1775620603459"
+      ]
     }
   ]
 }
