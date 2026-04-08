@@ -4,10 +4,10 @@
   "description": "Fix these architecture gaps (from architecture.json):\n1. MAJOR: Remove leftover task instructions from lines 55-75 in ARCHITECTURE.md — these are not architecture documentation\n2. Fix Provider/ToolDefinition location: architecture says they're in types.ts but they're actually in agentic-core now (src/providers/ was deleted)\n3. Fix 'Provider Resolution fallback example' (line 51): shows createOpenAIProvider(baseUrl, apiKey, model) but actual code passes config object\n4. Fix overview: says 'single ask()' but also exports createProvider()\n5. Fix tools/index.ts description: says 'tool registry' but it's a barrel export; registration logic is in ask.ts\n6. Add toolConfig to AgenticConfig fields listing\nAcceptance: architecture match improves from 93% toward ≥95%",
   "status": "todo",
   "priority": "P1",
-  "assignee": null,
+  "assignee": "architect",
   "blockedBy": [],
   "groupId": "m28",
   "hasDesign": true,
   "created": "2026-04-08T04:27:45.587Z",
-  "updated": "2026-04-08T04:29:36.076Z"
+  "updated": "2026-04-08T04:32:54.357Z"
 }

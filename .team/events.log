@@ -8003,3 +8003,20 @@
 {"ts":"2026-04-08T04:30:57.111Z","type":"task_status","agent":"tester","data":{"taskId":"task-1775620587853","from":"testing","to":"done","title":"Expose streaming API in agentic-lite"}}
 {"ts":"2026-04-08T04:31:59.648Z","type":"agent_complete","agent":"tester","data":{"details":"completed successfully","performance":{"memoryMB":7,"memoryTotalMB":10,"cpuUser":1.817003,"cpuSystem":1.562898}}}
 {"ts":"2026-04-08T04:31:59.649Z","type":"workflow","agent":"tester","data":{"details":"[SIGNAL] completed: Verified streaming API (task-1775620587853). All 211 tests pass (199 existing + 12 new). All DBB-001"}}
+{"ts":"2026-04-08T04:31:59.787Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 11"}}
+{"ts":"2026-04-08T04:31:59.799Z","type":"workflow","agent":"work_loop","data":{"details":"[SHELL] node /Users/kenefe/LOCAL/momo-agent/tools/team/scripts/goal-check.js"}}
+{"ts":"2026-04-08T04:31:59.950Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-08T04:31:59.950Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":8,"memoryTotalMB":11,"cpuUser":1.827065,"cpuSystem":1.591611}}}
+{"ts":"2026-04-08T04:33:35.717Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":13,"memoryTotalMB":16,"cpuUser":1.870812,"cpuSystem":1.625373}}}
+{"ts":"2026-04-08T04:33:35.718Z","type":"workflow","agent":"pm","data":{"details":"[SIGNAL] completed: All CRs resolved. Assigned architect to 2 unblocked tasks (streaming docs, architecture cleanup). Co"}}
+{"ts":"2026-04-08T04:33:35.731Z","type":"workflow","agent":"work_loop","data":{"details":"[SKIP] write-dbb: milestoneNeedsDBB > 0"}}
+{"ts":"2026-04-08T04:33:35.731Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] write-design: todoWithoutDesign > 0"}}
+{"ts":"2026-04-08T04:33:35.731Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0"}}
+{"ts":"2026-04-08T04:33:35.731Z","type":"error","agent":"eval","data":{"details":"archTaskCount > 0: archTaskCount is not defined"}}
+{"ts":"2026-04-08T04:33:35.732Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] update-architecture: archTaskCount > 0"}}
+{"ts":"2026-04-08T04:33:35.732Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] implement"}}
+{"ts":"2026-04-08T04:33:35.732Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] developer"}}
+{"ts":"2026-04-08T04:33:35.732Z","type":"agent_start","agent":"developer","data":{"details":"实现功能","performance":{"memoryMB":16,"memoryTotalMB":19,"cpuUser":1.874546,"cpuSystem":1.636465}}}
+{"ts":"2026-04-08T04:33:44.172Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"56MB\",\"heapUsed\":\"12MB\",\"uptime\":\"3900s\"}"}}
+{"ts":"2026-04-08T04:34:08.096Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":7,"memoryTotalMB":10,"cpuUser":1.897521,"cpuSystem":1.650785}}}
+{"ts":"2026-04-08T04:34:08.097Z","type":"workflow","agent":"developer","data":{"details":"[SIGNAL] blocked: No available tasks — all remaining todo tasks are either ARCHITECTURE.md updates (not permitted) or "}}
