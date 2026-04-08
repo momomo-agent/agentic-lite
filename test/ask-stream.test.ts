@@ -255,3 +255,110 @@ describe('askStream: multi-round', () => {
     expect(done!.result!.usage).toEqual({ input: 18, output: 9 })
   })
 })
+
+// --- askStream: additional edge cases ---
+
+describe('askStream: edge cases', () => {
+  it('handles unknown tool name gracefully (error string, not throw)', async () => {
+    const provider = mockStreamProvider([
+      [
+        { type: 'tool_use', toolCall: { id: 't1', name: 'nonexistent_tool', input: {} } },
+        { type: 'message_stop', usage: { input: 5, output: 3 } },
+      ],
+      [
+        { type: 'text_delta', text: 'handled' },
+        { type: 'message_stop', usage: { input: 3, output: 1 } },
+      ],
+    ])
+
+    // No tools enabled → any tool call will be "unknown"
+    const chunks = await collectChunks(
+      askStream('test', makeConfig(provider, []))
+    )
+
+    const toolResult = chunks.find(c => c.type === 'tool_result')
+    expect(toolResult).toBeDefined()
+    expect(toolResult!.output).toContain('Error')
+    expect(toolResult!.output).toContain('nonexistent_tool')
+
+    // Stream should complete normally
+    const done = chunks.find(c => c.type === 'done')
+    expect(done).toBeDefined()
+  })
+
+  it('uses default OS_SYSTEM_PROMPT when no systemPrompt provided', async () => {
+    const provider = mockStreamProvider([
+      [{ type: 'text_delta', text: 'ok' }, { type: 'message_stop' }],
+    ])
+
+    await collectChunks(askStream('hello', makeConfig(provider)))
+
+    // Verify the system prompt was passed to provider.stream
+    const streamCalls = (provider.stream as any).mock.calls
+    expect(streamCalls.length).toBeGreaterThan(0)
+    const systemPrompt = streamCalls[0][2]
+    expect(systemPrompt).toContain('AI assistant')
+  })
+
+  it('file tool in stream mode reads and writes files', async () => {
+    const provider = mockStreamProvider([
+      [
+        { type: 'tool_use', toolCall: { id: 't1', name: 'file_write', input: { path: '/test.txt', content: 'hello' } } },
+        { type: 'message_stop', usage: { input: 5, output: 3 } },
+      ],
+      [
+        { type: 'tool_use', toolCall: { id: 't2', name: 'file_read', input: { path: '/test.txt' } } },
+        { type: 'message_stop', usage: { input: 5, output: 3 } },
+      ],
+      [
+        { type: 'text_delta', text: 'read it' },
+        { type: 'message_stop', usage: { input: 3, output: 1 } },
+      ],
+    ])
+
+    const chunks = await collectChunks(
+      askStream('write and read', makeConfig(provider, ['file']))
+    )
+
+    const toolResults = chunks.filter(c => c.type === 'tool_result')
+    expect(toolResults).toHaveLength(2)
+
+    // Write result should succeed
+    expect(toolResults[0].output).not.toContain('Error')
+
+    // Read result should contain the written content
+    expect(toolResults[1].output).toContain('hello')
+
+    const done = chunks.find(c => c.type === 'done')
+    expect(done).toBeDefined()
+    expect(done!.result!.toolCalls).toHaveLength(2)
+  })
+
+  it('handles concurrent tool calls in single streaming round', async () => {
+    const provider = mockStreamProvider([
+      [
+        { type: 'text_delta', text: 'computing' },
+        { type: 'tool_use', toolCall: { id: 'a', name: 'file_read', input: { path: '/a.txt' } } },
+        { type: 'tool_use', toolCall: { id: 'b', name: 'file_read', input: { path: '/b.txt' } } },
+        { type: 'message_stop', usage: { input: 5, output: 3 } },
+      ],
+      [
+        { type: 'text_delta', text: ' done' },
+        { type: 'message_stop', usage: { input: 3, output: 1 } },
+      ],
+    ])
+
+    const chunks = await collectChunks(
+      askStream('read files', makeConfig(provider, ['file']))
+    )
+
+    const toolStarts = chunks.filter(c => c.type === 'tool_start')
+    expect(toolStarts).toHaveLength(2)
+
+    const toolResults = chunks.filter(c => c.type === 'tool_result')
+    expect(toolResults).toHaveLength(2)
+
+    const done = chunks.find(c => c.type === 'done')
+    expect(done!.result!.toolCalls).toHaveLength(2)
+  })
+})

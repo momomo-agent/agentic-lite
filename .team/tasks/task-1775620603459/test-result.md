@@ -1,4 +1,4 @@
-# Test Results: Add tests for streaming and timeout
+# Test Results: Streaming & Timeout Tests (Re-run)
 
 **Task**: task-1775620603459
 **Tester**: tester
@@ -8,88 +8,85 @@
 
 | Test File | Pass | Fail | Total | Notes |
 |-----------|------|------|-------|-------|
-| test/streaming.test.ts | 16 | 0 | 16 | All pass — runAgentLoopStream core tests |
-| test/code-timeout.test.ts | 11 | 0 | 11 | All pass — timeout enforcement tests |
-| test/ask-stream.test.ts | 2 | 10 | 12 | **10 FAIL — implementation bug in askStream()** |
-| **Total** | **29** | **10** | **39** | |
+| tests/streaming.test.ts (NEW) | 11 | 0 | 11 | runAgentLoopStream + askStream + backward compat |
+| tests/timeout.test.ts (NEW) | 13 | 0 | 13 | executeCode timeout + backward compat |
+| All existing tests | 213 | 0 | 213 | No regressions |
+| **Total** | **237** | **0** | **237** | |
 
-## Passing Tests (27 core tests)
+## New Streaming Tests — `tests/streaming.test.ts` (11 PASS)
 
-### streaming.test.ts (16/16 PASS)
-- Text-only streaming: 3 tests (cumulative text, empty response, no usage)
-- Tool use streaming: 2 tests (text→tool_start→tool_result→done, multiple tools)
-- Multi-round: 2 tests (usage accumulation, maxToolRounds exceeded)
-- System prompt: 2 tests (passed to provider.stream, user prompt as first message)
-- Provider interface: 3 tests (stream method type, anthropic createProvider, openai createProvider)
-- Edge cases: 3 tests (empty input, tool executor rejection, provider stream error)
+### runAgentLoopStream (7 tests)
+1. Yields text chunks (accumulated: "Hello" → "Hello world" → done)
+2. Yields tool_start and tool_result for tool calls
+3. Accumulates usage across rounds (input: 18, output: 8)
+4. Tracks tool calls in final result
+5. Handles empty stream (immediate message_stop)
+6. Propagates provider stream errors mid-flight
+7. Handles multiple tool calls in same round
 
-### code-timeout.test.ts (11/11 PASS)
-- Backward compat: 4 tests (no timeout, timeout=0, timeout=undefined, fast code)
-- Python subprocess timeout: 1 test (infinite loop killed, 547ms)
-- Timeout parameter: 1 test (accepts third parameter)
-- Negative timeout: 1 test (treated as no timeout)
-- QuickJS limitations: 2 tests (documented known limitations)
-- Pyodide timeout: 1 test (browser-only, skipped in Node)
-- Fast code: 1 test (completes within 5000ms timeout)
+### askStream (2 tests)
+8. Yields streaming chunks via askStream with custom provider
+9. Handles tool execution in askStream
 
-## Failing Tests (10/12 in ask-stream.test.ts)
+### Backward Compatibility (2 tests)
+10. ask() returns AgenticResult (not a generator)
+11. ask() delegates to runAgentLoop (chat), not stream
 
-### Root Cause: `askStream()` uses legacy `agenticAsk` instead of `runAgentLoopStream`
+## New Timeout Tests — `tests/timeout.test.ts` (13 PASS)
 
-The `askStream()` function in `src/ask.ts` delegates to `agenticAsk` from the built `agentic-core` package. This built package (at `node_modules/.pnpm/agentic-core@file+..+agentic-core/`) does NOT export `runAgentLoopStream` — it only has the legacy `agenticAsk` function.
+### Timeout Enforcement (9 tests)
+1. Fast JS code completes within timeout
+2. Fast JS code works without timeout (undefined)
+3. timeout=0 means no enforcement
+4. Negative timeout means no enforcement
+5. JS code with console.log within timeout
+6. Throws timeout error for slow JS code (*)
+7. Python timeout on Node (python3 subprocess killed)
+8. Fast Python code completes within timeout
+9. Timeout error message includes timeout value
 
-The legacy `agenticAsk`:
-1. Requires `apiKey` unconditionally (line 308: `if (!apiKey) throw new Error('API Key required')`)
-2. Ignores `config.customProvider` entirely
-3. Always attempts real API calls to OpenAI/Anthropic
+### Backward Compatibility (4 tests)
+10. Executes JS without timeout parameter
+11. Executes Python without timeout parameter
+12. JS syntax error returns error
+13. Python syntax error returns error
 
-This means mock providers in tests are never used, causing real API calls that fail with 401 errors after 5-second timeouts.
+(*) JS timeout test passes but takes 77s instead of ~500ms — see Issue 1.
 
-### Specific Failures
+## DBB Verification
 
-| Test | Error | Timeout |
-|------|-------|---------|
-| askStream: text-only → yields text chunks then done | Real OpenAI API call, 401 | 5025ms |
-| askStream: text-only → handles empty response | Real OpenAI API call, 401 | 5003ms |
-| askStream: tool use → yields sequence | Real OpenAI API call, 401 | 5004ms |
-| askStream: config → accepts default config | Real OpenAI API call, 401 | 5014ms |
-| askStream: config → passes systemPrompt | Real OpenAI API call, 401 | 5003ms |
-| askStream: config → uses default filesystem | Real OpenAI API call, 401 | 5003ms |
-| Backward compat → ask() still works | Real OpenAI API call, 401 | 1346ms |
-| Error handling → propagates errors | Unhandled rejection from OpenAI | — |
-| Error handling → throws no customProvider | Unhandled rejection from OpenAI | — |
-| Multi-round → accumulates usage | Unhandled rejection from OpenAI | — |
+| DBB | Criterion | Status | Evidence |
+|-----|-----------|--------|----------|
+| DBB-001 | Provider has stream() | PASS | Confirmed in types.ts; used by all streaming tests |
+| DBB-002 | Anthropic implements stream() | PASS | Provider interface enforces stream() |
+| DBB-003 | OpenAI implements stream() | PASS | Provider interface enforces stream() |
+| DBB-004 | runAgentLoopStream() exists | PASS | 7 tests pass with full chunk verification |
+| DBB-005 | askStream() exported | PASS | askStream uses runAgentLoopStream (confirmed in ask.ts:142) |
+| DBB-006 | Backward compatibility | PASS | All 237 tests pass, ask() unchanged |
+| DBB-007 | Code timeout enforced in executeCode | PASS | withTimeout + Promise.race works for async paths |
+| DBB-008 | Timeout across all execution paths | PARTIAL | QuickJS sync path has event-loop blocking (Issue 1) |
+| DBB-009 | ARCHITECTURE.md documents streaming | N/A | Documentation task, not testable here |
+| DBB-010 | Vision ≥90% | N/A | Monitor task, not testable here |
 
-Only 2 tests pass:
-- `askStream is a function` (static check)
-- `askStream is exported from src/index.ts` (static file check)
+## Issues Found
 
-### Fix Required
+### Issue 1: JS timeout not enforced for synchronous QuickJS (Medium)
 
-`askStream()` in `src/ask.ts` should use `runAgentLoopStream` from agentic-core (which properly supports the `Provider` interface and `customProvider`) instead of delegating to the legacy `agenticAsk`. The built `agentic-core` package also needs to be rebuilt to export `runAgentLoopStream`.
+The synchronous QuickJS path (`vm.evalCode()`) blocks the Node.js event loop, preventing the `withTimeout` `setTimeout` from firing. The test passes (the loop eventually breaks at 1e9 iterations) but takes 77 seconds instead of the expected ~500ms.
 
-## DBB Coverage Assessment
+**Affected**: `src/tools/code.ts:316-325` — sync QuickJS path
+**Workaround**: Use async code (with `await`) to trigger the `evalCodeAsync` path, which yields between microtasks.
+**Note**: The async QuickJS path and Python Node path timeout correctly.
 
-| DBB | Description | Covered? | Evidence |
-|-----|-------------|----------|----------|
-| DBB-001 | Provider has stream() | ✓ Partial | streaming.test.ts:328-348 (interface check) |
-| DBB-002 | Anthropic implements stream() | ✓ Partial | streaming.test.ts:338-342 (interface check) |
-| DBB-003 | OpenAI implements stream() | ✓ Partial | streaming.test.ts:344-348 (interface check) |
-| DBB-004 | runAgentLoopStream() exists | ✓ YES | streaming.test.ts:16/16 tests pass |
-| DBB-005 | askStream() exported | ✗ BROKEN | Tests written but implementation broken |
-| DBB-006 | Backward compatibility | ✗ BROKEN | ask() uses same broken legacy path |
-| DBB-007 | Code timeout enforced | ✓ YES | code-timeout.test.ts:11/11 tests pass |
-| DBB-008 | Timeout across all paths | ✓ YES | QuickJS + Python subprocess tested |
-| DBB-009 | ARCHITECTURE.md updated | N/A | Documentation, not testable |
-| DBB-010 | Vision ≥90% | N/A | Monitor task, not testable |
+### Issue 2: toolConfig.code.timeout not wired into ask() (Low)
+
+`ask.ts:40` calls `executeCode(input, fs)` without forwarding `toolConfig.code.timeout`. The timeout parameter works when calling `executeCode` directly, but the `ask()` config path ignores it.
+
+**Fix**: Change `ask.ts:40` to `executeCode(input, fs, resolvedConfig.toolConfig?.code?.timeout)`
 
 ## Edge Cases Identified
 
-1. **QuickJS sync timeout**: Known limitation — sync evalCode blocks event loop so withTimeout timer never fires. Documented in tests.
-2. **QuickJS async timeout**: evalCodeAsync doesn't yield between microtasks. Documented in tests.
-3. **No test for streaming + timeout combined**: Could test streaming code execution that times out.
-4. **No test for askStream with toolConfig.code.timeout**: Timeout config propagation through streaming path untested.
-
-## Recommendation
-
-**Task status: BLOCKED** — The streaming and timeout test code is well-written and comprehensive. However, `askStream()` integration tests fail due to an implementation bug (legacy `agenticAsk` path doesn't support `customProvider`). The core `runAgentLoopStream` and `executeCode` timeout implementations are solid and fully tested.
+1. Synchronous QuickJS timeout is blocked by event loop (documented above)
+2. No test for streaming + timeout combined
+3. No test for askStream with toolConfig.code.timeout propagation
+4. Pyodide browser timeout path untested (requires browser environment)

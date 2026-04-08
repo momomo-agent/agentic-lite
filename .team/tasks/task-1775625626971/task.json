@@ -1,0 +1,13 @@
+{
+  "id": "task-1775625626971",
+  "title": "--title",
+  "description": "浏览器端验证 + ask.ts 瘦身",
+  "status": "todo",
+  "priority": "P1",
+  "assignee": null,
+  "blockedBy": [],
+  "groupId": "m29",
+  "hasDesign": false,
+  "created": "2026-04-08T05:20:26.972Z",
+  "updated": "2026-04-08T05:20:26.973Z"
+}
