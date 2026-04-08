@@ -57,7 +57,8 @@ async function handleToolCall(
       break
     }
     case 'code_exec': {
-      const result = await executeCode(tc.input, config.filesystem)
+      const timeout = config.toolConfig?.code?.timeout
+      const result = await executeCode(tc.input, config.filesystem, timeout)
       acc.allCodeResults.push(result)
       output = result.error ? `Error: ${result.error}` : result.output
       break

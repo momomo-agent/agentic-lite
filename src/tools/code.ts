@@ -7,6 +7,21 @@ import type { AgenticFileSystem } from 'agentic-filesystem'
 // Browser environment detection
 const isBrowser = typeof window !== 'undefined' && typeof document !== 'undefined'
 
+function withTimeout<T>(promise: Promise<T>, timeoutMs?: number): Promise<T> {
+  if (!timeoutMs || timeoutMs <= 0) return promise
+
+  return new Promise<T>((resolve, reject) => {
+    const timer = setTimeout(() => {
+      reject(new Error(`Code execution timed out after ${timeoutMs}ms`))
+    }, timeoutMs)
+
+    promise.then(
+      (result) => { clearTimeout(timer); resolve(result) },
+      (err) => { clearTimeout(timer); reject(err) },
+    )
+  })
+}
+
 // Pyodide instance cache (browser)
 let pyodideInstance: any = null
 
@@ -113,7 +128,7 @@ async function buildFileMap(code: string, filesystem: AgenticFileSystem): Promis
   return map
 }
 
-async function executePythonNode(code: string, filesystem?: AgenticFileSystem): Promise<CodeResult> {
+async function executePythonNode(code: string, filesystem?: AgenticFileSystem, timeout?: number): Promise<CodeResult> {
   const { spawn } = await import('child_process')
 
   let fullCode = code
@@ -157,11 +172,22 @@ _fs.flush()
     const proc = spawn('python3', ['-c', fullCode])
     let stdout = ''
     let stderr = ''
+    let timedOut = false
+
+    const timer = timeout && timeout > 0 ? setTimeout(() => {
+      timedOut = true
+      proc.kill('SIGTERM')
+    }, timeout) : null
 
     proc.stdout.on('data', (data) => { stdout += data.toString() })
     proc.stderr.on('data', (data) => { stderr += data.toString() })
 
     proc.on('close', async (exitCode) => {
+      if (timer) clearTimeout(timer)
+      if (timedOut) {
+        resolve({ code, output: '', error: `Code execution timed out after ${timeout}ms` })
+        return
+      }
       // Parse and apply filesystem writes
       const writeMatch = stdout.match(/__FS_WRITES__:(.+)$/m)
       if (writeMatch && filesystem) {
@@ -209,6 +235,7 @@ export const codeToolDef: ToolDefinition = {
 export async function executeCode(
   input: Record<string, unknown>,
   filesystem?: AgenticFileSystem,
+  timeout?: number,
 ): Promise<CodeResult> {
   const code = String(input.code ?? '')
   if (!code) return { code: '', output: '', error: 'No code provided' }
@@ -216,7 +243,9 @@ export async function executeCode(
   const language = detectLanguage(code)
 
   if (language === 'python') {
-    return isBrowser ? executePythonBrowser(code, filesystem) : executePythonNode(code, filesystem)
+    return isBrowser
+      ? withTimeout(executePythonBrowser(code, filesystem), timeout)
+      : executePythonNode(code, filesystem, timeout)
   }
 
   // JavaScript execution
@@ -260,32 +289,38 @@ export async function executeCode(
     injectConsole(vm as any)
     await injectFilesystem(vm as any, filesystem)
     const wrapped = `(async()=>{return(${code})})().then(v=>{globalThis.__asyncResult=v},e=>{globalThis.__asyncError=String(e)})`
-    const result = await vm.evalCodeAsync(wrapped)
-    if (result.error) return handleResult(result, vm)
-    result.value.dispose()
-    ;(vm as any).runtime.executePendingJobs()
-    const errHandle = vm.getProp(vm.global, '__asyncError')
-    const errVal = vm.dump(errHandle)
-    errHandle.dispose()
-    if (errVal !== undefined) {
+    return withTimeout((async () => {
+      const result = await vm.evalCodeAsync(wrapped)
+      if (result.error) return handleResult(result, vm)
+      result.value.dispose()
+      ;(vm as any).runtime.executePendingJobs()
+      const errHandle = vm.getProp(vm.global, '__asyncError')
+      const errVal = vm.dump(errHandle)
+      errHandle.dispose()
+      if (errVal !== undefined) {
+        vm.dispose()
+        return { code, output: logs.join('\n'), error: String(errVal) }
+      }
+      const valHandle = vm.getProp(vm.global, '__asyncResult')
+      const val = vm.dump(valHandle)
+      valHandle.dispose()
       vm.dispose()
-      return { code, output: logs.join('\n'), error: String(errVal) }
-    }
-    const valHandle = vm.getProp(vm.global, '__asyncResult')
-    const val = vm.dump(valHandle)
-    valHandle.dispose()
-    vm.dispose()
-    const output = [
-      ...logs,
-      ...(val !== undefined && val !== null ? [`→ ${String(val)}`] : []),
-    ].join('\n')
-    return { code, output }
+      const output = [
+        ...logs,
+        ...(val !== undefined && val !== null ? [`→ ${String(val)}`] : []),
+      ].join('\n')
+      return { code, output }
+    })(), timeout)
   }
 
   const { getQuickJS } = await import('quickjs-emscripten')
   const QuickJS = await getQuickJS()
   const vm = QuickJS.newContext()
   injectConsole(vm as any)
-  const result = vm.evalCode(code)
-  return handleResult(result, vm)
+  return withTimeout(new Promise<CodeResult>((resolve, reject) => {
+    try {
+      const result = vm.evalCode(code)
+      resolve(handleResult(result, vm))
+    } catch (e) { reject(e) }
+  }), timeout)
 }

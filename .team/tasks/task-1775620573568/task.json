@@ -2,13 +2,13 @@
   "id": "task-1775620573568",
   "title": "Add streaming to agentic-core Provider interface",
   "description": "Extend Provider interface in packages/agentic-core/src/types.ts with a stream() method. Implement stream() in anthropic.ts and openai.ts providers. Create runAgentLoopStream() in loop.ts that yields chunks in real-time. Must maintain backward compatibility with existing chat() method.",
-  "status": "review",
+  "status": "testing",
   "priority": "P0",
-  "assignee": "developer",
+  "assignee": "tester",
   "blockedBy": [],
   "groupId": "m28",
   "hasDesign": true,
   "created": "2026-04-08T03:56:13.569Z",
-  "updated": "2026-04-08T04:09:18.479Z",
+  "updated": "2026-04-08T04:13:25.621Z",
   "milestoneId": "m28"
 }

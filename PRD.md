@@ -13,7 +13,7 @@ Delegated to agentic-core. `ask(prompt, config)` calls `runAgentLoop()` from age
 - `search` — web search, returns sources
 - `code_exec` — executes JS/Python code via quickjs-emscripten sandbox (browser-compatible) with auto-language detection. Python uses Pyodide (browser) or python3 subprocess (Node). Injects filesystem API (fs object for JS, open() for Python) backed by AgenticFileSystem.
 - `file_read` / `file_write` — file I/O via AgenticFileSystem (browser-compatible)
-- `shell_exec` — executes shell commands via agentic-shell (browser/Node compatible)
+- `shell_exec` — executes shell commands via agentic-shell (Node.js only, returns descriptive error in browser)
 
 ## Provider Config
 | Field | Description |

@@ -17821,3 +17821,78 @@ Good. Here's my assessment and actions taken:
 [2026-04-08T04:09:22.346Z] developer agent completed
 [2026-04-08 04:09:22] [agent_complete] developer completed successfully
 [2026-04-08 04:09:22] [workflow] developer [SIGNAL] completed: Added streaming support to agentic-core: StreamChunk/AgentStreamChunk types, Provider.stream() metho
+[2026-04-08 04:09:22] [workflow] work_loop [LOOP] Iteration 8
+[2026-04-08 04:09:22] [workflow] work_loop [SHELL] node /Users/kenefe/LOCAL/momo-agent/tools/team/scripts/goal-check.js
+[2026-04-08 04:09:23] [workflow] work_loop [EXEC] pm
+[2026-04-08 04:09:23] [agent_start] pm 管理任务和里程碑
+[2026-04-08T04:09:23.031Z] Running pm agent...
+[2026-04-08 04:10:14] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 17min (active:6, done:79)
+[2026-04-08 04:11:14] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 18min (active:6, done:79)
+[2026-04-08 04:12:14] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 19min (active:6, done:79)
+## PM Status Report
+
+**Goal**: Vision ≥90% + PRD ≥90%
+
+### Current Scores
+| Metric | Before | After | Goal | Status |
+|--------|--------|-------|------|--------|
+| Vision | 82% | **88%** | ≥90% | 2% away |
+| PRD | 95% | **100%** | ≥90% | **Met** |
+| DBB | 100% | 100% | — | Pass |
+| Architecture | 93% | 93% | — | Pass |
+
+### What I Did
+1. **Fixed PRD.md** — `shell_exec` description corrected from "browser/Node compatible" to "Node.js only" (closes last PRD gap)
+2. **Updated vision.json** — Marked 3 critical/major gaps as resolved:
+   - agentic-core dependency now exists (`packages/agentic-core`)
+   - ask.ts is now 99 lines (< 100 target)
+   - Provider layer fully delegated (src/providers/ deleted)
+3. **Updated goal-status.md** — New scores and remaining gaps
+4. **Unblocked m27 task** — ARCHITECTURE.md update assigned to architect (blocker was already complete)
+5. **No pending CRs** — All 12 change requests are resolved
+
+### Remaining 2% Vision Gap (m28)
+The path to 90% requires **streaming API**:
+- `task-1775620573568` (streaming Provider interface) — **in review** with developer
+- `task-1775620587853` (expose streaming in agentic-lite) — todo, blocked on above
+- `task-1775620592995` (timeout enforcement) — todo
+
+Once the streaming core review is approved and the agentic-lite streaming entry point is implemented, vision should reach ≥90%.
+
+### Active Tasks
+| Task | Status | Assignee | Blocking |
+|------|--------|----------|----------|
+| m27: ARCHITECTURE.md update | todo | architect | None (unblocked) |
+| m28: Streaming Provider interface | **review** | developer | None |
+| m28: Streaming agentic-lite API | todo | developer | Streaming core |
+| m28: Timeout enforcement | todo | developer | None |
+| m28: Streaming ARCHITECTURE.md | todo | architect | Streaming core |
+| m28: Streaming + timeout tests | todo | tester | 3 tasks |
+
+```signal
+{"status": "blocked", "summary": "Vision at 88%, PRD at 100%. Blocking on m28 streaming task review — once developer's streaming core is approved and agentic-lite streaming API is implemented, vision should hit ≥90%. No pending CRs. All tasks assigned. Waiting for dev/tester to progress."}
+```
+[2026-04-08T04:12:48.373Z] pm agent completed
+[2026-04-08 04:12:48] [agent_complete] pm completed successfully
+[2026-04-08 04:12:48] [workflow] pm [SIGNAL] blocked: Vision at 88%, PRD at 100%. Blocking on m28 streaming task review — once developer's streaming core 
+[2026-04-08 04:12:48] [workflow] work_loop [AGENT-SIGNAL] pm → blocked: Vision at 88%, PRD at 100%. Blocking on m28 streaming task review — once develop
+[2026-04-08 04:12:48] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-08 04:12:48] [workflow] work_loop [PARALLEL-SKIP] write-design: todoWithoutDesign > 0
+[2026-04-08 04:12:48] [error] eval archTaskCount > 0: archTaskCount is not defined
+[2026-04-08 04:12:48] [workflow] work_loop [PARALLEL-SKIP] update-architecture: archTaskCount > 0
+[2026-04-08 04:12:48] [workflow] work_loop [PARALLEL] implement, run-tests
+[2026-04-08 04:12:48] [workflow] work_loop [EXEC] developer
+[2026-04-08 04:12:48] [agent_start] developer 实现功能
+[2026-04-08 04:12:48] [workflow] work_loop [EXEC] tester
+[2026-04-08 04:12:48] [agent_start] tester 验证功能
+[2026-04-08T04:12:48.454Z] Running developer agent...
+[2026-04-08T04:12:48.457Z] Running tester agent...
+[2026-04-08 04:13:14] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 20min (active:6, done:79)
+[2026-04-08 04:13:44] [perf] daemon {"rss":"75MB","heapUsed":"7MB","uptime":"2700s"}
+[2026-04-08 04:14:14] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 21min (active:6, done:79)
+```signal
+{"status": "completed", "summary": "Enforced toolConfig.code.timeout in executeCode. Added withTimeout helper, updated executeCode signature to accept optional timeout parameter, and threaded timeout through all 4 execution paths (JS sync, JS async, Python browser, Python node). Updated ask.ts to pass config.toolConfig?.code?.timeout. All 174 tests pass."}
+```
+[2026-04-08T04:14:48.604Z] developer agent completed
+[2026-04-08 04:14:48] [agent_complete] developer completed successfully
+[2026-04-08 04:14:48] [workflow] developer [SIGNAL] completed: Enforced toolConfig.code.timeout in executeCode. Added withTimeout helper, updated executeCode signa

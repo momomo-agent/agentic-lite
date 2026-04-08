@@ -1,7 +1,7 @@
 {
   "agent": "pm",
-  "timestamp": "2026-04-08T04:06:34.782Z",
+  "timestamp": "2026-04-08T04:12:48.373Z",
   "exitCode": 0,
-  "status": "completed",
-  "summary": "No pending CRs. Activated m28 (streaming + timeout). M27 agentic-core extraction is complete but vision.json is stale — tech_lead needs to re-evaluate gaps. Developer can start 2 unblocked m28 tasks now."
+  "status": "blocked",
+  "summary": "Vision at 88%, PRD at 100%. Blocking on m28 streaming task review — once developer's streaming core is approved and agentic-lite streaming API is implemented, vision should hit ≥90%. No pending CRs. All tasks assigned. Waiting for dev/tester to progress."
 }

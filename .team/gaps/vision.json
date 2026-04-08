@@ -1,30 +1,30 @@
 {
-  "match": 82,
-  "timestamp": "2026-04-08T16:00:00.000Z",
+  "match": 88,
+  "timestamp": "2026-04-08T18:00:00.000Z",
   "gaps": [
     {
-      "description": "Vision mandates agentic-lite = agentic-core (LLM loop) + agentic-filesystem + agentic-shell. No agentic-core dependency exists — agent loop, provider abstraction, tool schema, and streaming are all self-contained in src/ask.ts (~140 lines)",
-      "status": "missing",
-      "severity": "critical"
-    },
-    {
-      "description": "Design principle: ask.ts should be < 100 lines (薄层). Current ask.ts is 140 lines with full agent loop logic that should be delegated to agentic-core",
+      "description": "Streaming support: vision lists streaming as part of agentic-core's responsibility. Provider.stream() interface exists in agentic-core but no streaming API exposed in agentic-lite (ask.ts). M28 in progress.",
       "status": "partial",
       "severity": "major"
     },
     {
-      "description": "Streaming support: vision lists streaming as part of agentic-core's responsibility. No streaming implementation exists in the codebase",
-      "status": "missing",
-      "severity": "major"
+      "description": "toolConfig.code.timeout declared in types.ts but never enforced in code.ts executeCode — misbehaving code could hang indefinitely. M28 task created to fix.",
+      "status": "partial",
+      "severity": "minor"
     },
     {
-      "description": "Provider layer should be delegated to agentic-core per vision. Currently src/providers/ implements Anthropic, OpenAI, and custom adapters directly in agentic-lite",
-      "status": "partial",
-      "severity": "major"
+      "description": "Vision mandates agentic-lite = agentic-core (LLM loop) + agentic-filesystem + agentic-shell. agentic-core dependency now exists via packages/agentic-core (link:). All providers and agent loop delegated to agentic-core.",
+      "status": "implemented",
+      "severity": "minor"
     },
     {
-      "description": "toolConfig.code.timeout declared in types.ts:30 but never enforced in code.ts executeCode — misbehaving code could hang indefinitely",
-      "status": "partial",
+      "description": "ask.ts is now 99 lines (薄层 design principle met: < 100 lines). Acts as integration layer connecting agentic-core loop with tool implementations.",
+      "status": "implemented",
+      "severity": "minor"
+    },
+    {
+      "description": "Provider layer fully delegated to agentic-core. src/providers/ deleted. All imports (createProvider, Provider, ToolDefinition) come from agentic-core package.",
+      "status": "implemented",
       "severity": "minor"
     },
     {

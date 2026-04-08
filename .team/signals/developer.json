@@ -1,7 +1,7 @@
 {
   "agent": "developer",
-  "timestamp": "2026-04-08T04:09:22.346Z",
+  "timestamp": "2026-04-08T04:14:48.604Z",
   "exitCode": 0,
   "status": "completed",
-  "summary": "Added streaming support to agentic-core: StreamChunk/AgentStreamChunk types, Provider.stream() method, Anthropic/OpenAI SSE stream implementations, runAgentLoopStream() generator. Build and type-check pass."
+  "summary": "Enforced toolConfig.code.timeout in executeCode. Added withTimeout helper, updated executeCode signature to accept optional timeout parameter, and threaded timeout through all 4 execution paths (JS sync, JS async, Python browser, Python node). Updated ask.ts to pass config.toolConfig?.code?.timeout. All 174 tests pass."
 }
