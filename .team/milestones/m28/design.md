@@ -1,197 +1,150 @@
-# Milestone 28 Technical Design — Streaming & Timeout Enforcement
+# M28 Technical Design — Streaming & Timeout Enforcement
 
-## Goal
+## Overview
 
-Close the two remaining vision gaps: (1) streaming support in agentic-core/agentic-lite, (2) code execution timeout enforcement. This pushes Vision compliance from ~82% to ≥90%.
+This milestone adds two capabilities to close the remaining Vision gaps:
+1. **Streaming support** — `Provider.stream()`, `runAgentLoopStream()`, and `askStream()`
+2. **Code timeout enforcement** — wire `toolConfig.code.timeout` into `executeCode()`
 
 ## Architecture
 
-### Streaming Layer
-
 ```
-agentic-core/
-  src/
-    types.ts         — add StreamChunk, StreamAgentLoopResult
-    loop.ts          — add runAgentLoopStream() async generator
-    providers/
-      anthropic.ts   — add stream() method using SSE
-      openai.ts      — add stream() method using SSE
-
-agentic-lite/
-  src/
-    ask.ts           — add askStream() async generator
+agentic-lite (src/ask.ts)
+  └── askStream() ──→ agentic-core (loop.ts)
+                         └── runAgentLoopStream()
+                               └── provider.stream() (SSE parsing)
 ```
 
-### Timeout Layer
+### Streaming Data Flow
 
 ```
-agentic-lite/
-  src/
-    tools/
-      code.ts        — wrap all three backends with Promise.race timeout
+askStream(prompt, config)
+  → createProvider(config)
+  → runAgentLoopStream(config)
+      loop:
+        for await (chunk of provider.stream(messages, tools, system)):
+          yield { type: 'text', text: chunk.text }      // partial text
+          yield { type: 'tool_use', toolCall: chunk.tc } // tool call ready
+        execute tool calls → yield { type: 'tool_result', ... }
+        continue loop
+      yield { type: 'done', answer, toolCalls, usage }
 ```
 
----
+## Interfaces
 
-## Key Interfaces
-
-### StreamChunk (agentic-core/src/types.ts)
+### New types in `packages/agentic-core/src/types.ts`
 
 ```typescript
-export type StreamChunk =
-  | { type: 'text_delta'; text: string }
-  | { type: 'tool_use_start'; id: string; name: string }
-  | { type: 'tool_input_delta'; id: string; json: string }
-  | { type: 'tool_use'; toolCall: ProviderToolCall }
-  | { type: 'done'; answer: string; toolCalls: ProviderToolCall[]; usage: { input: number; output: number } }
+// Streaming chunk from a single provider.stream() call
+interface StreamChunk {
+  type: 'text_delta' | 'tool_use' | 'message_stop'
+  text?: string                          // incremental text for text_delta
+  toolCall?: ProviderToolCall            // complete tool call for tool_use
+  usage?: { input: number; output: number }  // only on message_stop
+}
+
+// Streaming chunk from the agent loop
+interface AgentStreamChunk {
+  type: 'text' | 'tool_start' | 'tool_result' | 'done'
+  text?: string                          // accumulated text so far (for 'text')
+  toolCall?: { tool: string; input: Record<string, unknown> }
+  output?: string                        // tool result for 'tool_result'
+  result?: AgentLoopResult               // final result for 'done'
+}
 ```
 
-### Provider.stream() method
+### Extended Provider interface
 
 ```typescript
-export interface Provider {
+interface Provider {
   chat(messages: ProviderMessage[], tools: ToolDefinition[], system?: string): Promise<ProviderResponse>
   stream(messages: ProviderMessage[], tools: ToolDefinition[], system?: string): AsyncGenerator<StreamChunk>
 }
 ```
 
-`stream()` is optional — providers that don't implement it fall back to `chat()` in the loop. The `createProvider` factory ensures both methods exist on the returned object.
-
-### runAgentLoopStream()
+### New function in `packages/agentic-core/src/loop.ts`
 
 ```typescript
-export async function* runAgentLoopStream(config: AgentLoopConfig): AsyncGenerator<StreamChunk>
+export async function* runAgentLoopStream(config: AgentLoopConfig): AsyncGenerator<AgentStreamChunk>
 ```
 
-- Same config as `runAgentLoop` (reuse `AgentLoopConfig`)
-- Calls `provider.stream()` instead of `provider.chat()`
-- Accumulates tool calls from `tool_use` chunks
-- After a complete tool_use round: executes tool calls via `config.executeToolCall`, appends results to messages, starts next stream round
-- Yields all chunks from provider plus a final `done` chunk with aggregated answer/toolCalls/usage
-- Respects `maxToolRounds` (same constant as `runAgentLoop`)
-
-### askStream() (agentic-lite/src/ask.ts)
+### New function in `src/ask.ts`
 
 ```typescript
-export async function* askStream(prompt: string, config: AgenticConfig): AsyncGenerator<StreamChunk>
+export async function* askStream(prompt: string, config: AgenticConfig): AsyncGenerator<AgentStreamChunk>
 ```
 
-- Mirrors `ask()` setup: resolve filesystem, create provider, build tool defs
-- Calls `runAgentLoopStream()` from agentic-core
-- Yields chunks directly (pass-through)
-- Final `done` chunk includes same aggregated data as `AgenticResult`
+## Implementation Plan
 
----
+### Task 1: Streaming Provider Interface (task-1775620573568)
+**Files**: `packages/agentic-core/src/types.ts`, `packages/agentic-core/src/providers/anthropic.ts`, `openai.ts`, `loop.ts`
 
-## Streaming: Provider Implementations
+1. Add `StreamChunk` interface to types.ts
+2. Add `stream()` to `Provider` interface (required method)
+3. Implement `stream()` in anthropic.ts:
+   - Set `stream: true` in request body
+   - Parse SSE events: `content_block_delta` → `text_delta`, `content_block_start` (tool_use) → `tool_use`, `message_stop` → `message_stop`
+   - Use `response.body.getReader()` for incremental reading
+4. Implement `stream()` in openai.ts:
+   - Set `stream: true` in request body
+   - Parse SSE `data:` lines: `delta.content` → `text_delta`, `delta.tool_calls` → `tool_use`, `finish_reason` → `message_stop`
+   - Reuse existing `reassembleSSE` logic as reference
+5. Add `runAgentLoopStream()` to loop.ts:
+   - Same loop structure as `runAgentLoop()` but uses `provider.stream()` instead of `provider.chat()`
+   - Yields `AgentStreamChunk` for each event
+   - Accumulates text across chunks; on `tool_use`, executes tools and yields `tool_result`
+   - On `message_stop` with no tool calls, yields `done` and returns
 
-### Anthropic stream()
+### Task 2: Expose Streaming in agentic-lite (task-1775620587853)
+**Files**: `src/ask.ts`, `src/index.ts`
 
-- Request: set `stream: true` in body
-- Response: Read as `ReadableStream`, parse SSE lines
-- Event types to handle:
-  - `content_block_delta` with `delta.type: 'text_delta'` → yield `{ type: 'text_delta', text }`
-  - `content_block_start` with `type: 'tool_use'` → yield `{ type: 'tool_use_start', id, name }`
-  - `content_block_delta` with `delta.type: 'input_json_delta'` → yield `{ type: 'tool_input_delta', id, json }`
-  - `message_delta` with `stop_reason` → assemble complete tool calls, yield `{ type: 'tool_use', toolCall }` for each
-  - `message_stop` → yield `{ type: 'done', ... }`
-- Use `response.body.getReader()` for streaming reads
+1. Add `askStream()` async generator function to ask.ts
+2. Build tool defs and executeToolCall callback same as `ask()`
+3. Delegate to `runAgentLoopStream()` from agentic-core
+4. Accumulate sources/codeResults/files/shellResults same as `ask()`
+5. Export `askStream` from `src/index.ts`
 
-### OpenAI stream()
+### Task 3: Enforce Code Timeout (task-1775620592995)
+**Files**: `src/tools/code.ts`, `src/ask.ts`
 
-- Request: set `stream: true` in body
-- Response: Read as `ReadableStream`, parse SSE `data:` lines
-- Accumulate `delta.content` → yield `{ type: 'text_delta', text }`
-- Accumulate `delta.tool_calls` by index → yield `tool_use_start` / `tool_input_delta` / `tool_use`
-- `[DONE]` → yield `{ type: 'done', ... }`
+1. Thread `timeout` parameter through `executeCode(input, filesystem?, timeout?)`
+2. In `ask.ts` handleToolCall, pass `config.toolConfig?.code?.timeout` to `executeCode()`
+3. In code.ts, wrap each execution path with `Promise.race()`:
+   - **QuickJS**: wrap `vm.evalCode()` in a promise, race against `setTimeout(reject, timeout)`
+   - **Pyodide**: wrap `pyodide.runPythonAsync()` in a promise, race against timeout
+   - **python3 Node**: use `child_process.execFile` with `timeout` option, or `AbortController` + `setTimeout`
+4. On timeout, throw `Error('Code execution timed out after ${timeout}ms')`
+5. Default: if no timeout provided, no enforcement (backward compatible)
 
----
+### Task 4: Update ARCHITECTURE.md (task-1775620598483)
+**Files**: `ARCHITECTURE.md`
 
-## Timeout Enforcement
+1. Add `Provider.stream()` to Key Interfaces section
+2. Add streaming data flow diagram
+3. Document `runAgentLoopStream()` in loop section
+4. Document `askStream()` in public API section
+5. Add timeout enforcement note under code_exec tool
 
-### Approach: Promise.race with timeout wrapper
+### Task 5: Tests (task-1775620603459)
+**Files**: `tests/streaming.test.ts`, `tests/timeout.test.ts` (or existing test files)
 
-```typescript
-export async function executeCode(
-  input: Record<string, unknown>,
-  filesystem?: AgenticFileSystem,
-  timeout?: number,  // NEW optional parameter
-): Promise<CodeResult>
-```
+1. **Streaming tests**:
+   - mock anthropic SSE → verify chunks yielded
+   - mock openai SSE → verify chunks yielded
+   - `runAgentLoopStream()` with mock provider → verify text/tool/done chunks
+   - `askStream()` end-to-end with mock
+2. **Timeout tests**:
+   - QuickJS infinite loop + timeout=500 → rejects with timeout error
+   - Pyodide infinite loop + timeout=500 → rejects with timeout error
+   - python3 infinite loop + timeout=500 → rejects with timeout error
+   - No timeout provided → no enforcement (existing behavior)
+3. **Backward compatibility**: existing 174 tests still pass
 
-**Implementation strategy:**
+## Edge Cases
 
-```typescript
-function withTimeout<T>(promise: Promise<T>, ms: number, label: string): Promise<T> {
-  return Promise.race([
-    promise,
-    new Promise<never>((_, reject) =>
-      setTimeout(() => reject(new Error(`${label} timed out after ${ms}ms`)), ms)
-    ),
-  ])
-}
-```
-
-Apply `withTimeout` to each backend:
-
-1. **QuickJS (browser JS)**: Wrap `vm.evalCodeAsync(code)` + `runtime.executePendingJobs()` in timeout
-2. **Pyodide (browser Python)**: Wrap `pyodideInstance.runPythonAsync(code)` in timeout
-3. **python3 subprocess (Node Python)**: Use `proc.kill()` on timeout via `setTimeout` + `proc.on('close')`
-
-For the subprocess case, `Promise.race` alone isn't sufficient because the child process must be killed:
-
-```typescript
-const timer = setTimeout(() => proc.kill('SIGTERM'), timeout)
-proc.on('close', () => clearTimeout(timer))
-```
-
-### Timeout source
-
-Read from `config.toolConfig?.code?.timeout`. Pass through from `ask.ts` `handleToolCall` → `executeCode`. Default: no timeout (undefined = no enforcement).
-
-### Edge cases
-
-- `timeout <= 0`: treat as no timeout
-- Pyodide loading time: timeout applies to `runPythonAsync` only, not `loadPyodide` (loading is cached, one-time)
-- QuickJS disposal: ensure `vm.dispose()` is called even on timeout (use try/finally)
-
----
-
-## File Changes Summary
-
-| File | Change |
-|------|--------|
-| `packages/agentic-core/src/types.ts` | Add `StreamChunk` type, add `stream()` to `Provider` interface |
-| `packages/agentic-core/src/loop.ts` | Add `runAgentLoopStream()` async generator |
-| `packages/agentic-core/src/providers/anthropic.ts` | Add `stream()` method |
-| `packages/agentic-core/src/providers/openai.ts` | Add `stream()` method |
-| `packages/agentic-core/src/index.ts` | Export `runAgentLoopStream`, `StreamChunk` |
-| `src/ask.ts` | Add `askStream()` function, pass timeout to `executeCode` |
-| `src/tools/code.ts` | Add timeout parameter, wrap backends with `Promise.race` |
-| `src/types.ts` | No changes needed (AgenticConfig already has `toolConfig.code.timeout`) |
-
----
-
-## Task Sequence
-
-1. **task-1775620573568** — Add streaming to agentic-core Provider interface (types + providers + loop)
-2. **task-1775620587853** — Expose streaming API in agentic-lite (askStream)
-3. **task-1775620592995** — Enforce toolConfig.code.timeout in executeCode
-4. **task-1775620598483** — Update ARCHITECTURE.md for streaming API
-5. **task-1775620603459** — Add tests for streaming and timeout
-
-Tasks 1-3 are independent (can be parallelized). Task 4 depends on 1. Task 5 depends on 1, 2, 3.
-
----
-
-## Risk Mitigation
-
-1. **Provider.stream() backward compat**: `stream()` is a new method. Existing code calling `chat()` is unaffected. `runAgentLoop` (non-streaming) still uses `chat()`. No breaking changes.
-
-2. **SSE parsing complexity**: Both Anthropic and OpenAI SSE formats are well-documented. The existing OpenAI provider already has SSE reassembly logic (`reassembleSSE`) — the streaming version extends this pattern.
-
-3. **Pyodide timeout**: Pyodide doesn't support `AbortController`. `Promise.race` will reject the promise but Pyodide execution continues in the background. This is acceptable for browser — the timeout returns an error to the caller promptly.
-
-4. **QuickJS async timeout**: quickjs-emscripten doesn't have a built-in interrupt mechanism. `Promise.race` provides the timeout boundary. The VM context is disposed in the `finally` block.
-
-5. **Test isolation**: Streaming tests use mock providers (no real API calls). Timeout tests use known-long-running code snippets.
+- **Empty stream**: provider returns no text and no tool calls → yield `done` with empty answer
+- **Stream error mid-flight**: provider connection drops → propagate error through generator
+- **Timeout = 0**: treat as "no timeout" (same as undefined)
+- **Very large timeout**: no upper bound enforced; trust the caller
+- **Custom provider without stream()**: custom providers must implement `stream()` — document this requirement
+- **Streaming with tool calls**: tool execution is NOT streamed (only provider output is streamed); tool results yield a single `tool_result` chunk

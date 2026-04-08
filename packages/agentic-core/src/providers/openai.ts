@@ -1,7 +1,7 @@
 // OpenAI-compatible provider — works with OpenAI, Groq, Together, any compatible API
 
 import type { ProviderConfig } from '../types.js'
-import type { Provider, ProviderMessage, ProviderResponse, ToolDefinition } from '../types.js'
+import type { Provider, ProviderMessage, ProviderResponse, StreamChunk, ToolDefinition } from '../types.js'
 
 export function createOpenAIProvider(config: ProviderConfig): Provider {
   if (!config.apiKey && !config.baseUrl) throw new Error('apiKey is required for openai provider')
@@ -51,6 +51,93 @@ export function createOpenAIProvider(config: ProviderConfig): Provider {
       }
 
       return parseResponse(data)
+    },
+
+    async *stream(messages: ProviderMessage[], tools: ToolDefinition[], system?: string): AsyncGenerator<StreamChunk> {
+      const body: Record<string, unknown> = {
+        model,
+        stream: true,
+        messages: convertMessages(messages, system),
+      }
+
+      if (tools.length > 0) {
+        body.tools = tools.map(t => ({
+          type: 'function',
+          function: { name: t.name, description: t.description, parameters: t.parameters },
+        }))
+      }
+
+      const base = baseUrl.replace(/\/+$/, '')
+      const endpoint = base.endsWith('/v1') ? `${base}/chat/completions` : `${base}/v1/chat/completions`
+
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(config.apiKey ? { 'Authorization': `Bearer ${config.apiKey}` } : {}),
+        },
+        body: JSON.stringify(body),
+      })
+
+      if (!res.ok) {
+        const err = await res.text()
+        throw new Error(`OpenAI API error ${res.status}: ${err}`)
+      }
+
+      const reader = res.body!.getReader()
+      const decoder = new TextDecoder()
+      let buffer = ''
+
+      const toolCalls: Map<number, { id: string; name: string; args: string }> = new Map()
+
+      while (true) {
+        const { done, value } = await reader.read()
+        if (done) break
+        buffer += decoder.decode(value, { stream: true })
+
+        const lines = buffer.split('\n')
+        buffer = lines.pop()!
+
+        for (const line of lines) {
+          if (!line.startsWith('data: ') || line === 'data: [DONE]') continue
+          try {
+            const chunk = JSON.parse(line.slice(6))
+            const delta = chunk.choices?.[0]?.delta
+            if (!delta) {
+              if (chunk.usage) {
+                yield { type: 'message_stop', usage: { input: chunk.usage.prompt_tokens ?? 0, output: chunk.usage.completion_tokens ?? 0 } }
+              }
+              continue
+            }
+
+            if (delta.content) {
+              yield { type: 'text_delta', text: delta.content }
+            }
+
+            if (delta.tool_calls) {
+              for (const tc of delta.tool_calls) {
+                const idx = tc.index ?? 0
+                const existing = toolCalls.get(idx)
+                if (!existing) {
+                  toolCalls.set(idx, { id: tc.id || '', name: tc.function?.name || '', args: tc.function?.arguments || '' })
+                } else {
+                  if (tc.function?.arguments) existing.args += tc.function.arguments
+                }
+              }
+            }
+
+            const finishReason = chunk.choices?.[0]?.finish_reason
+            if (finishReason) {
+              for (const tc of toolCalls.values()) {
+                let input = {}
+                try { input = JSON.parse(tc.args || '{}') } catch { /* malformed */ }
+                yield { type: 'tool_use', toolCall: { id: tc.id, name: tc.name, input } }
+              }
+              yield { type: 'message_stop' }
+            }
+          } catch { /* skip malformed chunks */ }
+        }
+      }
     }
   }
 }

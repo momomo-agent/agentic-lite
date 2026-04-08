@@ -34,6 +34,7 @@ export interface ProviderToolContent {
 
 export interface Provider {
   chat(messages: ProviderMessage[], tools: ToolDefinition[], system?: string): Promise<ProviderResponse>
+  stream(messages: ProviderMessage[], tools: ToolDefinition[], system?: string): AsyncGenerator<StreamChunk>
 }
 
 /** Minimal config for provider creation */
@@ -60,4 +61,21 @@ export interface AgentLoopResult {
   answer: string
   toolCalls: Array<{ tool: string; input: Record<string, unknown>; output: unknown }>
   usage: { input: number; output: number }
+}
+
+/** Chunk yielded by Provider.stream() */
+export interface StreamChunk {
+  type: 'text_delta' | 'tool_use' | 'message_stop'
+  text?: string
+  toolCall?: ProviderToolCall
+  usage?: { input: number; output: number }
+}
+
+/** Chunk yielded by runAgentLoopStream() */
+export interface AgentStreamChunk {
+  type: 'text' | 'tool_start' | 'tool_result' | 'done'
+  text?: string
+  toolCall?: { tool: string; input: Record<string, unknown> }
+  output?: string
+  result?: AgentLoopResult
 }

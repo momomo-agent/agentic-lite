@@ -1,7 +1,7 @@
 {
   "agent": "developer",
-  "timestamp": "2026-04-08T03:58:38.592Z",
+  "timestamp": "2026-04-08T04:09:22.346Z",
   "exitCode": 0,
-  "status": "blocked",
-  "summary": "No claimable tasks available. The two developer tasks (streaming: task-1775620573568, timeout: task-1775620592995) lack design.md files (hasDesign=false). Need tech lead or architect to create designs before implementation can proceed."
+  "status": "completed",
+  "summary": "Added streaming support to agentic-core: StreamChunk/AgentStreamChunk types, Provider.stream() method, Anthropic/OpenAI SSE stream implementations, runAgentLoopStream() generator. Build and type-check pass."
 }

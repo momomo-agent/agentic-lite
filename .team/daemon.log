@@ -17682,3 +17682,142 @@ No more tasks in "review" status. All done.
 [2026-04-08T04:00:43.955Z] tester agent completed
 [2026-04-08 04:00:43] [agent_complete] tester completed successfully
 [2026-04-08 04:00:43] [workflow] tester [SIGNAL] completed: Tested task-1775613090477: all 174 tests pass, all DBB criteria verified, task marked done
+[2026-04-08 04:00:44] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 7min (active:6, done:79)
+[2026-04-08 04:01:14] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 8min (active:6, done:79)
+[2026-04-08 04:02:14] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 9min (active:6, done:79)
+[2026-04-08 04:03:14] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 10min (active:6, done:79)
+```signal
+{"status": "completed", "summary": "Created milestone M28 DBB (10 verification criteria), milestone technical design, and 5 task-level designs for Streaming & Timeout Enforcement. Updated hasDesign=true for all 5 tasks."}
+```
+
+## Summary of work done
+
+**Milestone M28 — Streaming & Timeout Enforcement:**
+
+| File | Content |
+|------|---------|
+| `.team/milestones/m28/dbb.md` | 10 DBB criteria: stream() method, anthropic/openai impl, runAgentLoopStream, askStream, backward compat, code timeout, multi-path timeout, ARCHITECTURE docs, Vision ≥90% |
+| `.team/milestones/m28/design.md` | Technical design with interfaces (StreamChunk, AgentStreamChunk), streaming data flow, implementation plan for all 5 tasks, edge cases |
+
+**Task-level designs (all 5 tasks):**
+
+| Task | Title | Key design points |
+|------|-------|-------------------|
+| task-1775620573568 | Streaming Provider interface | `stream()` async generator in Provider, SSE parsing for Anthropic + OpenAI, `runAgentLoopStream()` in loop.ts — with full code for both providers |
+| task-1775620587853 | Expose streaming in agentic-lite | `askStream()` generator in ask.ts, accumulator pattern identical to `ask()`, export from index.ts |
+| task-1775620592995 | Enforce code timeout | `withTimeout()` helper, applied to QuickJS/Pyodide/python3 paths, timeout param threaded from `toolConfig.code.timeout` |
+| task-1775620598483 | Update ARCHITECTURE.md | 5 sections to add: interfaces, Provider description, streaming data flow, public API, timeout note |
+| task-1775620603459 | Tests for streaming + timeout | 12 test cases: 6 streaming (mock SSE, tool accumulation, error propagation), 6 timeout (3 execution paths, no-timeout compat, fast code) |
+[2026-04-08T04:03:21.765Z] tech_lead-1 agent completed
+[2026-04-08 04:03:21] [agent_complete] tech_lead-1 completed successfully
+[2026-04-08 04:03:21] [workflow] tech_lead-1 [SIGNAL] completed: Created milestone M28 DBB (10 verification criteria), milestone technical design, and 5 task-level d
+[2026-04-08 04:03:44] [perf] daemon {"rss":"79MB","heapUsed":"13MB","uptime":"2100s"}
+All tasks have technical designs. Here's a summary of what was created:
+
+## Milestone M28 (Streaming & Timeout Enforcement)
+
+**Created:**
+- `.team/milestones/m28/dbb.md` — 11 verification criteria covering Provider.stream(), both provider implementations, runAgentLoopStream, askStream, backward compatibility, code timeout, ARCHITECTURE.md update, and Vision ≥90%
+- `.team/milestones/m28/design.md` — Technical approach with StreamChunk/AgentStreamChunk types, Provider.stream() interface, runAgentLoopStream() async generator, askStream(), timeout enforcement via Promise.race, and risk mitigation
+
+**Task Designs Created (all hasDesign=true):**
+
+| Task | Design | Key Points |
+|------|--------|------------|
+| task-1775620573568 | Streaming Provider interface | StreamChunk types, Anthropic/OpenAI stream() SSE parsing, runAgentLoopStream() async generator |
+| task-1775620587853 | Expose streaming in agentic-lite | askStream() pass-through generator, re-exports StreamChunk |
+| task-1775620592995 | Enforce code timeout | withTimeout helper, Promise.race for QuickJS/Pyodide, execFile timeout for python3 subprocess |
+| task-1775620598483 | Update ARCHITECTURE.md | Streaming data flow, Provider.stream() docs, timeout section |
+| task-1775620603459 | Tests for streaming/timeout | ~12 tests covering mock SSE, runAgentLoopStream, askStream, timeout per backend |
+
+**M27 active milestone:** Already had dbb.md, design.md, and all todo tasks had designs — no action needed.
+
+```signal
+{"status": "completed", "summary": "Created m28 DBB (11 criteria) + milestone design, and 5 task-level technical designs for all m28 todo tasks. All tasks now have hasDesign=true."}
+```
+[2026-04-08T04:03:50.020Z] tech_lead-3 agent completed
+[2026-04-08 04:03:50] [agent_complete] tech_lead-3 completed successfully
+[2026-04-08 04:03:50] [workflow] tech_lead-3 [SIGNAL] completed: Created m28 DBB (11 criteria) + milestone design, and 5 task-level technical designs for all m28 tod
+[2026-04-08 04:04:14] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 11min (active:6, done:79)
+All work is complete. Here's a summary:
+
+## What I Found
+
+**m27** (active): Already has `dbb.md` and `design.md`. All tasks are done/cancelled/review except `task-1775615948484` (todo, already has design).
+
+**m28** (planned — "Streaming & Timeout Enforcement"): Already had complete `dbb.md` and `design.md`. All 5 tasks had design files but were missing `hasDesign: true`.
+
+## What I Did
+
+Updated `hasDesign: true` for all 5 m28 tasks:
+
+| Task | Title | Design Content |
+|------|-------|---------------|
+| `task-1775620573568` | Add streaming to agentic-core Provider interface | StreamChunk type, Provider.stream(), anthropic/openai implementations, runAgentLoopStream() |
+| `task-1775620587853` | Expose streaming API in agentic-lite | askStream() async generator, shared setup with ask() |
+| `task-1775620592995` | Enforce toolConfig.code.timeout in executeCode | withTimeout wrapper, per-backend timeout (QuickJS, Pyodide, python3 subprocess) |
+| `task-1775620598483` | Update ARCHITECTURE.md for streaming API | Streaming data flow, Provider.stream() docs, timeout section |
+| `task-1775620603459` | Add tests for streaming and timeout | 8 streaming tests + 7 timeout tests, mock providers |
+
+All designs include exact file paths, function signatures with types, algorithms, edge cases, and test cases.
+
+```signal
+{"status": "completed", "summary": "All milestone and task designs verified/created. Updated hasDesign=true for 5 m28 tasks. m28 dbb.md (11 criteria) and design.md already complete."}
+```
+[2026-04-08T04:04:19.917Z] tech_lead-2 agent completed
+[2026-04-08 04:04:19] [agent_complete] tech_lead-2 completed successfully
+[2026-04-08 04:04:19] [workflow] tech_lead-2 [SIGNAL] completed: All milestone and task designs verified/created. Updated hasDesign=true for 5 m28 tasks. m28 dbb.md 
+[2026-04-08 04:04:19] [workflow] work_loop [LOOP] Iteration 7
+[2026-04-08 04:04:19] [workflow] work_loop [SHELL] node /Users/kenefe/LOCAL/momo-agent/tools/team/scripts/goal-check.js
+[2026-04-08 04:04:20] [workflow] work_loop [EXEC] pm
+[2026-04-08 04:04:20] [agent_start] pm 管理任务和里程碑
+[2026-04-08T04:04:20.238Z] Running pm agent...
+[2026-04-08 04:05:14] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 12min (active:6, done:79)
+[2026-04-08 04:06:14] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 13min (active:6, done:79)
+Good. Here's my assessment and actions taken:
+
+## Summary
+
+**Current state**: Vision 82% (needs ≥90%), PRD 95% (goal met).
+
+**Key findings:**
+1. **No pending CRs** — all 12 resolved
+2. **M27 nearly complete** — agentic-core extraction is done (ask.ts is 99 lines, `agentic-core` is a dependency, `src/providers/` removed). One remaining task for architect (ARCHITECTURE.md update).
+3. **Vision gap analysis is stale** — vision.json still shows "No agentic-core dependency exists" and "ask.ts ~140 lines". These are already resolved. After tech_lead re-evaluates, vision match should jump significantly.
+4. **Remaining real gaps**: streaming support + timeout enforcement
+
+**Action taken:**
+- **Activated m28** ("Streaming & Timeout Enforcement — Final Vision Gaps") — status changed from "planned" to "active"
+- Developer can start on 2 unblocked tasks: streaming provider interface (task-1775620573568) + timeout enforcement (task-1775620592995)
+
+**Shortest path to goal:**
+1. Developer completes m28 streaming + timeout work
+2. Tech_lead re-evaluates vision.json (should correct the stale 82% to reflect actual progress)
+3. After m28 completes and vision is re-evaluated, vision should be ≥90%
+
+```signal
+{"status": "completed", "summary": "No pending CRs. Activated m28 (streaming + timeout). M27 agentic-core extraction is complete but vision.json is stale — tech_lead needs to re-evaluate gaps. Developer can start 2 unblocked m28 tasks now."}
+```
+[2026-04-08T04:06:34.783Z] pm agent completed
+[2026-04-08 04:06:34] [agent_complete] pm completed successfully
+[2026-04-08 04:06:34] [workflow] pm [SIGNAL] completed: No pending CRs. Activated m28 (streaming + timeout). M27 agentic-core extraction is complete but vis
+[2026-04-08 04:06:34] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-08 04:06:34] [workflow] work_loop [PARALLEL-SKIP] write-design: todoWithoutDesign > 0
+[2026-04-08 04:06:34] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-08 04:06:34] [error] eval archTaskCount > 0: archTaskCount is not defined
+[2026-04-08 04:06:34] [workflow] work_loop [PARALLEL-SKIP] update-architecture: archTaskCount > 0
+[2026-04-08 04:06:34] [workflow] work_loop [PARALLEL] implement
+[2026-04-08 04:06:34] [workflow] work_loop [EXEC] developer
+[2026-04-08 04:06:34] [agent_start] developer 实现功能
+[2026-04-08T04:06:34.833Z] Running developer agent...
+[2026-04-08 04:07:14] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 14min (active:6, done:79)
+[2026-04-08 04:08:14] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 15min (active:6, done:79)
+[2026-04-08 04:08:44] [perf] daemon {"rss":"79MB","heapUsed":"13MB","uptime":"2400s"}
+[2026-04-08 04:08:44] [agent_start] daemon Still busy (40min), skipping
+[2026-04-08 04:09:14] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 16min (active:6, done:79)
+```signal
+{"status": "completed", "summary": "Added streaming support to agentic-core: StreamChunk/AgentStreamChunk types, Provider.stream() method, Anthropic/OpenAI SSE stream implementations, runAgentLoopStream() generator. Build and type-check pass."}
+```
+[2026-04-08T04:09:22.346Z] developer agent completed
+[2026-04-08 04:09:22] [agent_complete] developer completed successfully
+[2026-04-08 04:09:22] [workflow] developer [SIGNAL] completed: Added streaming support to agentic-core: StreamChunk/AgentStreamChunk types, Provider.stream() metho

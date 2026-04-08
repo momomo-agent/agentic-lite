@@ -7855,3 +7855,52 @@
 {"ts":"2026-04-08T04:00:26.609Z","type":"task_status","agent":"tester","data":{"taskId":"task-1775613090477","from":"testing","to":"done","title":"重构 ask.ts — 换用 agentic-core"}}
 {"ts":"2026-04-08T04:00:43.960Z","type":"agent_complete","agent":"tester","data":{"details":"completed successfully","performance":{"memoryMB":12,"memoryTotalMB":15,"cpuUser":0.958021,"cpuSystem":0.796645}}}
 {"ts":"2026-04-08T04:00:43.961Z","type":"workflow","agent":"tester","data":{"details":"[SIGNAL] completed: Tested task-1775613090477: all 174 tests pass, all DBB criteria verified, task marked done"}}
+{"ts":"2026-04-08T04:00:44.263Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 7min (active:6, done:79)"}}
+{"ts":"2026-04-08T04:00:44.263Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 7min (active:6, done:79)\"}"}}
+{"ts":"2026-04-08T04:01:14.266Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 8min (active:6, done:79)"}}
+{"ts":"2026-04-08T04:01:14.267Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 8min (active:6, done:79)\"}"}}
+{"ts":"2026-04-08T04:02:14.270Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 9min (active:6, done:79)"}}
+{"ts":"2026-04-08T04:02:14.272Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 9min (active:6, done:79)\"}"}}
+{"ts":"2026-04-08T04:03:14.275Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 10min (active:6, done:79)"}}
+{"ts":"2026-04-08T04:03:14.276Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 10min (active:6, done:79)\"}"}}
+{"ts":"2026-04-08T04:03:21.770Z","type":"agent_complete","agent":"tech_lead-1","data":{"details":"completed successfully","performance":{"memoryMB":13,"memoryTotalMB":15,"cpuUser":1.048271,"cpuSystem":0.864797}}}
+{"ts":"2026-04-08T04:03:21.770Z","type":"workflow","agent":"tech_lead-1","data":{"details":"[SIGNAL] completed: Created milestone M28 DBB (10 verification criteria), milestone technical design, and 5 task-level d"}}
+{"ts":"2026-04-08T04:03:44.146Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"79MB\",\"heapUsed\":\"13MB\",\"uptime\":\"2100s\"}"}}
+{"ts":"2026-04-08T04:03:50.025Z","type":"agent_complete","agent":"tech_lead-3","data":{"details":"completed successfully","performance":{"memoryMB":7,"memoryTotalMB":9,"cpuUser":1.072445,"cpuSystem":0.879678}}}
+{"ts":"2026-04-08T04:03:50.026Z","type":"workflow","agent":"tech_lead-3","data":{"details":"[SIGNAL] completed: Created m28 DBB (11 criteria) + milestone design, and 5 task-level technical designs for all m28 tod"}}
+{"ts":"2026-04-08T04:04:14.280Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 11min (active:6, done:79)"}}
+{"ts":"2026-04-08T04:04:14.281Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 11min (active:6, done:79)\"}"}}
+{"ts":"2026-04-08T04:04:19.922Z","type":"agent_complete","agent":"tech_lead-2","data":{"details":"completed successfully","performance":{"memoryMB":13,"memoryTotalMB":15,"cpuUser":1.086437,"cpuSystem":0.895122}}}
+{"ts":"2026-04-08T04:04:19.922Z","type":"workflow","agent":"tech_lead-2","data":{"details":"[SIGNAL] completed: All milestone and task designs verified/created. Updated hasDesign=true for 5 m28 tasks. m28 dbb.md "}}
+{"ts":"2026-04-08T04:04:19.973Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 7"}}
+{"ts":"2026-04-08T04:04:19.986Z","type":"workflow","agent":"work_loop","data":{"details":"[SHELL] node /Users/kenefe/LOCAL/momo-agent/tools/team/scripts/goal-check.js"}}
+{"ts":"2026-04-08T04:04:20.214Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-08T04:04:20.214Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":13,"memoryTotalMB":16,"cpuUser":1.098437,"cpuSystem":0.92992}}}
+{"ts":"2026-04-08T04:05:14.286Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 12min (active:6, done:79)"}}
+{"ts":"2026-04-08T04:05:14.287Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 12min (active:6, done:79)\"}"}}
+{"ts":"2026-04-08T04:05:15.735Z","type":"task_status","agent":"architect","data":{"taskId":"task-1775615948444","from":"todo","to":"done","title":"Update ARCHITECTURE.md for agentic-core structure"}}
+{"ts":"2026-04-08T04:05:22.735Z","type":"task_status","agent":"architect","data":{"taskId":"task-1775615948444","from":"done","to":"todo","title":"Update ARCHITECTURE.md for agentic-core structure"}}
+{"ts":"2026-04-08T04:06:14.284Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 13min (active:6, done:79)"}}
+{"ts":"2026-04-08T04:06:14.285Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 13min (active:6, done:79)\"}"}}
+{"ts":"2026-04-08T04:06:34.786Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":13,"memoryTotalMB":16,"cpuUser":1.167049,"cpuSystem":0.978732}}}
+{"ts":"2026-04-08T04:06:34.786Z","type":"workflow","agent":"pm","data":{"details":"[SIGNAL] completed: No pending CRs. Activated m28 (streaming + timeout). M27 agentic-core extraction is complete but vis"}}
+{"ts":"2026-04-08T04:06:34.800Z","type":"workflow","agent":"work_loop","data":{"details":"[SKIP] write-dbb: milestoneNeedsDBB > 0"}}
+{"ts":"2026-04-08T04:06:34.800Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] write-design: todoWithoutDesign > 0"}}
+{"ts":"2026-04-08T04:06:34.800Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0"}}
+{"ts":"2026-04-08T04:06:34.801Z","type":"error","agent":"eval","data":{"details":"archTaskCount > 0: archTaskCount is not defined"}}
+{"ts":"2026-04-08T04:06:34.801Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] update-architecture: archTaskCount > 0"}}
+{"ts":"2026-04-08T04:06:34.801Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] implement"}}
+{"ts":"2026-04-08T04:06:34.801Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] developer"}}
+{"ts":"2026-04-08T04:06:34.801Z","type":"agent_start","agent":"developer","data":{"details":"实现功能","performance":{"memoryMB":15,"memoryTotalMB":18,"cpuUser":1.171061,"cpuSystem":0.990353}}}
+{"ts":"2026-04-08T04:06:51.429Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775620573568","from":"todo","to":"inProgress","title":"Add streaming to agentic-core Provider interface"}}
+{"ts":"2026-04-08T04:07:14.291Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 14min (active:6, done:79)"}}
+{"ts":"2026-04-08T04:07:14.293Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 14min (active:6, done:79)\"}"}}
+{"ts":"2026-04-08T04:08:14.295Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 15min (active:6, done:79)"}}
+{"ts":"2026-04-08T04:08:14.297Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 15min (active:6, done:79)\"}"}}
+{"ts":"2026-04-08T04:08:44.152Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"79MB\",\"heapUsed\":\"13MB\",\"uptime\":\"2400s\"}"}}
+{"ts":"2026-04-08T04:08:44.474Z","type":"agent_start","agent":"daemon","data":{"details":"Still busy (40min), skipping","performance":{"memoryMB":7,"memoryTotalMB":11,"cpuUser":1.244085,"cpuSystem":1.041359}}}
+{"ts":"2026-04-08T04:09:14.314Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 16min (active:6, done:79)"}}
+{"ts":"2026-04-08T04:09:14.315Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 16min (active:6, done:79)\"}"}}
+{"ts":"2026-04-08T04:09:18.480Z","type":"task_status","agent":"developer","data":{"taskId":"task-1775620573568","from":"inProgress","to":"review","title":"Add streaming to agentic-core Provider interface"}}
+{"ts":"2026-04-08T04:09:22.349Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":13,"memoryTotalMB":16,"cpuUser":1.249411,"cpuSystem":1.047232}}}
+{"ts":"2026-04-08T04:09:22.349Z","type":"workflow","agent":"developer","data":{"details":"[SIGNAL] completed: Added streaming support to agentic-core: StreamChunk/AgentStreamChunk types, Provider.stream() metho"}}
