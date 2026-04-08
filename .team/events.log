@@ -6646,3 +6646,843 @@
 {"ts":"2026-04-07T17:42:21.151Z","type":"task_status","agent":"tester","data":{"taskId":"task-1775583094060","from":"testing","to":"done","title":"Fix README AgenticResult.images type annotation"}}
 {"ts":"2026-04-07T17:42:30.100Z","type":"agent_complete","agent":"tester","data":{"details":"completed successfully","performance":{"memoryMB":7,"memoryTotalMB":10,"cpuUser":1.862071,"cpuSystem":3.238865}}}
 {"ts":"2026-04-07T17:42:30.108Z","type":"workflow","agent":"tester","data":{"details":"[SIGNAL] completed: Tested task-1775583094060: README already shows images: string[] (required), types.ts matches, all 1"}}
+{"ts":"2026-04-07T17:42:33.243Z","type":"workflow","agent":"work_loop","data":{"details":"[BRANCH] doneCount > 0 → true → milestone_qg"}}
+{"ts":"2026-04-07T17:42:33.245Z","type":"workflow","agent":"work_loop","data":{"details":"[EXIT] todoCount == 0 && designedTasks == 0 && reviewCount == 0 && inProgressCount == 0 && testingCount == 0 && blockedCount == 0 → milestone_qg"}}
+{"ts":"2026-04-07T17:42:33.252Z","type":"error","agent":"workflow","data":{"details":"[SPIN-EXIT] Node \"milestone_qg\" visited 6 times (max 5) — breaking cycle"}}
+{"ts":"2026-04-07T17:42:57.087Z","type":"agent_start","agent":"startup","data":{"details":"[NODE] startup - 项目启动","performance":{"memoryMB":11,"memoryTotalMB":14,"cpuUser":1.87845,"cpuSystem":3.286888}}}
+{"ts":"2026-04-07T17:42:57.999Z","type":"workflow","agent":"startup","data":{"details":"[SKIP] init-architecture: !hasArchitecture"}}
+{"ts":"2026-04-07T17:42:58.015Z","type":"agent_start","agent":"monitor","data":{"details":"[NODE] monitor - 全局 Monitor 四维检查","performance":{"memoryMB":11,"memoryTotalMB":13,"cpuUser":1.883435,"cpuSystem":3.301486}}}
+{"ts":"2026-04-07T17:42:58.027Z","type":"workflow","agent":"monitor","data":{"details":"[PARALLEL] vision_monitor, prd_monitor, dbb_monitor, arch_monitor"}}
+{"ts":"2026-04-07T17:42:58.036Z","type":"agent_start","agent":"vision_monitor","data":{"details":"评估愿景匹配度","performance":{"memoryMB":12,"memoryTotalMB":15,"cpuUser":1.886187,"cpuSystem":3.310239}}}
+{"ts":"2026-04-07T17:42:58.057Z","type":"agent_start","agent":"prd_monitor","data":{"details":"评估PRD匹配度","performance":{"memoryMB":12,"memoryTotalMB":15,"cpuUser":1.886521,"cpuSystem":3.310973}}}
+{"ts":"2026-04-07T17:42:58.058Z","type":"agent_start","agent":"dbb_monitor","data":{"details":"评估DBB匹配度","performance":{"memoryMB":12,"memoryTotalMB":15,"cpuUser":1.886834,"cpuSystem":3.311565}}}
+{"ts":"2026-04-07T17:42:58.062Z","type":"agent_start","agent":"arch_monitor","data":{"details":"评估架构匹配度","performance":{"memoryMB":12,"memoryTotalMB":15,"cpuUser":1.887206,"cpuSystem":3.31247}}}
+{"ts":"2026-04-07T17:42:58.121Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"22MB\",\"heapUsed\":\"11MB\",\"uptime\":\"4202s\"}"}}
+{"ts":"2026-04-07T17:43:59.309Z","type":"agent_complete","agent":"vision_monitor","data":{"details":"completed successfully","performance":{"memoryMB":9,"memoryTotalMB":12,"cpuUser":1.905425,"cpuSystem":3.343168}}}
+{"ts":"2026-04-07T17:43:59.312Z","type":"workflow","agent":"vision_monitor","data":{"details":"[SIGNAL] completed: Evaluated implementation vs vision, updated .team/gaps/vision.json with 95% match — core ask() API, "}}
+{"ts":"2026-04-07T17:44:28.201Z","type":"agent_complete","agent":"arch_monitor","data":{"details":"completed successfully","performance":{"memoryMB":14,"memoryTotalMB":17,"cpuUser":1.911965,"cpuSystem":3.355071}}}
+{"ts":"2026-04-07T17:44:28.224Z","type":"workflow","agent":"arch_monitor","data":{"details":"[SIGNAL] completed: Analyzed src/ against ARCHITECTURE.md, found 3 partial gaps (ToolDefinition/Provider in wrong module"}}
+{"ts":"2026-04-07T17:44:47.379Z","type":"agent_complete","agent":"prd_monitor","data":{"details":"completed successfully","performance":{"memoryMB":15,"memoryTotalMB":18,"cpuUser":1.918315,"cpuSystem":3.365481}}}
+{"ts":"2026-04-07T17:44:47.408Z","type":"workflow","agent":"prd_monitor","data":{"details":"[SIGNAL] completed: Evaluated PRD/DBB vs src/, wrote .team/gaps/prd.json with 92% match, 2 partial gaps (shell_exec brow"}}
+{"ts":"2026-04-07T17:45:33.217Z","type":"agent_complete","agent":"daemon","data":{"details":"DevTeam daemon stopped","performance":{"memoryMB":6,"memoryTotalMB":9,"cpuUser":1.930773,"cpuSystem":3.386896}}}
+{"ts":"2026-04-07T17:45:36.099Z","type":"agent_start","agent":"daemon","data":{"details":"DevTeam daemon started (safety=600s, timeout=3900s)","performance":{"memoryMB":5,"memoryTotalMB":8,"cpuUser":0.029631,"cpuSystem":0.00946}}}
+{"ts":"2026-04-07T17:45:36.127Z","type":"workflow","agent":"monitor","data":{"details":"[HEALTH] Monitor started"}}
+{"ts":"2026-04-07T17:45:36.197Z","type":"workflow","agent":null,"data":{"details":"[RESUME] Resuming from checkpoint: node=monitor, step=0"}}
+{"ts":"2026-04-07T17:45:36.235Z","type":"agent_start","agent":"monitor","data":{"details":"[NODE] monitor - 全局 Monitor 四维检查","performance":{"memoryMB":5,"memoryTotalMB":8,"cpuUser":0.032275,"cpuSystem":0.010779}}}
+{"ts":"2026-04-07T17:45:40.405Z","type":"workflow","agent":"monitor","data":{"details":"[PARALLEL] vision_monitor, prd_monitor, dbb_monitor, arch_monitor"}}
+{"ts":"2026-04-07T17:45:40.424Z","type":"agent_start","agent":"vision_monitor","data":{"details":"评估愿景匹配度","performance":{"memoryMB":6,"memoryTotalMB":10,"cpuUser":0.049523,"cpuSystem":0.03382}}}
+{"ts":"2026-04-07T17:45:40.435Z","type":"agent_start","agent":"prd_monitor","data":{"details":"评估PRD匹配度","performance":{"memoryMB":6,"memoryTotalMB":10,"cpuUser":0.050644,"cpuSystem":0.034761}}}
+{"ts":"2026-04-07T17:45:40.439Z","type":"agent_start","agent":"dbb_monitor","data":{"details":"评估DBB匹配度","performance":{"memoryMB":6,"memoryTotalMB":10,"cpuUser":0.051456,"cpuSystem":0.035977}}}
+{"ts":"2026-04-07T17:45:40.458Z","type":"agent_start","agent":"arch_monitor","data":{"details":"评估架构匹配度","performance":{"memoryMB":6,"memoryTotalMB":10,"cpuUser":0.052259,"cpuSystem":0.037269}}}
+{"ts":"2026-04-07T17:46:48.962Z","type":"agent_complete","agent":"arch_monitor","data":{"details":"completed successfully","performance":{"memoryMB":17,"memoryTotalMB":19,"cpuUser":0.074129,"cpuSystem":0.067235}}}
+{"ts":"2026-04-07T17:46:48.970Z","type":"workflow","agent":"arch_monitor","data":{"details":"[SIGNAL] completed: Analyzed src/ against ARCHITECTURE.md, calculated 90% match, wrote 3 partial gaps to .team/gaps/arch"}}
+{"ts":"2026-04-07T17:47:09.991Z","type":"agent_complete","agent":"prd_monitor","data":{"details":"completed successfully","performance":{"memoryMB":9,"memoryTotalMB":11,"cpuUser":0.090837,"cpuSystem":0.091796}}}
+{"ts":"2026-04-07T17:47:10.016Z","type":"workflow","agent":"prd_monitor","data":{"details":"[SIGNAL] completed: Evaluated PRD/DBB vs src/, updated .team/gaps/prd.json with match=90, 2 partial gaps identified"}}
+{"ts":"2026-04-07T17:47:19.780Z","type":"agent_complete","agent":"vision_monitor","data":{"details":"completed successfully","performance":{"memoryMB":9,"memoryTotalMB":11,"cpuUser":0.093232,"cpuSystem":0.098989}}}
+{"ts":"2026-04-07T17:47:19.806Z","type":"workflow","agent":"vision_monitor","data":{"details":"[SIGNAL] completed: Vision evaluated at 95% match. Updated .team/gaps/vision.json and wrote .team/milestones/m26/review/"}}
+{"ts":"2026-04-07T17:48:52.244Z","type":"agent_complete","agent":"dbb_monitor","data":{"details":"completed successfully","performance":{"memoryMB":7,"memoryTotalMB":8,"cpuUser":0.133889,"cpuSystem":0.19592}}}
+{"ts":"2026-04-07T17:48:52.277Z","type":"workflow","agent":"dbb_monitor","data":{"details":"[SIGNAL] completed: M26 DBB check complete: global 100/100, milestone 95/100 (DBB-005 partial — tests not run)"}}
+{"ts":"2026-04-07T17:48:53.332Z","type":"workflow","agent":"monitor","data":{"details":"[BRANCH] goalMet → 1 → complete"}}
+{"ts":"2026-04-07T17:48:53.406Z","type":"agent_start","agent":"complete","data":{"details":"[NODE] complete - 项目完成 — 最终验证 + 归档 + 报告","performance":{"memoryMB":7,"memoryTotalMB":10,"cpuUser":0.149414,"cpuSystem":0.243262}}}
+{"ts":"2026-04-07T17:48:53.523Z","type":"workflow","agent":"complete","data":{"details":"[PARALLEL] final-vision, final-prd, final-dbb, final-arch"}}
+{"ts":"2026-04-07T17:48:53.683Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] vision_monitor"}}
+{"ts":"2026-04-07T17:48:53.702Z","type":"agent_start","agent":"vision_monitor","data":{"details":"评估愿景匹配度","performance":{"memoryMB":8,"memoryTotalMB":10,"cpuUser":0.15501,"cpuSystem":0.261985}}}
+{"ts":"2026-04-07T17:48:53.819Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] prd_monitor"}}
+{"ts":"2026-04-07T17:48:53.849Z","type":"agent_start","agent":"prd_monitor","data":{"details":"评估PRD匹配度","performance":{"memoryMB":7,"memoryTotalMB":10,"cpuUser":0.156359,"cpuSystem":0.263833}}}
+{"ts":"2026-04-07T17:48:53.890Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] dbb_monitor"}}
+{"ts":"2026-04-07T17:48:53.900Z","type":"agent_start","agent":"dbb_monitor","data":{"details":"评估DBB匹配度","performance":{"memoryMB":7,"memoryTotalMB":10,"cpuUser":0.157616,"cpuSystem":0.265711}}}
+{"ts":"2026-04-07T17:50:05.926Z","type":"agent_complete","agent":"vision_monitor","data":{"details":"completed successfully","performance":{"memoryMB":15,"memoryTotalMB":16,"cpuUser":0.181418,"cpuSystem":0.320145}}}
+{"ts":"2026-04-07T17:50:06.182Z","type":"workflow","agent":"vision_monitor","data":{"details":"[SIGNAL] completed: Vision gaps evaluated against src/ code. 7/8 items implemented, 1 partial (search requires API key)."}}
+{"ts":"2026-04-07T17:50:16.493Z","type":"agent_complete","agent":"prd_monitor","data":{"details":"completed successfully","performance":{"memoryMB":7,"memoryTotalMB":10,"cpuUser":0.196957,"cpuSystem":0.349395}}}
+{"ts":"2026-04-07T17:50:16.548Z","type":"workflow","agent":"prd_monitor","data":{"details":"[SIGNAL] completed: Evaluated PRD and EXPECTED_DBB against src/ implementation. Match: 90%. Two partial gaps: shell_exec"}}
+{"ts":"2026-04-07T17:50:36.267Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"26MB\",\"heapUsed\":\"7MB\",\"uptime\":\"300s\"}"}}
+{"ts":"2026-04-07T17:53:23.364Z","type":"agent_complete","agent":"dbb_monitor","data":{"details":"completed successfully","performance":{"memoryMB":9,"memoryTotalMB":11,"cpuUser":0.275438,"cpuSystem":0.506125}}}
+{"ts":"2026-04-07T17:53:24.726Z","type":"workflow","agent":"dbb_monitor","data":{"details":"[SIGNAL] completed: M26 DBB verification complete — 100/100 match. All 5 milestone criteria pass including confirmed tes"}}
+{"ts":"2026-04-07T17:53:24.758Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] arch_monitor"}}
+{"ts":"2026-04-07T17:53:24.812Z","type":"agent_start","agent":"arch_monitor","data":{"details":"评估架构匹配度","performance":{"memoryMB":9,"memoryTotalMB":11,"cpuUser":0.276931,"cpuSystem":0.51069}}}
+{"ts":"2026-04-07T17:54:38.207Z","type":"agent_complete","agent":"arch_monitor","data":{"details":"completed successfully","performance":{"memoryMB":19,"memoryTotalMB":21,"cpuUser":0.304226,"cpuSystem":0.569259}}}
+{"ts":"2026-04-07T17:54:38.222Z","type":"workflow","agent":"arch_monitor","data":{"details":"[SIGNAL] completed: Scanned src/ against ARCHITECTURE.md, found 90% match with 3 partial gaps, updated .team/gaps/archit"}}
+{"ts":"2026-04-07T17:54:38.655Z","type":"group_complete","agent":"m26","data":{"details":"Cross-validation: verified match=90%","performance":{"memoryMB":6,"memoryTotalMB":11,"cpuUser":0.31721,"cpuSystem":0.588861}}}
+{"ts":"2026-04-07T17:54:39.889Z","type":"workflow","agent":"report","data":{"details":"Generated REPORT.md (72 lines)"}}
+{"ts":"2026-04-07T17:54:40.283Z","type":"group_complete","agent":"m26","data":{"details":"Auto git tag: m26-complete","performance":{"memoryMB":7,"memoryTotalMB":12,"cpuUser":0.331779,"cpuSystem":0.622758}}}
+{"ts":"2026-04-07T17:55:36.540Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"24MB\",\"heapUsed\":\"10MB\",\"uptime\":\"600s\"}"}}
+{"ts":"2026-04-07T17:55:42.379Z","type":"agent_start","agent":"startup","data":{"details":"[NODE] startup - 项目启动","performance":{"memoryMB":14,"memoryTotalMB":17,"cpuUser":0.355664,"cpuSystem":0.669423}}}
+{"ts":"2026-04-07T17:55:43.349Z","type":"workflow","agent":"startup","data":{"details":"[SKIP] init-architecture: !hasArchitecture"}}
+{"ts":"2026-04-07T17:55:43.366Z","type":"agent_start","agent":"monitor","data":{"details":"[NODE] monitor - 全局 Monitor 四维检查","performance":{"memoryMB":14,"memoryTotalMB":18,"cpuUser":0.361712,"cpuSystem":0.688904}}}
+{"ts":"2026-04-07T17:55:43.419Z","type":"workflow","agent":"monitor","data":{"details":"[PARALLEL] vision_monitor, prd_monitor, dbb_monitor, arch_monitor"}}
+{"ts":"2026-04-07T17:55:43.502Z","type":"agent_start","agent":"vision_monitor","data":{"details":"评估愿景匹配度","performance":{"memoryMB":14,"memoryTotalMB":19,"cpuUser":0.366767,"cpuSystem":0.70245}}}
+{"ts":"2026-04-07T17:55:43.542Z","type":"agent_start","agent":"prd_monitor","data":{"details":"评估PRD匹配度","performance":{"memoryMB":14,"memoryTotalMB":19,"cpuUser":0.367461,"cpuSystem":0.703714}}}
+{"ts":"2026-04-07T17:55:43.551Z","type":"agent_start","agent":"dbb_monitor","data":{"details":"评估DBB匹配度","performance":{"memoryMB":14,"memoryTotalMB":19,"cpuUser":0.368215,"cpuSystem":0.704753}}}
+{"ts":"2026-04-07T17:55:43.614Z","type":"agent_start","agent":"arch_monitor","data":{"details":"评估架构匹配度","performance":{"memoryMB":15,"memoryTotalMB":19,"cpuUser":0.368797,"cpuSystem":0.705803}}}
+{"ts":"2026-04-07T17:56:37.183Z","type":"agent_complete","agent":"vision_monitor","data":{"details":"completed successfully","performance":{"memoryMB":10,"memoryTotalMB":15,"cpuUser":0.38252,"cpuSystem":0.723969}}}
+{"ts":"2026-04-07T17:56:37.215Z","type":"workflow","agent":"vision_monitor","data":{"details":"[SIGNAL] completed: Vision evaluated at 95% match — 7 implemented, 1 partial (search requires API key). vision.json upda"}}
+{"ts":"2026-04-07T17:56:44.550Z","type":"agent_complete","agent":"arch_monitor","data":{"details":"completed successfully","performance":{"memoryMB":14,"memoryTotalMB":17,"cpuUser":0.39045,"cpuSystem":0.736212}}}
+{"ts":"2026-04-07T17:56:45.429Z","type":"workflow","agent":"arch_monitor","data":{"details":"[SIGNAL] completed: Evaluated src/ against ARCHITECTURE.md. All 12 expected files present. Match: 92%. Three partial gap"}}
+{"ts":"2026-04-07T17:57:16.307Z","type":"agent_complete","agent":"prd_monitor","data":{"details":"completed successfully","performance":{"memoryMB":8,"memoryTotalMB":11,"cpuUser":0.404266,"cpuSystem":0.755626}}}
+{"ts":"2026-04-07T17:57:16.390Z","type":"workflow","agent":"prd_monitor","data":{"details":"[SIGNAL] completed: Evaluated PRD and DBB against src/ implementation. match=90. Two partial gaps: shell_exec browser co"}}
+{"ts":"2026-04-07T17:57:31.308Z","type":"agent_complete","agent":"dbb_monitor","data":{"details":"completed successfully","performance":{"memoryMB":8,"memoryTotalMB":11,"cpuUser":0.405275,"cpuSystem":0.758989}}}
+{"ts":"2026-04-07T17:57:31.363Z","type":"workflow","agent":"dbb_monitor","data":{"details":"[SIGNAL] completed: M26 DBB verification complete: 5/5 criteria pass (README images type, shell_exec docs, zero-config f"}}
+{"ts":"2026-04-07T17:57:37.764Z","type":"workflow","agent":"monitor","data":{"details":"[BRANCH] goalMet → 1 → complete"}}
+{"ts":"2026-04-07T17:57:39.087Z","type":"agent_start","agent":"complete","data":{"details":"[NODE] complete - 项目完成 — 最终验证 + 归档 + 报告","performance":{"memoryMB":9,"memoryTotalMB":10,"cpuUser":0.414796,"cpuSystem":0.783995}}}
+{"ts":"2026-04-07T17:57:42.279Z","type":"workflow","agent":"complete","data":{"details":"[PARALLEL] final-vision, final-prd, final-dbb, final-arch"}}
+{"ts":"2026-04-07T17:57:43.234Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] vision_monitor"}}
+{"ts":"2026-04-07T17:57:45.807Z","type":"agent_start","agent":"vision_monitor","data":{"details":"评估愿景匹配度","performance":{"memoryMB":9,"memoryTotalMB":11,"cpuUser":0.420322,"cpuSystem":0.797858}}}
+{"ts":"2026-04-07T17:57:45.928Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] prd_monitor"}}
+{"ts":"2026-04-07T17:57:45.983Z","type":"agent_start","agent":"prd_monitor","data":{"details":"评估PRD匹配度","performance":{"memoryMB":9,"memoryTotalMB":11,"cpuUser":0.421252,"cpuSystem":0.799653}}}
+{"ts":"2026-04-07T17:57:46.038Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] dbb_monitor"}}
+{"ts":"2026-04-07T17:57:46.048Z","type":"agent_start","agent":"dbb_monitor","data":{"details":"评估DBB匹配度","performance":{"memoryMB":9,"memoryTotalMB":11,"cpuUser":0.422209,"cpuSystem":0.801103}}}
+{"ts":"2026-04-07T17:58:46.028Z","type":"agent_complete","agent":"prd_monitor","data":{"details":"completed successfully","performance":{"memoryMB":16,"memoryTotalMB":19,"cpuUser":0.434465,"cpuSystem":0.816952}}}
+{"ts":"2026-04-07T17:58:46.058Z","type":"workflow","agent":"prd_monitor","data":{"details":"[SIGNAL] completed: PRD evaluation complete. match=92%. All core PRD features implemented. Two partial gaps: shell_exec "}}
+{"ts":"2026-04-07T17:58:49.023Z","type":"agent_complete","agent":"vision_monitor","data":{"details":"completed successfully","performance":{"memoryMB":8,"memoryTotalMB":12,"cpuUser":0.449796,"cpuSystem":0.840631}}}
+{"ts":"2026-04-07T17:58:49.024Z","type":"workflow","agent":"vision_monitor","data":{"details":"[SIGNAL] completed: Vision check for m26: 95% match. 7 items implemented, 1 partial (search requires API key). Updated ."}}
+{"ts":"2026-04-07T17:59:22.059Z","type":"error","agent":"dbb_monitor","data":{"details":"failed (code=1), retry 1/2 in 1s"}}
+{"ts":"2026-04-07T17:59:22.075Z","type":"workflow","agent":"dbb_monitor","data":{"details":"[SIGNAL] failed: Failed to authenticate. API Error: 403 {\"error\":{\"code\":\"403\",\"message\":\"Illegal access\",\"type\":\"ill"}}
+{"ts":"2026-04-07T17:59:23.130Z","type":"agent_start","agent":"dbb_monitor","data":{"details":"评估DBB匹配度","performance":{"memoryMB":14,"memoryTotalMB":16,"cpuUser":0.457424,"cpuSystem":0.855673}}}
+{"ts":"2026-04-07T18:00:36.433Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"24MB\",\"heapUsed\":\"6MB\",\"uptime\":\"900s\"}"}}
+{"ts":"2026-04-07T18:02:15.287Z","type":"agent_complete","agent":"dbb_monitor","data":{"details":"completed successfully","performance":{"memoryMB":8,"memoryTotalMB":11,"cpuUser":0.51054,"cpuSystem":0.955942}}}
+{"ts":"2026-04-07T18:02:15.312Z","type":"workflow","agent":"dbb_monitor","data":{"details":"[SIGNAL] completed: M26 DBB verification complete. All 5 milestone criteria PASS, all 9 global DBB criteria PASS. Match:"}}
+{"ts":"2026-04-07T18:02:15.313Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] arch_monitor"}}
+{"ts":"2026-04-07T18:02:15.313Z","type":"agent_start","agent":"arch_monitor","data":{"details":"评估架构匹配度","performance":{"memoryMB":9,"memoryTotalMB":11,"cpuUser":0.511433,"cpuSystem":0.957308}}}
+{"ts":"2026-04-07T18:03:35.169Z","type":"agent_complete","agent":"arch_monitor","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":10,"cpuUser":0.539743,"cpuSystem":1.006709}}}
+{"ts":"2026-04-07T18:03:36.041Z","type":"workflow","agent":"arch_monitor","data":{"details":"[SIGNAL] completed: Architecture conformance: 95%. All modules/interfaces implemented. 4 minor organizational deviations"}}
+{"ts":"2026-04-07T18:03:38.065Z","type":"group_complete","agent":"m26","data":{"details":"Cross-validation: verified match=92%","performance":{"memoryMB":6,"memoryTotalMB":9,"cpuUser":0.550542,"cpuSystem":1.034801}}}
+{"ts":"2026-04-07T18:03:40.511Z","type":"workflow","agent":"report","data":{"details":"Generated REPORT.md (72 lines)"}}
+{"ts":"2026-04-07T18:03:40.960Z","type":"error","agent":"m26","data":{"details":"Auto git tag failed: Command failed: git add -A && git tag -a m26-complete -m \"group m26 complete: Final Gap Verification & README Type Fix\"\nfatal: tag 'm26-complete' already exists\n"}}
+{"ts":"2026-04-07T18:05:36.759Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"21MB\",\"heapUsed\":\"14MB\",\"uptime\":\"1200s\"}"}}
+{"ts":"2026-04-07T18:05:40.603Z","type":"agent_start","agent":"startup","data":{"details":"[NODE] startup - 项目启动","performance":{"memoryMB":14,"memoryTotalMB":15,"cpuUser":0.607975,"cpuSystem":1.153827}}}
+{"ts":"2026-04-07T18:05:41.893Z","type":"workflow","agent":"startup","data":{"details":"[SKIP] init-architecture: !hasArchitecture"}}
+{"ts":"2026-04-07T18:05:41.917Z","type":"agent_start","agent":"monitor","data":{"details":"[NODE] monitor - 全局 Monitor 四维检查","performance":{"memoryMB":16,"memoryTotalMB":17,"cpuUser":0.620902,"cpuSystem":1.195312}}}
+{"ts":"2026-04-07T18:05:42.053Z","type":"workflow","agent":"monitor","data":{"details":"[PARALLEL] vision_monitor, prd_monitor, dbb_monitor, arch_monitor"}}
+{"ts":"2026-04-07T18:05:42.062Z","type":"agent_start","agent":"vision_monitor","data":{"details":"评估愿景匹配度","performance":{"memoryMB":11,"memoryTotalMB":14,"cpuUser":0.625064,"cpuSystem":1.208413}}}
+{"ts":"2026-04-07T18:05:42.114Z","type":"agent_start","agent":"prd_monitor","data":{"details":"评估PRD匹配度","performance":{"memoryMB":11,"memoryTotalMB":14,"cpuUser":0.625601,"cpuSystem":1.209319}}}
+{"ts":"2026-04-07T18:05:42.138Z","type":"agent_start","agent":"dbb_monitor","data":{"details":"评估DBB匹配度","performance":{"memoryMB":11,"memoryTotalMB":14,"cpuUser":0.626162,"cpuSystem":1.210428}}}
+{"ts":"2026-04-07T18:05:42.164Z","type":"agent_start","agent":"arch_monitor","data":{"details":"评估架构匹配度","performance":{"memoryMB":11,"memoryTotalMB":14,"cpuUser":0.626707,"cpuSystem":1.211608}}}
+{"ts":"2026-04-07T18:06:36.346Z","type":"agent_complete","agent":"vision_monitor","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":10,"cpuUser":0.644289,"cpuSystem":1.244251}}}
+{"ts":"2026-04-07T18:06:36.368Z","type":"workflow","agent":"vision_monitor","data":{"details":"[SIGNAL] completed: Vision match: 95%. All core vision goals implemented. Single gap: search tool needs external API key"}}
+{"ts":"2026-04-07T18:06:53.946Z","type":"agent_complete","agent":"prd_monitor","data":{"details":"completed successfully","performance":{"memoryMB":10,"memoryTotalMB":14,"cpuUser":0.658948,"cpuSystem":1.273342}}}
+{"ts":"2026-04-07T18:06:53.948Z","type":"workflow","agent":"prd_monitor","data":{"details":"[SIGNAL] completed: PRD/DBB evaluation complete — 93% match, 2 partial gaps (shell_exec browser support, code_exec archi"}}
+{"ts":"2026-04-07T18:06:56.893Z","type":"agent_complete","agent":"arch_monitor","data":{"details":"completed successfully","performance":{"memoryMB":10,"memoryTotalMB":14,"cpuUser":0.659661,"cpuSystem":1.27524}}}
+{"ts":"2026-04-07T18:06:56.895Z","type":"workflow","agent":"arch_monitor","data":{"details":"[SIGNAL] completed: Architecture conformance: 95%. All 12 modules present and functional. Data flow, provider resolution"}}
+{"ts":"2026-04-07T18:07:38.350Z","type":"agent_complete","agent":"dbb_monitor","data":{"details":"completed successfully","performance":{"memoryMB":14,"memoryTotalMB":17,"cpuUser":0.667856,"cpuSystem":1.295374}}}
+{"ts":"2026-04-07T18:07:38.416Z","type":"workflow","agent":"dbb_monitor","data":{"details":"[SIGNAL] completed: M26 DBB verification complete: 100% match globally and per-milestone. All 9 global criteria and 5 mi"}}
+{"ts":"2026-04-07T18:07:39.551Z","type":"workflow","agent":"monitor","data":{"details":"[BRANCH] goalMet → 1 → complete"}}
+{"ts":"2026-04-07T18:07:39.569Z","type":"agent_start","agent":"complete","data":{"details":"[NODE] complete - 项目完成 — 最终验证 + 归档 + 报告","performance":{"memoryMB":15,"memoryTotalMB":18,"cpuUser":0.684922,"cpuSystem":1.347479}}}
+{"ts":"2026-04-07T18:07:39.598Z","type":"workflow","agent":"complete","data":{"details":"[PARALLEL] final-vision, final-prd, final-dbb, final-arch"}}
+{"ts":"2026-04-07T18:07:39.598Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] vision_monitor"}}
+{"ts":"2026-04-07T18:07:39.614Z","type":"agent_start","agent":"vision_monitor","data":{"details":"评估愿景匹配度","performance":{"memoryMB":15,"memoryTotalMB":19,"cpuUser":0.689521,"cpuSystem":1.361367}}}
+{"ts":"2026-04-07T18:07:39.628Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] prd_monitor"}}
+{"ts":"2026-04-07T18:07:39.630Z","type":"agent_start","agent":"prd_monitor","data":{"details":"评估PRD匹配度","performance":{"memoryMB":15,"memoryTotalMB":19,"cpuUser":0.690084,"cpuSystem":1.362322}}}
+{"ts":"2026-04-07T18:07:39.647Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] dbb_monitor"}}
+{"ts":"2026-04-07T18:07:39.701Z","type":"agent_start","agent":"dbb_monitor","data":{"details":"评估DBB匹配度","performance":{"memoryMB":15,"memoryTotalMB":20,"cpuUser":0.690517,"cpuSystem":1.36335}}}
+{"ts":"2026-04-07T18:08:42.412Z","type":"agent_complete","agent":"vision_monitor","data":{"details":"completed successfully","performance":{"memoryMB":14,"memoryTotalMB":17,"cpuUser":0.710779,"cpuSystem":1.394659}}}
+{"ts":"2026-04-07T18:08:42.419Z","type":"workflow","agent":"vision_monitor","data":{"details":"[SIGNAL] completed: Vision evaluation complete. Match: 95%. 10 items fully implemented, 2 partial gaps identified: (1) s"}}
+{"ts":"2026-04-07T18:08:57.588Z","type":"agent_complete","agent":"dbb_monitor","data":{"details":"completed successfully","performance":{"memoryMB":9,"memoryTotalMB":11,"cpuUser":0.729248,"cpuSystem":1.419337}}}
+{"ts":"2026-04-07T18:08:57.599Z","type":"workflow","agent":"dbb_monitor","data":{"details":"[SIGNAL] completed: DBB verification complete: 100% match on both global (9/9) and M26 (5/5) criteria. All 107 tests pas"}}
+{"ts":"2026-04-07T18:09:14.188Z","type":"agent_complete","agent":"prd_monitor","data":{"details":"completed successfully","performance":{"memoryMB":9,"memoryTotalMB":11,"cpuUser":0.730347,"cpuSystem":1.421992}}}
+{"ts":"2026-04-07T18:09:14.231Z","type":"workflow","agent":"prd_monitor","data":{"details":"[SIGNAL] completed: PRD/DBB evaluation complete — 96% match. Updated .team/gaps/prd.json and .team/milestones/m26/review"}}
+{"ts":"2026-04-07T18:09:14.243Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] arch_monitor"}}
+{"ts":"2026-04-07T18:09:14.274Z","type":"agent_start","agent":"arch_monitor","data":{"details":"评估架构匹配度","performance":{"memoryMB":9,"memoryTotalMB":11,"cpuUser":0.731397,"cpuSystem":1.423724}}}
+{"ts":"2026-04-07T18:10:26.494Z","type":"agent_complete","agent":"arch_monitor","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":9,"cpuUser":0.758222,"cpuSystem":1.472851}}}
+{"ts":"2026-04-07T18:10:26.751Z","type":"workflow","agent":"arch_monitor","data":{"details":"[SIGNAL] completed: Architecture conformance: 96% match. All modules implemented correctly. 2 minor structural deviation"}}
+{"ts":"2026-04-07T18:10:27.692Z","type":"group_complete","agent":"m26","data":{"details":"Cross-validation: verified match=95%","performance":{"memoryMB":6,"memoryTotalMB":9,"cpuUser":0.764734,"cpuSystem":1.491702}}}
+{"ts":"2026-04-07T18:10:32.828Z","type":"workflow","agent":"report","data":{"details":"Generated REPORT.md (69 lines)"}}
+{"ts":"2026-04-07T18:10:42.273Z","type":"error","agent":"m26","data":{"details":"Auto git tag failed: Command failed: git add -A && git tag -a m26-complete -m \"group m26 complete: Final Gap Verification & README Type Fix\"\nfatal: tag 'm26-complete' already exists\n"}}
+{"ts":"2026-04-07T18:10:43.092Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"30MB\",\"heapUsed\":\"7MB\",\"uptime\":\"1507s\"}"}}
+{"ts":"2026-04-07T18:15:41.350Z","type":"agent_start","agent":"startup","data":{"details":"[NODE] startup - 项目启动","performance":{"memoryMB":14,"memoryTotalMB":16,"cpuUser":0.888904,"cpuSystem":1.751019}}}
+{"ts":"2026-04-07T18:15:44.610Z","type":"workflow","agent":"startup","data":{"details":"[SKIP] init-architecture: !hasArchitecture"}}
+{"ts":"2026-04-07T18:15:44.638Z","type":"agent_start","agent":"monitor","data":{"details":"[NODE] monitor - 全局 Monitor 四维检查","performance":{"memoryMB":16,"memoryTotalMB":18,"cpuUser":0.900457,"cpuSystem":1.784191}}}
+{"ts":"2026-04-07T18:15:47.107Z","type":"workflow","agent":"monitor","data":{"details":"[PARALLEL] vision_monitor, prd_monitor, dbb_monitor, arch_monitor"}}
+{"ts":"2026-04-07T18:15:47.306Z","type":"agent_start","agent":"vision_monitor","data":{"details":"评估愿景匹配度","performance":{"memoryMB":11,"memoryTotalMB":14,"cpuUser":0.905225,"cpuSystem":1.800382}}}
+{"ts":"2026-04-07T18:15:47.603Z","type":"agent_start","agent":"prd_monitor","data":{"details":"评估PRD匹配度","performance":{"memoryMB":11,"memoryTotalMB":14,"cpuUser":0.906095,"cpuSystem":1.803619}}}
+{"ts":"2026-04-07T18:15:47.710Z","type":"agent_start","agent":"dbb_monitor","data":{"details":"评估DBB匹配度","performance":{"memoryMB":11,"memoryTotalMB":14,"cpuUser":0.906713,"cpuSystem":1.804665}}}
+{"ts":"2026-04-07T18:15:47.836Z","type":"agent_start","agent":"arch_monitor","data":{"details":"评估架构匹配度","performance":{"memoryMB":11,"memoryTotalMB":14,"cpuUser":0.907274,"cpuSystem":1.805687}}}
+{"ts":"2026-04-07T18:15:47.882Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"26MB\",\"heapUsed\":\"12MB\",\"uptime\":\"1812s\"}"}}
+{"ts":"2026-04-07T18:16:54.057Z","type":"agent_complete","agent":"prd_monitor","data":{"details":"completed successfully","performance":{"memoryMB":10,"memoryTotalMB":14,"cpuUser":0.937127,"cpuSystem":1.850235}}}
+{"ts":"2026-04-07T18:16:54.138Z","type":"workflow","agent":"prd_monitor","data":{"details":"[SIGNAL] completed: PRD match 96%. All major features implemented. 2 minor gaps: images type contract, shell_exec browse"}}
+{"ts":"2026-04-07T18:17:01.944Z","type":"agent_complete","agent":"vision_monitor","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":14,"cpuUser":0.938178,"cpuSystem":1.852435}}}
+{"ts":"2026-04-07T18:17:01.973Z","type":"workflow","agent":"vision_monitor","data":{"details":"[SIGNAL] completed: Vision check complete. Match: 95%. All core vision goals implemented (single-function API, zero fram"}}
+{"ts":"2026-04-07T18:18:01.534Z","type":"agent_complete","agent":"arch_monitor","data":{"details":"completed successfully","performance":{"memoryMB":7,"memoryTotalMB":9,"cpuUser":0.962085,"cpuSystem":1.89592}}}
+{"ts":"2026-04-07T18:18:01.541Z","type":"workflow","agent":"arch_monitor","data":{"details":"[SIGNAL] completed: Architecture conformance review complete: 96% match. All 12 modules implemented, all interfaces pres"}}
+{"ts":"2026-04-07T18:18:48.753Z","type":"agent_complete","agent":"dbb_monitor","data":{"details":"completed successfully","performance":{"memoryMB":13,"memoryTotalMB":15,"cpuUser":0.975798,"cpuSystem":1.925428}}}
+{"ts":"2026-04-07T18:18:48.758Z","type":"workflow","agent":"dbb_monitor","data":{"details":"[SIGNAL] completed: M26 DBB verification complete: 100% match, all 5 milestone criteria and all 9 global DBB criteria pa"}}
+{"ts":"2026-04-07T18:18:48.944Z","type":"workflow","agent":"monitor","data":{"details":"[BRANCH] goalMet → 1 → complete"}}
+{"ts":"2026-04-07T18:18:48.946Z","type":"agent_start","agent":"complete","data":{"details":"[NODE] complete - 项目完成 — 最终验证 + 归档 + 报告","performance":{"memoryMB":13,"memoryTotalMB":18,"cpuUser":0.984285,"cpuSystem":1.954338}}}
+{"ts":"2026-04-07T18:18:48.960Z","type":"workflow","agent":"complete","data":{"details":"[PARALLEL] final-vision, final-prd, final-dbb, final-arch"}}
+{"ts":"2026-04-07T18:18:48.962Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] vision_monitor"}}
+{"ts":"2026-04-07T18:18:48.965Z","type":"agent_start","agent":"vision_monitor","data":{"details":"评估愿景匹配度","performance":{"memoryMB":13,"memoryTotalMB":18,"cpuUser":0.986813,"cpuSystem":1.962046}}}
+{"ts":"2026-04-07T18:18:48.970Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] prd_monitor"}}
+{"ts":"2026-04-07T18:18:48.972Z","type":"agent_start","agent":"prd_monitor","data":{"details":"评估PRD匹配度","performance":{"memoryMB":13,"memoryTotalMB":18,"cpuUser":0.987219,"cpuSystem":1.96291}}}
+{"ts":"2026-04-07T18:18:48.980Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] dbb_monitor"}}
+{"ts":"2026-04-07T18:18:48.982Z","type":"agent_start","agent":"dbb_monitor","data":{"details":"评估DBB匹配度","performance":{"memoryMB":13,"memoryTotalMB":18,"cpuUser":0.987606,"cpuSystem":1.963628}}}
+{"ts":"2026-04-07T18:19:38.770Z","type":"agent_complete","agent":"vision_monitor","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":12,"cpuUser":0.99726,"cpuSystem":1.982675}}}
+{"ts":"2026-04-07T18:19:38.777Z","type":"workflow","agent":"vision_monitor","data":{"details":"[SIGNAL] completed: Vision match: 95%. 11/13 vision requirements fully implemented across 26 milestones. 2 partial gaps "}}
+{"ts":"2026-04-07T18:19:44.628Z","type":"agent_complete","agent":"prd_monitor","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":12,"cpuUser":0.998238,"cpuSystem":1.985192}}}
+{"ts":"2026-04-07T18:19:44.649Z","type":"workflow","agent":"prd_monitor","data":{"details":"[SIGNAL] completed: PRD match 96%. All features implemented. 2 minor gaps: shell_exec browser compatibility and images c"}}
+{"ts":"2026-04-07T18:20:10.194Z","type":"agent_complete","agent":"dbb_monitor","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":16,"cpuUser":1.008457,"cpuSystem":2.011114}}}
+{"ts":"2026-04-07T18:20:10.237Z","type":"workflow","agent":"dbb_monitor","data":{"details":"[SIGNAL] completed: M26 DBB verification: 100% global match (9/9), 100% milestone match (5/5). All 107 tests pass. No ga"}}
+{"ts":"2026-04-07T18:20:10.237Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] arch_monitor"}}
+{"ts":"2026-04-07T18:20:10.238Z","type":"agent_start","agent":"arch_monitor","data":{"details":"评估架构匹配度","performance":{"memoryMB":11,"memoryTotalMB":16,"cpuUser":1.009139,"cpuSystem":2.012397}}}
+{"ts":"2026-04-07T18:20:47.930Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"21MB\",\"heapUsed\":\"14MB\",\"uptime\":\"2112s\"}"}}
+{"ts":"2026-04-07T18:21:16.854Z","type":"agent_complete","agent":"arch_monitor","data":{"details":"completed successfully","performance":{"memoryMB":9,"memoryTotalMB":11,"cpuUser":1.027691,"cpuSystem":2.042774}}}
+{"ts":"2026-04-07T18:21:16.889Z","type":"workflow","agent":"arch_monitor","data":{"details":"[SIGNAL] completed: Architecture conformance verified at 96% — all modules present, data flow matches, 3 minor structura"}}
+{"ts":"2026-04-07T18:21:17.531Z","type":"group_complete","agent":"m26","data":{"details":"Cross-validation: verified match=95%","performance":{"memoryMB":11,"memoryTotalMB":12,"cpuUser":1.034824,"cpuSystem":2.065101}}}
+{"ts":"2026-04-07T18:21:22.894Z","type":"workflow","agent":"report","data":{"details":"Generated REPORT.md (72 lines)"}}
+{"ts":"2026-04-07T18:21:26.443Z","type":"error","agent":"m26","data":{"details":"Auto git tag failed: Command failed: git add -A && git tag -a m26-complete -m \"group m26 complete: Final Gap Verification & README Type Fix\"\nfatal: tag 'm26-complete' already exists\n"}}
+{"ts":"2026-04-07T18:25:41.184Z","type":"agent_start","agent":"startup","data":{"details":"[NODE] startup - 项目启动","performance":{"memoryMB":6,"memoryTotalMB":10,"cpuUser":1.150825,"cpuSystem":2.300219}}}
+{"ts":"2026-04-07T18:25:42.903Z","type":"workflow","agent":"startup","data":{"details":"[SKIP] init-architecture: !hasArchitecture"}}
+{"ts":"2026-04-07T18:25:42.910Z","type":"agent_start","agent":"monitor","data":{"details":"[NODE] monitor - 全局 Monitor 四维检查","performance":{"memoryMB":6,"memoryTotalMB":9,"cpuUser":1.160961,"cpuSystem":2.334334}}}
+{"ts":"2026-04-07T18:25:43.282Z","type":"workflow","agent":"monitor","data":{"details":"[PARALLEL] vision_monitor, prd_monitor, dbb_monitor, arch_monitor"}}
+{"ts":"2026-04-07T18:25:43.391Z","type":"agent_start","agent":"vision_monitor","data":{"details":"评估愿景匹配度","performance":{"memoryMB":7,"memoryTotalMB":10,"cpuUser":1.166661,"cpuSystem":2.351029}}}
+{"ts":"2026-04-07T18:25:43.853Z","type":"agent_start","agent":"prd_monitor","data":{"details":"评估PRD匹配度","performance":{"memoryMB":7,"memoryTotalMB":10,"cpuUser":1.167735,"cpuSystem":2.353464}}}
+{"ts":"2026-04-07T18:25:43.866Z","type":"agent_start","agent":"dbb_monitor","data":{"details":"评估DBB匹配度","performance":{"memoryMB":7,"memoryTotalMB":10,"cpuUser":1.168413,"cpuSystem":2.354836}}}
+{"ts":"2026-04-07T18:25:43.876Z","type":"agent_start","agent":"arch_monitor","data":{"details":"评估架构匹配度","performance":{"memoryMB":8,"memoryTotalMB":10,"cpuUser":1.169028,"cpuSystem":2.35591}}}
+{"ts":"2026-04-07T18:25:47.935Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"20MB\",\"heapUsed\":\"8MB\",\"uptime\":\"2412s\"}"}}
+{"ts":"2026-04-07T18:26:29.647Z","type":"agent_complete","agent":"prd_monitor","data":{"details":"completed successfully","performance":{"memoryMB":14,"memoryTotalMB":16,"cpuUser":1.191189,"cpuSystem":2.398061}}}
+{"ts":"2026-04-07T18:26:29.663Z","type":"workflow","agent":"prd_monitor","data":{"details":"[SIGNAL] completed: PRD match: 96%. 2 partial gaps: shell_exec is Node-only (not browser-compatible as PRD claims), imag"}}
+{"ts":"2026-04-07T18:26:29.737Z","type":"agent_complete","agent":"vision_monitor","data":{"details":"completed successfully","performance":{"memoryMB":15,"memoryTotalMB":16,"cpuUser":1.191864,"cpuSystem":2.399299}}}
+{"ts":"2026-04-07T18:26:29.761Z","type":"workflow","agent":"vision_monitor","data":{"details":"[SIGNAL] completed: Vision match: 95%. Scanned all 12 source files against both vision documents (.team/docs/vision.md a"}}
+{"ts":"2026-04-07T18:26:34.881Z","type":"agent_complete","agent":"arch_monitor","data":{"details":"completed successfully","performance":{"memoryMB":15,"memoryTotalMB":16,"cpuUser":1.192712,"cpuSystem":2.400716}}}
+{"ts":"2026-04-07T18:26:34.932Z","type":"workflow","agent":"arch_monitor","data":{"details":"[SIGNAL] completed: Architecture monitor complete. Match: 96%. Updated .team/gaps/architecture.json timestamp. m26 revie"}}
+{"ts":"2026-04-07T18:27:15.619Z","type":"agent_complete","agent":"dbb_monitor","data":{"details":"completed successfully","performance":{"memoryMB":9,"memoryTotalMB":11,"cpuUser":1.207078,"cpuSystem":2.430781}}}
+{"ts":"2026-04-07T18:27:15.692Z","type":"workflow","agent":"dbb_monitor","data":{"details":"[SIGNAL] completed: DBB verification complete. Global: 9/9 (100%), M26: 5/5 (100%). All 107 tests passing. All three out"}}
+{"ts":"2026-04-07T18:27:19.308Z","type":"workflow","agent":"monitor","data":{"details":"[BRANCH] goalMet → 1 → complete"}}
+{"ts":"2026-04-07T18:27:19.398Z","type":"agent_start","agent":"complete","data":{"details":"[NODE] complete - 项目完成 — 最终验证 + 归档 + 报告","performance":{"memoryMB":13,"memoryTotalMB":14,"cpuUser":1.225692,"cpuSystem":2.49302}}}
+{"ts":"2026-04-07T18:27:19.555Z","type":"workflow","agent":"complete","data":{"details":"[PARALLEL] final-vision, final-prd, final-dbb, final-arch"}}
+{"ts":"2026-04-07T18:27:19.629Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] vision_monitor"}}
+{"ts":"2026-04-07T18:27:19.667Z","type":"agent_start","agent":"vision_monitor","data":{"details":"评估愿景匹配度","performance":{"memoryMB":9,"memoryTotalMB":12,"cpuUser":1.231289,"cpuSystem":2.507885}}}
+{"ts":"2026-04-07T18:27:19.690Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] prd_monitor"}}
+{"ts":"2026-04-07T18:27:19.695Z","type":"agent_start","agent":"prd_monitor","data":{"details":"评估PRD匹配度","performance":{"memoryMB":9,"memoryTotalMB":12,"cpuUser":1.232392,"cpuSystem":2.509816}}}
+{"ts":"2026-04-07T18:27:19.711Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] dbb_monitor"}}
+{"ts":"2026-04-07T18:27:19.712Z","type":"agent_start","agent":"dbb_monitor","data":{"details":"评估DBB匹配度","performance":{"memoryMB":9,"memoryTotalMB":12,"cpuUser":1.233128,"cpuSystem":2.511249}}}
+{"ts":"2026-04-07T18:28:16.184Z","type":"agent_complete","agent":"prd_monitor","data":{"details":"completed successfully","performance":{"memoryMB":17,"memoryTotalMB":19,"cpuUser":1.254174,"cpuSystem":2.558402}}}
+{"ts":"2026-04-07T18:28:16.189Z","type":"workflow","agent":"prd_monitor","data":{"details":"[SIGNAL] completed: PRD evaluation complete. Match: 97%. All 9 PRD features and 9 DBB criteria verified. One minor gap: "}}
+{"ts":"2026-04-07T18:28:38.867Z","type":"agent_complete","agent":"vision_monitor","data":{"details":"completed successfully","performance":{"memoryMB":9,"memoryTotalMB":12,"cpuUser":1.27718,"cpuSystem":2.588212}}}
+{"ts":"2026-04-07T18:28:38.891Z","type":"workflow","agent":"vision_monitor","data":{"details":"[SIGNAL] completed: Vision match at 95%. Two partial gaps: search requires API key, code.timeout unenforced. VISION.md m"}}
+{"ts":"2026-04-07T18:29:26.688Z","type":"agent_complete","agent":"dbb_monitor","data":{"details":"completed successfully","performance":{"memoryMB":14,"memoryTotalMB":17,"cpuUser":1.287058,"cpuSystem":2.608744}}}
+{"ts":"2026-04-07T18:29:26.696Z","type":"workflow","agent":"dbb_monitor","data":{"details":"[SIGNAL] completed: M26 DBB verification complete: 100% global (9/9), 100% milestone (5/5), all 107 tests pass"}}
+{"ts":"2026-04-07T18:29:26.697Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] arch_monitor"}}
+{"ts":"2026-04-07T18:29:26.699Z","type":"agent_start","agent":"arch_monitor","data":{"details":"评估架构匹配度","performance":{"memoryMB":15,"memoryTotalMB":17,"cpuUser":1.288477,"cpuSystem":2.611016}}}
+{"ts":"2026-04-07T18:30:29.842Z","type":"agent_complete","agent":"arch_monitor","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":13,"cpuUser":1.315249,"cpuSystem":2.655947}}}
+{"ts":"2026-04-07T18:30:29.897Z","type":"workflow","agent":"arch_monitor","data":{"details":"[SIGNAL] completed: Architecture conformance: 95%. All 12 modules present and functional. Data flow, provider resolution"}}
+{"ts":"2026-04-07T18:30:30.446Z","type":"group_complete","agent":"m26","data":{"details":"Cross-validation: verified match=95%","performance":{"memoryMB":13,"memoryTotalMB":15,"cpuUser":1.319624,"cpuSystem":2.669056}}}
+{"ts":"2026-04-07T18:30:35.741Z","type":"workflow","agent":"report","data":{"details":"Generated REPORT.md (72 lines)"}}
+{"ts":"2026-04-07T18:30:36.645Z","type":"error","agent":"m26","data":{"details":"Auto git tag failed: Command failed: git add -A && git tag -a m26-complete -m \"group m26 complete: Final Gap Verification & README Type Fix\"\nfatal: tag 'm26-complete' already exists\n"}}
+{"ts":"2026-04-07T18:30:48.060Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"22MB\",\"heapUsed\":\"11MB\",\"uptime\":\"2712s\"}"}}
+{"ts":"2026-04-07T18:35:42.732Z","type":"agent_start","agent":"startup","data":{"details":"[NODE] startup - 项目启动","performance":{"memoryMB":15,"memoryTotalMB":17,"cpuUser":1.426984,"cpuSystem":2.895008}}}
+{"ts":"2026-04-07T18:35:46.341Z","type":"workflow","agent":"startup","data":{"details":"[SKIP] init-architecture: !hasArchitecture"}}
+{"ts":"2026-04-07T18:35:46.509Z","type":"agent_start","agent":"monitor","data":{"details":"[NODE] monitor - 全局 Monitor 四维检查","performance":{"memoryMB":15,"memoryTotalMB":17,"cpuUser":1.434604,"cpuSystem":2.918533}}}
+{"ts":"2026-04-07T18:35:47.366Z","type":"workflow","agent":"monitor","data":{"details":"[PARALLEL] vision_monitor, prd_monitor, dbb_monitor, arch_monitor"}}
+{"ts":"2026-04-07T18:35:47.414Z","type":"agent_start","agent":"vision_monitor","data":{"details":"评估愿景匹配度","performance":{"memoryMB":16,"memoryTotalMB":18,"cpuUser":1.438049,"cpuSystem":2.927172}}}
+{"ts":"2026-04-07T18:35:50.350Z","type":"agent_start","agent":"prd_monitor","data":{"details":"评估PRD匹配度","performance":{"memoryMB":16,"memoryTotalMB":18,"cpuUser":1.438798,"cpuSystem":2.930685}}}
+{"ts":"2026-04-07T18:35:50.499Z","type":"agent_start","agent":"dbb_monitor","data":{"details":"评估DBB匹配度","performance":{"memoryMB":16,"memoryTotalMB":19,"cpuUser":1.439511,"cpuSystem":2.931937}}}
+{"ts":"2026-04-07T18:35:50.531Z","type":"agent_start","agent":"arch_monitor","data":{"details":"评估架构匹配度","performance":{"memoryMB":16,"memoryTotalMB":19,"cpuUser":1.440135,"cpuSystem":2.932913}}}
+{"ts":"2026-04-07T18:35:50.642Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"30MB\",\"heapUsed\":\"16MB\",\"uptime\":\"3015s\"}"}}
+{"ts":"2026-04-07T18:36:32.935Z","type":"agent_complete","agent":"arch_monitor","data":{"details":"completed successfully","performance":{"memoryMB":15,"memoryTotalMB":16,"cpuUser":1.475696,"cpuSystem":2.9955}}}
+{"ts":"2026-04-07T18:36:32.938Z","type":"workflow","agent":"arch_monitor","data":{"details":"[SIGNAL] completed: Architecture match: 95%. All 12 modules implemented correctly. 3 minor structural deviations persist"}}
+{"ts":"2026-04-07T18:36:35.596Z","type":"agent_complete","agent":"prd_monitor","data":{"details":"completed successfully","performance":{"memoryMB":15,"memoryTotalMB":16,"cpuUser":1.476196,"cpuSystem":2.996776}}}
+{"ts":"2026-04-07T18:36:35.597Z","type":"workflow","agent":"prd_monitor","data":{"details":"[SIGNAL] completed: PRD evaluation complete. Match: 97%. All PRD features implemented except shell_exec browser compatib"}}
+{"ts":"2026-04-07T18:36:53.378Z","type":"agent_complete","agent":"vision_monitor","data":{"details":"completed successfully","performance":{"memoryMB":15,"memoryTotalMB":16,"cpuUser":1.476995,"cpuSystem":3.000449}}}
+{"ts":"2026-04-07T18:36:53.392Z","type":"workflow","agent":"vision_monitor","data":{"details":"[SIGNAL] completed: Vision match: 95%. All 3 core capabilities (file R/W, code_exec, multi-round loop) implemented. 2 mi"}}
+{"ts":"2026-04-07T18:38:08.839Z","type":"agent_complete","agent":"dbb_monitor","data":{"details":"completed successfully","performance":{"memoryMB":17,"memoryTotalMB":20,"cpuUser":1.528906,"cpuSystem":3.083721}}}
+{"ts":"2026-04-07T18:38:08.926Z","type":"workflow","agent":"dbb_monitor","data":{"details":"[SIGNAL] completed: DBB verification complete: Global 9/9 (100%), M26 5/5 (100%). All 107 tests pass. No gaps."}}
+{"ts":"2026-04-07T18:38:11.522Z","type":"workflow","agent":"monitor","data":{"details":"[BRANCH] goalMet → 1 → complete"}}
+{"ts":"2026-04-07T18:38:11.605Z","type":"agent_start","agent":"complete","data":{"details":"[NODE] complete - 项目完成 — 最终验证 + 归档 + 报告","performance":{"memoryMB":18,"memoryTotalMB":21,"cpuUser":1.546282,"cpuSystem":3.138253}}}
+{"ts":"2026-04-07T18:38:13.162Z","type":"workflow","agent":"complete","data":{"details":"[PARALLEL] final-vision, final-prd, final-dbb, final-arch"}}
+{"ts":"2026-04-07T18:38:13.185Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] vision_monitor"}}
+{"ts":"2026-04-07T18:38:13.229Z","type":"agent_start","agent":"vision_monitor","data":{"details":"评估愿景匹配度","performance":{"memoryMB":18,"memoryTotalMB":22,"cpuUser":1.553549,"cpuSystem":3.159725}}}
+{"ts":"2026-04-07T18:38:13.412Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] prd_monitor"}}
+{"ts":"2026-04-07T18:38:13.552Z","type":"agent_start","agent":"prd_monitor","data":{"details":"评估PRD匹配度","performance":{"memoryMB":18,"memoryTotalMB":22,"cpuUser":1.554445,"cpuSystem":3.161526}}}
+{"ts":"2026-04-07T18:38:14.328Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] dbb_monitor"}}
+{"ts":"2026-04-07T18:38:14.370Z","type":"agent_start","agent":"dbb_monitor","data":{"details":"评估DBB匹配度","performance":{"memoryMB":18,"memoryTotalMB":22,"cpuUser":1.555748,"cpuSystem":3.164419}}}
+{"ts":"2026-04-07T18:39:29.511Z","type":"agent_complete","agent":"dbb_monitor","data":{"details":"completed successfully","performance":{"memoryMB":17,"memoryTotalMB":20,"cpuUser":1.585826,"cpuSystem":3.230796}}}
+{"ts":"2026-04-07T18:39:29.577Z","type":"workflow","agent":"dbb_monitor","data":{"details":"[SIGNAL] completed: DBB verification complete: Global 100% (9/9), M26 100% (5/5). All criteria pass, no gaps found."}}
+{"ts":"2026-04-07T18:39:41.242Z","type":"agent_complete","agent":"vision_monitor","data":{"details":"completed successfully","performance":{"memoryMB":17,"memoryTotalMB":20,"cpuUser":1.586924,"cpuSystem":3.232634}}}
+{"ts":"2026-04-07T18:39:41.251Z","type":"workflow","agent":"vision_monitor","data":{"details":"[SIGNAL] completed: Vision evaluation complete: 95% match. 2 remaining gaps (VISION.md missing, code.timeout unenforced)"}}
+{"ts":"2026-04-07T18:39:49.773Z","type":"agent_complete","agent":"prd_monitor","data":{"details":"completed successfully","performance":{"memoryMB":17,"memoryTotalMB":20,"cpuUser":1.587725,"cpuSystem":3.234071}}}
+{"ts":"2026-04-07T18:39:49.809Z","type":"workflow","agent":"prd_monitor","data":{"details":"[SIGNAL] completed: PRD evaluation: 97% match. All features implemented. Only gap is shell_exec browser compatibility cl"}}
+{"ts":"2026-04-07T18:39:49.828Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] arch_monitor"}}
+{"ts":"2026-04-07T18:39:49.835Z","type":"agent_start","agent":"arch_monitor","data":{"details":"评估架构匹配度","performance":{"memoryMB":17,"memoryTotalMB":20,"cpuUser":1.588437,"cpuSystem":3.235263}}}
+{"ts":"2026-04-07T18:40:40.979Z","type":"agent_complete","agent":"arch_monitor","data":{"details":"completed successfully","performance":{"memoryMB":14,"memoryTotalMB":16,"cpuUser":1.612611,"cpuSystem":3.279252}}}
+{"ts":"2026-04-07T18:40:40.985Z","type":"workflow","agent":"arch_monitor","data":{"details":"[SIGNAL] completed: Architecture match: 95%. All 12 modules present, data flow matches, provider fallback correct, all i"}}
+{"ts":"2026-04-07T18:40:41.567Z","type":"group_complete","agent":"m26","data":{"details":"Cross-validation: verified match=95%","performance":{"memoryMB":16,"memoryTotalMB":18,"cpuUser":1.615644,"cpuSystem":3.290272}}}
+{"ts":"2026-04-07T18:40:43.086Z","type":"workflow","agent":"report","data":{"details":"Generated REPORT.md (72 lines)"}}
+{"ts":"2026-04-07T18:40:43.418Z","type":"error","agent":"m26","data":{"details":"Auto git tag failed: Command failed: git add -A && git tag -a m26-complete -m \"group m26 complete: Final Gap Verification & README Type Fix\"\nfatal: tag 'm26-complete' already exists\n"}}
+{"ts":"2026-04-07T18:40:50.646Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"22MB\",\"heapUsed\":\"13MB\",\"uptime\":\"3315s\"}"}}
+{"ts":"2026-04-07T18:45:41.325Z","type":"agent_start","agent":"startup","data":{"details":"[NODE] startup - 项目启动","performance":{"memoryMB":15,"memoryTotalMB":17,"cpuUser":1.752665,"cpuSystem":3.585704}}}
+{"ts":"2026-04-07T18:45:42.062Z","type":"workflow","agent":"startup","data":{"details":"[SKIP] init-architecture: !hasArchitecture"}}
+{"ts":"2026-04-07T18:45:42.094Z","type":"agent_start","agent":"monitor","data":{"details":"[NODE] monitor - 全局 Monitor 四维检查","performance":{"memoryMB":15,"memoryTotalMB":16,"cpuUser":1.76088,"cpuSystem":3.608928}}}
+{"ts":"2026-04-07T18:45:42.217Z","type":"workflow","agent":"monitor","data":{"details":"[PARALLEL] vision_monitor, prd_monitor, dbb_monitor, arch_monitor"}}
+{"ts":"2026-04-07T18:45:42.228Z","type":"agent_start","agent":"vision_monitor","data":{"details":"评估愿景匹配度","performance":{"memoryMB":16,"memoryTotalMB":18,"cpuUser":1.769795,"cpuSystem":3.634237}}}
+{"ts":"2026-04-07T18:45:42.311Z","type":"agent_start","agent":"prd_monitor","data":{"details":"评估PRD匹配度","performance":{"memoryMB":16,"memoryTotalMB":18,"cpuUser":1.770396,"cpuSystem":3.635674}}}
+{"ts":"2026-04-07T18:45:42.320Z","type":"agent_start","agent":"dbb_monitor","data":{"details":"评估DBB匹配度","performance":{"memoryMB":16,"memoryTotalMB":18,"cpuUser":1.771001,"cpuSystem":3.636649}}}
+{"ts":"2026-04-07T18:45:42.364Z","type":"agent_start","agent":"arch_monitor","data":{"details":"评估架构匹配度","performance":{"memoryMB":16,"memoryTotalMB":18,"cpuUser":1.771359,"cpuSystem":3.637417}}}
+{"ts":"2026-04-07T18:45:50.655Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"21MB\",\"heapUsed\":\"6MB\",\"uptime\":\"3615s\"}"}}
+{"ts":"2026-04-07T18:46:48.381Z","type":"agent_complete","agent":"vision_monitor","data":{"details":"completed successfully","performance":{"memoryMB":15,"memoryTotalMB":17,"cpuUser":1.800656,"cpuSystem":3.694926}}}
+{"ts":"2026-04-07T18:46:48.412Z","type":"workflow","agent":"vision_monitor","data":{"details":"[SIGNAL] completed: Vision match: 95%. All core capabilities implemented. Two remaining gaps: VISION.md missing at root,"}}
+{"ts":"2026-04-07T18:47:04.761Z","type":"agent_complete","agent":"arch_monitor","data":{"details":"completed successfully","performance":{"memoryMB":9,"memoryTotalMB":11,"cpuUser":1.813795,"cpuSystem":3.713623}}}
+{"ts":"2026-04-07T18:47:04.782Z","type":"workflow","agent":"arch_monitor","data":{"details":"[SIGNAL] completed: Architecture match: 95%. All 12 modules present, data flow matches, 3 minor structural deviations (t"}}
+{"ts":"2026-04-07T18:47:09.925Z","type":"agent_complete","agent":"prd_monitor","data":{"details":"completed successfully","performance":{"memoryMB":9,"memoryTotalMB":11,"cpuUser":1.816905,"cpuSystem":3.718437}}}
+{"ts":"2026-04-07T18:47:09.928Z","type":"workflow","agent":"prd_monitor","data":{"details":"[SIGNAL] completed: PRD match: 97%. All PRD features and EXPECTED_DBB criteria verified implemented. Only gap: shell_exe"}}
+{"ts":"2026-04-07T18:47:54.910Z","type":"agent_complete","agent":"dbb_monitor","data":{"details":"completed successfully","performance":{"memoryMB":15,"memoryTotalMB":16,"cpuUser":1.826213,"cpuSystem":3.736514}}}
+{"ts":"2026-04-07T18:47:54.927Z","type":"workflow","agent":"dbb_monitor","data":{"details":"[SIGNAL] completed: Global DBB: 100% (9/9 pass). M26 milestone DBB: 100% (5/5 pass). All criteria verified against sourc"}}
+{"ts":"2026-04-07T18:47:55.532Z","type":"workflow","agent":"monitor","data":{"details":"[BRANCH] goalMet → 1 → complete"}}
+{"ts":"2026-04-07T18:47:55.557Z","type":"agent_start","agent":"complete","data":{"details":"[NODE] complete - 项目完成 — 最终验证 + 归档 + 报告","performance":{"memoryMB":12,"memoryTotalMB":14,"cpuUser":1.834234,"cpuSystem":3.758984}}}
+{"ts":"2026-04-07T18:47:55.588Z","type":"workflow","agent":"complete","data":{"details":"[PARALLEL] final-vision, final-prd, final-dbb, final-arch"}}
+{"ts":"2026-04-07T18:47:55.611Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] vision_monitor"}}
+{"ts":"2026-04-07T18:47:55.638Z","type":"agent_start","agent":"vision_monitor","data":{"details":"评估愿景匹配度","performance":{"memoryMB":12,"memoryTotalMB":15,"cpuUser":1.838077,"cpuSystem":3.768479}}}
+{"ts":"2026-04-07T18:47:55.673Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] prd_monitor"}}
+{"ts":"2026-04-07T18:47:55.700Z","type":"agent_start","agent":"prd_monitor","data":{"details":"评估PRD匹配度","performance":{"memoryMB":12,"memoryTotalMB":15,"cpuUser":1.838701,"cpuSystem":3.769729}}}
+{"ts":"2026-04-07T18:47:55.734Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] dbb_monitor"}}
+{"ts":"2026-04-07T18:47:55.766Z","type":"agent_start","agent":"dbb_monitor","data":{"details":"评估DBB匹配度","performance":{"memoryMB":12,"memoryTotalMB":15,"cpuUser":1.839228,"cpuSystem":3.770566}}}
+{"ts":"2026-04-07T18:49:17.263Z","type":"agent_complete","agent":"vision_monitor","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":14,"cpuUser":1.876114,"cpuSystem":3.824922}}}
+{"ts":"2026-04-07T18:49:17.351Z","type":"workflow","agent":"vision_monitor","data":{"details":"[SIGNAL] completed: Vision match: 95%. All core vision capabilities implemented. 2 gaps: missing VISION.md at root, unen"}}
+{"ts":"2026-04-07T18:49:17.430Z","type":"agent_complete","agent":"prd_monitor","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":14,"cpuUser":1.876983,"cpuSystem":3.826961}}}
+{"ts":"2026-04-07T18:49:17.477Z","type":"workflow","agent":"prd_monitor","data":{"details":"[SIGNAL] completed: PRD match: 97%. All features implemented. One gap: shell_exec browser compatibility overstated in PR"}}
+{"ts":"2026-04-07T18:50:31.414Z","type":"agent_complete","agent":"dbb_monitor","data":{"details":"completed successfully","performance":{"memoryMB":12,"memoryTotalMB":14,"cpuUser":1.909383,"cpuSystem":3.8777}}}
+{"ts":"2026-04-07T18:50:31.427Z","type":"workflow","agent":"dbb_monitor","data":{"details":"[SIGNAL] completed: DBB verification complete: Global 100% (9/9), M26 100% (5/5). All criteria pass, no gaps found."}}
+{"ts":"2026-04-07T18:50:31.428Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] arch_monitor"}}
+{"ts":"2026-04-07T18:50:31.435Z","type":"agent_start","agent":"arch_monitor","data":{"details":"评估架构匹配度","performance":{"memoryMB":13,"memoryTotalMB":14,"cpuUser":1.910188,"cpuSystem":3.879123}}}
+{"ts":"2026-04-07T18:50:50.887Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"21MB\",\"heapUsed\":\"13MB\",\"uptime\":\"3915s\"}"}}
+{"ts":"2026-04-07T18:51:36.714Z","type":"agent_complete","agent":"arch_monitor","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":9,"cpuUser":1.935642,"cpuSystem":3.925621}}}
+{"ts":"2026-04-07T18:51:36.759Z","type":"workflow","agent":"arch_monitor","data":{"details":"[SIGNAL] completed: Architecture conformance review complete: 95% match. All 12 modules present, data flow exact, provid"}}
+{"ts":"2026-04-07T18:51:37.310Z","type":"group_complete","agent":"m26","data":{"details":"Cross-validation: verified match=95%","performance":{"memoryMB":6,"memoryTotalMB":11,"cpuUser":1.94757,"cpuSystem":3.957025}}}
+{"ts":"2026-04-07T18:51:42.464Z","type":"workflow","agent":"report","data":{"details":"Generated REPORT.md (69 lines)"}}
+{"ts":"2026-04-07T18:51:44.402Z","type":"error","agent":"m26","data":{"details":"Auto git tag failed: Command failed: git add -A && git tag -a m26-complete -m \"group m26 complete: Final Gap Verification & README Type Fix\"\nfatal: tag 'm26-complete' already exists\n"}}
+{"ts":"2026-04-07T18:55:41.045Z","type":"agent_start","agent":"startup","data":{"details":"[NODE] startup - 项目启动","performance":{"memoryMB":15,"memoryTotalMB":17,"cpuUser":2.053924,"cpuSystem":4.171841}}}
+{"ts":"2026-04-07T18:55:43.086Z","type":"workflow","agent":"startup","data":{"details":"[SKIP] init-architecture: !hasArchitecture"}}
+{"ts":"2026-04-07T18:55:43.114Z","type":"agent_start","agent":"monitor","data":{"details":"[NODE] monitor - 全局 Monitor 四维检查","performance":{"memoryMB":15,"memoryTotalMB":19,"cpuUser":2.069498,"cpuSystem":4.220826}}}
+{"ts":"2026-04-07T18:55:43.431Z","type":"workflow","agent":"monitor","data":{"details":"[PARALLEL] vision_monitor, prd_monitor, dbb_monitor, arch_monitor"}}
+{"ts":"2026-04-07T18:55:43.440Z","type":"agent_start","agent":"vision_monitor","data":{"details":"评估愿景匹配度","performance":{"memoryMB":15,"memoryTotalMB":20,"cpuUser":2.078717,"cpuSystem":4.251875}}}
+{"ts":"2026-04-07T18:55:43.498Z","type":"agent_start","agent":"prd_monitor","data":{"details":"评估PRD匹配度","performance":{"memoryMB":15,"memoryTotalMB":20,"cpuUser":2.079545,"cpuSystem":4.254036}}}
+{"ts":"2026-04-07T18:55:43.508Z","type":"agent_start","agent":"dbb_monitor","data":{"details":"评估DBB匹配度","performance":{"memoryMB":15,"memoryTotalMB":20,"cpuUser":2.080393,"cpuSystem":4.255863}}}
+{"ts":"2026-04-07T18:55:43.534Z","type":"agent_start","agent":"arch_monitor","data":{"details":"评估架构匹配度","performance":{"memoryMB":15,"memoryTotalMB":20,"cpuUser":2.081004,"cpuSystem":4.256772}}}
+{"ts":"2026-04-07T18:55:50.656Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"21MB\",\"heapUsed\":\"6MB\",\"uptime\":\"4215s\"}"}}
+{"ts":"2026-04-07T18:56:27.911Z","type":"agent_complete","agent":"vision_monitor","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":16,"cpuUser":2.092017,"cpuSystem":4.273325}}}
+{"ts":"2026-04-07T18:56:27.914Z","type":"workflow","agent":"vision_monitor","data":{"details":"[SIGNAL] completed: Vision match: 95%. All core capabilities implemented. 2 gaps remain: missing VISION.md at root, unen"}}
+{"ts":"2026-04-07T18:56:46.703Z","type":"agent_complete","agent":"dbb_monitor","data":{"details":"completed successfully","performance":{"memoryMB":15,"memoryTotalMB":17,"cpuUser":2.100925,"cpuSystem":4.288119}}}
+{"ts":"2026-04-07T18:56:46.783Z","type":"workflow","agent":"dbb_monitor","data":{"details":"[SIGNAL] completed: Global DBB 9/9 pass (100%), M26 milestone 5/5 pass (100%). All output files updated."}}
+{"ts":"2026-04-07T18:57:03.644Z","type":"agent_complete","agent":"prd_monitor","data":{"details":"completed successfully","performance":{"memoryMB":9,"memoryTotalMB":11,"cpuUser":2.12847,"cpuSystem":4.328762}}}
+{"ts":"2026-04-07T18:57:03.661Z","type":"workflow","agent":"prd_monitor","data":{"details":"[SIGNAL] completed: PRD match 97% — all features implemented, one minor PRD wording discrepancy with shell_exec browser "}}
+{"ts":"2026-04-07T18:57:36.370Z","type":"agent_complete","agent":"arch_monitor","data":{"details":"completed successfully","performance":{"memoryMB":15,"memoryTotalMB":16,"cpuUser":2.141401,"cpuSystem":4.35257}}}
+{"ts":"2026-04-07T18:57:36.381Z","type":"workflow","agent":"arch_monitor","data":{"details":"[SIGNAL] completed: Architecture conformance: 95% match. 7 minor gaps found (interface locations, tool definition shape,"}}
+{"ts":"2026-04-07T18:57:37.508Z","type":"workflow","agent":"monitor","data":{"details":"[BRANCH] goalMet → 1 → complete"}}
+{"ts":"2026-04-07T18:57:37.597Z","type":"agent_start","agent":"complete","data":{"details":"[NODE] complete - 项目完成 — 最终验证 + 归档 + 报告","performance":{"memoryMB":12,"memoryTotalMB":14,"cpuUser":2.156157,"cpuSystem":4.404292}}}
+{"ts":"2026-04-07T18:57:37.660Z","type":"workflow","agent":"complete","data":{"details":"[PARALLEL] final-vision, final-prd, final-dbb, final-arch"}}
+{"ts":"2026-04-07T18:57:37.669Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] vision_monitor"}}
+{"ts":"2026-04-07T18:57:37.675Z","type":"agent_start","agent":"vision_monitor","data":{"details":"评估愿景匹配度","performance":{"memoryMB":12,"memoryTotalMB":15,"cpuUser":2.163681,"cpuSystem":4.424741}}}
+{"ts":"2026-04-07T18:57:37.708Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] prd_monitor"}}
+{"ts":"2026-04-07T18:57:37.719Z","type":"agent_start","agent":"prd_monitor","data":{"details":"评估PRD匹配度","performance":{"memoryMB":12,"memoryTotalMB":15,"cpuUser":2.16504,"cpuSystem":4.427849}}}
+{"ts":"2026-04-07T18:57:37.735Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] dbb_monitor"}}
+{"ts":"2026-04-07T18:57:37.792Z","type":"agent_start","agent":"dbb_monitor","data":{"details":"评估DBB匹配度","performance":{"memoryMB":12,"memoryTotalMB":15,"cpuUser":2.166082,"cpuSystem":4.429657}}}
+{"ts":"2026-04-07T18:58:50.740Z","type":"agent_complete","agent":"prd_monitor","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":12,"cpuUser":2.192556,"cpuSystem":4.47696}}}
+{"ts":"2026-04-07T18:58:50.806Z","type":"workflow","agent":"prd_monitor","data":{"details":"[SIGNAL] completed: PRD evaluation complete: 97% match. All PRD features implemented (agent loop, search, code_exec, fil"}}
+{"ts":"2026-04-07T18:58:57.588Z","type":"agent_complete","agent":"vision_monitor","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":12,"cpuUser":2.195926,"cpuSystem":4.484536}}}
+{"ts":"2026-04-07T18:58:57.614Z","type":"workflow","agent":"vision_monitor","data":{"details":"[SIGNAL] completed: Vision check: 95% match. All core capabilities implemented. Two gaps: missing root VISION.md and une"}}
+{"ts":"2026-04-07T18:59:22.130Z","type":"agent_complete","agent":"dbb_monitor","data":{"details":"completed successfully","performance":{"memoryMB":12,"memoryTotalMB":16,"cpuUser":2.209563,"cpuSystem":4.5095}}}
+{"ts":"2026-04-07T18:59:22.150Z","type":"workflow","agent":"dbb_monitor","data":{"details":"[SIGNAL] completed: DBB verification complete: Global 9/9 (100%), M26 5/5 (100%). All 107 tests passing. Zero gaps."}}
+{"ts":"2026-04-07T18:59:22.158Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] arch_monitor"}}
+{"ts":"2026-04-07T18:59:22.182Z","type":"agent_start","agent":"arch_monitor","data":{"details":"评估架构匹配度","performance":{"memoryMB":12,"memoryTotalMB":16,"cpuUser":2.210242,"cpuSystem":4.510907}}}
+{"ts":"2026-04-07T19:00:17.860Z","type":"agent_complete","agent":"arch_monitor","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":10,"cpuUser":2.243893,"cpuSystem":4.571595}}}
+{"ts":"2026-04-07T19:00:17.891Z","type":"workflow","agent":"arch_monitor","data":{"details":"[SIGNAL] completed: Architecture match: 95%. Updated .team/gaps/architecture.json with 7 partial gaps and 6 implemented "}}
+{"ts":"2026-04-07T19:00:19.742Z","type":"group_complete","agent":"m26","data":{"details":"Cross-validation: verified match=95%","performance":{"memoryMB":8,"memoryTotalMB":11,"cpuUser":2.253554,"cpuSystem":4.599973}}}
+{"ts":"2026-04-07T19:00:27.228Z","type":"workflow","agent":"report","data":{"details":"Generated REPORT.md (69 lines)"}}
+{"ts":"2026-04-07T19:00:28.171Z","type":"error","agent":"m26","data":{"details":"Auto git tag failed: Command failed: git add -A && git tag -a m26-complete -m \"group m26 complete: Final Gap Verification & README Type Fix\"\nfatal: tag 'm26-complete' already exists\n"}}
+{"ts":"2026-04-07T19:00:52.805Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"21MB\",\"heapUsed\":\"11MB\",\"uptime\":\"4515s\"}"}}
+{"ts":"2026-04-07T19:05:40.926Z","type":"agent_start","agent":"startup","data":{"details":"[NODE] startup - 项目启动","performance":{"memoryMB":16,"memoryTotalMB":18,"cpuUser":2.396902,"cpuSystem":4.910842}}}
+{"ts":"2026-04-07T19:05:41.664Z","type":"workflow","agent":"startup","data":{"details":"[SKIP] init-architecture: !hasArchitecture"}}
+{"ts":"2026-04-07T19:05:41.676Z","type":"agent_start","agent":"monitor","data":{"details":"[NODE] monitor - 全局 Monitor 四维检查","performance":{"memoryMB":16,"memoryTotalMB":20,"cpuUser":2.403754,"cpuSystem":4.935583}}}
+{"ts":"2026-04-07T19:05:42.729Z","type":"workflow","agent":"monitor","data":{"details":"[PARALLEL] vision_monitor, prd_monitor, dbb_monitor, arch_monitor"}}
+{"ts":"2026-04-07T19:05:42.989Z","type":"agent_start","agent":"vision_monitor","data":{"details":"评估愿景匹配度","performance":{"memoryMB":16,"memoryTotalMB":21,"cpuUser":2.41062,"cpuSystem":4.965863}}}
+{"ts":"2026-04-07T19:05:43.790Z","type":"agent_start","agent":"prd_monitor","data":{"details":"评估PRD匹配度","performance":{"memoryMB":16,"memoryTotalMB":21,"cpuUser":2.413099,"cpuSystem":4.970919}}}
+{"ts":"2026-04-07T19:05:43.892Z","type":"agent_start","agent":"dbb_monitor","data":{"details":"评估DBB匹配度","performance":{"memoryMB":16,"memoryTotalMB":21,"cpuUser":2.414478,"cpuSystem":4.973623}}}
+{"ts":"2026-04-07T19:05:43.992Z","type":"agent_start","agent":"arch_monitor","data":{"details":"评估架构匹配度","performance":{"memoryMB":16,"memoryTotalMB":21,"cpuUser":2.4157,"cpuSystem":4.976227}}}
+{"ts":"2026-04-07T19:05:51.747Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"20MB\",\"heapUsed\":\"6MB\",\"uptime\":\"4816s\"}"}}
+{"ts":"2026-04-07T19:07:20.006Z","type":"agent_complete","agent":"arch_monitor","data":{"details":"completed successfully","performance":{"memoryMB":7,"memoryTotalMB":11,"cpuUser":2.459376,"cpuSystem":5.049018}}}
+{"ts":"2026-04-07T19:07:20.347Z","type":"workflow","agent":"arch_monitor","data":{"details":"[SIGNAL] completed: Architecture monitor: 90% match, 6 implemented items, 7 partial deviations (all documented, no new g"}}
+{"ts":"2026-04-07T19:07:23.627Z","type":"agent_complete","agent":"vision_monitor","data":{"details":"completed successfully","performance":{"memoryMB":7,"memoryTotalMB":11,"cpuUser":2.461068,"cpuSystem":5.054123}}}
+{"ts":"2026-04-07T19:07:23.662Z","type":"workflow","agent":"vision_monitor","data":{"details":"[SIGNAL] completed: Vision match: 95%. All core vision capabilities implemented (file I/O, code sandbox, multi-round age"}}
+{"ts":"2026-04-07T19:07:41.146Z","type":"agent_complete","agent":"prd_monitor","data":{"details":"completed successfully","performance":{"memoryMB":12,"memoryTotalMB":15,"cpuUser":2.469924,"cpuSystem":5.070313}}}
+{"ts":"2026-04-07T19:07:41.305Z","type":"workflow","agent":"prd_monitor","data":{"details":"[SIGNAL] completed: PRD match 96% — all features implemented, 2 minor gaps: shell_exec browser compat overstated, images"}}
+{"ts":"2026-04-07T19:08:28.613Z","type":"agent_complete","agent":"dbb_monitor","data":{"details":"completed successfully","performance":{"memoryMB":16,"memoryTotalMB":18,"cpuUser":2.481299,"cpuSystem":5.097583}}}
+{"ts":"2026-04-07T19:08:28.615Z","type":"workflow","agent":"dbb_monitor","data":{"details":"[SIGNAL] completed: DBB verification complete: global 100% (9/9), M26 100% (5/5). Vision 95% + PRD 97% both meet ≥90% go"}}
+{"ts":"2026-04-07T19:08:30.188Z","type":"workflow","agent":"monitor","data":{"details":"[BRANCH] goalMet → 1 → complete"}}
+{"ts":"2026-04-07T19:08:31.234Z","type":"agent_start","agent":"complete","data":{"details":"[NODE] complete - 项目完成 — 最终验证 + 归档 + 报告","performance":{"memoryMB":16,"memoryTotalMB":20,"cpuUser":2.497853,"cpuSystem":5.149694}}}
+{"ts":"2026-04-07T19:08:32.203Z","type":"workflow","agent":"complete","data":{"details":"[PARALLEL] final-vision, final-prd, final-dbb, final-arch"}}
+{"ts":"2026-04-07T19:08:32.220Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] vision_monitor"}}
+{"ts":"2026-04-07T19:08:32.244Z","type":"agent_start","agent":"vision_monitor","data":{"details":"评估愿景匹配度","performance":{"memoryMB":16,"memoryTotalMB":17,"cpuUser":2.505892,"cpuSystem":5.178605}}}
+{"ts":"2026-04-07T19:08:32.338Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] prd_monitor"}}
+{"ts":"2026-04-07T19:08:32.354Z","type":"agent_start","agent":"prd_monitor","data":{"details":"评估PRD匹配度","performance":{"memoryMB":16,"memoryTotalMB":17,"cpuUser":2.506845,"cpuSystem":5.181323}}}
+{"ts":"2026-04-07T19:08:32.379Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] dbb_monitor"}}
+{"ts":"2026-04-07T19:08:32.392Z","type":"agent_start","agent":"dbb_monitor","data":{"details":"评估DBB匹配度","performance":{"memoryMB":16,"memoryTotalMB":17,"cpuUser":2.507724,"cpuSystem":5.182958}}}
+{"ts":"2026-04-07T19:09:42.277Z","type":"agent_complete","agent":"prd_monitor","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":10,"cpuUser":2.538668,"cpuSystem":5.225681}}}
+{"ts":"2026-04-07T19:09:42.304Z","type":"workflow","agent":"prd_monitor","data":{"details":"[SIGNAL] completed: PRD compliance 97%. 1 gap: shell_exec browser support (Node-only despite PRD claiming browser/Node c"}}
+{"ts":"2026-04-07T19:09:58.667Z","type":"agent_complete","agent":"vision_monitor","data":{"details":"completed successfully","performance":{"memoryMB":7,"memoryTotalMB":10,"cpuUser":2.539635,"cpuSystem":5.228178}}}
+{"ts":"2026-04-07T19:09:58.677Z","type":"workflow","agent":"vision_monitor","data":{"details":"[SIGNAL] completed: Vision match: 95%. All core vision capabilities implemented. Two remaining gaps: missing VISION.md a"}}
+{"ts":"2026-04-07T19:10:18.323Z","type":"agent_complete","agent":"dbb_monitor","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":14,"cpuUser":2.552845,"cpuSystem":5.245628}}}
+{"ts":"2026-04-07T19:10:18.329Z","type":"workflow","agent":"dbb_monitor","data":{"details":"[SIGNAL] completed: DBB verification complete: Global 9/9 (100%), M26 5/5 (100%). All 107 tests passing. No gaps found."}}
+{"ts":"2026-04-07T19:10:18.330Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] arch_monitor"}}
+{"ts":"2026-04-07T19:10:18.332Z","type":"agent_start","agent":"arch_monitor","data":{"details":"评估架构匹配度","performance":{"memoryMB":11,"memoryTotalMB":14,"cpuUser":2.553293,"cpuSystem":5.246555}}}
+{"ts":"2026-04-07T19:10:51.745Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"20MB\",\"heapUsed\":\"15MB\",\"uptime\":\"5116s\"}"}}
+{"ts":"2026-04-07T19:11:22.509Z","type":"agent_complete","agent":"arch_monitor","data":{"details":"completed successfully","performance":{"memoryMB":7,"memoryTotalMB":10,"cpuUser":2.579449,"cpuSystem":5.288005}}}
+{"ts":"2026-04-07T19:11:22.512Z","type":"workflow","agent":"arch_monitor","data":{"details":"[SIGNAL] completed: Architecture match 90%, all 12 modules present, 7 minor deviations documented, no blocking issues"}}
+{"ts":"2026-04-07T19:11:24.292Z","type":"group_complete","agent":"m26","data":{"details":"Cross-validation: verified match=90%","performance":{"memoryMB":9,"memoryTotalMB":12,"cpuUser":2.589947,"cpuSystem":5.318624}}}
+{"ts":"2026-04-07T19:11:32.223Z","type":"workflow","agent":"report","data":{"details":"Generated REPORT.md (69 lines)"}}
+{"ts":"2026-04-07T19:11:37.479Z","type":"error","agent":"m26","data":{"details":"Auto git tag failed: Command failed: git add -A && git tag -a m26-complete -m \"group m26 complete: Final Gap Verification & README Type Fix\"\nfatal: tag 'm26-complete' already exists\n"}}
+{"ts":"2026-04-07T19:16:24.171Z","type":"agent_start","agent":"startup","data":{"details":"[NODE] startup - 项目启动","performance":{"memoryMB":11,"memoryTotalMB":13,"cpuUser":2.792289,"cpuSystem":5.904136}}}
+{"ts":"2026-04-07T19:17:13.654Z","type":"workflow","agent":"startup","data":{"details":"[SKIP] init-architecture: !hasArchitecture"}}
+{"ts":"2026-04-07T19:17:20.488Z","type":"agent_start","agent":"monitor","data":{"details":"[NODE] monitor - 全局 Monitor 四维检查","performance":{"memoryMB":11,"memoryTotalMB":13,"cpuUser":2.851711,"cpuSystem":6.11896}}}
+{"ts":"2026-04-07T19:18:07.388Z","type":"workflow","agent":"monitor","data":{"details":"[PARALLEL] vision_monitor, prd_monitor, dbb_monitor, arch_monitor"}}
+{"ts":"2026-04-07T19:18:10.761Z","type":"agent_start","agent":"vision_monitor","data":{"details":"评估愿景匹配度","performance":{"memoryMB":11,"memoryTotalMB":13,"cpuUser":2.904928,"cpuSystem":6.329307}}}
+{"ts":"2026-04-07T19:18:21.259Z","type":"agent_start","agent":"prd_monitor","data":{"details":"评估PRD匹配度","performance":{"memoryMB":11,"memoryTotalMB":13,"cpuUser":2.909735,"cpuSystem":6.349914}}}
+{"ts":"2026-04-07T19:18:32.379Z","type":"agent_start","agent":"dbb_monitor","data":{"details":"评估DBB匹配度","performance":{"memoryMB":11,"memoryTotalMB":13,"cpuUser":2.914367,"cpuSystem":6.374448}}}
+{"ts":"2026-04-07T19:18:56.205Z","type":"agent_start","agent":"arch_monitor","data":{"details":"评估架构匹配度","performance":{"memoryMB":11,"memoryTotalMB":12,"cpuUser":2.921253,"cpuSystem":6.418995}}}
+{"ts":"2026-04-07T19:19:00.610Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"7MB\",\"heapUsed\":\"11MB\",\"uptime\":\"5604s\"}"}}
+{"ts":"2026-04-08T00:11:13.485Z","type":"workflow","agent":"validator","data":{"details":"[WARNING] config.dashboard: no dashboard configuration — run \"team web\" will show empty UI"}}
+{"ts":"2026-04-08T00:11:13.508Z","type":"agent_start","agent":"daemon","data":{"details":"DevTeam daemon started (safety=600s, timeout=3900s)","performance":{"memoryMB":5,"memoryTotalMB":8,"cpuUser":0.02368,"cpuSystem":0.0062}}}
+{"ts":"2026-04-08T00:11:13.509Z","type":"workflow","agent":"monitor","data":{"details":"[HEALTH] Monitor started"}}
+{"ts":"2026-04-08T00:11:13.510Z","type":"workflow","agent":null,"data":{"details":"[RESUME] Resuming from checkpoint: node=monitor, step=0"}}
+{"ts":"2026-04-08T00:11:13.510Z","type":"agent_start","agent":"monitor","data":{"details":"[NODE] monitor - 全局 Monitor 四维检查","performance":{"memoryMB":5,"memoryTotalMB":8,"cpuUser":0.024578,"cpuSystem":0.006821}}}
+{"ts":"2026-04-08T00:11:13.521Z","type":"workflow","agent":"monitor","data":{"details":"[PARALLEL] vision_monitor, prd_monitor, dbb_monitor, arch_monitor"}}
+{"ts":"2026-04-08T00:11:13.522Z","type":"agent_start","agent":"vision_monitor","data":{"details":"评估愿景匹配度","performance":{"memoryMB":6,"memoryTotalMB":9,"cpuUser":0.030782,"cpuSystem":0.014481}}}
+{"ts":"2026-04-08T00:11:13.523Z","type":"agent_start","agent":"prd_monitor","data":{"details":"评估PRD匹配度","performance":{"memoryMB":6,"memoryTotalMB":9,"cpuUser":0.031533,"cpuSystem":0.014883}}}
+{"ts":"2026-04-08T00:11:13.523Z","type":"agent_start","agent":"dbb_monitor","data":{"details":"评估DBB匹配度","performance":{"memoryMB":6,"memoryTotalMB":10,"cpuUser":0.031853,"cpuSystem":0.015221}}}
+{"ts":"2026-04-08T00:11:13.524Z","type":"agent_start","agent":"arch_monitor","data":{"details":"评估架构匹配度","performance":{"memoryMB":6,"memoryTotalMB":10,"cpuUser":0.032376,"cpuSystem":0.015529}}}
+{"ts":"2026-04-08T00:11:54.720Z","type":"agent_complete","agent":"arch_monitor","data":{"details":"completed successfully","performance":{"memoryMB":14,"memoryTotalMB":19,"cpuUser":0.054647,"cpuSystem":0.038545}}}
+{"ts":"2026-04-08T00:11:54.721Z","type":"workflow","agent":"arch_monitor","data":{"details":"[SIGNAL] completed: Architecture conformance: 90% match. All 12 modules, data flow, interfaces, and provider fallback ch"}}
+{"ts":"2026-04-08T00:12:05.082Z","type":"agent_complete","agent":"prd_monitor","data":{"details":"completed successfully","performance":{"memoryMB":14,"memoryTotalMB":19,"cpuUser":0.055464,"cpuSystem":0.03925}}}
+{"ts":"2026-04-08T00:12:05.083Z","type":"workflow","agent":"prd_monitor","data":{"details":"[SIGNAL] completed: PRD match: 98%. All features implemented. One minor gap: shell_exec PRD says browser/Node compatible"}}
+{"ts":"2026-04-08T00:12:06.300Z","type":"agent_complete","agent":"vision_monitor","data":{"details":"completed successfully","performance":{"memoryMB":14,"memoryTotalMB":19,"cpuUser":0.056079,"cpuSystem":0.039804}}}
+{"ts":"2026-04-08T00:12:06.301Z","type":"workflow","agent":"vision_monitor","data":{"details":"[SIGNAL] completed: Vision match 95% — all core capabilities implemented, 2 minor gaps remain (missing VISION.md, unenfo"}}
+{"ts":"2026-04-08T00:12:32.791Z","type":"agent_complete","agent":"dbb_monitor","data":{"details":"completed successfully","performance":{"memoryMB":7,"memoryTotalMB":10,"cpuUser":0.072663,"cpuSystem":0.051755}}}
+{"ts":"2026-04-08T00:12:32.792Z","type":"workflow","agent":"dbb_monitor","data":{"details":"[SIGNAL] completed: DBB verification complete: Global 100% (9/9), M26 100% (5/5), all 107 tests pass"}}
+{"ts":"2026-04-08T00:12:32.808Z","type":"workflow","agent":"monitor","data":{"details":"[BRANCH] goalMet → 1 → complete"}}
+{"ts":"2026-04-08T00:12:32.808Z","type":"agent_start","agent":"complete","data":{"details":"[NODE] complete - 项目完成 — 最终验证 + 归档 + 报告","performance":{"memoryMB":7,"memoryTotalMB":9,"cpuUser":0.077386,"cpuSystem":0.063874}}}
+{"ts":"2026-04-08T00:12:32.815Z","type":"workflow","agent":"complete","data":{"details":"[PARALLEL] final-vision, final-prd, final-dbb, final-arch"}}
+{"ts":"2026-04-08T00:12:32.815Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] vision_monitor"}}
+{"ts":"2026-04-08T00:12:32.816Z","type":"agent_start","agent":"vision_monitor","data":{"details":"评估愿景匹配度","performance":{"memoryMB":8,"memoryTotalMB":10,"cpuUser":0.079304,"cpuSystem":0.069656}}}
+{"ts":"2026-04-08T00:12:32.816Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] prd_monitor"}}
+{"ts":"2026-04-08T00:12:32.816Z","type":"agent_start","agent":"prd_monitor","data":{"details":"评估PRD匹配度","performance":{"memoryMB":7,"memoryTotalMB":10,"cpuUser":0.07978,"cpuSystem":0.070128}}}
+{"ts":"2026-04-08T00:12:32.817Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] dbb_monitor"}}
+{"ts":"2026-04-08T00:12:32.817Z","type":"agent_start","agent":"dbb_monitor","data":{"details":"评估DBB匹配度","performance":{"memoryMB":7,"memoryTotalMB":10,"cpuUser":0.079937,"cpuSystem":0.070478}}}
+{"ts":"2026-04-08T00:13:19.010Z","type":"agent_complete","agent":"prd_monitor","data":{"details":"completed successfully","performance":{"memoryMB":16,"memoryTotalMB":20,"cpuUser":0.099198,"cpuSystem":0.098203}}}
+{"ts":"2026-04-08T00:13:19.011Z","type":"workflow","agent":"prd_monitor","data":{"details":"[SIGNAL] completed: PRD evaluation complete — 100% match, no gaps found. All PRD features implemented, all 9 DBB criteri"}}
+{"ts":"2026-04-08T00:13:23.187Z","type":"agent_complete","agent":"vision_monitor","data":{"details":"completed successfully","performance":{"memoryMB":16,"memoryTotalMB":20,"cpuUser":0.100066,"cpuSystem":0.098918}}}
+{"ts":"2026-04-08T00:13:23.187Z","type":"workflow","agent":"vision_monitor","data":{"details":"[SIGNAL] completed: Vision match 95%, stable. 2 gaps remain: missing VISION.md root file, unenforced code timeout config"}}
+{"ts":"2026-04-08T00:13:38.589Z","type":"agent_complete","agent":"dbb_monitor","data":{"details":"completed successfully","performance":{"memoryMB":16,"memoryTotalMB":20,"cpuUser":0.100512,"cpuSystem":0.099308}}}
+{"ts":"2026-04-08T00:13:38.589Z","type":"workflow","agent":"dbb_monitor","data":{"details":"[SIGNAL] completed: Global DBB 100% (9/9), M26 DBB 100% (5/5), all 107 tests pass, no gaps found"}}
+{"ts":"2026-04-08T00:13:38.589Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] arch_monitor"}}
+{"ts":"2026-04-08T00:13:38.589Z","type":"agent_start","agent":"arch_monitor","data":{"details":"评估架构匹配度","performance":{"memoryMB":16,"memoryTotalMB":20,"cpuUser":0.101026,"cpuSystem":0.099698}}}
+{"ts":"2026-04-08T00:14:26.004Z","type":"agent_complete","agent":"arch_monitor","data":{"details":"completed successfully","performance":{"memoryMB":14,"memoryTotalMB":18,"cpuUser":0.125048,"cpuSystem":0.118516}}}
+{"ts":"2026-04-08T00:14:26.005Z","type":"workflow","agent":"arch_monitor","data":{"details":"[SIGNAL] completed: Architecture conformance: 90% match. All 12 modules implemented, data flow matches design exactly. 7"}}
+{"ts":"2026-04-08T00:14:26.020Z","type":"group_complete","agent":"m26","data":{"details":"Cross-validation: verified match=90%","performance":{"memoryMB":17,"memoryTotalMB":19,"cpuUser":0.128785,"cpuSystem":0.12976}}}
+{"ts":"2026-04-08T00:14:26.104Z","type":"workflow","agent":"report","data":{"details":"Generated REPORT.md (72 lines)"}}
+{"ts":"2026-04-08T00:14:26.165Z","type":"error","agent":"m26","data":{"details":"Auto git tag failed: Command failed: git add -A && git tag -a m26-complete -m \"group m26 complete: Final Gap Verification & README Type Fix\"\nfatal: tag 'm26-complete' already exists\n"}}
+{"ts":"2026-04-08T00:16:13.513Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"61MB\",\"heapUsed\":\"14MB\",\"uptime\":\"300s\"}"}}
+{"ts":"2026-04-08T00:21:13.597Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"43MB\",\"heapUsed\":\"7MB\",\"uptime\":\"600s\"}"}}
+{"ts":"2026-04-08T00:21:13.935Z","type":"agent_start","agent":"startup","data":{"details":"[NODE] startup - 项目启动","performance":{"memoryMB":7,"memoryTotalMB":10,"cpuUser":0.289527,"cpuSystem":0.34759}}}
+{"ts":"2026-04-08T00:21:14.432Z","type":"workflow","agent":"startup","data":{"details":"[SKIP] init-architecture: !hasArchitecture"}}
+{"ts":"2026-04-08T00:21:14.444Z","type":"agent_start","agent":"monitor","data":{"details":"[NODE] monitor - 全局 Monitor 四维检查","performance":{"memoryMB":9,"memoryTotalMB":11,"cpuUser":0.299223,"cpuSystem":0.380586}}}
+{"ts":"2026-04-08T00:21:14.530Z","type":"workflow","agent":"monitor","data":{"details":"[PARALLEL] vision_monitor, prd_monitor, dbb_monitor, arch_monitor"}}
+{"ts":"2026-04-08T00:21:14.541Z","type":"agent_start","agent":"vision_monitor","data":{"details":"评估愿景匹配度","performance":{"memoryMB":7,"memoryTotalMB":9,"cpuUser":0.306626,"cpuSystem":0.407628}}}
+{"ts":"2026-04-08T00:21:14.607Z","type":"agent_start","agent":"prd_monitor","data":{"details":"评估PRD匹配度","performance":{"memoryMB":7,"memoryTotalMB":9,"cpuUser":0.307793,"cpuSystem":0.409528}}}
+{"ts":"2026-04-08T00:21:14.610Z","type":"agent_start","agent":"dbb_monitor","data":{"details":"评估DBB匹配度","performance":{"memoryMB":7,"memoryTotalMB":9,"cpuUser":0.308328,"cpuSystem":0.410644}}}
+{"ts":"2026-04-08T00:21:14.613Z","type":"agent_start","agent":"arch_monitor","data":{"details":"评估架构匹配度","performance":{"memoryMB":7,"memoryTotalMB":9,"cpuUser":0.308847,"cpuSystem":0.411695}}}
+{"ts":"2026-04-08T00:22:17.551Z","type":"agent_complete","agent":"arch_monitor","data":{"details":"completed successfully","performance":{"memoryMB":9,"memoryTotalMB":12,"cpuUser":0.341729,"cpuSystem":0.468953}}}
+{"ts":"2026-04-08T00:22:17.556Z","type":"workflow","agent":"arch_monitor","data":{"details":"[SIGNAL] completed: Architecture match: 90%. All modules and interfaces implemented. 10 gap items documented (3 structur"}}
+{"ts":"2026-04-08T00:22:19.225Z","type":"agent_complete","agent":"vision_monitor","data":{"details":"completed successfully","performance":{"memoryMB":9,"memoryTotalMB":12,"cpuUser":0.34322,"cpuSystem":0.475105}}}
+{"ts":"2026-04-08T00:22:19.229Z","type":"workflow","agent":"vision_monitor","data":{"details":"[SIGNAL] completed: Vision match 95% — all core capabilities implemented, 2 minor gaps (missing VISION.md root file, une"}}
+{"ts":"2026-04-08T00:22:27.181Z","type":"agent_complete","agent":"prd_monitor","data":{"details":"completed successfully","performance":{"memoryMB":9,"memoryTotalMB":12,"cpuUser":0.34434,"cpuSystem":0.479218}}}
+{"ts":"2026-04-08T00:22:27.183Z","type":"workflow","agent":"prd_monitor","data":{"details":"[SIGNAL] completed: PRD evaluation complete — 100% match (16/16 features implemented, 0 gaps). Updated .team/gaps/prd.js"}}
+{"ts":"2026-04-08T00:22:53.041Z","type":"agent_complete","agent":"dbb_monitor","data":{"details":"completed successfully","performance":{"memoryMB":14,"memoryTotalMB":16,"cpuUser":0.362785,"cpuSystem":0.505358}}}
+{"ts":"2026-04-08T00:22:53.074Z","type":"workflow","agent":"dbb_monitor","data":{"details":"[SIGNAL] completed: Global DBB 100% (9/9 pass), M26 DBB 80% (4/5 pass, DBB-005 test failures due to agentic-shell return"}}
+{"ts":"2026-04-08T00:22:54.405Z","type":"workflow","agent":"monitor","data":{"details":"[BRANCH] goalMet → 1 → complete"}}
+{"ts":"2026-04-08T00:22:54.412Z","type":"agent_start","agent":"complete","data":{"details":"[NODE] complete - 项目完成 — 最终验证 + 归档 + 报告","performance":{"memoryMB":14,"memoryTotalMB":15,"cpuUser":0.374786,"cpuSystem":0.538763}}}
+{"ts":"2026-04-08T00:22:54.435Z","type":"workflow","agent":"complete","data":{"details":"[PARALLEL] final-vision, final-prd, final-dbb, final-arch"}}
+{"ts":"2026-04-08T00:22:54.439Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] vision_monitor"}}
+{"ts":"2026-04-08T00:22:54.440Z","type":"agent_start","agent":"vision_monitor","data":{"details":"评估愿景匹配度","performance":{"memoryMB":15,"memoryTotalMB":17,"cpuUser":0.378879,"cpuSystem":0.550776}}}
+{"ts":"2026-04-08T00:22:54.469Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] prd_monitor"}}
+{"ts":"2026-04-08T00:22:54.470Z","type":"agent_start","agent":"prd_monitor","data":{"details":"评估PRD匹配度","performance":{"memoryMB":13,"memoryTotalMB":17,"cpuUser":0.379762,"cpuSystem":0.552277}}}
+{"ts":"2026-04-08T00:22:54.478Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] dbb_monitor"}}
+{"ts":"2026-04-08T00:22:54.479Z","type":"agent_start","agent":"dbb_monitor","data":{"details":"评估DBB匹配度","performance":{"memoryMB":13,"memoryTotalMB":17,"cpuUser":0.380402,"cpuSystem":0.553419}}}
+{"ts":"2026-04-08T00:23:35.274Z","type":"agent_complete","agent":"prd_monitor","data":{"details":"completed successfully","performance":{"memoryMB":18,"memoryTotalMB":22,"cpuUser":0.388415,"cpuSystem":0.56846}}}
+{"ts":"2026-04-08T00:23:35.377Z","type":"workflow","agent":"prd_monitor","data":{"details":"[SIGNAL] completed: PRD evaluation complete: 100% match, 0 gaps. All PRD features and EXPECTED_DBB criteria verified as "}}
+{"ts":"2026-04-08T00:24:29.565Z","type":"agent_complete","agent":"vision_monitor","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":15,"cpuUser":0.432195,"cpuSystem":0.62375}}}
+{"ts":"2026-04-08T00:24:29.567Z","type":"workflow","agent":"vision_monitor","data":{"details":"[SIGNAL] completed: Vision match 97% — 10/12 items implemented, 2 minor gaps: missing VISION.md and unenforced code time"}}
+{"ts":"2026-04-08T00:26:13.569Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"44MB\",\"heapUsed\":\"11MB\",\"uptime\":\"900s\"}"}}
+{"ts":"2026-04-08T00:31:13.634Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"44MB\",\"heapUsed\":\"16MB\",\"uptime\":\"1200s\"}"}}
+{"ts":"2026-04-08T00:31:14.121Z","type":"agent_start","agent":"daemon","data":{"details":"Still busy (10min), skipping","performance":{"memoryMB":16,"memoryTotalMB":18,"cpuUser":0.577054,"cpuSystem":0.877065}}}
+{"ts":"2026-04-08T00:33:19.964Z","type":"agent_complete","agent":"dbb_monitor","data":{"details":"completed successfully","performance":{"memoryMB":14,"memoryTotalMB":17,"cpuUser":0.625633,"cpuSystem":0.954894}}}
+{"ts":"2026-04-08T00:33:19.981Z","type":"workflow","agent":"dbb_monitor","data":{"details":"[SIGNAL] completed: Global DBB 100% (9/9 pass), M26 DBB 100% (5/5 pass). 3 test failures in external agentic-shell depen"}}
+{"ts":"2026-04-08T00:33:19.996Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] arch_monitor"}}
+{"ts":"2026-04-08T00:33:20.003Z","type":"agent_start","agent":"arch_monitor","data":{"details":"评估架构匹配度","performance":{"memoryMB":14,"memoryTotalMB":17,"cpuUser":0.6268,"cpuSystem":0.956633}}}
+{"ts":"2026-04-08T00:34:27.848Z","type":"agent_complete","agent":"arch_monitor","data":{"details":"completed successfully","performance":{"memoryMB":7,"memoryTotalMB":10,"cpuUser":0.650929,"cpuSystem":0.995184}}}
+{"ts":"2026-04-08T00:34:27.856Z","type":"workflow","agent":"arch_monitor","data":{"details":"[SIGNAL] completed: Architecture match 90%. All 12 modules implemented correctly. 10 gaps are documentation-level omissi"}}
+{"ts":"2026-04-08T00:34:28.201Z","type":"group_complete","agent":"m26","data":{"details":"Cross-validation: verified match=90%","performance":{"memoryMB":9,"memoryTotalMB":11,"cpuUser":0.657336,"cpuSystem":1.013953}}}
+{"ts":"2026-04-08T00:34:29.130Z","type":"workflow","agent":"report","data":{"details":"Generated REPORT.md (72 lines)"}}
+{"ts":"2026-04-08T00:34:29.911Z","type":"error","agent":"m26","data":{"details":"Auto git tag failed: Command failed: git add -A && git tag -a m26-complete -m \"group m26 complete: Final Gap Verification & README Type Fix\"\nfatal: tag 'm26-complete' already exists\n"}}
+{"ts":"2026-04-08T00:36:14.767Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"44MB\",\"heapUsed\":\"11MB\",\"uptime\":\"1500s\"}"}}
+{"ts":"2026-04-08T00:41:13.574Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"34MB\",\"heapUsed\":\"18MB\",\"uptime\":\"1800s\"}"}}
+{"ts":"2026-04-08T00:41:14.128Z","type":"agent_start","agent":"startup","data":{"details":"[NODE] startup - 项目启动","performance":{"memoryMB":18,"memoryTotalMB":20,"cpuUser":0.791256,"cpuSystem":1.31886}}}
+{"ts":"2026-04-08T00:41:14.146Z","type":"workflow","agent":"startup","data":{"details":"[SKIP] init-architecture: !hasArchitecture"}}
+{"ts":"2026-04-08T00:41:14.146Z","type":"agent_start","agent":"monitor","data":{"details":"[NODE] monitor - 全局 Monitor 四维检查","performance":{"memoryMB":18,"memoryTotalMB":22,"cpuUser":0.794648,"cpuSystem":1.32948}}}
+{"ts":"2026-04-08T00:41:14.168Z","type":"workflow","agent":"monitor","data":{"details":"[PARALLEL] vision_monitor, prd_monitor, dbb_monitor, arch_monitor"}}
+{"ts":"2026-04-08T00:41:14.169Z","type":"agent_start","agent":"vision_monitor","data":{"details":"评估愿景匹配度","performance":{"memoryMB":18,"memoryTotalMB":23,"cpuUser":0.797549,"cpuSystem":1.339778}}}
+{"ts":"2026-04-08T00:41:14.171Z","type":"agent_start","agent":"prd_monitor","data":{"details":"评估PRD匹配度","performance":{"memoryMB":18,"memoryTotalMB":23,"cpuUser":0.797856,"cpuSystem":1.340467}}}
+{"ts":"2026-04-08T00:41:14.172Z","type":"agent_start","agent":"dbb_monitor","data":{"details":"评估DBB匹配度","performance":{"memoryMB":18,"memoryTotalMB":23,"cpuUser":0.798039,"cpuSystem":1.340855}}}
+{"ts":"2026-04-08T00:41:14.172Z","type":"agent_start","agent":"arch_monitor","data":{"details":"评估架构匹配度","performance":{"memoryMB":18,"memoryTotalMB":23,"cpuUser":0.798189,"cpuSystem":1.341175}}}
+{"ts":"2026-04-08T00:42:18.439Z","type":"agent_complete","agent":"prd_monitor","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":11,"cpuUser":0.828162,"cpuSystem":1.366587}}}
+{"ts":"2026-04-08T00:42:18.440Z","type":"workflow","agent":"prd_monitor","data":{"details":"[SIGNAL] completed: PRD match 98% — 1 remaining gap: shell_exec browser support is partial (Node-only, returns error in "}}
+{"ts":"2026-04-08T00:42:20.108Z","type":"agent_complete","agent":"vision_monitor","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":11,"cpuUser":0.828743,"cpuSystem":1.367234}}}
+{"ts":"2026-04-08T00:42:20.109Z","type":"workflow","agent":"vision_monitor","data":{"details":"[SIGNAL] completed: Vision match 97% — all core capabilities implemented, two minor gaps (missing VISION.md, unenforced "}}
+{"ts":"2026-04-08T00:42:35.620Z","type":"agent_complete","agent":"arch_monitor","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":16,"cpuUser":0.83718,"cpuSystem":1.373015}}}
+{"ts":"2026-04-08T00:42:35.620Z","type":"workflow","agent":"arch_monitor","data":{"details":"[SIGNAL] completed: Architecture match 92%. Module structure, data flow, interfaces, and custom provider fallback all ma"}}
+{"ts":"2026-04-08T00:42:44.915Z","type":"agent_complete","agent":"dbb_monitor","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":16,"cpuUser":0.837817,"cpuSystem":1.373829}}}
+{"ts":"2026-04-08T00:42:44.916Z","type":"workflow","agent":"dbb_monitor","data":{"details":"[SIGNAL] completed: DBB Monitor verified M26 and global criteria. Global: 9/9 pass (100%). M26: 5/5 pass (100%). All 107"}}
+{"ts":"2026-04-08T00:42:44.957Z","type":"workflow","agent":"monitor","data":{"details":"[BRANCH] goalMet → 1 → complete"}}
+{"ts":"2026-04-08T00:42:44.958Z","type":"agent_start","agent":"complete","data":{"details":"[NODE] complete - 项目完成 — 最终验证 + 归档 + 报告","performance":{"memoryMB":11,"memoryTotalMB":13,"cpuUser":0.845166,"cpuSystem":1.397923}}}
+{"ts":"2026-04-08T00:42:44.968Z","type":"workflow","agent":"complete","data":{"details":"[PARALLEL] final-vision, final-prd, final-dbb, final-arch"}}
+{"ts":"2026-04-08T00:42:44.969Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] vision_monitor"}}
+{"ts":"2026-04-08T00:42:44.969Z","type":"agent_start","agent":"vision_monitor","data":{"details":"评估愿景匹配度","performance":{"memoryMB":12,"memoryTotalMB":15,"cpuUser":0.84801,"cpuSystem":1.406522}}}
+{"ts":"2026-04-08T00:42:44.969Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] prd_monitor"}}
+{"ts":"2026-04-08T00:42:44.970Z","type":"agent_start","agent":"prd_monitor","data":{"details":"评估PRD匹配度","performance":{"memoryMB":12,"memoryTotalMB":15,"cpuUser":0.848288,"cpuSystem":1.407078}}}
+{"ts":"2026-04-08T00:42:44.970Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] dbb_monitor"}}
+{"ts":"2026-04-08T00:42:44.970Z","type":"agent_start","agent":"dbb_monitor","data":{"details":"评估DBB匹配度","performance":{"memoryMB":11,"memoryTotalMB":15,"cpuUser":0.848556,"cpuSystem":1.407534}}}
+{"ts":"2026-04-08T00:43:40.278Z","type":"agent_complete","agent":"vision_monitor","data":{"details":"completed successfully","performance":{"memoryMB":9,"memoryTotalMB":13,"cpuUser":0.865605,"cpuSystem":1.417728}}}
+{"ts":"2026-04-08T00:43:40.278Z","type":"workflow","agent":"vision_monitor","data":{"details":"[SIGNAL] completed: Vision match 97%. Updated .team/gaps/vision.json and m26/vision-check.md. All core capabilities impl"}}
+{"ts":"2026-04-08T00:43:51.035Z","type":"agent_complete","agent":"prd_monitor","data":{"details":"completed successfully","performance":{"memoryMB":9,"memoryTotalMB":13,"cpuUser":0.866279,"cpuSystem":1.418297}}}
+{"ts":"2026-04-08T00:43:51.036Z","type":"workflow","agent":"prd_monitor","data":{"details":"[SIGNAL] completed: PRD match 98%, 1 gap: shell_exec browser compatibility"}}
+{"ts":"2026-04-08T00:44:11.517Z","type":"agent_complete","agent":"dbb_monitor","data":{"details":"completed successfully","performance":{"memoryMB":14,"memoryTotalMB":17,"cpuUser":0.87525,"cpuSystem":1.427727}}}
+{"ts":"2026-04-08T00:44:11.517Z","type":"workflow","agent":"dbb_monitor","data":{"details":"[SIGNAL] completed: Global DBB 100% (9/9 pass), M26 milestone DBB 100% (5/5 pass). All criteria verified against source "}}
+{"ts":"2026-04-08T00:44:11.517Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] arch_monitor"}}
+{"ts":"2026-04-08T00:44:11.517Z","type":"agent_start","agent":"arch_monitor","data":{"details":"评估架构匹配度","performance":{"memoryMB":14,"memoryTotalMB":17,"cpuUser":0.875781,"cpuSystem":1.428288}}}
+{"ts":"2026-04-08T00:45:07.597Z","type":"agent_complete","agent":"arch_monitor","data":{"details":"completed successfully","performance":{"memoryMB":9,"memoryTotalMB":12,"cpuUser":0.904269,"cpuSystem":1.445928}}}
+{"ts":"2026-04-08T00:45:07.597Z","type":"workflow","agent":"arch_monitor","data":{"details":"[SIGNAL] completed: Architecture match 92%. All modules/interfaces/data flow conform to design. Gaps are documentation-l"}}
+{"ts":"2026-04-08T00:45:07.612Z","type":"group_complete","agent":"m26","data":{"details":"Cross-validation: verified match=92%","performance":{"memoryMB":11,"memoryTotalMB":13,"cpuUser":0.908079,"cpuSystem":1.457035}}}
+{"ts":"2026-04-08T00:45:07.688Z","type":"workflow","agent":"report","data":{"details":"Generated REPORT.md (72 lines)"}}
+{"ts":"2026-04-08T00:45:07.743Z","type":"error","agent":"m26","data":{"details":"Auto git tag failed: Command failed: git add -A && git tag -a m26-complete -m \"group m26 complete: Final Gap Verification & README Type Fix\"\nfatal: tag 'm26-complete' already exists\n"}}
+{"ts":"2026-04-08T00:46:13.576Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"39MB\",\"heapUsed\":\"6MB\",\"uptime\":\"2100s\"}"}}
+{"ts":"2026-04-08T00:51:13.580Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"45MB\",\"heapUsed\":\"14MB\",\"uptime\":\"2400s\"}"}}
+{"ts":"2026-04-08T00:51:14.133Z","type":"agent_start","agent":"startup","data":{"details":"[NODE] startup - 项目启动","performance":{"memoryMB":14,"memoryTotalMB":17,"cpuUser":1.095952,"cpuSystem":1.617193}}}
+{"ts":"2026-04-08T00:51:14.162Z","type":"workflow","agent":"startup","data":{"details":"[SKIP] init-architecture: !hasArchitecture"}}
+{"ts":"2026-04-08T00:51:14.163Z","type":"agent_start","agent":"monitor","data":{"details":"[NODE] monitor - 全局 Monitor 四维检查","performance":{"memoryMB":16,"memoryTotalMB":19,"cpuUser":1.103327,"cpuSystem":1.639087}}}
+{"ts":"2026-04-08T00:51:14.180Z","type":"workflow","agent":"monitor","data":{"details":"[PARALLEL] vision_monitor, prd_monitor, dbb_monitor, arch_monitor"}}
+{"ts":"2026-04-08T00:51:14.180Z","type":"agent_start","agent":"vision_monitor","data":{"details":"评估愿景匹配度","performance":{"memoryMB":14,"memoryTotalMB":16,"cpuUser":1.107335,"cpuSystem":1.652633}}}
+{"ts":"2026-04-08T00:51:14.181Z","type":"agent_start","agent":"prd_monitor","data":{"details":"评估PRD匹配度","performance":{"memoryMB":14,"memoryTotalMB":16,"cpuUser":1.107666,"cpuSystem":1.653172}}}
+{"ts":"2026-04-08T00:51:14.182Z","type":"agent_start","agent":"dbb_monitor","data":{"details":"评估DBB匹配度","performance":{"memoryMB":14,"memoryTotalMB":16,"cpuUser":1.107901,"cpuSystem":1.653689}}}
+{"ts":"2026-04-08T00:51:14.183Z","type":"agent_start","agent":"arch_monitor","data":{"details":"评估架构匹配度","performance":{"memoryMB":14,"memoryTotalMB":16,"cpuUser":1.108106,"cpuSystem":1.654115}}}
+{"ts":"2026-04-08T00:52:08.836Z","type":"agent_complete","agent":"vision_monitor","data":{"details":"completed successfully","performance":{"memoryMB":9,"memoryTotalMB":13,"cpuUser":1.132331,"cpuSystem":1.671527}}}
+{"ts":"2026-04-08T00:52:08.836Z","type":"workflow","agent":"vision_monitor","data":{"details":"[SIGNAL] completed: Vision match 97%. 2 minor gaps: missing VISION.md root file, unenforced code timeout. All core visio"}}
+{"ts":"2026-04-08T00:52:10.465Z","type":"agent_complete","agent":"dbb_monitor","data":{"details":"completed successfully","performance":{"memoryMB":9,"memoryTotalMB":13,"cpuUser":1.133,"cpuSystem":1.672136}}}
+{"ts":"2026-04-08T00:52:10.465Z","type":"workflow","agent":"dbb_monitor","data":{"details":"[SIGNAL] completed: DBB verification complete. Global DBB: 100% (9/9 pass). M26 milestone DBB: 100% (5/5 pass). All outp"}}
+{"ts":"2026-04-08T00:52:16.377Z","type":"agent_complete","agent":"arch_monitor","data":{"details":"completed successfully","performance":{"memoryMB":9,"memoryTotalMB":13,"cpuUser":1.133483,"cpuSystem":1.672647}}}
+{"ts":"2026-04-08T00:52:16.377Z","type":"workflow","agent":"arch_monitor","data":{"details":"[SIGNAL] completed: Architecture scan complete: 92% match, all modules/interfaces implemented, 8% gap is structural/undo"}}
+{"ts":"2026-04-08T00:52:26.919Z","type":"agent_complete","agent":"prd_monitor","data":{"details":"completed successfully","performance":{"memoryMB":9,"memoryTotalMB":13,"cpuUser":1.134066,"cpuSystem":1.673319}}}
+{"ts":"2026-04-08T00:52:26.920Z","type":"workflow","agent":"prd_monitor","data":{"details":"[SIGNAL] completed: PRD match: 98%. 1 minor gap: shell_exec browser compatibility discrepancy with PRD wording. All othe"}}
+{"ts":"2026-04-08T00:52:26.940Z","type":"workflow","agent":"monitor","data":{"details":"[BRANCH] goalMet → 1 → complete"}}
+{"ts":"2026-04-08T00:52:26.941Z","type":"agent_start","agent":"complete","data":{"details":"[NODE] complete - 项目完成 — 最终验证 + 归档 + 报告","performance":{"memoryMB":9,"memoryTotalMB":11,"cpuUser":1.14024,"cpuSystem":1.690091}}}
+{"ts":"2026-04-08T00:52:26.950Z","type":"workflow","agent":"complete","data":{"details":"[PARALLEL] final-vision, final-prd, final-dbb, final-arch"}}
+{"ts":"2026-04-08T00:52:26.950Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] vision_monitor"}}
+{"ts":"2026-04-08T00:52:26.950Z","type":"agent_start","agent":"vision_monitor","data":{"details":"评估愿景匹配度","performance":{"memoryMB":10,"memoryTotalMB":13,"cpuUser":1.142503,"cpuSystem":1.697446}}}
+{"ts":"2026-04-08T00:52:26.951Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] prd_monitor"}}
+{"ts":"2026-04-08T00:52:26.951Z","type":"agent_start","agent":"prd_monitor","data":{"details":"评估PRD匹配度","performance":{"memoryMB":11,"memoryTotalMB":13,"cpuUser":1.142722,"cpuSystem":1.698019}}}
+{"ts":"2026-04-08T00:52:26.952Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] dbb_monitor"}}
+{"ts":"2026-04-08T00:52:26.952Z","type":"agent_start","agent":"dbb_monitor","data":{"details":"评估DBB匹配度","performance":{"memoryMB":11,"memoryTotalMB":13,"cpuUser":1.142981,"cpuSystem":1.698446}}}
+{"ts":"2026-04-08T00:53:24.936Z","type":"agent_complete","agent":"dbb_monitor","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":11,"cpuUser":1.159855,"cpuSystem":1.710455}}}
+{"ts":"2026-04-08T00:53:24.936Z","type":"workflow","agent":"dbb_monitor","data":{"details":"[SIGNAL] completed: DBB verification complete: 100% global match (9/9), 100% M26 match (5/5), all 107 tests passing. No "}}
+{"ts":"2026-04-08T00:53:29.091Z","type":"agent_complete","agent":"vision_monitor","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":16,"cpuUser":1.164271,"cpuSystem":1.713584}}}
+{"ts":"2026-04-08T00:53:29.091Z","type":"workflow","agent":"vision_monitor","data":{"details":"[SIGNAL] completed: Vision check: 97% match, no regression. 2 minor gaps unchanged (VISION.md missing, code.timeout unen"}}
+{"ts":"2026-04-08T00:54:10.148Z","type":"agent_complete","agent":"prd_monitor","data":{"details":"completed successfully","performance":{"memoryMB":15,"memoryTotalMB":18,"cpuUser":1.168854,"cpuSystem":1.716749}}}
+{"ts":"2026-04-08T00:54:10.149Z","type":"workflow","agent":"prd_monitor","data":{"details":"[SIGNAL] completed: PRD match 98%, 2 minor gaps (shell_exec browser gate, Serper images). EXPECTED_DBB 100%. Updated .te"}}
+{"ts":"2026-04-08T00:54:10.149Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] arch_monitor"}}
+{"ts":"2026-04-08T00:54:10.149Z","type":"agent_start","agent":"arch_monitor","data":{"details":"评估架构匹配度","performance":{"memoryMB":16,"memoryTotalMB":18,"cpuUser":1.169254,"cpuSystem":1.717177}}}
+{"ts":"2026-04-08T00:55:30.068Z","type":"agent_complete","agent":"arch_monitor","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":14,"cpuUser":1.208353,"cpuSystem":1.74547}}}
+{"ts":"2026-04-08T00:55:30.068Z","type":"workflow","agent":"arch_monitor","data":{"details":"[SIGNAL] completed: Architecture conformance verified at 92% match. All modules present, data flow correct, provider res"}}
+{"ts":"2026-04-08T00:55:30.081Z","type":"group_complete","agent":"m26","data":{"details":"Cross-validation: verified match=92%","performance":{"memoryMB":11,"memoryTotalMB":14,"cpuUser":1.211617,"cpuSystem":1.755034}}}
+{"ts":"2026-04-08T00:55:30.146Z","type":"workflow","agent":"report","data":{"details":"Generated REPORT.md (72 lines)"}}
+{"ts":"2026-04-08T00:55:30.199Z","type":"error","agent":"m26","data":{"details":"Auto git tag failed: Command failed: git add -A && git tag -a m26-complete -m \"group m26 complete: Final Gap Verification & README Type Fix\"\nfatal: tag 'm26-complete' already exists\n"}}
+{"ts":"2026-04-08T00:56:13.579Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"40MB\",\"heapUsed\":\"6MB\",\"uptime\":\"2700s\"}"}}
+{"ts":"2026-04-08T01:01:13.583Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"40MB\",\"heapUsed\":\"6MB\",\"uptime\":\"3000s\"}"}}
+{"ts":"2026-04-08T01:01:14.133Z","type":"agent_start","agent":"startup","data":{"details":"[NODE] startup - 项目启动","performance":{"memoryMB":6,"memoryTotalMB":9,"cpuUser":1.366629,"cpuSystem":1.876862}}}
+{"ts":"2026-04-08T01:01:14.155Z","type":"workflow","agent":"startup","data":{"details":"[SKIP] init-architecture: !hasArchitecture"}}
+{"ts":"2026-04-08T01:01:14.156Z","type":"agent_start","agent":"monitor","data":{"details":"[NODE] monitor - 全局 Monitor 四维检查","performance":{"memoryMB":7,"memoryTotalMB":8,"cpuUser":1.374402,"cpuSystem":1.893829}}}
+{"ts":"2026-04-08T01:01:14.170Z","type":"workflow","agent":"monitor","data":{"details":"[PARALLEL] vision_monitor, prd_monitor, dbb_monitor, arch_monitor"}}
+{"ts":"2026-04-08T01:01:14.170Z","type":"agent_start","agent":"vision_monitor","data":{"details":"评估愿景匹配度","performance":{"memoryMB":7,"memoryTotalMB":10,"cpuUser":1.377834,"cpuSystem":1.904248}}}
+{"ts":"2026-04-08T01:01:14.171Z","type":"agent_start","agent":"prd_monitor","data":{"details":"评估PRD匹配度","performance":{"memoryMB":7,"memoryTotalMB":10,"cpuUser":1.378104,"cpuSystem":1.904814}}}
+{"ts":"2026-04-08T01:01:14.171Z","type":"agent_start","agent":"dbb_monitor","data":{"details":"评估DBB匹配度","performance":{"memoryMB":7,"memoryTotalMB":10,"cpuUser":1.378269,"cpuSystem":1.905213}}}
+{"ts":"2026-04-08T01:01:14.172Z","type":"agent_start","agent":"arch_monitor","data":{"details":"评估架构匹配度","performance":{"memoryMB":7,"memoryTotalMB":10,"cpuUser":1.378414,"cpuSystem":1.905594}}}
+{"ts":"2026-04-08T01:04:10.787Z","type":"error","agent":"arch_monitor","data":{"details":"failed (code=1), retry 1/2 in 1s"}}
+{"ts":"2026-04-08T01:04:10.788Z","type":"workflow","agent":"arch_monitor","data":{"details":"[SIGNAL] failed: API Error: 429 {\"error\":{\"code\":\"429\",\"message\":\"monthly quota exhausted\",\"type\":\"limitation\"}}"}}
+{"ts":"2026-04-08T01:04:11.790Z","type":"agent_start","agent":"arch_monitor","data":{"details":"评估架构匹配度","performance":{"memoryMB":6,"memoryTotalMB":9,"cpuUser":1.462391,"cpuSystem":1.96428}}}
+{"ts":"2026-04-08T01:04:15.175Z","type":"error","agent":"dbb_monitor","data":{"details":"failed (code=1), retry 1/2 in 1s"}}
+{"ts":"2026-04-08T01:04:15.175Z","type":"workflow","agent":"dbb_monitor","data":{"details":"[SIGNAL] failed: API Error: 429 {\"error\":{\"code\":\"429\",\"message\":\"monthly quota exhausted\",\"type\":\"limitation\"}}"}}
+{"ts":"2026-04-08T01:04:16.178Z","type":"agent_start","agent":"dbb_monitor","data":{"details":"评估DBB匹配度","performance":{"memoryMB":7,"memoryTotalMB":9,"cpuUser":1.463579,"cpuSystem":1.966076}}}
+{"ts":"2026-04-08T01:04:19.543Z","type":"error","agent":"vision_monitor","data":{"details":"failed (code=1), retry 1/2 in 1s"}}
+{"ts":"2026-04-08T01:04:19.544Z","type":"workflow","agent":"vision_monitor","data":{"details":"[SIGNAL] failed: API Error: 429 {\"error\":{\"code\":\"429\",\"message\":\"monthly quota exhausted\",\"type\":\"limitation\"}}"}}
+{"ts":"2026-04-08T01:04:20.547Z","type":"agent_start","agent":"vision_monitor","data":{"details":"评估愿景匹配度","performance":{"memoryMB":7,"memoryTotalMB":9,"cpuUser":1.466099,"cpuSystem":1.969446}}}
+{"ts":"2026-04-08T01:04:21.807Z","type":"error","agent":"prd_monitor","data":{"details":"failed (code=1), retry 1/2 in 1s"}}
+{"ts":"2026-04-08T01:04:21.808Z","type":"workflow","agent":"prd_monitor","data":{"details":"[SIGNAL] failed: API Error: 429 {\"error\":{\"code\":\"429\",\"message\":\"monthly quota exhausted\",\"type\":\"limitation\"}}"}}
+{"ts":"2026-04-08T01:04:22.808Z","type":"agent_start","agent":"prd_monitor","data":{"details":"评估PRD匹配度","performance":{"memoryMB":7,"memoryTotalMB":9,"cpuUser":1.469172,"cpuSystem":1.973484}}}
+{"ts":"2026-04-08T01:06:13.586Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"41MB\",\"heapUsed\":\"6MB\",\"uptime\":\"3300s\"}"}}
+{"ts":"2026-04-08T01:07:14.082Z","type":"error","agent":"arch_monitor","data":{"details":"failed (code=1), retry 2/2 in 2s"}}
+{"ts":"2026-04-08T01:07:14.083Z","type":"workflow","agent":"arch_monitor","data":{"details":"[SIGNAL] failed: API Error: 429 {\"error\":{\"code\":\"429\",\"message\":\"monthly quota exhausted\",\"type\":\"limitation\"}}"}}
+{"ts":"2026-04-08T01:07:16.086Z","type":"agent_start","agent":"arch_monitor","data":{"details":"评估架构匹配度","performance":{"memoryMB":6,"memoryTotalMB":9,"cpuUser":1.55136,"cpuSystem":2.030707}}}
+{"ts":"2026-04-08T01:07:17.181Z","type":"error","agent":"dbb_monitor","data":{"details":"failed (code=1), retry 2/2 in 2s"}}
+{"ts":"2026-04-08T01:07:17.182Z","type":"workflow","agent":"dbb_monitor","data":{"details":"[SIGNAL] failed: API Error: 429 {\"error\":{\"code\":\"429\",\"message\":\"monthly quota exhausted\",\"type\":\"limitation\"}}"}}
+{"ts":"2026-04-08T01:07:19.185Z","type":"agent_start","agent":"dbb_monitor","data":{"details":"评估DBB匹配度","performance":{"memoryMB":7,"memoryTotalMB":9,"cpuUser":1.553113,"cpuSystem":2.033356}}}
+{"ts":"2026-04-08T01:07:20.472Z","type":"error","agent":"vision_monitor","data":{"details":"failed (code=1), retry 2/2 in 2s"}}
+{"ts":"2026-04-08T01:07:20.472Z","type":"workflow","agent":"vision_monitor","data":{"details":"[SIGNAL] failed: API Error: 429 {\"error\":{\"code\":\"429\",\"message\":\"monthly quota exhausted\",\"type\":\"limitation\"}}"}}
+{"ts":"2026-04-08T01:07:22.475Z","type":"agent_start","agent":"vision_monitor","data":{"details":"评估愿景匹配度","performance":{"memoryMB":7,"memoryTotalMB":9,"cpuUser":1.555037,"cpuSystem":2.03668}}}
+{"ts":"2026-04-08T01:07:25.456Z","type":"error","agent":"prd_monitor","data":{"details":"failed (code=1), retry 2/2 in 2s"}}
+{"ts":"2026-04-08T01:07:25.457Z","type":"workflow","agent":"prd_monitor","data":{"details":"[SIGNAL] failed: API Error: 429 {\"error\":{\"code\":\"429\",\"message\":\"monthly quota exhausted\",\"type\":\"limitation\"}}"}}
+{"ts":"2026-04-08T01:07:27.460Z","type":"agent_start","agent":"prd_monitor","data":{"details":"评估PRD匹配度","performance":{"memoryMB":7,"memoryTotalMB":9,"cpuUser":1.557034,"cpuSystem":2.040274}}}
+{"ts":"2026-04-08T01:10:12.008Z","type":"error","agent":"dbb_monitor","data":{"details":"failed (code=1) after 2 retries, giving up"}}
+{"ts":"2026-04-08T01:10:20.233Z","type":"error","agent":"arch_monitor","data":{"details":"failed (code=1) after 2 retries, giving up"}}
+{"ts":"2026-04-08T01:10:21.635Z","type":"error","agent":"vision_monitor","data":{"details":"failed (code=1) after 2 retries, giving up"}}
+{"ts":"2026-04-08T01:10:24.890Z","type":"error","agent":"prd_monitor","data":{"details":"failed (code=1) after 2 retries, giving up"}}
+{"ts":"2026-04-08T01:10:24.912Z","type":"workflow","agent":"monitor","data":{"details":"[BRANCH] goalMet → 1 → complete"}}
+{"ts":"2026-04-08T01:10:24.912Z","type":"agent_start","agent":"complete","data":{"details":"[NODE] complete - 项目完成 — 最终验证 + 归档 + 报告","performance":{"memoryMB":7,"memoryTotalMB":10,"cpuUser":1.650673,"cpuSystem":2.124172}}}
+{"ts":"2026-04-08T01:10:24.922Z","type":"workflow","agent":"complete","data":{"details":"[PARALLEL] final-vision, final-prd, final-dbb, final-arch"}}
+{"ts":"2026-04-08T01:10:24.922Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] vision_monitor"}}
+{"ts":"2026-04-08T01:10:24.922Z","type":"agent_start","agent":"vision_monitor","data":{"details":"评估愿景匹配度","performance":{"memoryMB":7,"memoryTotalMB":10,"cpuUser":1.65319,"cpuSystem":2.131572}}}
+{"ts":"2026-04-08T01:10:24.923Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] prd_monitor"}}
+{"ts":"2026-04-08T01:10:24.923Z","type":"agent_start","agent":"prd_monitor","data":{"details":"评估PRD匹配度","performance":{"memoryMB":7,"memoryTotalMB":10,"cpuUser":1.653446,"cpuSystem":2.13207}}}
+{"ts":"2026-04-08T01:10:24.923Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] dbb_monitor"}}
+{"ts":"2026-04-08T01:10:24.923Z","type":"agent_start","agent":"dbb_monitor","data":{"details":"评估DBB匹配度","performance":{"memoryMB":7,"memoryTotalMB":10,"cpuUser":1.653641,"cpuSystem":2.132489}}}
+{"ts":"2026-04-08T01:11:13.590Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"41MB\",\"heapUsed\":\"6MB\",\"uptime\":\"3600s\"}"}}
+{"ts":"2026-04-08T01:11:14.136Z","type":"agent_start","agent":"daemon","data":{"details":"Still busy (10min), skipping","performance":{"memoryMB":6,"memoryTotalMB":9,"cpuUser":1.677159,"cpuSystem":2.146338}}}
+{"ts":"2026-04-08T01:13:21.334Z","type":"error","agent":"prd_monitor","data":{"details":"failed (code=1) after 2 retries, giving up"}}
+{"ts":"2026-04-08T01:13:28.867Z","type":"error","agent":"dbb_monitor","data":{"details":"failed (code=1) after 2 retries, giving up"}}
+{"ts":"2026-04-08T01:13:29.474Z","type":"error","agent":"vision_monitor","data":{"details":"failed (code=1) after 2 retries, giving up"}}
+{"ts":"2026-04-08T01:13:29.475Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] arch_monitor"}}
+{"ts":"2026-04-08T01:13:29.475Z","type":"agent_start","agent":"arch_monitor","data":{"details":"评估架构匹配度","performance":{"memoryMB":11,"memoryTotalMB":14,"cpuUser":1.746806,"cpuSystem":2.198132}}}
+{"ts":"2026-04-08T01:16:13.592Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"41MB\",\"heapUsed\":\"6MB\",\"uptime\":\"3900s\"}"}}
+{"ts":"2026-04-08T01:16:25.862Z","type":"workflow","agent":"daemon","data":{"details":"Reset stuck agent: arch_monitor"}}
+{"ts":"2026-04-08T01:16:25.863Z","type":"agent_complete","agent":"daemon","data":{"details":"DevTeam daemon stopped","performance":{"memoryMB":7,"memoryTotalMB":9,"cpuUser":1.81212,"cpuSystem":2.24413}}}
+{"ts":"2026-04-08T01:16:35.283Z","type":"workflow","agent":"validator","data":{"details":"[WARNING] config.dashboard: no dashboard configuration — run \"team web\" will show empty UI"}}
+{"ts":"2026-04-08T01:16:35.301Z","type":"agent_start","agent":"daemon","data":{"details":"DevTeam daemon started (safety=600s, timeout=3900s)","performance":{"memoryMB":5,"memoryTotalMB":8,"cpuUser":0.023667,"cpuSystem":0.006136}}}
+{"ts":"2026-04-08T01:16:35.302Z","type":"workflow","agent":"monitor","data":{"details":"[HEALTH] Monitor started"}}
+{"ts":"2026-04-08T01:16:35.302Z","type":"workflow","agent":null,"data":{"details":"[RESUME] Resuming from checkpoint: node=complete, step=0"}}
+{"ts":"2026-04-08T01:16:35.303Z","type":"agent_start","agent":"complete","data":{"details":"[NODE] complete - 项目完成 — 最终验证 + 归档 + 报告","performance":{"memoryMB":5,"memoryTotalMB":8,"cpuUser":0.02452,"cpuSystem":0.006734}}}
+{"ts":"2026-04-08T01:16:35.315Z","type":"workflow","agent":"complete","data":{"details":"[PARALLEL] final-vision, final-prd, final-dbb, final-arch"}}
+{"ts":"2026-04-08T01:16:35.316Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] vision_monitor"}}
+{"ts":"2026-04-08T01:16:35.316Z","type":"agent_start","agent":"vision_monitor","data":{"details":"评估愿景匹配度","performance":{"memoryMB":6,"memoryTotalMB":9,"cpuUser":0.03304,"cpuSystem":0.0163}}}
+{"ts":"2026-04-08T01:16:35.317Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] prd_monitor"}}
+{"ts":"2026-04-08T01:16:35.317Z","type":"agent_start","agent":"prd_monitor","data":{"details":"评估PRD匹配度","performance":{"memoryMB":6,"memoryTotalMB":10,"cpuUser":0.033904,"cpuSystem":0.016782}}}
+{"ts":"2026-04-08T01:16:35.318Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] dbb_monitor"}}
+{"ts":"2026-04-08T01:16:35.318Z","type":"agent_start","agent":"dbb_monitor","data":{"details":"评估DBB匹配度","performance":{"memoryMB":6,"memoryTotalMB":10,"cpuUser":0.034859,"cpuSystem":0.017386}}}
+{"ts":"2026-04-08T01:19:34.402Z","type":"error","agent":"vision_monitor","data":{"details":"failed (code=1) after 2 retries, giving up"}}
+{"ts":"2026-04-08T01:19:35.153Z","type":"error","agent":"prd_monitor","data":{"details":"failed (code=1) after 2 retries, giving up"}}
+{"ts":"2026-04-08T01:19:41.619Z","type":"error","agent":"dbb_monitor","data":{"details":"failed (code=1) after 2 retries, giving up"}}
+{"ts":"2026-04-08T01:19:41.619Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] arch_monitor"}}
+{"ts":"2026-04-08T01:19:41.620Z","type":"agent_start","agent":"arch_monitor","data":{"details":"评估架构匹配度","performance":{"memoryMB":7,"memoryTotalMB":9,"cpuUser":0.122242,"cpuSystem":0.067873}}}
+{"ts":"2026-04-08T01:21:35.305Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"73MB\",\"heapUsed\":\"12MB\",\"uptime\":\"300s\"}"}}
+{"ts":"2026-04-08T01:22:37.304Z","type":"error","agent":"arch_monitor","data":{"details":"failed (code=1) after 2 retries, giving up"}}
+{"ts":"2026-04-08T01:22:37.314Z","type":"group_complete","agent":"m26","data":{"details":"Cross-validation: verified match=92%","performance":{"memoryMB":12,"memoryTotalMB":15,"cpuUser":0.194664,"cpuSystem":0.11592}}}
+{"ts":"2026-04-08T01:22:37.381Z","type":"workflow","agent":"report","data":{"details":"Generated REPORT.md (72 lines)"}}
+{"ts":"2026-04-08T01:22:37.452Z","type":"error","agent":"m26","data":{"details":"Auto git tag failed: Command failed: git add -A && git tag -a m26-complete -m \"group m26 complete: Final Gap Verification & README Type Fix\"\nfatal: tag 'm26-complete' already exists\n"}}
+{"ts":"2026-04-08T01:22:37.463Z","type":"workflow","agent":"daemon","data":{"details":"🎉 Goal achieved: goal achieved — shutting down"}}
+{"ts":"2026-04-08T01:22:37.463Z","type":"agent_complete","agent":"daemon","data":{"details":"DevTeam daemon stopped","performance":{"memoryMB":12,"memoryTotalMB":16,"cpuUser":0.203299,"cpuSystem":0.138654}}}
+{"ts":"2026-04-08T01:51:30.478Z","type":"task_created","agent":null,"data":{"taskId":"task-1775613090477","title":"重构 ask.ts — 换用 agentic-core","priority":"P1","group":null}}
+{"ts":"2026-04-08T01:51:43.476Z","type":"workflow","agent":"validator","data":{"details":"[WARNING] config.dashboard: no dashboard configuration — run \"team web\" will show empty UI"}}
+{"ts":"2026-04-08T01:51:43.492Z","type":"agent_start","agent":"daemon","data":{"details":"DevTeam daemon started (safety=600s, timeout=3900s)","performance":{"memoryMB":5,"memoryTotalMB":7,"cpuUser":0.023228,"cpuSystem":0.006537}}}
+{"ts":"2026-04-08T01:51:43.493Z","type":"workflow","agent":"monitor","data":{"details":"[HEALTH] Monitor started"}}
+{"ts":"2026-04-08T01:51:43.494Z","type":"agent_start","agent":"startup","data":{"details":"[NODE] startup - 项目启动","performance":{"memoryMB":5,"memoryTotalMB":7,"cpuUser":0.023792,"cpuSystem":0.006984}}}
+{"ts":"2026-04-08T01:51:43.522Z","type":"workflow","agent":"startup","data":{"details":"[SKIP] init-architecture: !hasArchitecture"}}
+{"ts":"2026-04-08T01:51:43.522Z","type":"agent_start","agent":"monitor","data":{"details":"[NODE] monitor - 全局 Monitor 四维检查","performance":{"memoryMB":6,"memoryTotalMB":9,"cpuUser":0.029863,"cpuSystem":0.015745}}}
+{"ts":"2026-04-08T01:51:43.530Z","type":"workflow","agent":"monitor","data":{"details":"[PARALLEL] vision_monitor, prd_monitor, dbb_monitor, arch_monitor"}}
+{"ts":"2026-04-08T01:51:43.530Z","type":"agent_start","agent":"vision_monitor","data":{"details":"评估愿景匹配度","performance":{"memoryMB":6,"memoryTotalMB":10,"cpuUser":0.032355,"cpuSystem":0.021815}}}
+{"ts":"2026-04-08T01:51:43.531Z","type":"agent_start","agent":"prd_monitor","data":{"details":"评估PRD匹配度","performance":{"memoryMB":6,"memoryTotalMB":10,"cpuUser":0.03277,"cpuSystem":0.022188}}}
+{"ts":"2026-04-08T01:51:43.531Z","type":"agent_start","agent":"dbb_monitor","data":{"details":"评估DBB匹配度","performance":{"memoryMB":6,"memoryTotalMB":10,"cpuUser":0.033253,"cpuSystem":0.022459}}}
+{"ts":"2026-04-08T01:51:43.532Z","type":"agent_start","agent":"arch_monitor","data":{"details":"评估架构匹配度","performance":{"memoryMB":7,"memoryTotalMB":10,"cpuUser":0.033418,"cpuSystem":0.022719}}}
+{"ts":"2026-04-08T01:52:59.497Z","type":"agent_complete","agent":"prd_monitor","data":{"details":"completed successfully","performance":{"memoryMB":7,"memoryTotalMB":9,"cpuUser":0.083188,"cpuSystem":0.056225}}}
+{"ts":"2026-04-08T01:52:59.497Z","type":"workflow","agent":"prd_monitor","data":{"details":"[SIGNAL] completed: PRD match 98% — all core features implemented, 2 minor gaps: shell_exec browser support, Serper imag"}}
+{"ts":"2026-04-08T01:53:21.943Z","type":"agent_complete","agent":"vision_monitor","data":{"details":"completed successfully","performance":{"memoryMB":12,"memoryTotalMB":15,"cpuUser":0.095697,"cpuSystem":0.066816}}}
+{"ts":"2026-04-08T01:53:21.943Z","type":"workflow","agent":"vision_monitor","data":{"details":"[SIGNAL] completed: Vision check: 97% match. All core capabilities implemented (ask(), file read/write, code_exec, shell"}}
+{"ts":"2026-04-08T01:53:27.858Z","type":"agent_complete","agent":"arch_monitor","data":{"details":"completed successfully","performance":{"memoryMB":12,"memoryTotalMB":15,"cpuUser":0.096422,"cpuSystem":0.067275}}}
+{"ts":"2026-04-08T01:53:27.858Z","type":"workflow","agent":"arch_monitor","data":{"details":"[SIGNAL] completed: Architecture conformance: 92% match. 1 major gap (ToolDefinition shape), 10 minor undocumented detai"}}
+{"ts":"2026-04-08T01:56:43.496Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"75MB\",\"heapUsed\":\"12MB\",\"uptime\":\"300s\"}"}}
+{"ts":"2026-04-08T01:57:13.523Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 5min (active:1, done:74)"}}
+{"ts":"2026-04-08T01:57:13.524Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 5min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T01:57:43.525Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 6min (active:1, done:74)"}}
+{"ts":"2026-04-08T01:57:43.526Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 6min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T01:58:10.151Z","type":"agent_complete","agent":"dbb_monitor","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":15,"cpuUser":0.219,"cpuSystem":0.156111}}}
+{"ts":"2026-04-08T01:58:10.152Z","type":"workflow","agent":"dbb_monitor","data":{"details":"[SIGNAL] completed: DBB verification complete: Global match 100% (9/9 criteria pass), all 26 milestones at 100% match. 1"}}
+{"ts":"2026-04-08T01:58:10.175Z","type":"workflow","agent":"monitor","data":{"details":"[BRANCH] goalMet → 1 → complete"}}
+{"ts":"2026-04-08T01:58:10.175Z","type":"agent_start","agent":"complete","data":{"details":"[NODE] complete - 项目完成 — 最终验证 + 归档 + 报告","performance":{"memoryMB":11,"memoryTotalMB":15,"cpuUser":0.225815,"cpuSystem":0.173763}}}
+{"ts":"2026-04-08T01:58:10.185Z","type":"workflow","agent":"complete","data":{"details":"[PARALLEL] final-vision, final-prd, final-dbb, final-arch"}}
+{"ts":"2026-04-08T01:58:10.186Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] vision_monitor"}}
+{"ts":"2026-04-08T01:58:10.186Z","type":"agent_start","agent":"vision_monitor","data":{"details":"评估愿景匹配度","performance":{"memoryMB":11,"memoryTotalMB":15,"cpuUser":0.22868,"cpuSystem":0.181339}}}
+{"ts":"2026-04-08T01:58:10.187Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] prd_monitor"}}
+{"ts":"2026-04-08T01:58:10.187Z","type":"agent_start","agent":"prd_monitor","data":{"details":"评估PRD匹配度","performance":{"memoryMB":11,"memoryTotalMB":15,"cpuUser":0.229206,"cpuSystem":0.181855}}}
+{"ts":"2026-04-08T01:58:10.187Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] dbb_monitor"}}
+{"ts":"2026-04-08T01:58:10.187Z","type":"agent_start","agent":"dbb_monitor","data":{"details":"评估DBB匹配度","performance":{"memoryMB":12,"memoryTotalMB":15,"cpuUser":0.229394,"cpuSystem":0.182264}}}
+{"ts":"2026-04-08T01:58:43.530Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 7min (active:1, done:74)"}}
+{"ts":"2026-04-08T01:58:43.531Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 7min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T01:59:28.320Z","type":"agent_complete","agent":"vision_monitor","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":9,"cpuUser":0.272799,"cpuSystem":0.211099}}}
+{"ts":"2026-04-08T01:59:28.321Z","type":"workflow","agent":"vision_monitor","data":{"details":"[SIGNAL] completed: Vision match: 95%. Updated .team/gaps/vision.json with 14 gaps (3 partial/missing, 11 implemented). "}}
+{"ts":"2026-04-08T01:59:43.532Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 8min (active:1, done:74)"}}
+{"ts":"2026-04-08T01:59:43.533Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 8min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T02:00:43.533Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 9min (active:1, done:74)"}}
+{"ts":"2026-04-08T02:00:43.534Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 9min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T02:01:43.498Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"72MB\",\"heapUsed\":\"6MB\",\"uptime\":\"600s\"}"}}
+{"ts":"2026-04-08T02:01:43.526Z","type":"agent_start","agent":"daemon","data":{"details":"Still busy (10min), skipping","performance":{"memoryMB":6,"memoryTotalMB":9,"cpuUser":0.334326,"cpuSystem":0.251559}}}
+{"ts":"2026-04-08T02:01:43.539Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 10min (active:1, done:74)"}}
+{"ts":"2026-04-08T02:01:43.540Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 10min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T02:02:43.544Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 11min (active:1, done:74)"}}
+{"ts":"2026-04-08T02:02:43.545Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 11min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T02:02:43.913Z","type":"agent_complete","agent":"prd_monitor","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":13,"cpuUser":0.374362,"cpuSystem":0.284453}}}
+{"ts":"2026-04-08T02:02:43.913Z","type":"workflow","agent":"prd_monitor","data":{"details":"[SIGNAL] completed: PRD match: 100%. All 16 PRD requirements and EXPECTED_DBB criteria fully implemented. No gaps found."}}
+{"ts":"2026-04-08T02:03:43.548Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 12min (active:1, done:74)"}}
+{"ts":"2026-04-08T02:03:43.549Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 12min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T02:04:43.553Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 13min (active:1, done:74)"}}
+{"ts":"2026-04-08T02:04:43.554Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 13min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T02:05:43.551Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 14min (active:1, done:74)"}}
+{"ts":"2026-04-08T02:05:43.551Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 14min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T02:06:43.503Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"47MB\",\"heapUsed\":\"6MB\",\"uptime\":\"900s\"}"}}
+{"ts":"2026-04-08T02:06:43.658Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 15min (active:1, done:74)"}}
+{"ts":"2026-04-08T02:06:43.658Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 15min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T02:07:43.770Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 16min (active:1, done:74)"}}
+{"ts":"2026-04-08T02:07:43.777Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 16min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T02:08:43.684Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 17min (active:1, done:74)"}}
+{"ts":"2026-04-08T02:08:43.685Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 17min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T02:09:43.709Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 18min (active:1, done:74)"}}
+{"ts":"2026-04-08T02:09:43.711Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 18min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T02:10:43.650Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 19min (active:1, done:74)"}}
+{"ts":"2026-04-08T02:10:43.652Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 19min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T02:11:43.506Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"68MB\",\"heapUsed\":\"11MB\",\"uptime\":\"1200s\"}"}}
+{"ts":"2026-04-08T02:11:43.532Z","type":"agent_start","agent":"daemon","data":{"details":"Still busy (20min), skipping","performance":{"memoryMB":11,"memoryTotalMB":14,"cpuUser":0.572431,"cpuSystem":0.551208}}}
+{"ts":"2026-04-08T02:11:43.651Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 20min (active:1, done:74)"}}
+{"ts":"2026-04-08T02:11:43.652Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 20min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T02:12:43.656Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 21min (active:1, done:74)"}}
+{"ts":"2026-04-08T02:12:43.657Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 21min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T02:13:43.662Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 22min (active:1, done:74)"}}
+{"ts":"2026-04-08T02:13:43.663Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 22min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T02:14:43.662Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 23min (active:1, done:74)"}}
+{"ts":"2026-04-08T02:14:43.663Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 23min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T02:15:43.698Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 24min (active:1, done:74)"}}
+{"ts":"2026-04-08T02:15:43.700Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 24min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T02:16:44.752Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"46MB\",\"heapUsed\":\"11MB\",\"uptime\":\"1501s\"}"}}
+{"ts":"2026-04-08T02:16:45.315Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 25min (active:1, done:74)"}}
+{"ts":"2026-04-08T02:16:45.356Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 25min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T02:16:53.371Z","type":"agent_complete","agent":"dbb_monitor","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":11,"cpuUser":0.722167,"cpuSystem":0.725785}}}
+{"ts":"2026-04-08T02:16:53.386Z","type":"workflow","agent":"dbb_monitor","data":{"details":"[SIGNAL] completed: DBB verification complete: Global 100% (9/9), all 26 milestones at 100%. Zero gaps found. All output"}}
+{"ts":"2026-04-08T02:16:53.389Z","type":"workflow","agent":"complete","data":{"details":"[EXEC] arch_monitor"}}
+{"ts":"2026-04-08T02:16:53.391Z","type":"agent_start","agent":"arch_monitor","data":{"details":"评估架构匹配度","performance":{"memoryMB":6,"memoryTotalMB":11,"cpuUser":0.723927,"cpuSystem":0.728787}}}
+{"ts":"2026-04-08T02:17:45.027Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 26min (active:1, done:74)"}}
+{"ts":"2026-04-08T02:17:45.033Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 26min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T02:18:26.636Z","type":"agent_complete","agent":"arch_monitor","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":10,"cpuUser":0.758255,"cpuSystem":0.803343}}}
+{"ts":"2026-04-08T02:18:26.647Z","type":"workflow","agent":"arch_monitor","data":{"details":"[SIGNAL] completed: "}}
+{"ts":"2026-04-08T02:18:26.841Z","type":"group_complete","agent":"m26","data":{"details":"Cross-validation: verified match=91%","performance":{"memoryMB":8,"memoryTotalMB":11,"cpuUser":0.768302,"cpuSystem":0.838027}}}
+{"ts":"2026-04-08T02:18:27.498Z","type":"workflow","agent":"report","data":{"details":"Generated REPORT.md (73 lines)"}}
+{"ts":"2026-04-08T02:18:27.957Z","type":"error","agent":"m26","data":{"details":"Auto git tag failed: Command failed: git add -A && git tag -a m26-complete -m \"group m26 complete: Final Gap Verification & README Type Fix\"\nfatal: tag 'm26-complete' already exists\n"}}
+{"ts":"2026-04-08T02:18:45.157Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 27min (active:1, done:74)"}}
+{"ts":"2026-04-08T02:18:45.159Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 27min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T02:19:45.063Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 28min (active:1, done:74)"}}
+{"ts":"2026-04-08T02:19:45.067Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 28min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T02:20:44.987Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 29min (active:1, done:74)"}}
+{"ts":"2026-04-08T02:20:44.988Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 29min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T02:21:43.541Z","type":"agent_start","agent":"startup","data":{"details":"[NODE] startup - 项目启动","performance":{"memoryMB":6,"memoryTotalMB":9,"cpuUser":0.866148,"cpuSystem":1.029849}}}
+{"ts":"2026-04-08T02:21:43.568Z","type":"workflow","agent":"startup","data":{"details":"[SKIP] init-architecture: !hasArchitecture"}}
+{"ts":"2026-04-08T02:21:43.570Z","type":"agent_start","agent":"monitor","data":{"details":"[NODE] monitor - 全局 Monitor 四维检查","performance":{"memoryMB":7,"memoryTotalMB":8,"cpuUser":0.875472,"cpuSystem":1.051747}}}
+{"ts":"2026-04-08T02:21:43.585Z","type":"workflow","agent":"monitor","data":{"details":"[PARALLEL] vision_monitor, prd_monitor, dbb_monitor, arch_monitor"}}
+{"ts":"2026-04-08T02:21:43.585Z","type":"agent_start","agent":"vision_monitor","data":{"details":"评估愿景匹配度","performance":{"memoryMB":7,"memoryTotalMB":10,"cpuUser":0.879484,"cpuSystem":1.0632}}}
+{"ts":"2026-04-08T02:21:43.587Z","type":"agent_start","agent":"prd_monitor","data":{"details":"评估PRD匹配度","performance":{"memoryMB":7,"memoryTotalMB":10,"cpuUser":0.88019,"cpuSystem":1.063953}}}
+{"ts":"2026-04-08T02:21:43.587Z","type":"agent_start","agent":"dbb_monitor","data":{"details":"评估DBB匹配度","performance":{"memoryMB":7,"memoryTotalMB":10,"cpuUser":0.880399,"cpuSystem":1.064406}}}
+{"ts":"2026-04-08T02:21:43.588Z","type":"agent_start","agent":"arch_monitor","data":{"details":"评估架构匹配度","performance":{"memoryMB":7,"memoryTotalMB":10,"cpuUser":0.880653,"cpuSystem":1.064887}}}
+{"ts":"2026-04-08T02:21:43.854Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"65MB\",\"heapUsed\":\"7MB\",\"uptime\":\"1800s\"}"}}
+{"ts":"2026-04-08T02:21:44.988Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 30min (active:1, done:74)"}}
+{"ts":"2026-04-08T02:21:44.989Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 30min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T02:22:44.995Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 31min (active:1, done:74)"}}
+{"ts":"2026-04-08T02:22:44.996Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 31min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T02:23:27.883Z","type":"agent_complete","agent":"prd_monitor","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":11,"cpuUser":0.921215,"cpuSystem":1.09246}}}
+{"ts":"2026-04-08T02:23:27.884Z","type":"workflow","agent":"prd_monitor","data":{"details":"[SIGNAL] completed: PRD match: 95%. One gap: shell_exec described as browser/Node compatible in PRD but implementation i"}}
+{"ts":"2026-04-08T02:23:45.033Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 32min (active:1, done:74)"}}
+{"ts":"2026-04-08T02:23:45.033Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 32min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T02:24:27.950Z","type":"agent_complete","agent":"vision_monitor","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":14,"cpuUser":0.940036,"cpuSystem":1.141724}}}
+{"ts":"2026-04-08T02:24:27.973Z","type":"workflow","agent":"vision_monitor","data":{"details":"[SIGNAL] completed: Vision match: 82%. Critical gap: no agentic-core delegation — agent loop, provider, tool schema all "}}
+{"ts":"2026-04-08T02:24:38.875Z","type":"agent_complete","agent":"arch_monitor","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":14,"cpuUser":0.941348,"cpuSystem":1.147985}}}
+{"ts":"2026-04-08T02:24:38.881Z","type":"workflow","agent":"arch_monitor","data":{"details":"[SIGNAL] completed: Architecture match 93%. All code implements the design correctly. 6 documentation gaps in ARCHITECTU"}}
+{"ts":"2026-04-08T02:24:45.508Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 33min (active:1, done:74)"}}
+{"ts":"2026-04-08T02:24:45.516Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 33min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T02:25:45.518Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 34min (active:1, done:74)"}}
+{"ts":"2026-04-08T02:25:45.530Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 34min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T02:26:44.082Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"25MB\",\"heapUsed\":\"11MB\",\"uptime\":\"2101s\"}"}}
+{"ts":"2026-04-08T02:26:45.847Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 35min (active:1, done:74)"}}
+{"ts":"2026-04-08T02:26:45.851Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 35min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T02:27:45.239Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 36min (active:1, done:74)"}}
+{"ts":"2026-04-08T02:27:45.246Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 36min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T02:28:45.192Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 37min (active:1, done:74)"}}
+{"ts":"2026-04-08T02:28:45.199Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 37min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T02:29:45.178Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 38min (active:1, done:74)"}}
+{"ts":"2026-04-08T02:29:45.179Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 38min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T02:30:45.169Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 39min (active:1, done:74)"}}
+{"ts":"2026-04-08T02:30:45.171Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 39min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T02:31:43.543Z","type":"agent_start","agent":"daemon","data":{"details":"Still busy (10min), skipping","performance":{"memoryMB":6,"memoryTotalMB":9,"cpuUser":1.097831,"cpuSystem":1.401878}}}
+{"ts":"2026-04-08T02:31:43.862Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"44MB\",\"heapUsed\":\"6MB\",\"uptime\":\"2400s\"}"}}
+{"ts":"2026-04-08T02:31:45.167Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 40min (active:1, done:74)"}}
+{"ts":"2026-04-08T02:31:45.167Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 40min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T02:32:45.192Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 41min (active:1, done:74)"}}
+{"ts":"2026-04-08T02:32:45.194Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 41min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T02:33:45.176Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 42min (active:1, done:74)"}}
+{"ts":"2026-04-08T02:33:45.177Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 42min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T02:34:45.179Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 43min (active:1, done:74)"}}
+{"ts":"2026-04-08T02:34:45.179Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 43min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T02:35:44.055Z","type":"error","agent":"dbb_monitor","data":{"details":"hung (0% CPU for 10min across process tree), killing"}}
+{"ts":"2026-04-08T02:35:44.061Z","type":"error","agent":"dbb_monitor","data":{"details":"timed out after 3900s, skipping"}}
+{"ts":"2026-04-08T02:35:44.082Z","type":"workflow","agent":"monitor","data":{"details":"[BRANCH] goalMet → 0 → pm_decide"}}
+{"ts":"2026-04-08T02:35:44.082Z","type":"agent_start","agent":"pm_decide","data":{"details":"[NODE] pm_decide - PM 决策下一步","performance":{"memoryMB":7,"memoryTotalMB":10,"cpuUser":1.191542,"cpuSystem":1.485092}}}
+{"ts":"2026-04-08T02:35:44.091Z","type":"workflow","agent":"pm_decide","data":{"details":"[SKIP] fix-arch: archNeedsUpdate > 0"}}
+{"ts":"2026-04-08T02:35:44.091Z","type":"workflow","agent":"pm_decide","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-08T02:35:44.091Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":7,"memoryTotalMB":10,"cpuUser":1.193586,"cpuSystem":1.491651}}}
+{"ts":"2026-04-08T02:35:45.185Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 44min (active:1, done:74)"}}
+{"ts":"2026-04-08T02:35:45.185Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 44min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T02:36:43.865Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"33MB\",\"heapUsed\":\"6MB\",\"uptime\":\"2700s\"}"}}
+{"ts":"2026-04-08T02:36:45.188Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 45min (active:1, done:74)"}}
+{"ts":"2026-04-08T02:36:45.189Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 45min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T02:36:52.838Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":11,"memoryTotalMB":14,"cpuUser":1.222476,"cpuSystem":1.510118}}}
+{"ts":"2026-04-08T02:36:52.838Z","type":"workflow","agent":"pm","data":{"details":"[SIGNAL] completed: Both goals met (Vision 97%, PRD 98%). Resolved 2 pending CRs that were already applied to PRD.md. Al"}}
+{"ts":"2026-04-08T02:36:52.851Z","type":"agent_start","agent":"work_loop","data":{"details":"[NODE] work_loop - PM 调度中心 — PM 评估后并行派发所有角色，全部完成后回 PM","performance":{"memoryMB":13,"memoryTotalMB":16,"cpuUser":1.226019,"cpuSystem":1.520376}}}
+{"ts":"2026-04-08T02:36:52.881Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 1"}}
+{"ts":"2026-04-08T02:36:52.896Z","type":"workflow","agent":"work_loop","data":{"details":"[SHELL] node /Users/kenefe/LOCAL/momo-agent/tools/team/scripts/goal-check.js"}}
+{"ts":"2026-04-08T02:36:53.110Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-08T02:36:53.110Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":12,"memoryTotalMB":14,"cpuUser":1.233659,"cpuSystem":1.543946}}}
+{"ts":"2026-04-08T02:37:45.193Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 46min (active:1, done:74)"}}
+{"ts":"2026-04-08T02:37:45.193Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 46min (active:1, done:74)\"}"}}
+{"ts":"2026-04-08T02:38:08.978Z","type":"task_created","agent":null,"data":{"taskId":"task-1775615888978","title":"Create agentic-core package structure","priority":"P1","group":"m27"}}
+{"ts":"2026-04-08T02:38:15.202Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 46min (active:2, done:74)"}}
+{"ts":"2026-04-08T02:38:15.203Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 46min (active:2, done:74)\"}"}}
+{"ts":"2026-04-08T02:38:43.117Z","type":"task_created","agent":null,"data":{"taskId":"task-1775615923116","title":"Extract agent loop + provider into agentic-core","priority":"P1","group":"m27"}}
+{"ts":"2026-04-08T02:38:45.200Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 47min (active:3, done:74)"}}
+{"ts":"2026-04-08T02:38:45.201Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 47min (active:3, done:74)\"}"}}
+{"ts":"2026-04-08T02:39:08.445Z","type":"task_created","agent":null,"data":{"taskId":"task-1775615948444","title":"Update ARCHITECTURE.md for agentic-core structure","priority":"P1","group":"m27"}}
+{"ts":"2026-04-08T02:39:08.485Z","type":"task_created","agent":null,"data":{"taskId":"task-1775615948484","title":"Verify all tests pass after agentic-core extraction","priority":"P1","group":"m27"}}
+{"ts":"2026-04-08T02:39:15.205Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 47min (active:5, done:74)"}}
+{"ts":"2026-04-08T02:39:15.206Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 47min (active:5, done:74)\"}"}}
+{"ts":"2026-04-08T02:39:45.207Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 48min (active:5, done:74)"}}
+{"ts":"2026-04-08T02:39:45.208Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 48min (active:5, done:74)\"}"}}
+{"ts":"2026-04-08T02:39:51.936Z","type":"agent_complete","agent":"pm","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":9,"cpuUser":1.316422,"cpuSystem":1.600902}}}
+{"ts":"2026-04-08T02:39:51.937Z","type":"workflow","agent":"pm","data":{"details":"[SIGNAL] completed: Created milestone m27 with 5 tasks to extract agentic-core from ask.ts, closing the critical vision "}}
+{"ts":"2026-04-08T02:39:51.952Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] qa_lead"}}
+{"ts":"2026-04-08T02:39:51.952Z","type":"agent_start","agent":"qa_lead","data":{"details":"编写验收标准","performance":{"memoryMB":7,"memoryTotalMB":8,"cpuUser":1.319163,"cpuSystem":1.612716}}}
+{"ts":"2026-04-08T02:40:45.231Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 49min (active:5, done:74)"}}
+{"ts":"2026-04-08T02:40:45.233Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 49min (active:5, done:74)\"}"}}
+{"ts":"2026-04-08T02:41:43.547Z","type":"agent_start","agent":"daemon","data":{"details":"Still busy (20min), skipping","performance":{"memoryMB":11,"memoryTotalMB":14,"cpuUser":1.349279,"cpuSystem":1.648899}}}
+{"ts":"2026-04-08T02:41:43.867Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"34MB\",\"heapUsed\":\"12MB\",\"uptime\":\"3000s\"}"}}
+{"ts":"2026-04-08T02:41:45.217Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 50min (active:5, done:74)"}}
+{"ts":"2026-04-08T02:41:45.217Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 50min (active:5, done:74)\"}"}}
+{"ts":"2026-04-08T02:41:55.846Z","type":"agent_complete","agent":"qa_lead","data":{"details":"completed successfully","performance":{"memoryMB":7,"memoryTotalMB":9,"cpuUser":1.370969,"cpuSystem":1.665313}}}
+{"ts":"2026-04-08T02:41:55.846Z","type":"workflow","agent":"qa_lead","data":{"details":"[SIGNAL] completed: Wrote 10 DBB criteria for M27 (agentic-core extraction), updated milestone status to ready-for-work."}}
+{"ts":"2026-04-08T02:41:55.860Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0"}}
+{"ts":"2026-04-08T02:41:55.860Z","type":"error","agent":"eval","data":{"details":"archTaskCount > 0: archTaskCount is not defined"}}
+{"ts":"2026-04-08T02:41:55.860Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL-SKIP] update-architecture: archTaskCount > 0"}}
+{"ts":"2026-04-08T02:41:55.860Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] write-design, implement"}}
+{"ts":"2026-04-08T02:41:55.861Z","type":"workflow","agent":"work_loop","data":{"details":"[PARALLEL] tech_lead-1, tech_lead-2, tech_lead-3"}}
+{"ts":"2026-04-08T02:41:55.861Z","type":"agent_start","agent":"tech_lead-1","data":{"details":"出技术方案","performance":{"memoryMB":7,"memoryTotalMB":11,"cpuUser":1.37486,"cpuSystem":1.6762}}}
+{"ts":"2026-04-08T02:41:55.861Z","type":"agent_start","agent":"tech_lead-2","data":{"details":"出技术方案","performance":{"memoryMB":7,"memoryTotalMB":11,"cpuUser":1.375167,"cpuSystem":1.676671}}}
+{"ts":"2026-04-08T02:41:55.862Z","type":"agent_start","agent":"tech_lead-3","data":{"details":"出技术方案","performance":{"memoryMB":7,"memoryTotalMB":11,"cpuUser":1.375321,"cpuSystem":1.677025}}}
+{"ts":"2026-04-08T02:41:55.862Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] developer"}}
+{"ts":"2026-04-08T02:41:55.863Z","type":"agent_start","agent":"developer","data":{"details":"实现功能","performance":{"memoryMB":7,"memoryTotalMB":11,"cpuUser":1.37557,"cpuSystem":1.677533}}}
+{"ts":"2026-04-08T02:42:45.220Z","type":"workflow","agent":"monitor","data":{"details":"⚠️ [ALERT:no_progress] No progress for 51min (active:5, done:74)"}}
+{"ts":"2026-04-08T02:42:45.221Z","type":"monitor_alert","agent":"monitor","data":{"details":"{\"type\":\"no_progress\",\"message\":\"No progress for 51min (active:5, done:74)\"}"}}
+{"ts":"2026-04-08T02:42:47.900Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":6,"memoryTotalMB":9,"cpuUser":1.403782,"cpuSystem":1.698694}}}
+{"ts":"2026-04-08T02:42:47.900Z","type":"workflow","agent":"developer","data":{"details":"[SIGNAL] blocked: No claimable tasks available. All todo tasks either lack a design (hasDesign=false) or are blocked b"}}

@@ -1,21 +1,23 @@
-# DBB Check — m10
+# DBB Check — M10
 
-**Timestamp:** 2026-04-07T17:04:24Z
-**Match:** 100/100
+**Match: 100%** | 2026-04-08T10:27:00Z
 
 ## Results
 
-| Criterion | Status |
-|-----------|--------|
-| `provider='custom'` with only `baseUrl` does not throw | pass |
-| `provider='custom'` with `customProvider` still works | pass |
-| PRD.md documents code_exec sandbox as quickjs-emscripten | pass |
-| All existing tests pass | pass |
+| # | Criterion | Status |
+|---|-----------|--------|
+| 1 | provider='custom' with only baseUrl does not throw | ✅ pass |
+| 2 | provider='custom' with customProvider hook works | ✅ pass |
+| 3 | PRD.md documents code_exec sandbox as quickjs-emscripten | ✅ pass |
+| 4 | All existing tests pass | ✅ pass |
 
 ## Evidence
 
-- `src/providers/provider.ts:46` — apiKey check skipped for `custom` provider ✓
-- `src/providers/provider.ts:64` — `baseUrl`-only custom falls through to `createOpenAIProvider` ✓
-- `src/providers/provider.ts:63` — `customProvider` hook used when present ✓
-- `PRD.md:11` — now states "quickjs-emscripten sandbox (browser-compatible)" ✓
-- Test files present for all features ✓
+- `provider.ts:46` — skips apiKey for custom
+- `provider.ts:63` — returns customProvider
+- `PRD.md:11` — quickjs-emscripten
+- `107 tests` — pass
+
+## Result
+
+4/4 criteria pass. All criteria fully met.

@@ -50,3 +50,26 @@ When `provider='custom'`:
 1. If `config.customProvider` is set → use it directly
 2. Else if `config.baseUrl` is set → fall back to OpenAI-compatible adapter (`createOpenAIProvider`)
 3. Else → throw `Error('customProvider or baseUrl is required when provider="custom"')`
+
+
+Add a 'Custom Provider Fallback' subsection documenting the three-step resolution: (1) customProvider set → use directly, (2) baseUrl set → fall back to OpenAI-compatible adapter, (3) neither → throw error.
+
+Create ARCHITECTURE.md defining:
+1. System architecture overview
+2. Module structure (src/ organization)
+3. Core interfaces and contracts (AgenticConfig, AgenticResult, Provider interface, Tool interface)
+4. File organization and responsibilities
+5. Dependencies between modules
+6. Data flow through the agentic loop
+7. Extension points (custom providers, custom tools)
+
+Based on existing code structure:
+- src/ask.ts — main agentic loop
+- src/types.ts — core type definitions
+- src/providers/ — LLM provider implementations
+- src/tools/ — tool implementations (search, code, file, shell)
+- src/index.ts — public API exports
+
+Under 'Provider Resolution > Custom Provider Fallback', add: When provider='custom': 1) if config.customProvider is set → use it directly; 2) else if config.baseUrl is set → fall back to createOpenAIProvider; 3) else → throw Error('customProvider or baseUrl is required when provider="custom"')
+
+In the 'Provider Resolution / Custom Provider Fallback' section, add: when customProvider is absent but baseUrl is set, createProvider falls back to createOpenAIProvider(baseUrl, apiKey, model). Also update README.md with a usage example showing this pattern.

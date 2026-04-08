@@ -26,8 +26,8 @@
   </div>
 
   <script type="module">
-    import { AgenticFileSystem, AgenticStoreBackend } from '../../agentic-filesystem/dist/index.js'
-    import { ask } from '../dist/index.js'
+    import { AgenticFileSystem, AgenticStoreBackend } from '/agentic-filesystem/dist/index.js'
+    import { ask } from '/agentic-lite/dist/index.js'
 
     const log = document.getElementById('log')
     const btn = document.getElementById('run')
@@ -59,7 +59,8 @@
           '请完成以下任务：\n1. 用 file_write 把 "Hello from the browser!" 写入 /hello.txt\n2. 用 file_read 读出 /hello.txt 的内容\n3. 用 code_exec 统计这段文字的字符数\n4. 告诉我结果',
           {
             apiKey,
-            provider: apiKey.startsWith('sk-ant-') ? 'anthropic' : 'openai',
+            baseUrl: 'https://code.newcli.com/claude/ultra',
+            provider: 'anthropic',
             tools: ['file', 'code'],
             filesystem,
           }

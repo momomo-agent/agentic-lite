@@ -1,6 +1,5 @@
-// Code execution tool — quickjs-emscripten isolated sandbox
+// Code execution tool — quickjs-emscripten isolated sandbox (Node) / AsyncFunction eval (browser)
 
-import { newAsyncContext, getQuickJS } from 'quickjs-emscripten'
 import type { ToolDefinition } from '../providers/provider.js'
 import type { CodeResult } from '../types.js'
 import type { AgenticFileSystem } from 'agentic-filesystem'
@@ -256,6 +255,7 @@ export async function executeCode(
   }
 
   if (hasAwait || filesystem) {
+    const { newAsyncContext } = await import('quickjs-emscripten')
     const vm = await newAsyncContext()
     injectConsole(vm as any)
     await injectFilesystem(vm as any, filesystem)
@@ -282,6 +282,7 @@ export async function executeCode(
     return { code, output }
   }
 
+  const { getQuickJS } = await import('quickjs-emscripten')
   const QuickJS = await getQuickJS()
   const vm = QuickJS.newContext()
   injectConsole(vm as any)

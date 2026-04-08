@@ -33,8 +33,11 @@ export async function executeShell(
   try {
     const { AgenticShell } = await import('agentic-shell')
     const shell = new AgenticShell(filesystem)
-    const output = await shell.exec(command)
-    return { command, output, exitCode: 0 }
+    const result = await shell.exec(command)
+    // AgenticShell.exec() returns { output, exitCode } object
+    const output = typeof result === 'object' && result !== null ? (result as any).output ?? String(result) : String(result)
+    const exitCode = typeof result === 'object' && result !== null ? (result as any).exitCode ?? 0 : 0
+    return { command, output, exitCode }
   } catch (err: any) {
     return { command, output: '', error: err.message || String(err), exitCode: 1 }
   }

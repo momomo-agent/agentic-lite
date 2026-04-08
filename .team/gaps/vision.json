@@ -1,38 +1,76 @@
 {
   "match": 82,
-  "timestamp": "2026-04-07T17:03:54.904Z",
+  "timestamp": "2026-04-08T16:00:00.000Z",
   "gaps": [
     {
-      "description": "Core single-function ask() API with multi-round tool loop is fully implemented",
-      "status": "implemented"
+      "description": "Vision mandates agentic-lite = agentic-core (LLM loop) + agentic-filesystem + agentic-shell. No agentic-core dependency exists — agent loop, provider abstraction, tool schema, and streaming are all self-contained in src/ask.ts (~140 lines)",
+      "status": "missing",
+      "severity": "critical"
     },
     {
-      "description": "file_read / file_write via agentic-filesystem (browser virtual FS) is implemented",
-      "status": "implemented"
+      "description": "Design principle: ask.ts should be < 100 lines (薄层). Current ask.ts is 140 lines with full agent loop logic that should be delegated to agentic-core",
+      "status": "partial",
+      "severity": "major"
     },
     {
-      "description": "code_exec uses AsyncFunction — browser-compatible, no Node deps",
-      "status": "implemented"
+      "description": "Streaming support: vision lists streaming as part of agentic-core's responsibility. No streaming implementation exists in the codebase",
+      "status": "missing",
+      "severity": "major"
     },
     {
-      "description": "Anthropic and OpenAI provider adapters with custom provider fallback are implemented",
-      "status": "implemented"
+      "description": "Provider layer should be delegated to agentic-core per vision. Currently src/providers/ implements Anthropic, OpenAI, and custom adapters directly in agentic-lite",
+      "status": "partial",
+      "severity": "major"
     },
     {
-      "description": "Zero framework concepts (no chain/graph/memory) — minimal API surface maintained",
-      "status": "implemented"
+      "description": "toolConfig.code.timeout declared in types.ts:30 but never enforced in code.ts executeCode — misbehaving code could hang indefinitely",
+      "status": "partial",
+      "severity": "minor"
     },
     {
-      "description": "shell_exec uses Node.js child_process — not browser-compatible, conflicts with browser-first vision",
-      "status": "partial"
+      "description": "Browser-side AI agent SDK — single ask() function with tool-use loop fully implemented",
+      "status": "implemented",
+      "severity": "minor"
     },
     {
-      "description": "No default browser filesystem out of the box — users must pass AgenticFileSystem manually, violating zero-config promise",
-      "status": "missing"
+      "description": "file_read / file_write via agentic-filesystem — zero-config MemoryStorage default, browser virtual filesystem support",
+      "status": "implemented",
+      "severity": "minor"
     },
     {
-      "description": "Search tool requires external API key (Tavily/Serper) with no zero-config fallback for browser use",
-      "status": "partial"
+      "description": "code_exec in browser sandbox — QuickJS async sandbox with fs injection for JavaScript, auto-detects language, Python via Pyodide (browser) and python3 (Node)",
+      "status": "implemented",
+      "severity": "minor"
+    },
+    {
+      "description": "True multi-round agent loop — MAX_TOOL_ROUNDS=10 loop, agent can continuously call tools until task completion",
+      "status": "implemented",
+      "severity": "minor"
+    },
+    {
+      "description": "shell_exec (Node-only) with browser guard — adds Node capability without breaking browser users, uses agentic-shell",
+      "status": "implemented",
+      "severity": "minor"
+    },
+    {
+      "description": "web_search tool supports Tavily and Serper providers with image results",
+      "status": "implemented",
+      "severity": "minor"
+    },
+    {
+      "description": "Browser compatibility — no Node.js static dependencies, all platform-specific code uses dynamic import with guards",
+      "status": "implemented",
+      "severity": "minor"
+    },
+    {
+      "description": "Public API exports complete: ask, AgenticConfig, AgenticResult, Provider, ToolName, Source, CodeResult, FileResult, ShellResult, ToolCall from src/index.ts",
+      "status": "implemented",
+      "severity": "minor"
+    },
+    {
+      "description": "No heavy frameworks — no chain/graph/memory abstractions, no deploy platform, no heavy runtime dependency",
+      "status": "implemented",
+      "severity": "minor"
     }
   ]
 }

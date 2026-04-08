@@ -1,0 +1,16 @@
+{
+  "id": "task-1775613090477",
+  "title": "重构 ask.ts — 换用 agentic-core",
+  "description": "Vision mandates agentic-lite = agentic-core + agentic-filesystem + agentic-shell. Create agentic-core as a local package that extracts the agent loop (loop, tool dispatch, message management), provider abstraction (createProvider, Provider interface, anthropic/openai adapters), and tool schema from src/ask.ts and src/providers/. Then refactor ask.ts to be a thin <100 line integration layer that imports from agentic-core. Acceptance: ask.ts < 100 lines, agentic-core handles loop+providers, all 107 tests pass, vision gap closes.",
+  "status": "todo",
+  "priority": "P0",
+  "assignee": "developer",
+  "blockedBy": [
+    "task-1775615923116"
+  ],
+  "groupId": null,
+  "hasDesign": true,
+  "created": "2026-04-08T01:51:30.477Z",
+  "updated": "2026-04-08T02:39:31.092Z",
+  "milestoneId": "m27"
+}

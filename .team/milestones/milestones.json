@@ -95,7 +95,7 @@
     },
     {
       "id": "m10",
-      "name": "PRD Compliance \u2014 code_exec & Custom Provider",
+      "name": "PRD Compliance — code_exec & Custom Provider",
       "status": "completed",
       "tasks": [
         "task-1775559019099",
@@ -213,7 +213,7 @@
     },
     {
       "id": "m22",
-      "name": "Vision Gap Closure \u2014 Browser Shell & Pyodide Resilience",
+      "name": "Vision Gap Closure — Browser Shell & Pyodide Resilience",
       "status": "completed",
       "tasks": [
         "task-1775578831381",
@@ -240,7 +240,7 @@
     },
     {
       "id": "m25",
-      "name": "Vision Gap Closure \u2014 Final 18%",
+      "name": "Vision Gap Closure — Final 18%",
       "status": "completed",
       "tasks": [
         "task-1775581632597",
@@ -251,9 +251,21 @@
     {
       "id": "m26",
       "name": "Final Gap Verification & README Type Fix",
-      "status": "ready-for-work",
+      "status": "completed",
       "tasks": [
         "task-1775583094060"
+      ]
+    },
+    {
+      "id": "m27",
+      "name": "agentic-core Extraction — Close Critical Vision Gap",
+      "status": "ready-for-work",
+      "tasks": [
+        "task-1775615888978",
+        "task-1775615923116",
+        "task-1775613090477",
+        "task-1775615948444",
+        "task-1775615948484"
       ]
     }
   ]

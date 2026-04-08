@@ -1,7 +1,7 @@
 {
   "agent": "qa_lead",
-  "timestamp": "2026-04-07T17:32:56.073Z",
+  "timestamp": "2026-04-08T02:41:55.841Z",
   "exitCode": 0,
   "status": "completed",
-  "summary": "Wrote .team/milestones/m26/dbb.md with 5 verification criteria covering README type accuracy, shell_exec docs, zero-config filesystem docs, images population, and test regression. Updated m26 status to ready-for-work."
+  "summary": "Wrote 10 DBB criteria for M27 (agentic-core extraction), updated milestone status to ready-for-work. Criteria cover: package build, exports, thin ask.ts (<100 lines), dependency wiring, 107/107 tests pass, public API preservation, module boundary verification, ARCHITECTURE.md update, and vision gap ≥90%."
 }
