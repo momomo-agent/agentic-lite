@@ -73,4 +73,32 @@ describe('executeCode timeout enforcement', () => {
     // to the host event loop (e.g., Python subprocess via spawn).
     expect(true).toBe(true)
   })
+
+  it('throws timeout error for infinite Python loop (browser/pyodide)', async () => {
+    // Pyodide runs in browser; skip in Node environment
+    if (typeof window === 'undefined') return
+
+    const start = Date.now()
+    const result = await executeCode(
+      { code: 'while True: pass' },
+      undefined,
+      500,
+    )
+    const elapsed = Date.now() - start
+
+    // Expect timeout error or similar failure
+    const combined = `${result.error ?? ''} ${result.output ?? ''}`
+    expect(combined).toMatch(/timed out|timeout/i)
+    expect(elapsed).toBeLessThan(5000)
+  }, 10000)
+
+  it('fast code completes within timeout', async () => {
+    const result = await executeCode(
+      { code: 'let x = 0; for(let i=0;i<100;i++){x+=i}; x' },
+      undefined,
+      5000,
+    )
+    expect(result.error).toBeUndefined()
+    expect(result.output).toContain('4950')
+  })
 })

@@ -68,6 +68,7 @@ export async function ask(prompt: string, config: AgenticConfig = {}): Promise<A
   const chunks: string[] = []
   const result = await agenticAsk(prompt, {
     provider: config.provider ?? 'anthropic',
+    customProvider: config.customProvider,
     apiKey: config.apiKey,
     baseUrl: config.baseUrl,
     model: config.model,
@@ -102,6 +103,7 @@ export async function* askStream(prompt: string, config: AgenticConfig = {}): As
 
   const promise = agenticAsk(prompt, {
     provider: config.provider ?? 'anthropic',
+    customProvider: config.customProvider,
     apiKey: config.apiKey,
     baseUrl: config.baseUrl,
     model: config.model,
