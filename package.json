@@ -39,8 +39,8 @@
   },
   "dependencies": {
     "agentic-core": "file:../agentic-core",
-    "agentic-filesystem": "file:../agentic-filesystem",
-    "agentic-shell": "file:../agentic-shell",
+    "agentic-filesystem": "link:../agentic-filesystem",
+    "agentic-shell": "link:../agentic-shell",
     "pyodide": "^0.25.0",
     "quickjs-emscripten": "^0.29.0"
   }
