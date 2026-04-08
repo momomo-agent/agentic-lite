@@ -8,9 +8,8 @@ import { executeShell, isNodeEnv, shellToolDef } from './tools/shell.js'
 import { AgenticFileSystem, MemoryStorage } from 'agentic-filesystem'
 import type { AgenticConfig, AgenticResult, ToolCall } from './types.js'
 
-// agentic-core is a UMD bundle without TypeScript types
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const agenticAsk: (prompt: string, config: Record<string, unknown>, emit?: (type: string, data: unknown) => void) => Promise<{ answer: string; usage?: unknown }> = require('agentic-core').agenticAsk
+import agenticCoreModule from 'agentic-core'
+const agenticAsk: (prompt: string, config: Record<string, unknown>, emit?: (type: string, data: unknown) => void) => Promise<{ answer: string; usage?: any }> = agenticCoreModule.agenticAsk ?? agenticCoreModule
 
 const OS_SYSTEM_PROMPT = `You are an AI assistant running on a computer. You have access to a filesystem and can execute code. Use the available tools to complete tasks.`
 
