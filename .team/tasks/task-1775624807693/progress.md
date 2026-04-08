@@ -2,7 +2,10 @@
 
 ## Changes Made
 
-### 1. `src/ask.ts` — Rewrote both `ask()` and `askStream()`
+### 1. `package.json` — Updated agentic-core dependency
+- Changed from `file:../agentic-core` (old npm bundle with only `agenticAsk`) to `file:./packages/agentic-core` (local source with `runAgentLoop` and `runAgentLoopStream`)
+
+### 2. `src/ask.ts` — Rewrote both `ask()` and `askStream()`
 - **Before**: Used legacy `agenticAsk` from agentic-core with callback-based emit pattern
 - **After**: Uses new provider-based API:
   - `createProvider()` to build Provider from config (supports `customProvider`)
@@ -10,19 +13,18 @@
   - `runAgentLoopStream()` for `askStream()` (streaming)
 - Added `search` tool to `buildTools()` (was missing — search was not wired up)
 - Imported `searchToolDef` and `executeSearch` from `./tools/search.js`
+- Added `imagesCollector` parameter to `buildTools` to collect images from search results
 
-### 2. `src/types.ts` — Added `customProvider` field
-- Changed `import type { Provider }` to inline `import('agentic-core').Provider` to avoid issues with module resolution
-
-### 3. `node_modules/agentic-core` — Package was already updated
-- `package.json` already pointed `main` to `dist/index.js` and `types` to `dist/index.d.ts`
-- `dist/index.js` already had full implementations of `runAgentLoopStream`, `createProvider`, etc.
-- `dist/index.d.ts` already had all the type declarations
+### 3. `src/types.ts` — Added `customProvider` field + fixed type constraints
+- Added `customProvider?: import('agentic-core').Provider` to `AgenticConfig`
+- Changed `usage?:` to `usage:` (required per m15-types-prd.test.ts)
+- Changed `images?:` to `images:` (required per m15-types-prd.test.ts)
 
 ## Test Results
 - `ask-stream.test.ts`: 12/12 pass
-- `streaming.test.ts`: 16/16 pass
-- Full suite: 209/213 pass (4 pre-existing failures unrelated to this change)
+- `ask-images.test.ts`: 2/2 pass (images properly collected from search tool)
+- `m15-types-prd.test.ts`: 3/3 pass (type definitions corrected)
+- Full suite: 213/213 pass
 
 ## Key Architecture Change
 The old `agenticAsk` managed its own provider creation, message building, and agent loop. The new approach:
