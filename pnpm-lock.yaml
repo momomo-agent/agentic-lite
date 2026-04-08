@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       agentic-core:
-        specifier: file:./packages/agentic-core
-        version: file:packages/agentic-core
+        specifier: file:../agentic-core
+        version: file:../agentic-core
       agentic-filesystem:
         specifier: link:../agentic-filesystem
         version: link:../agentic-filesystem
@@ -533,8 +533,8 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
 
-  agentic-core@file:packages/agentic-core:
-    resolution: {directory: packages/agentic-core, type: directory}
+  agentic-core@file:../agentic-core:
+    resolution: {directory: ../agentic-core, type: directory}
 
   any-promise@1.3.0:
     resolution: {integrity: sha512-7UvmKalWRt1wgjL1RrGxoSJW/0QZFIegpeGvZG9kjp8vrRu55XTHbwnqq2GpXm9uLbcuhxm3IqX9OB4MZR1b2A==}
@@ -1200,7 +1200,7 @@ snapshots:
 
   acorn@8.16.0: {}
 
-  agentic-core@file:packages/agentic-core: {}
+  agentic-core@file:../agentic-core: {}
 
   any-promise@1.3.0: {}
 

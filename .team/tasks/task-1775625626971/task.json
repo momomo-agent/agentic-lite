@@ -2,12 +2,12 @@
   "id": "task-1775625626971",
   "title": "Browser verification + ask.ts slimming",
   "description": "浏览器端验证 + ask.ts 瘦身",
-  "status": "review",
+  "status": "testing",
   "priority": "P1",
-  "assignee": "developer",
+  "assignee": "tester",
   "blockedBy": [],
   "groupId": "m29",
   "hasDesign": true,
   "created": "2026-04-08T05:20:26.972Z",
-  "updated": "2026-04-08T05:30:51.351Z"
+  "updated": "2026-04-08T05:31:11.881Z"
 }
