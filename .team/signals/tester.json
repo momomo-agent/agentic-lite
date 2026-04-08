@@ -1,7 +1,7 @@
 {
   "agent": "tester",
-  "timestamp": "2026-04-08T04:31:59.645Z",
+  "timestamp": "2026-04-08T05:05:45.359Z",
   "exitCode": 0,
-  "status": "completed",
-  "summary": "Verified streaming API (task-1775620587853). All 211 tests pass (199 existing + 12 new). All DBB-001 through DBB-006 criteria met. Task marked done."
+  "status": "blocked",
+  "summary": "Tested streaming & timeout: 29/39 tests pass. Core runAgentLoopStream (16/16) and code timeout (11/11) fully working. But askStream() integration tests fail (10/12) because askStream() delegates to legacy agenticAsk which ignores customProvider and makes real API calls. Bug is in src/ask.ts — askStream() should use runAgentLoopStream instead of agenticAsk. Task marked blocked."
 }

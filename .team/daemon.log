@@ -18580,3 +18580,68 @@ Task marked as **review**.
 [2026-04-08T05:04:35.252Z] developer agent completed
 [2026-04-08 05:04:35] [agent_complete] developer completed successfully
 [2026-04-08 05:04:35] [workflow] developer [SIGNAL] completed: All 12 design tests already implemented. Streaming tests (16 pass) and timeout tests (11 pass) verif
+[2026-04-08 05:04:35] [workflow] work_loop [LOOP] Iteration 19
+[2026-04-08 05:04:35] [workflow] work_loop [SHELL] node /Users/kenefe/LOCAL/momo-agent/tools/team/scripts/goal-check.js
+[2026-04-08 05:04:35] [workflow] work_loop [EXEC] pm
+[2026-04-08 05:04:35] [agent_start] pm 管理任务和里程碑
+[2026-04-08T05:04:35.659Z] Running pm agent...
+[2026-04-08 05:04:44] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 34min (active:3, done:82)
+Status update:
+- task-1775620598483: **in_progress** (architect) — Update ARCHITECTURE.md for streaming API
+- task-1775620603459: **review** (tester) — Add tests for streaming and timeout
+- task-1775622465587: **todo** (architect) — Clean ARCHITECTURE.md accuracy gaps
+
+The goal (Vision ≥90% + PRD ≥90%) is already met at 100%/100%. The remaining m28 work is:
+1. Architect needs to finish the ARCHITECTURE.md streaming update (in_progress)
+2. Tester's test task is in review — waiting for approval
+3. Architect has a queued task to clean up architecture doc accuracy (todo → could improve architecture from 93% to 95%+)
+
+No action needed from PM right now — the remaining tasks are assigned and in progress. The architect is actively working and the review task is waiting on the tester. I'll wait for status changes before creating new tasks or updating milestones.
+
+```signal
+{"status": "completed", "summary": "Goal already met (Vision 100% + PRD 100%). M28 has 3 remaining tasks: 1 in_progress (architect streaming docs), 1 in review (tester), 1 todo (architect doc cleanup). No pending CRs. No new tasks needed — waiting for architect and tester to finish remaining work."}
+```
+[2026-04-08T05:05:25.454Z] pm agent completed
+[2026-04-08 05:05:25] [agent_complete] pm completed successfully
+[2026-04-08 05:05:25] [workflow] pm [SIGNAL] completed: Goal already met (Vision 100% + PRD 100%). M28 has 3 remaining tasks: 1 in_progress (architect strea
+[2026-04-08 05:05:25] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-08 05:05:25] [workflow] work_loop [PARALLEL-SKIP] write-design: todoWithoutDesign > 0
+[2026-04-08 05:05:25] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-08 05:05:25] [error] eval archTaskCount > 0: archTaskCount is not defined
+[2026-04-08 05:05:25] [workflow] work_loop [PARALLEL-SKIP] update-architecture: archTaskCount > 0
+[2026-04-08 05:05:25] [workflow] work_loop [PARALLEL] implement
+[2026-04-08 05:05:25] [workflow] work_loop [EXEC] developer
+[2026-04-08 05:05:25] [agent_start] developer 实现功能
+[2026-04-08T05:05:25.501Z] Running developer agent...
+[2026-04-08 05:05:44] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 35min (active:2, done:82)
+```signal
+{"status": "blocked", "summary": "Tested streaming & timeout: 29/39 tests pass. Core runAgentLoopStream (16/16) and code timeout (11/11) fully working. But askStream() integration tests fail (10/12) because askStream() delegates to legacy agenticAsk which ignores customProvider and makes real API calls. Bug is in src/ask.ts — askStream() should use runAgentLoopStream instead of agenticAsk. Task marked blocked."}
+```
+
+## Test Results Summary
+
+**Task**: task-1775620603459 — Add tests for streaming and timeout
+**Status**: BLOCKED
+**Results**: 29 passed / 10 failed / 39 total (74% pass rate)
+
+### What's Working
+- **`test/streaming.test.ts`** — 16/16 PASS: `runAgentLoopStream` fully tested (text streaming, tool use, multi-round, system prompt, edge cases, provider interface)
+- **`test/code-timeout.test.ts`** — 11/11 PASS: `executeCode` timeout enforcement working (Python subprocess killed, QuickJS documented limitations, backward compat)
+
+### What's Broken
+- **`test/ask-stream.test.ts`** — 2/12 PASS, 10 FAIL: `askStream()` integration layer is broken
+
+### Root Cause
+`askStream()` in `src/ask.ts` delegates to the legacy `agenticAsk` from the built `agentic-core` package. This legacy function:
+1. Ignores `config.customProvider` entirely
+2. Always requires an API key and makes real API calls
+3. Doesn't use the new `Provider` interface or `runAgentLoopStream`
+
+The built `agentic-core` package hasn't been rebuilt to export `runAgentLoopStream`.
+
+### Files Written
+- `.team/tasks/task-1775620603459/test-result.md` — detailed test analysis
+- `.team/gaps/test-coverage.json` — updated coverage (74%)
+[2026-04-08T05:05:45.360Z] tester agent completed
+[2026-04-08 05:05:45] [agent_complete] tester completed successfully
+[2026-04-08 05:05:45] [workflow] tester [SIGNAL] blocked: Tested streaming & timeout: 29/39 tests pass. Core runAgentLoopStream (16/16) and code timeout (11/1
