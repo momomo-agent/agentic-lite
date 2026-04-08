@@ -1,7 +1,7 @@
 {
   "agent": "developer",
-  "timestamp": "2026-04-08T05:18:49.407Z",
+  "timestamp": "2026-04-08T05:24:02.917Z",
   "exitCode": 0,
-  "status": "completed",
-  "summary": "No available developer tasks. All todo tasks are assigned to architect. My task (task-1775624807693 - Fix askStream) is already in review status."
+  "status": "blocked",
+  "summary": "No available developer tasks with hasDesign=true and unassigned status. All remaining tasks are either architect-assigned or lack a design.md file."
 }

@@ -24,9 +24,9 @@
     "retryCount": 2
   },
   "pm": {
-    "status": "running",
-    "lastRun": "2026-04-08T05:21:58.084Z",
-    "currentTask": "管理任务和里程碑",
+    "status": "idle",
+    "lastRun": "2026-04-08T05:23:24.115Z",
+    "currentTask": null,
     "retryCount": 0
   },
   "qa_lead": {
@@ -55,7 +55,7 @@
   },
   "developer": {
     "status": "idle",
-    "lastRun": "2026-04-08T05:18:49.415Z",
+    "lastRun": "2026-04-08T05:24:02.920Z",
     "currentTask": null,
     "retryCount": 0
   },
@@ -78,9 +78,9 @@
     "retryCount": 0
   },
   "tech_lead": {
-    "status": "idle",
-    "lastRun": "2026-04-08T05:09:28.550Z",
-    "currentTask": null,
+    "status": "running",
+    "lastRun": "2026-04-08T05:23:24.165Z",
+    "currentTask": "出技术方案",
     "retryCount": 0
   }
 }
