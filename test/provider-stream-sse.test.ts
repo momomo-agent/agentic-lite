@@ -253,10 +253,9 @@ describe('DBB-003: OpenAI provider stream() SSE parsing', () => {
   })
 
   it('yields tool_use chunks with accumulated arguments', async () => {
-    const sseEvents = [
-      JSON.stringify({ choices: [{ delta: { tool_calls: [{ index: 0, id: 'call-1', function: { name: 'calc', arguments: '{"ex' } }] } }] }),
-      JSON.stringify({ choices: [{ delta: { tool_calls: [{ index: 0, function: { arguments: 'pr":"2+2"}' }] }, finish_reason: 'tool_calls' }] }),
-    ]
+    const event1 = `{"choices":[{"delta":{"tool_calls":[{"index":0,"id":"call-1","function":{"name":"calc","arguments":"{\\"ex"}}]}}]}`
+    const event2 = `{"choices":[{"delta":{"tool_calls":[{"index":0,"function":{"arguments":"pr\\":\\"2+2\\"}"}}]},"finish_reason":"tool_calls"}]}`
+    const sseEvents = [event1, event2]
 
     fetchMock.mockResolvedValue({
       ok: true,

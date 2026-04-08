@@ -8411,3 +8411,12 @@
 {"ts":"2026-04-08T05:23:44.202Z","type":"perf","agent":"daemon","data":{"details":"{\"rss\":\"24MB\",\"heapUsed\":\"13MB\",\"uptime\":\"6900s\"}"}}
 {"ts":"2026-04-08T05:24:02.920Z","type":"agent_complete","agent":"developer","data":{"details":"completed successfully","performance":{"memoryMB":8,"memoryTotalMB":11,"cpuUser":3.444849,"cpuSystem":3.676656}}}
 {"ts":"2026-04-08T05:24:02.920Z","type":"workflow","agent":"developer","data":{"details":"[SIGNAL] blocked: No available developer tasks with hasDesign=true and unassigned status. All remaining tasks are eith"}}
+{"ts":"2026-04-08T05:24:02.996Z","type":"workflow","agent":"work_loop","data":{"details":"[AGENT-SIGNAL] developer → blocked: No available developer tasks with hasDesign=true and unassigned status. All rema"}}
+{"ts":"2026-04-08T05:25:16.826Z","type":"agent_complete","agent":"tech_lead","data":{"details":"completed successfully","performance":{"memoryMB":13,"memoryTotalMB":15,"cpuUser":3.467656,"cpuSystem":3.691565}}}
+{"ts":"2026-04-08T05:25:16.827Z","type":"workflow","agent":"tech_lead","data":{"details":"[SIGNAL] completed: Verified m28 milestone has complete dbb.md + design.md. Created technical design for task-1775625626"}}
+{"ts":"2026-04-08T05:25:16.870Z","type":"workflow","agent":"work_loop","data":{"details":"[LOOP] Iteration 23"}}
+{"ts":"2026-04-08T05:25:16.884Z","type":"workflow","agent":"work_loop","data":{"details":"[SHELL] node /Users/kenefe/LOCAL/momo-agent/tools/team/scripts/goal-check.js"}}
+{"ts":"2026-04-08T05:25:17.066Z","type":"workflow","agent":"work_loop","data":{"details":"[EXEC] pm"}}
+{"ts":"2026-04-08T05:25:17.066Z","type":"agent_start","agent":"pm","data":{"details":"管理任务和里程碑","performance":{"memoryMB":13,"memoryTotalMB":18,"cpuUser":3.478209,"cpuSystem":3.724375}}}
+{"ts":"2026-04-08T05:26:10.096Z","type":"agent_complete","agent":"tester-2","data":{"details":"completed successfully","performance":{"memoryMB":8,"memoryTotalMB":13,"cpuUser":3.499811,"cpuSystem":3.738059}}}
+{"ts":"2026-04-08T05:26:10.097Z","type":"workflow","agent":"tester-2","data":{"details":"[SIGNAL] completed: Added 15 provider SSE parsing tests (test/provider-stream-sse.test.ts), verified all 256 tests pass,"}}

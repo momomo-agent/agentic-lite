@@ -1,14 +1,14 @@
 {
-  "totalTests": 241,
-  "passed": 241,
+  "totalTests": 256,
+  "passed": 256,
   "failed": 0,
   "edgeCases": [
     "JS timeout cannot interrupt synchronous QuickJS execution (vm.evalCode blocks event loop, withTimeout timer never fires)",
     "toolConfig.code.timeout not wired into ask() — timeout parameter works in executeCode directly but is ignored by ask() config path",
     "Streaming + timeout combined: no test for streaming code execution that times out",
     "askStream with toolConfig.code.timeout propagation untested",
-    "Anthropic/OpenAI SSE parsing tested only via mocks (no integration test with real endpoints)",
-    "Pyodide browser timeout path untested (requires browser environment)"
+    "Pyodide browser timeout path untested (requires browser environment)",
+    "OpenAI stream() skips finish_reason when delta is undefined (continue before checking finish_reason at openai.ts:110)"
   ],
-  "coverage": "87%"
+  "coverage": "90%"
 }
