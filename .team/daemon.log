@@ -17922,3 +17922,46 @@ Once the streaming core review is approved and the agentic-lite streaming entry 
 [2026-04-08T04:23:43.225Z] tester agent completed
 [2026-04-08 04:23:43] [agent_complete] tester completed successfully
 [2026-04-08 04:23:43] [workflow] tester [SIGNAL] completed: Tested 2 tasks: streaming API (16 tests) and code timeout (9 tests). All 199 tests pass. Found 2 kno
+[2026-04-08 04:23:43] [workflow] work_loop [LOOP] Iteration 9
+[2026-04-08 04:23:43] [workflow] work_loop [SHELL] node /Users/kenefe/LOCAL/momo-agent/tools/team/scripts/goal-check.js
+[2026-04-08 04:23:43] [workflow] work_loop [EXEC] pm
+[2026-04-08 04:23:43] [agent_start] pm 管理任务和里程碑
+[2026-04-08T04:23:43.691Z] Running pm agent...
+[2026-04-08 04:23:44] [perf] daemon {"rss":"46MB","heapUsed":"8MB","uptime":"3300s"}
+Current state: Vision 88%, need ≥90%. No pending CRs. Let me analyze the remaining work.
+
+The two vision gaps are:
+1. **Streaming support** (major) - partially done (core added to agentic-core, needs agentic-lite exposure)
+2. **Timeout enforcement** (minor) - done (task-1775620592995 completed)
+
+Active tasks in m27/m28:
+- task-1775620587853: **Expose streaming API in agentic-lite** (todo, developer, P0) — now unblocked (blocking task done)
+- task-1775620598483: Update ARCHITECTURE.md for streaming (todo, architect, P1) — now unblocked
+- task-1775620603459: Add tests for streaming & timeout (todo, tester, P1) — blocked on streaming impl
+- task-1775615948444: Update ARCHITECTURE.md for agentic-core (todo, architect, P1)
+
+The critical path is **task-1775620587853** (streaming API exposure). Once done, the major vision gap closes and we should hit ≥90%.
+
+The architecture doc tasks (P1) don't directly affect vision score but should complete. Let me verify there are no additional tasks needed.
+
+```signal
+{"status": "completed", "summary": "No pending CRs to process. Vision at 88% (need ≥90%). 4 active tasks remain: 1 critical (streaming API exposure by developer), 1 blocked on that (streaming tests), 2 architecture doc updates. Critical path: developer must complete task-1775620587853 (Expose streaming API in agentic-lite) to close the major vision gap. No new tasks needed — existing milestone tasks cover all gaps."}
+```
+[2026-04-08T04:24:41.035Z] pm agent completed
+[2026-04-08 04:24:41] [agent_complete] pm completed successfully
+[2026-04-08 04:24:41] [workflow] pm [SIGNAL] completed: No pending CRs to process. Vision at 88% (need ≥90%). 4 active tasks remain: 1 critical (streaming A
+[2026-04-08 04:24:41] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-08 04:24:41] [workflow] work_loop [PARALLEL-SKIP] write-design: todoWithoutDesign > 0
+[2026-04-08 04:24:41] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-08 04:24:41] [error] eval archTaskCount > 0: archTaskCount is not defined
+[2026-04-08 04:24:41] [workflow] work_loop [PARALLEL-SKIP] update-architecture: archTaskCount > 0
+[2026-04-08 04:24:41] [workflow] work_loop [PARALLEL] implement
+[2026-04-08 04:24:41] [workflow] work_loop [EXEC] developer
+[2026-04-08 04:24:41] [agent_start] developer 实现功能
+[2026-04-08T04:24:41.129Z] Running developer agent...
+```signal
+{"status": "completed", "summary": "Added askStream() async generator to src/ask.ts, exported from src/index.ts. Uses runAgentLoopStream from agentic-core, yields AgentStreamChunk objects, reuses existing handleToolCall. Build passes, all 199 tests green."}
+```
+[2026-04-08T04:26:24.117Z] developer agent completed
+[2026-04-08 04:26:24] [agent_complete] developer completed successfully
+[2026-04-08 04:26:24] [workflow] developer [SIGNAL] completed: Added askStream() async generator to src/ask.ts, exported from src/index.ts. Uses runAgentLoopStream

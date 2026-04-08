@@ -1,7 +1,7 @@
 // agentic-lite — Integration layer
 // Connects agentic-core agent loop with tool implementations
 
-import { createProvider, runAgentLoop, type ProviderToolCall, type ToolDefinition } from 'agentic-core'
+import { createProvider, runAgentLoop, runAgentLoopStream, type ProviderToolCall, type ToolDefinition, type AgentStreamChunk } from 'agentic-core'
 import { shellToolDef, executeShell, isNodeEnv } from './tools/shell.js'
 import type { AgenticConfig, AgenticResult, ToolName, Source, CodeResult, FileResult, ShellResult, ToolCall } from './types.js'
 import { searchToolDef, executeSearch } from './tools/search.js'
@@ -39,6 +39,32 @@ export async function ask(prompt: string, config: AgenticConfig): Promise<Agenti
     shellResults: allShellResults.length > 0 ? allShellResults : undefined,
     toolCalls: allToolCalls.length > 0 ? allToolCalls : undefined,
     usage: result.usage,
+  }
+}
+
+export async function* askStream(prompt: string, config: AgenticConfig = {}): AsyncGenerator<AgentStreamChunk> {
+  const filesystem = config.filesystem ?? new AgenticFileSystem({ storage: new MemoryStorage() })
+  const resolvedConfig = { ...config, filesystem }
+  const provider = createProvider(resolvedConfig)
+  const enabledTools = resolvedConfig.tools ?? ['search']
+  const toolDefs = buildToolDefs(enabledTools)
+  const allSources: Source[] = []
+  const allCodeResults: CodeResult[] = []
+  const allFileResults: FileResult[] = []
+  const allShellResults: ShellResult[] = []
+  const allToolCalls: ToolCall[] = []
+  const allImages: string[] = []
+
+  for await (const chunk of runAgentLoopStream({
+    provider,
+    prompt,
+    systemPrompt: resolvedConfig.systemPrompt,
+    toolDefs,
+    executeToolCall: (tc: ProviderToolCall) => handleToolCall(tc, resolvedConfig, {
+      allSources, allCodeResults, allFileResults, allShellResults, allToolCalls, allImages,
+    }),
+  })) {
+    yield chunk
   }
 }
 
