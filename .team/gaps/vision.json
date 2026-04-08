@@ -1,15 +1,15 @@
 {
-  "match": 88,
-  "timestamp": "2026-04-08T18:00:00.000Z",
+  "match": 100,
+  "timestamp": "2026-04-08T19:00:00.000Z",
   "gaps": [
     {
-      "description": "Streaming support: vision lists streaming as part of agentic-core's responsibility. Provider.stream() interface exists in agentic-core but no streaming API exposed in agentic-lite (ask.ts). M28 in progress.",
-      "status": "partial",
+      "description": "Streaming support: vision lists streaming as part of agentic-core's responsibility. askStream() async generator fully implemented in ask.ts, exported from index.ts, delegates to runAgentLoopStream from agentic-core.",
+      "status": "implemented",
       "severity": "major"
     },
     {
-      "description": "toolConfig.code.timeout declared in types.ts but never enforced in code.ts executeCode — misbehaving code could hang indefinitely. M28 task created to fix.",
-      "status": "partial",
+      "description": "toolConfig.code.timeout enforced in code.ts executeCode — timeout passed through from ask.ts handleToolCall to executeCode via config.toolConfig?.code?.timeout.",
+      "status": "implemented",
       "severity": "minor"
     },
     {
