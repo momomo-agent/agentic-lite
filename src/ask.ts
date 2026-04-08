@@ -1,8 +1,7 @@
 // agentic-lite — Integration layer
 // Connects agentic-core agent loop with tool implementations
 
-import { createProvider, runAgentLoop } from 'agentic-core'
-import type { ProviderToolCall, ToolDefinition } from 'agentic-core'
+import { createProvider, runAgentLoop, type ProviderToolCall, type ToolDefinition } from 'agentic-core'
 import { shellToolDef, executeShell, isNodeEnv } from './tools/shell.js'
 import type { AgenticConfig, AgenticResult, ToolName, Source, CodeResult, FileResult, ShellResult, ToolCall } from './types.js'
 import { searchToolDef, executeSearch } from './tools/search.js'
@@ -16,14 +15,12 @@ export async function ask(prompt: string, config: AgenticConfig): Promise<Agenti
   const provider = createProvider(resolvedConfig)
   const enabledTools = resolvedConfig.tools ?? ['search']
   const toolDefs = buildToolDefs(enabledTools)
-
   const allSources: Source[] = []
   const allCodeResults: CodeResult[] = []
   const allFileResults: FileResult[] = []
   const allShellResults: ShellResult[] = []
   const allToolCalls: ToolCall[] = []
   const allImages: string[] = []
-
   const result = await runAgentLoop({
     provider,
     prompt,
@@ -33,7 +30,6 @@ export async function ask(prompt: string, config: AgenticConfig): Promise<Agenti
       allSources, allCodeResults, allFileResults, allShellResults, allToolCalls, allImages,
     }),
   })
-
   return {
     answer: result.answer,
     sources: allSources.length > 0 ? allSources : undefined,
@@ -46,19 +42,10 @@ export async function ask(prompt: string, config: AgenticConfig): Promise<Agenti
   }
 }
 
-// --- Tool execution ---
-
 async function handleToolCall(
   tc: ProviderToolCall,
   config: AgenticConfig,
-  acc: {
-    allSources: Source[]
-    allCodeResults: CodeResult[]
-    allFileResults: FileResult[]
-    allShellResults: ShellResult[]
-    allToolCalls: ToolCall[]
-    allImages: string[]
-  },
+  acc: { allSources: Source[]; allCodeResults: CodeResult[]; allFileResults: FileResult[]; allShellResults: ShellResult[]; allToolCalls: ToolCall[]; allImages: string[] },
 ): Promise<string> {
   let output: string
   switch (tc.name) {
@@ -99,7 +86,6 @@ async function handleToolCall(
   acc.allToolCalls.push({ tool: tc.name, input: tc.input, output })
   return output
 }
-
 function buildToolDefs(tools: ToolName[]): ToolDefinition[] {
   const defs: ToolDefinition[] = []
   if (tools.includes('search')) defs.push(searchToolDef)
