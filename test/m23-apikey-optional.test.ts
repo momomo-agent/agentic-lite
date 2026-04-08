@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest'
-import { createProvider } from '../src/providers/index.js'
+import { createProvider } from 'agentic-core'
 import { ask } from '../src/ask.js'
 
 function finalResponse(text: string) {

@@ -1,6 +1,6 @@
 // Code execution tool — quickjs-emscripten isolated sandbox (Node) / AsyncFunction eval (browser)
 
-import type { ToolDefinition } from '../providers/provider.js'
+import type { ToolDefinition } from 'agentic-core'
 import type { CodeResult } from '../types.js'
 import type { AgenticFileSystem } from 'agentic-filesystem'
 

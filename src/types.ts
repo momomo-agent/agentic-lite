@@ -1,7 +1,7 @@
 // agentic-lite — Types
 
 import type { AgenticFileSystem } from 'agentic-filesystem'
-import type { Provider } from './providers/index.js'
+import type { Provider } from 'agentic-core'
 
 export interface AgenticConfig {
   /** LLM provider: 'anthropic' | 'openai' | 'custom' */

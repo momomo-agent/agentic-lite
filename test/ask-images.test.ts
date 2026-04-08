@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest'
 import { ask } from '../src/ask.js'
 import type { AgenticConfig } from '../src/types.js'
-import type { Provider } from '../src/providers/index.js'
+import type { Provider } from 'agentic-core'
 
 vi.mock('../src/tools/search.js', () => ({
   searchToolDef: { name: 'web_search', description: '', parameters: {} },

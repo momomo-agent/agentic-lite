@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest'
 import { ask } from '../src/ask.js'
 import type { AgenticConfig } from '../src/types.js'
-import type { Provider, ProviderResponse } from '../src/providers/index.js'
+import type { Provider, ProviderResponse } from 'agentic-core'
 
 function makeConfig(provider: Provider): AgenticConfig {
   return {

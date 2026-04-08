@@ -259,14 +259,15 @@
     {
       "id": "m27",
       "name": "agentic-core Extraction — Close Critical Vision Gap",
-      "status": "ready-for-work",
+      "status": "active",
       "tasks": [
         "task-1775615888978",
         "task-1775615923116",
         "task-1775613090477",
         "task-1775615948444",
         "task-1775615948484",
-        "task-1775619047998"
+        "task-1775619047998",
+        "task-1775619570532"
       ]
     }
   ]

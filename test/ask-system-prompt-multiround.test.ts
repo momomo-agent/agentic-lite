@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest'
 import { ask } from '../src/ask.js'
 import type { AgenticConfig } from '../src/types.js'
-import type { ProviderResponse } from '../src/providers/index.js'
+import type { ProviderResponse } from 'agentic-core'
 
 function toolUseResponse(id: string, name: string, input: Record<string, unknown>): ProviderResponse {
   return {

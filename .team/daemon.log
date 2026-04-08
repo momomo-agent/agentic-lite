@@ -17352,3 +17352,65 @@ Task status updated to **done**.
 [2026-04-08T03:38:05.786Z] tester agent completed
 [2026-04-08 03:38:05] [agent_complete] tester completed successfully
 [2026-04-08 03:38:05] [workflow] tester [SIGNAL] completed: Tested task-1775619047998: all 174 tests pass, symlink fix verified, all DBB criteria confirmed, tas
+[2026-04-08 03:38:05] [workflow] work_loop [LOOP] Iteration 3
+[2026-04-08 03:38:05] [workflow] work_loop [SHELL] node /Users/kenefe/LOCAL/momo-agent/tools/team/scripts/goal-check.js
+[2026-04-08 03:38:06] [workflow] work_loop [EXEC] pm
+[2026-04-08 03:38:06] [agent_start] pm 管理任务和里程碑
+[2026-04-08T03:38:06.099Z] Running pm agent...
+[2026-04-08 03:38:14] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 9min (active:2, done:76)
+[2026-04-08 03:38:44] [perf] daemon {"rss":"77MB","heapUsed":"12MB","uptime":"600s"}
+[2026-04-08 03:38:44] [workflow] monitor ⚠️ [ALERT:no_progress] No progress for 10min (active:2, done:76)
+[2026-04-08 03:38:44] [agent_start] daemon Still busy (10min), skipping
+Here's my summary of the PM loop:
+
+**Milestone 27 Status** — agentic-core Extraction (active)
+- 4 tasks done: refactoring ask.ts, fixing symlink, verifying tests (174/174 pass)
+- 2 tasks cancelled: superseded by approach of using existing agentic-core project
+- 1 new task created: **Remove src/providers/ dead code** (P0, developer) — imports still reference old providers directory
+- 1 task waiting: **Update ARCHITECTURE.md** (architect) — blocked until cleanup completes
+
+**Vision Progress**: 82% → expected ~90%+ after cleanup
+- Critical gap (no agentic-core dependency): RESOLVED — `ask.ts` imports from `agentic-core`
+- Remaining: dead code removal (`src/providers/`), ARCHITECTURE.md update
+
+**PRD Updated**: Documented agentic-core architecture in Overview and Agent Loop sections; cleaned up stale change notes.
+
+**All CRs**: 12/12 resolved — no pending change requests.
+
+```signal
+{"status": "completed", "summary": "Milestone 27 active. Marked test verification done (174/174 pass). Created P0 task to remove src/providers/ dead code (switch all imports to agentic-core). Updated ARCHITECTURE.md task dependency chain. Updated PRD with agentic-core architecture. Vision expected to reach 90%+ after cleanup task completes. Two tasks remain: developer cleanup + architect doc update."}
+```
+[2026-04-08T03:40:26.939Z] pm agent completed
+[2026-04-08 03:40:26] [agent_complete] pm completed successfully
+[2026-04-08 03:40:26] [workflow] pm [SIGNAL] completed: Milestone 27 active. Marked test verification done (174/174 pass). Created P0 task to remove src/pro
+[2026-04-08 03:40:26] [workflow] work_loop [SKIP] write-dbb: milestoneNeedsDBB > 0
+[2026-04-08 03:40:26] [workflow] work_loop [PARALLEL-SKIP] run-tests: reviewCount > 0 || testingCount > 0
+[2026-04-08 03:40:26] [error] eval archTaskCount > 0: archTaskCount is not defined
+[2026-04-08 03:40:26] [workflow] work_loop [PARALLEL-SKIP] update-architecture: archTaskCount > 0
+[2026-04-08 03:40:26] [workflow] work_loop [PARALLEL] write-design, implement
+[2026-04-08 03:40:26] [workflow] work_loop [EXEC] tech_lead
+[2026-04-08 03:40:26] [agent_start] tech_lead 出技术方案
+[2026-04-08 03:40:26] [workflow] work_loop [EXEC] developer
+[2026-04-08 03:40:26] [agent_start] developer 实现功能
+[2026-04-08T03:40:26.984Z] Running tech_lead agent...
+[2026-04-08T03:40:26.984Z] Running developer agent...
+All m27 milestone and task designs are complete:
+
+- **Milestone m27**: `dbb.md` and `design.md` already existed (10 DBB criteria, full technical design)
+- **task-1775619570532**: Wrote `design.md` covering all 6 import changes, 4 files to delete, edge cases (export surface, test imports), and verification steps
+- **task-1775615948444**: Already had `hasDesign: true` with existing `design.md`
+
+No todo/in-progress tasks are missing designs.
+
+```signal
+{"status": "completed", "summary": "Wrote technical design for task-1775619570532 (remove src/providers/ dead code). All m27 tasks now have designs."}
+```
+[2026-04-08T03:42:20.807Z] tech_lead agent completed
+[2026-04-08 03:42:20] [agent_complete] tech_lead completed successfully
+[2026-04-08 03:42:20] [workflow] tech_lead [SIGNAL] completed: Wrote technical design for task-1775619570532 (remove src/providers/ dead code). All m27 tasks now h
+```signal
+{"status": "completed", "summary": "Removed src/providers/ dead code — switched all imports to agentic-core, deleted providers directory, updated 6 test files. All 174 tests pass."}
+```
+[2026-04-08T03:43:31.267Z] developer agent completed
+[2026-04-08 03:43:31] [agent_complete] developer completed successfully
+[2026-04-08 03:43:31] [workflow] developer [SIGNAL] completed: Removed src/providers/ dead code — switched all imports to agentic-core, deleted providers directory

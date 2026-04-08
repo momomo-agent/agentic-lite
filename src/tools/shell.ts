@@ -1,7 +1,7 @@
 // Shell execution tool — agentic-shell integration
 
 import type { AgenticFileSystem } from 'agentic-filesystem'
-import type { ToolDefinition } from '../providers/provider.js'
+import type { ToolDefinition } from 'agentic-core'
 import type { ShellResult } from '../types.js'
 
 export const shellToolDef: ToolDefinition = {

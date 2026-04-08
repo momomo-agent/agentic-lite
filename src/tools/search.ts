@@ -1,6 +1,6 @@
 // Search tool — web search via Tavily or Serper
 
-import type { ToolDefinition } from '../providers/provider.js'
+import type { ToolDefinition } from 'agentic-core'
 import type { Source } from '../types.js'
 
 export const searchToolDef: ToolDefinition = {

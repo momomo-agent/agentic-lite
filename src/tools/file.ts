@@ -1,6 +1,6 @@
 // File tool — browser-compatible via AgenticFileSystem
 
-import type { ToolDefinition } from '../providers/provider.js'
+import type { ToolDefinition } from 'agentic-core'
 import type { FileResult } from '../types.js'
 import type { AgenticFileSystem } from 'agentic-filesystem'
 

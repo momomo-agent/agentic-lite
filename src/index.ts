@@ -3,5 +3,5 @@
 
 export { ask } from './ask.js'
 export type { AgenticConfig, AgenticResult, ToolName, Source, CodeResult, FileResult, ShellResult, ToolCall } from './types.js'
-export { createProvider } from './providers/index.js'
-export type { Provider } from './providers/index.js'
+export { createProvider } from 'agentic-core'
+export type { Provider } from 'agentic-core'

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { createProvider } from '../src/providers/provider.js'
+import { createProvider } from 'agentic-core'
 
 describe('custom provider apiKey skip', () => {
   it('does not throw with only baseUrl (no apiKey)', () => {

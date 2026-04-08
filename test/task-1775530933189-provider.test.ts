@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { createProvider } from '../src/providers/provider.js'
+import { createProvider } from 'agentic-core'
 
 // DBB-003: missing apiKey throws
 describe('DBB-003: detectProvider throws on missing apiKey', () => {
