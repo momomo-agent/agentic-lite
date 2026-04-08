@@ -4,18 +4,20 @@
 
 ### Completed
 
-1. **ask.ts slimming** — `setupAgent()` helper already extracted, both `ask()` and `askStream()` share the helper. No duplicate setup code remains.
+1. **ask.ts slimming** — Extracted `setupAgent(config): AgentSetup` helper. Both `ask()` and `askStream()` now call the shared helper instead of duplicating ~30 lines of setup code. Line count: 152 → 134 (18 lines removed).
 
-2. **Browser verification tests** — `test/browser-verification.test.ts` with 6 tests:
+2. **Bug fix**: `askStream()` now collects search images via the shared `setupAgent()` helper. Previously it called `buildTools(resolvedConfig)` without the images array, so search images were silently lost in streaming mode.
+
+3. **Browser verification tests** — `test/browser-verification.test.ts` with 6 tests:
    - `isNodeEnv()` returns false when process is undefined
    - Shell tool excluded in browser (executeShell returns browser error)
    - Default filesystem is MemoryStorage — ask() does not throw
-   - Code tool included in ask() tool list even in browser mode
+   - code_exec tool is registered and offered to provider in browser mode
    - ask() works in browser with mock provider
    - askStream() works in browser with mock provider
 
-3. **Test results**: All 262 tests pass across 39 test files (100% pass rate).
+4. **Backward compatibility**: All 262 tests pass across 39 test files (0 failures). Public API unchanged.
 
 ### Notes
-- QuickJS WASM loading fails when `process` is removed (simulated browser), which is expected — the test verifies tool registration rather than WASM execution in that environment.
-- askStream() now correctly collects search images via the shared `setupAgent()` helper (previously it passed empty array).
+- QuickJS WASM loading fails when `process` is removed (simulated browser) — the code_exec test verifies tool registration via provider mock instead of WASM execution.
+- `AgentSetup` interface and `setupAgent` are module-private (not exported).

@@ -57,7 +57,7 @@
 
       const outputEl = document.getElementById('output')
       outputEl.innerHTML = ''
-      const renderer = new AgenticRenderer(outputEl)
+      const renderer = AgenticRender.create(outputEl)
 
       const filesystem = new AgenticFileSystem({ storage: new AgenticStoreBackend({ namespace: 'demo' }) })
 
