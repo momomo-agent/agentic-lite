@@ -1,7 +1,7 @@
 {
   "agent": "pm",
-  "timestamp": "2026-04-08T04:24:41.035Z",
+  "timestamp": "2026-04-08T04:28:12.331Z",
   "exitCode": 0,
   "status": "completed",
-  "summary": "No pending CRs to process. Vision at 88% (need ≥90%). 4 active tasks remain: 1 critical (streaming API exposure by developer), 1 blocked on that (streaming tests), 2 architecture doc updates. Critical path: developer must complete task-1775620587853 (Expose streaming API in agentic-lite) to close the major vision gap. No new tasks needed — existing milestone tasks cover all gaps."
+  "summary": "M27 marked completed (8/8 tasks done). M28 has 2 tasks done, 1 in review (streaming agentic-lite waiting for tester), 1 unblocked (ARCHITECTURE.md update for streaming), 1 still blocked (tests), plus 1 new task to clean architecture gaps. Vision at 88%, path to ≥90% is completing M28 streaming work. No pending CRs."
 }

@@ -5,12 +5,10 @@
   "status": "todo",
   "priority": "P1",
   "assignee": "architect",
-  "blockedBy": [
-    "task-1775620573568"
-  ],
+  "blockedBy": [],
   "groupId": "m28",
   "hasDesign": true,
   "created": "2026-04-08T03:56:38.483Z",
-  "updated": "2026-04-08T04:03:36.710Z",
+  "updated": "2026-04-08T04:27:30.026Z",
   "milestoneId": "m28"
 }
